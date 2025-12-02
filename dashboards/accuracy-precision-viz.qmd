@@ -1,0 +1,329 @@
+---
+title: "Noggrannhet vs Precision"
+subtitle: "Interaktiv visualisering av accuracy och precision"
+citation:
+  type: document
+  title: "Noggrannhet vs Precision - Interaktiv visualisering"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/accuracy-precision-viz.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Målskjutningsanalogi
+
+Använd kontrollerna nedan för att utforska skillnaden mellan noggrannhet (accuracy) och precision.
+
+```{ojs}
+//| echo: false
+
+viewof accuracyLevel = Inputs.range([0, 1], {
+  label: "Noggrannhet (Accuracy):",
+  step: 0.1,
+  value: 0.5
+})
+
+viewof precisionLevel = Inputs.range([0, 1], {
+  label: "Precision:",
+  step: 0.1,
+  value: 0.5
+})
+
+viewof numShots = Inputs.range([5, 30], {
+  label: "Antal skott:",
+  step: 1,
+  value: 10
+})
+
+viewof newShots = Inputs.button("Nya skott")
+```
+
+```{ojs}
+//| echo: false
+
+// Generate shot positions based on accuracy and precision
+shots = {
+  newShots; // Trigger regeneration
+
+  const centerX = 50;
+  const centerY = 50;
+
+  // Bias based on accuracy (0 = far from center, 1 = on center)
+  const biasDistance = (1 - accuracyLevel) * 30;
+  const biasAngle = Math.random() * 2 * Math.PI;
+  const biasX = Math.cos(biasAngle) * biasDistance;
+  const biasY = Math.sin(biasAngle) * biasDistance;
+
+  // Spread based on precision (0 = high spread, 1 = tight cluster)
+  const spread = (1 - precisionLevel) * 15 + 2;
+
+  const result = [];
+  for (let i = 0; i < numShots; i++) {
+    // Use Box-Muller transform for normal distribution
+    const u1 = Math.random();
+    const u2 = Math.random();
+    const r = Math.sqrt(-2 * Math.log(u1));
+    const theta = 2 * Math.PI * u2;
+
+    const x = centerX + biasX + r * Math.cos(theta) * spread;
+    const y = centerY + biasY + r * Math.sin(theta) * spread;
+
+    result.push({ x, y, distance: Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) });
+  }
+
+  return result;
+}
+```
+
+```{ojs}
+//| echo: false
+
+// Statistics
+stats = {
+  const centerX = 50;
+  const centerY = 50;
+
+  // Mean position (center of cluster)
+  const meanX = shots.reduce((sum, s) => sum + s.x, 0) / shots.length;
+  const meanY = shots.reduce((sum, s) => sum + s.y, 0) / shots.length;
+  const meanDistanceFromTarget = Math.sqrt((meanX - centerX) ** 2 + (meanY - centerY) ** 2);
+
+  // Spread (standard deviation from mean position)
+  const variance = shots.reduce((sum, s) => {
+    return sum + (s.x - meanX) ** 2 + (s.y - meanY) ** 2;
+  }, 0) / shots.length;
+  const stdDev = Math.sqrt(variance);
+
+  // Average distance from target
+  const avgDistance = shots.reduce((sum, s) => sum + s.distance, 0) / shots.length;
+
+  return { meanX, meanY, meanDistanceFromTarget, stdDev, avgDistance };
+}
+```
+
+```{ojs}
+//| echo: false
+
+// Target visualization
+{
+  const width = 600;
+  const height = 600;
+  const centerX = 300;
+  const centerY = 300;
+  const scale = 6; // pixels per unit
+
+  const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", [0, 0, width, height])
+    .style("background", "#f9fafb");
+
+  // Draw target circles
+  const circles = [
+    { r: 50, color: "#fef3c7", label: "50" },
+    { r: 40, color: "#fde68a", label: "40" },
+    { r: 30, color: "#fcd34d", label: "30" },
+    { r: 20, color: "#fbbf24", label: "20" },
+    { r: 10, color: "#f59e0b", label: "10" }
+  ];
+
+  for (const circle of circles) {
+    svg.append("circle")
+      .attr("cx", centerX)
+      .attr("cy", centerY)
+      .attr("r", circle.r * scale)
+      .attr("fill", circle.color)
+      .attr("stroke", "#92400e")
+      .attr("stroke-width", 1);
+  }
+
+  // Bullseye
+  svg.append("circle")
+    .attr("cx", centerX)
+    .attr("cy", centerY)
+    .attr("r", 8)
+    .attr("fill", "#dc2626")
+    .attr("stroke", "#7f1d1d")
+    .attr("stroke-width", 2);
+
+  // Draw crosshair at center
+  svg.append("line")
+    .attr("x1", centerX - 15)
+    .attr("y1", centerY)
+    .attr("x2", centerX + 15)
+    .attr("y2", centerY)
+    .attr("stroke", "#7f1d1d")
+    .attr("stroke-width", 1);
+
+  svg.append("line")
+    .attr("x1", centerX)
+    .attr("y1", centerY - 15)
+    .attr("x2", centerX)
+    .attr("y2", centerY + 15)
+    .attr("stroke", "#7f1d1d")
+    .attr("stroke-width", 1);
+
+  // Draw mean position (cluster center)
+  svg.append("circle")
+    .attr("cx", centerX + (stats.meanX - 50) * scale)
+    .attr("cy", centerY + (stats.meanY - 50) * scale)
+    .attr("r", 6)
+    .attr("fill", "none")
+    .attr("stroke", "#2563eb")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4,2");
+
+  svg.append("line")
+    .attr("x1", centerX + (stats.meanX - 50) * scale - 8)
+    .attr("y1", centerY + (stats.meanY - 50) * scale)
+    .attr("x2", centerX + (stats.meanX - 50) * scale + 8)
+    .attr("y2", centerY + (stats.meanY - 50) * scale)
+    .attr("stroke", "#2563eb")
+    .attr("stroke-width", 2);
+
+  svg.append("line")
+    .attr("x1", centerX + (stats.meanX - 50) * scale)
+    .attr("y1", centerY + (stats.meanY - 50) * scale - 8)
+    .attr("x2", centerX + (stats.meanX - 50) * scale)
+    .attr("y2", centerY + (stats.meanY - 50) * scale + 8)
+    .attr("stroke", "#2563eb")
+    .attr("stroke-width", 2);
+
+  // Draw shots
+  for (const shot of shots) {
+    svg.append("circle")
+      .attr("cx", centerX + (shot.x - 50) * scale)
+      .attr("cy", centerY + (shot.y - 50) * scale)
+      .attr("r", 5)
+      .attr("fill", "#1f2937")
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 1.5)
+      .attr("opacity", 0.8);
+  }
+
+  // Legend
+  const legend = svg.append("g")
+    .attr("transform", "translate(20, 20)");
+
+  legend.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 5)
+    .attr("fill", "#dc2626");
+
+  legend.append("text")
+    .attr("x", 15)
+    .attr("y", 5)
+    .attr("font-size", "14px")
+    .text("Mål (target)");
+
+  legend.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 25)
+    .attr("r", 5)
+    .attr("fill", "#1f2937")
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.5);
+
+  legend.append("text")
+    .attr("x", 15)
+    .attr("y", 30)
+    .attr("font-size", "14px")
+    .text("Skott");
+
+  legend.append("circle")
+    .attr("cx", 0)
+    .attr("cy", 50)
+    .attr("r", 6)
+    .attr("fill", "none")
+    .attr("stroke", "#2563eb")
+    .attr("stroke-width", 2)
+    .attr("stroke-dasharray", "4,2");
+
+  legend.append("line")
+    .attr("x1", -8)
+    .attr("y1", 50)
+    .attr("x2", 8)
+    .attr("y2", 50)
+    .attr("stroke", "#2563eb")
+    .attr("stroke-width", 2);
+
+  legend.append("text")
+    .attr("x", 15)
+    .attr("y", 55)
+    .attr("font-size", "14px")
+    .text("Klustrets centrum");
+
+  return svg.node();
+}
+```
+
+## Statistik
+
+```{ojs}
+//| echo: false
+
+md`
+| Mått | Värde |
+|------|-------|
+| Antal skott | ${numShots} |
+| Medelavstånd från mål | ${stats.avgDistance.toFixed(2)} enheter |
+| Klustrets centrum från mål | ${stats.meanDistanceFromTarget.toFixed(2)} enheter |
+| Spridning (std.avvikelse) | ${stats.stdDev.toFixed(2)} enheter |
+`
+```
+
+## Tolkning
+
+```{ojs}
+//| echo: false
+
+interpretation = {
+  const highAcc = accuracyLevel > 0.6;
+  const lowAcc = accuracyLevel < 0.4;
+  const highPrec = precisionLevel > 0.6;
+  const lowPrec = precisionLevel < 0.4;
+
+  if (highAcc && highPrec) {
+    return "**Hög noggrannhet, hög precision**: Idealfallet! Skotten träffar tätt samlade nära målets centrum. Detta representerar både korrekta och konsekventa mätningar.";
+  } else if (lowAcc && highPrec) {
+    return "**Låg noggrannhet, hög precision**: Skotten är tätt samlade, men långt från målet. Mätningarna är konsekventa men systematiskt felaktiga (bias/systematiskt fel).";
+  } else if (highAcc && lowPrec) {
+    return "**Hög noggrannhet, låg precision**: Skotten spridda runt målets centrum. Mätningarna är i genomsnitt korrekta men inkonsistenta (slumpmässigt fel).";
+  } else if (lowAcc && lowPrec) {
+    return "**Låg noggrannhet, låg precision**: Värsta fallet! Skotten spridda långt från målet. Både systematiska och slumpmässiga fel.";
+  } else {
+    return "**Måttlig noggrannhet och precision**: Mätningarna har både viss bias och viss spridning.";
+  }
+}
+
+md`${interpretation}`
+```
+
+## Förklaring
+
+- **Röd prick**: Målets centrum (det sanna värdet)
+- **Svarta prickar**: Individuella skott/mätningar
+- **Blått kors**: Klustrets centrum (medelvärdet av mätningarna)
+
+### Koppling till mätningar
+
+- **Noggrannhet (Accuracy)** ↔ Hur nära klustrets centrum är målet
+  - Påverkas av systematiska fel (bias, felkalibrering)
+
+- **Precision** ↔ Hur tätt skotten ligger samlade
+  - Påverkas av slumpmässiga fel (variabilitet, mätinstrumentets upplösning)
+
+### Praktiska exempel
+
+**Termometer med systematiskt fel:**
+- Hög precision: Visar samma värde vid upprepade mätningar
+- Låg noggrannhet: Men alltid 2°C för högt (kalibreringsproblem)
+
+**Våg med dålig upplösning:**
+- Hög noggrannhet: Visar rätt värde i genomsnitt
+- Låg precision: Men varierar ±0.5 kg mellan mätningar

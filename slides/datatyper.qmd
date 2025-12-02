@@ -1,0 +1,94 @@
+---
+title: "Datatyper"
+subtitle: "Nominal, Ordinal, Intervall, Kvot"
+citation:
+  type: document
+  title: "Datatyper"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/datatyper.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Fyra datatyper
+
+1. **Nominal** - Kategorier utan ordning
+2. **Ordinal** - Kategorier med ordning
+3. **Intervall** - Numeriska med godtycklig nollpunkt
+4. **Kvot (Ratio)** - Numeriska med absolut nollpunkt
+
+## Nominal
+
+Kategorier utan inbördes ordning
+
+**Exempel:**
+- Bostadsort: Lund, Malmö, Helsingborg
+- Kön: Man, Kvinna, Annat
+- Färg: Röd, Blå, Grön
+
+*Kan endast räkna frekvenser*
+
+## Ordinal
+
+Kategorier med meningsfull ordning
+
+**Exempel:**
+- Utbildningsnivå: Grundskola < Gymnasium < Universitet
+- Nöjdhet: Missnöjd < Neutral < Nöjd
+- Likert-skala: 1-5
+
+*Ordningen har betydelse, men avstånden är inte jämna*
+
+## Intervall
+
+Numeriska data med jämna intervall men godtycklig nollpunkt
+
+**Exempel:**
+- Temperatur (Celsius): 0°C är inte "ingen temperatur"
+- År: År 0 är godtyckligt valt
+- IQ-poäng
+
+*Kan beräkna medelvärde och standardavvikelse*
+
+## Kvot (Ratio)
+
+Numeriska data med absolut nollpunkt
+
+**Exempel:**
+- Ålder: 0 år = ingen ålder
+- Inkomst: 0 kr = ingen inkomst
+- Längd, vikt, tid
+
+*Kan beräkna alla statistiska mått inkl. kvoter*
+
+## Sammanfattning
+
+| Datatyp | Exempel | Tillåtna operationer |
+|---------|---------|---------------------|
+| Nominal | Bostadsort | Frekvens, typvärde |
+| Ordinal | Nöjdhet | + Median, percentiler |
+| Intervall | Temperatur | + Medelvärde, std |
+| Kvot | Ålder | + Kvoter, alla operationer |
+
+## Referenser
+
+- [Level of measurement](https://en.wikipedia.org/wiki/Level_of_measurement)
+- [Nominal scale](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level)
+- [Ordinal scale](https://en.wikipedia.org/wiki/Ordinal_data)
+- [Interval scale](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale)
+- [Ratio scale](https://en.wikipedia.org/wiki/Level_of_measurement#Ratio_scale)

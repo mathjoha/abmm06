@@ -1,0 +1,148 @@
+---
+title: "ABMM06: Kvantitativa metoder"
+subtitle: "Enkäter och digital metodik för ALM-studenter"
+---
+
+## Välkommen
+
+
+Denna webbplats innehåller material för föreläsningar om  kvantitativa metoder, med fokus på enkäter och digitala metoder för kursen ABM006.
+
+## Innehåll
+
+### Presentationer
+
+- [Kvantitativa metoder](slides/kvantitativa-metoder.qmd) - Översikt och jämförelse med kvalitativa metoder
+- [Urval och representativitet](slides/urval.qmd) - Olika urvalsmetoder (sampling)
+- [Datatyper](slides/datatyper.qmd) - Nominal, ordinal, intervall och kvot (ratio)
+- [Slump och sannolikhet](slides/sannolikhet.qmd) - Sannolikhetsteori och statistiska grunder
+- [Beskrivande statistik](slides/beskrivande-statistik.qmd) - Medelvärde, standardavvikelse, median, kvartiler
+- [Digitala metoder](slides/digitala-metoder.qmd) - Webbforskning och exempel
+- [Enkäter](slides/enkat.qmd) - Grundläggande om enkätdesign
+
+### Fördjupning
+
+- [Frågetyper](lessons/fragettyper.qmd) - Detaljerad genomgång av olika frågetyper
+- [Presentera resultat](lessons/presentera-resultat.qmd) - Visualisering och statistik
+- [Inferentiell statistik](lessons/inferentiell-statistik.qmd) - Z-värden, p-värden och felmarginaler
+- [Databehandling och rensning](lessons/databehandling.qmd) - Outliers, transformationer och datakvalitet
+
+### Interaktiva verktyg
+
+- [Datatyper](dashboards/datatyper-viz.qmd) - Utforska datatyper och beskrivande statistik
+- [Sannolikhet](dashboards/sannolikhet-viz.qmd) - Myntkast, tärningar, normalfördelning och konfidensintervall
+- [Statistikkalkylator](dashboards/statistik-kalkylator.qmd) - Beräkna statistik på egen data med histogram och boxplot
+- [Regression](dashboards/regression-viz.qmd) - Klicka för att skapa punkter och visualisera regressionslinjen med residualer
+- [Noggrannhet vs Precision](dashboards/accuracy-precision-viz.qmd) - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi
+- [Urvalsstorlekskalkylator](dashboards/sample-size-calculator.qmd) - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal
+- [Databehandling](dashboards/data-cleaning-viz.qmd) - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)
+- [Monty Hall](dashboards/monty-hall.qmd) - Klassisk sannolikhetsparadox med interaktivt spel
+
+## Matematiska symboler
+
+| Symbol | Betydelse | Exempel |
+|--------|-----------|---------|
+| $\bar{x}$ | Medelvärde (mean) | $\bar{x} = 5.2$ |
+| $\mu$ | Populationsmedelvärde | $\mu = 100$ |
+| $\sigma$ | Standardavvikelse (population) | $\sigma = 15$ |
+| $s$ | Standardavvikelse (urval) | $s = 12.3$ |
+| $\sigma^2$ | Varians (population) | $\sigma^2 = 225$ |
+| $s^2$ | Varians (urval) | $s^2 = 151.3$ |
+| $n$ | Antal observationer | $n = 50$ |
+| $\sum$ | Summa | $\sum x_i$ |
+| $r$ | Korrelationskoefficient | $r = 0.85$ |
+| $R^2$ | Determinationskoefficient | $R^2 = 0.72$ |
+| $\hat{y}$ | Förutsagt värde | $\hat{y} = 3.2$ |
+| $\%$ | Procent | $25\%$ |
+| $\pm$ | Plus/minus (felmarginal) | $50 \pm 3$ |
+
+## Viktiga begrepp
+
+| Svenska | Engelska |
+|---------|----------|
+| Urval | Sampling |
+| Sannolikhet | Probability |
+| Slump | Random chance |
+| Medelvärde | Mean |
+| Standardavvikelse | Standard deviation |
+| Varians | Variance |
+| Median | Median |
+| Kvartiler | Quartiles |
+| Kvantiler | Quantiles |
+| Normalfördelning | Normal distribution |
+| Konfidensintervall | Confidence interval |
+| Korrelation | Correlation |
+| Regression | Regression |
+| Residual | Residual |
+| Noggrannhet | Accuracy |
+| Precision | Precision |
+| Validitet | Validity |
+| Reliabilitet | Reliability |
+| Dikotom fråga | Binary question |
+| Svarslista | Multiple choice |
+| Graderade svar | Likert scale |
+| Skiljefråga | Routing question |
+
+### Noggrannhet (Accuracy) vs Precision
+
+- **Noggrannhet (Accuracy)**: Hur nära ett mätvärde är det verkliga/sanna värdet
+  - Exempel: Om den sanna temperaturen är 20°C och du mäter 20.1°C har du hög noggrannhet
+
+- **Precision**: Hur nära upprepade mätningar ligger varandra (konsistens)
+  - Exempel: Om du mäter 19.5°C fem gånger i rad har du hög precision, men kanske låg noggrannhet
+
+**Målskjutningsanalogi:**
+- Hög precision, låg noggrannhet: Alla skott träffar tätt ihop, men långt från centrum
+- Hög noggrannhet, låg precision: Skotten spridda runt centrum
+- Hög precision och noggrannhet: Alla skott träffar tätt ihop i centrum
+- Låg precision och noggrannhet: Skotten spridda långt från centrum
+
+
+## Resurser
+
+### Humanities Lab
+
+LU Humanities Lab är en universitetsövergripande forskningsinfrastruktur som erbjuder LU-forskare fri tillgång till avancerade instrument och metodologisk kompetens för att mäta mänskligt beteende, expertis inom datahantering, samt forskarförberedande utbildning och användarstöd i en tvärvetenskaplig och internationell miljö.
+
+**Öppet även för studenter!**
+
+[humlab.lu.se/education](https://www.humlab.lu.se/education/current-pedagogical-activities/)
+
+## Citera detta material
+
+**Licens:** Detta material är publicerat under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) licens.
+
+**Hela sidan:**
+```
+Johansson, M., & Söderström, K. (2025). ABMM06: Kvantitativa metoder.
+Lunds universitet. https://mathjoha.github.io/abmm06
+Licens: CC-BY-NC 4.0
+```
+
+**Enskilda sidor:** Använd formatet ovan och lägg till sidans titel och URL. Varje sida innehåller citationsmetadata.
+
+**BibTeX:**
+```bibtex
+@misc{abmm06,
+  author = {Johansson, Mathias and Söderström, Kristofer},
+  title = {ABMM06: Kvantitativa metoder},
+  year = {2025},
+  publisher = {Lunds universitet},
+  url = {https://mathjoha.github.io/abmm06},
+  note = {Licens: CC-BY-NC 4.0}
+}
+```
+
+## Ladda ner som PDF
+
+Alla presentationer och lektioner kan laddas ner som PDF för offline-läsning. För att generera PDFs, se [README.md](README.md) för instruktioner.
+
+## Kontakt
+
+**Mathias Johansson**
+Lunds universitet
+[mathias.johansson@kultur.lu.se](mailto:mathias.johansson@kultur.lu.se)
+
+**Kristofer Söderström**
+Information studies
+[kristofer.soderstrom@kultur.lu.se](mailto:kristofer.soderstrom@kultur.lu.se)

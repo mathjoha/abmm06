@@ -1,0 +1,66 @@
+---
+title: "Urval och representativitet"
+subtitle: "Sampling"
+citation:
+  type: document
+  title: "Urval och representativitet"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/urval.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Urval (n) från population (N)
+
+Olika urvalsmetoder för att välja deltagare från en population
+
+## Urvalsmetoder
+
+| Metod | Definition | Fördelar | Nackdelar |
+|-------|------------|----------|-----------|
+| Total population (N) | Alla inkluderade | Komplett bild | Nästan omöjligt |
+| Slumpmässigt urval (n) | Välj n genom slumpprocess | Snabbt, enkelt | Tillräckligt med data?, oavsiktlig bias |
+
+## Urvalsmetoder (forts.)
+
+| Metod | Definition | Fördelar | Nackdelar |
+|-------|------------|----------|-----------|
+| Bekvämlighetsurval (n) | Välj n personer du känner | Nära till hands, effektivt | Bias, ej generaliserbart |
+| Snöbollsurval (n) | Deltagare rekryterar andra | Löser brist på deltagande | Bias kan fördjupas |
+
+## Urvalsmetoder (forts.)
+
+| Metod | Definition | Fördelar | Nackdelar |
+|-------|------------|----------|-----------|
+| Stratifierat urval (n) | Slumpmässigt urval av stratifierade undergrupper | Rimliga skattningar av alla undergrupper | Kräver förklassificering |
+
+## Representativitet
+
+- Speglar urvalet populationen?
+- Vilka grupper är över/underrepresenterade?
+- Hur påverkar detta resultaten?
+
+## Referenser
+
+- [Sampling (statistics)](https://en.wikipedia.org/wiki/Sampling_(statistics))
+- [Simple random sample](https://en.wikipedia.org/wiki/Simple_random_sample)
+- [Stratified sampling](https://en.wikipedia.org/wiki/Stratified_sampling)
+- [Cluster sampling](https://en.wikipedia.org/wiki/Cluster_sampling)
+- [Systematic sampling](https://en.wikipedia.org/wiki/Systematic_sampling)
+- [Convenience sampling](https://en.wikipedia.org/wiki/Convenience_sampling)
+- [Sample size determination](https://en.wikipedia.org/wiki/Sample_size_determination)

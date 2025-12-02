@@ -1,0 +1,158 @@
+---
+title: "Enkäter"
+subtitle: "Surveys"
+citation:
+  type: document
+  title: "Enkäter"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/enkat.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Grundläggande om enkäter
+
+En lista med frågor för att samla specifik data från en grupp människor (urval!)
+
+## Designprinciper
+
+- Korta och tydliga frågor > öppna frågor
+- Tydliga frågor och svar, mindre gissning är bättre
+- Anpassat till målgrupp
+- Tänk på längden - både för respondenter och för din egen analys
+
+## Öppna vs slutna frågor
+
+- **Öppna frågor (fritextsvar):**
+  - Potentiellt oändliga kategorier
+  - Exempel: "Vad skulle du vilja förbättra?" ___
+
+- **Slutna frågor:**
+  - Hanterar stora mängder respondenter
+  - Kräver mer omsorg vid design
+  - Exempel: "Hur nöjd är du?" ○ Mycket ○ Lite ○ Inte alls
+
+## Dikotoma frågor (Binary)
+
+Endast två alternativ:
+
+*Har du barn?*
+
+○ Ja
+○ Nej
+
+## Svarslistor (Multiple choice)
+
+Val från en lista:
+
+*Var bor du?*
+
+○ Lund
+○ Malmö
+○ Helsingborg
+○ Annat: ___
+
+## Graderade svar (Scales)
+
+*Hur bra är du på att hitta böcker i LUBsearch?*
+
+○ Bra
+○ Okej
+○ Inte bra
+
+**Hur många alternativ bör man ha?**
+
+## Likert-skalor
+
+En specifik typ av graderad skala som mäter attityder eller åsikter:
+
+*Jag tycker att biblioteket har tillräckligt med öppettider*
+
+○ Instämmer helt
+
+○ Instämmer delvis
+
+○ Varken eller
+
+○ Instämmer inte
+
+○ Instämmer inte alls
+
+**Vanligt med 5 eller 7 alternativ**
+
+## Likert-skalor: Ordinal data
+
+- Svaren har en ordning (från negativ till positiv)
+- Avstånden mellan svaren är inte nödvändigtvis lika
+- Kan summeras till ett sammanlagt "attitydvärde"
+- Ofta används för:
+  - Nöjdhetsmätningar
+  - Attitydundersökningar
+  - Utvärderingar
+
+## Neutrala alternativ
+
+**Med neutralt alternativ:**
+
+*Var innehållet relevant?*
+
+○ Ja ○ Nej ○ Vet ej
+
+**Utan neutralt (tvingar val):**
+
+*Hur lätt är det att navigera?*
+
+○ Tydligt
+
+○ Går att förstå
+
+○ Otydligt
+
+## Självskattningar
+
+*Hur bra är du på bowling?*
+
+○ Utmärkt
+
+○ Bra
+
+○ Kan bli bättre
+
+○ Dålig
+
+## Skiljefrågor (Arbitration)
+
+Sorterar respondenter i grupper:
+
+*Har du använt X (Twitter) de senaste 6 månaderna?*
+
+○ Ja, minst 5 gånger → fråga 13-20
+
+○ Ja, men bara en gång → uppföljning 11
+
+○ Nej → uppföljning 12
+
+## Avslutande fritextfrågor
+
+Ofta i slutet av enkäten:
+
+*Finns det något du saknar eller vill förbättra?*
+
+A: ___________
+
+Ger kontext till de slutna frågorna.

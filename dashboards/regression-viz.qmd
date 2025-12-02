@@ -1,0 +1,251 @@
+---
+title: "Interaktiv regression"
+subtitle: "Klicka för att skapa punkter och se regressionslinjen"
+citation:
+  type: document
+  title: "Regression - Interaktiv visualisering"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/regression-viz.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Skapa din egen regression
+
+Klicka i diagrammet nedan för att lägga till datapunkter. Regressionslinjen och feltermer (residualer) uppdateras automatiskt.
+
+```{ojs}
+//| echo: false
+
+// Mutable array for storing points
+mutable points = []
+
+// Button to clear points
+viewof clearButton = Inputs.button("Rensa alla punkter")
+
+// Toggle for showing errors
+viewof showErrors = Inputs.toggle({
+  label: "Visa residualer (fel)",
+  value: true
+})
+```
+
+```{ojs}
+//| echo: false
+
+// Clear points when button is clicked
+{
+  clearButton;
+  mutable points = [];
+}
+```
+
+```{ojs}
+//| echo: false
+
+// Calculate regression statistics
+stats = {
+  const n = points.length;
+  if (n < 2) {
+    return {
+      slope: 0,
+      intercept: 0,
+      r: 0,
+      r2: 0,
+      valid: false
+    };
+  }
+
+  // Calculate means
+  const meanX = points.reduce((sum, p) => sum + p.x, 0) / n;
+  const meanY = points.reduce((sum, p) => sum + p.y, 0) / n;
+
+  // Calculate sums for regression
+  let ssXY = 0, ssXX = 0, ssYY = 0;
+  for (const p of points) {
+    const dx = p.x - meanX;
+    const dy = p.y - meanY;
+    ssXY += dx * dy;
+    ssXX += dx * dx;
+    ssYY += dy * dy;
+  }
+
+  // Regression coefficients
+  const slope = ssXX !== 0 ? ssXY / ssXX : 0;
+  const intercept = meanY - slope * meanX;
+
+  // Correlation coefficient
+  const r = (ssXX !== 0 && ssYY !== 0) ? ssXY / Math.sqrt(ssXX * ssYY) : 0;
+  const r2 = r * r;
+
+  return { slope, intercept, r, r2, valid: true, meanX, meanY };
+}
+```
+
+```{ojs}
+//| echo: false
+
+// Points with predicted values and residuals
+pointsWithResiduals = points.map(p => ({
+  ...p,
+  predicted: stats.intercept + stats.slope * p.x,
+  residual: p.y - (stats.intercept + stats.slope * p.x)
+}))
+```
+
+```{ojs}
+//| echo: false
+
+// Interactive plot
+{
+  const width = 700;
+  const height = 500;
+  const margin = 50;
+
+  // Create SVG
+  const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", [0, 0, width, height])
+    .style("cursor", "crosshair")
+    .style("background", "#fafafa")
+    .style("border", "1px solid #ddd");
+
+  // Scales
+  const xScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range([margin, width - margin]);
+
+  const yScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height - margin, margin]);
+
+  // Axes
+  const xAxis = d3.axisBottom(xScale);
+  const yAxis = d3.axisLeft(yScale);
+
+  svg.append("g")
+    .attr("transform", `translate(0,${height - margin})`)
+    .call(xAxis);
+
+  svg.append("g")
+    .attr("transform", `translate(${margin},0)`)
+    .call(yAxis);
+
+  // Axis labels
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - 10)
+    .attr("text-anchor", "middle")
+    .text("X");
+
+  svg.append("text")
+    .attr("x", 15)
+    .attr("y", height / 2)
+    .attr("text-anchor", "middle")
+    .attr("transform", `rotate(-90, 15, ${height / 2})`)
+    .text("Y");
+
+  // Draw regression line if we have enough points
+  if (stats.valid && points.length >= 2) {
+    const x1 = 0;
+    const x2 = 100;
+    const y1 = stats.intercept + stats.slope * x1;
+    const y2 = stats.intercept + stats.slope * x2;
+
+    svg.append("line")
+      .attr("x1", xScale(x1))
+      .attr("y1", yScale(y1))
+      .attr("x2", xScale(x2))
+      .attr("y2", yScale(y2))
+      .attr("stroke", "#2563eb")
+      .attr("stroke-width", 2);
+  }
+
+  // Draw residual lines (errors)
+  if (showErrors && stats.valid) {
+    for (const p of pointsWithResiduals) {
+      svg.append("line")
+        .attr("x1", xScale(p.x))
+        .attr("y1", yScale(p.y))
+        .attr("x2", xScale(p.x))
+        .attr("y2", yScale(p.predicted))
+        .attr("stroke", "#ef4444")
+        .attr("stroke-width", 1.5)
+        .attr("stroke-dasharray", "4,2");
+    }
+  }
+
+  // Draw points
+  for (const p of points) {
+    svg.append("circle")
+      .attr("cx", xScale(p.x))
+      .attr("cy", yScale(p.y))
+      .attr("r", 6)
+      .attr("fill", "#1f2937")
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 1.5);
+  }
+
+  // Click handler to add points
+  svg.on("click", function(event) {
+    const [mx, my] = d3.pointer(event);
+    const x = xScale.invert(mx);
+    const y = yScale.invert(my);
+
+    // Only add if within plot area
+    if (x >= 0 && x <= 100 && y >= 0 && y <= 100) {
+      mutable points = [...points, { x, y }];
+    }
+  });
+
+  return svg.node();
+}
+```
+
+## Statistik
+
+```{ojs}
+//| echo: false
+
+md`
+| Mått | Värde |
+|------|-------|
+| Antal punkter | ${points.length} |
+| Lutning (b) | ${stats.valid ? stats.slope.toFixed(3) : "–"} |
+| Intercept (a) | ${stats.valid ? stats.intercept.toFixed(3) : "–"} |
+| Korrelation (r) | ${stats.valid ? stats.r.toFixed(3) : "–"} |
+| R² | ${stats.valid ? (stats.r2 * 100).toFixed(1) + "%" : "–"} |
+
+**Regressionsekvation:** ${stats.valid && points.length >= 2 ? `y = ${stats.intercept.toFixed(2)} + ${stats.slope.toFixed(2)}x` : "Lägg till minst 2 punkter"}
+`
+```
+
+## Tolkning
+
+```{ojs}
+//| echo: false
+
+md`
+${points.length < 2 ? "Klicka i diagrammet för att lägga till punkter." :
+  stats.r > 0.7 ? "**Stark positiv korrelation** – när X ökar tenderar Y att öka." :
+  stats.r > 0.3 ? "**Måttlig positiv korrelation** – viss tendens att Y ökar med X." :
+  stats.r > -0.3 ? "**Svag eller ingen korrelation** – inget tydligt samband mellan X och Y." :
+  stats.r > -0.7 ? "**Måttlig negativ korrelation** – viss tendens att Y minskar när X ökar." :
+  "**Stark negativ korrelation** – när X ökar tenderar Y att minska."}
+
+${showErrors && points.length >= 2 ? "De **röda streckade linjerna** visar residualerna (felen) – skillnaden mellan varje punkts faktiska Y-värde och det värde som regressionslinjen förutsäger." : ""}
+`
+```
+
+## Förklaring
+
+- **Lutning (b)**: Hur mycket Y ändras när X ökar med 1 enhet
+- **Intercept (a)**: Y-värdet när X = 0
+- **Korrelation (r)**: Styrkan och riktningen på sambandet (-1 till +1)
+- **R²**: Andelen av variationen i Y som förklaras av X
+- **Residualer**: Skillnaden mellan observerat och förutsagt värde (felet)

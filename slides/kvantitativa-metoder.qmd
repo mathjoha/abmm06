@@ -1,0 +1,127 @@
+---
+title: "Kvantitativa metoder"
+subtitle: "En översikt"
+citation:
+  type: document
+  title: "Kvantitativa metoder"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/kvantitativa-metoder.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Vad är kvantitativa metoder?
+
+Från latinets *quantitas* - mätbart
+
+- Kan säga något om hur utbrett ett fenomen är
+- Om fenomenet är olika utbrett inom olika populationsgrupper
+- Robusta, lätta att validera
+
+## Dock...
+
+- Mer "på ytan" - inte lika djupt som kvalitativa metoder
+- Svårt att få insikt i tankar, motivationer, drivkrafter
+- Svårt att besvara frågan "Varför?"
+
+## Jämförelse med kvalitativa metoder
+
+| Aspekt | Kvantitativ | Kvalitativ |
+|--------|-------------|------------|
+| Fokus | Mängd, utbredning | Djup, mening |
+| Data | Siffror, statistik | Text, ord |
+| Analys | Statistisk | Tolkande |
+| Resultat | Generaliserbart | Kontextbundet |
+
+## Noggrannhet vs Precision
+
+Två viktiga begrepp för mätkvalitet:
+
+- **Noggrannhet (Accuracy)**: Hur nära mätningen är det sanna värdet
+- **Precision**: Hur konsekventa upprepade mätningar är
+
+*OBS!* Man kan ha hög precision utan hög noggrannhet, och vice versa.
+
+## Målskjutningsanalogi
+
+| Kombination | Beskrivning |
+|-------------|-------------|
+| Hög precision, låg noggrannhet | Skotten tätt samlade, men långt från centrum |
+| Hög noggrannhet, låg precision | Skotten spridda runt centrum |
+| Hög precision och noggrannhet | Skotten tätt samlade i centrum |
+| Låg precision och noggrannhet | Skotten spridda långt från centrum |
+
+## Noggrannhet (Accuracy)
+
+- Mäter **systematiska fel** (bias)
+- Påverkas av:
+  - Felaktig kalibrering
+  - Metodfel
+  - Operatörsfel
+- Exempel: En termometer som alltid visar 2°C för högt
+
+## Precision
+
+- Mäter **slumpmässiga fel** (variabilitet)
+- Påverkas av:
+  - Instrumentets upplösning
+  - Omgivningsfaktorer (temperatur, fukt)
+  - Mätprocedur
+- Exempel: En våg som varierar ±0.5 kg mellan mätningar
+
+## Validitet och Reliabilitet
+
+Relaterade begrepp i forskning:
+
+- **Validitet**: Mäter vi verkligen det vi avser att mäta?
+  - Kopplat till noggrannhet
+- **Reliabilitet**: Får vi samma resultat vid upprepade mätningar?
+  - Kopplat till precision
+
+## Praktiskt exempel: Enkätfrågor
+
+**Låg validitet:**
+"Hur ofta är du lycklig?" → Mäter vi verkligen livstillfredsställelse?
+
+**Låg reliabilitet:**
+Frågan tolkas olika vid olika tillfällen → Inkonsistenta svar
+
+**Lösning:** Väldefinierade, konkreta frågor
+
+## Interaktivt verktyg
+
+Se den [interaktiva visualiseringen](../dashboards/accuracy-precision-viz.qmd) för att utforska:
+
+- Olika kombinationer av noggrannhet och precision
+- Hur bias och spridning påverkar mätningar
+- Målskjutningsanalogien i praktiken
+
+## Översikt
+
+- Urval och representativitet
+- Datatyper (nominal, ordinal, intervall, kvot)
+- Digitala metoder
+- Enkäter och frågetyper
+- Presentera resultat
+
+## Referenser
+
+- [Quantitative research](https://en.wikipedia.org/wiki/Quantitative_research)
+- [Accuracy and precision](https://en.wikipedia.org/wiki/Accuracy_and_precision)
+- [Validity (statistics)](https://en.wikipedia.org/wiki/Validity_(statistics))
+- [Reliability (statistics)](https://en.wikipedia.org/wiki/Reliability_(statistics))

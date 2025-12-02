@@ -1,0 +1,354 @@
+---
+title: "Databehandling och rensning"
+subtitle: "Interaktiv demonstration av outliers och transformationer"
+citation:
+  type: document
+  title: "Databehandling - Interaktiv visualisering"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/data-cleaning-viz.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Utforska outliers och transformationer
+
+Denna interaktiva visualisering visar hur outliers och datatransformationer påverkar statistiska mått.
+
+```{ojs}
+//| echo: false
+
+viewof includeOutlier = Inputs.toggle({
+  label: "Inkludera outlier (extremvärde)",
+  value: true
+})
+
+viewof transformation = Inputs.select(
+  ["Ingen", "Logaritm (log₁₀)", "Kvadratrot", "Z-score standardisering"],
+  {
+    label: "Välj transformation:",
+    value: "Ingen"
+  }
+)
+
+viewof outlierValue = Inputs.range([100, 500], {
+  label: "Outlier-värde:",
+  step: 10,
+  value: 200
+})
+```
+
+```{ojs}
+//| echo: false
+
+// Generate base data
+baseData = [
+  15, 18, 20, 22, 24, 25, 26, 28, 30, 32,
+  34, 35, 38, 40, 42, 45, 48, 50, 52, 55
+]
+
+// Add outlier if selected
+rawData = includeOutlier ? [...baseData, outlierValue] : baseData
+```
+
+```{ojs}
+//| echo: false
+
+// Apply transformation
+transformedData = {
+  if (transformation === "Ingen") {
+    return rawData;
+  } else if (transformation === "Logaritm (log₁₀)") {
+    return rawData.map(x => Math.log10(x));
+  } else if (transformation === "Kvadratrot") {
+    return rawData.map(x => Math.sqrt(x));
+  } else if (transformation === "Z-score standardisering") {
+    const mean = d3.mean(rawData);
+    const std = d3.deviation(rawData);
+    return rawData.map(x => (x - mean) / std);
+  }
+}
+
+displayData = transformedData
+```
+
+```{ojs}
+//| echo: false
+
+// Calculate statistics
+stats = {
+  const data = displayData;
+  const sorted = [...data].sort((a, b) => a - b);
+  const n = data.length;
+
+  const mean = d3.mean(data);
+  const median = d3.median(data);
+  const stdDev = d3.deviation(data);
+  const min = d3.min(data);
+  const max = d3.max(data);
+
+  // Quartiles
+  const q1 = d3.quantile(sorted, 0.25);
+  const q3 = d3.quantile(sorted, 0.75);
+  const iqr = q3 - q1;
+
+  // Outlier bounds (IQR method)
+  const lowerBound = q1 - 1.5 * iqr;
+  const upperBound = q3 + 1.5 * iqr;
+
+  // Count outliers
+  const outliers = data.filter(x => x < lowerBound || x > upperBound);
+
+  return {
+    mean, median, stdDev, min, max,
+    q1, q3, iqr,
+    lowerBound, upperBound,
+    outliers: outliers.length,
+    n
+  };
+}
+```
+
+## Visualiseringar
+
+```{ojs}
+//| echo: false
+
+// Histogram
+Plot.plot({
+  width: 700,
+  height: 400,
+  marginLeft: 60,
+  x: {
+    label: transformation === "Ingen" ? "Värde" : `Värde (${transformation})`
+  },
+  y: {
+    label: "Frekvens"
+  },
+  marks: [
+    Plot.rectY(displayData, Plot.binX({y: "count"}, {x: d => d, fill: "steelblue"})),
+    Plot.ruleX([stats.mean], {stroke: "red", strokeWidth: 2}),
+    Plot.ruleX([stats.median], {stroke: "green", strokeWidth: 2, strokeDasharray: "4,2"})
+  ]
+})
+```
+
+**Förklaring:**
+- **Röd linje**: Medelvärde
+- **Grön streckad linje**: Median
+
+```{ojs}
+//| echo: false
+
+// Boxplot
+Plot.plot({
+  width: 700,
+  height: 200,
+  marginLeft: 60,
+  x: {
+    label: transformation === "Ingen" ? "Värde" : `Värde (${transformation})`
+  },
+  marks: [
+    Plot.boxX(displayData, {x: d => d, fill: "lightblue", stroke: "steelblue"}),
+    // Mark outliers according to IQR rule
+    Plot.dot(
+      displayData.filter(x => x < stats.lowerBound || x > stats.upperBound),
+      {x: d => d, fill: "red", r: 5}
+    )
+  ]
+})
+```
+
+**Förklaring:**
+- **Box**: Visar Q1, median, Q3
+- **Whiskers**: Sträcker sig till min/max inom 1.5×IQR
+- **Röda punkter**: Outliers enligt IQR-metoden
+
+## Statistik
+
+```{ojs}
+//| echo: false
+
+md`
+| Mått | Värde |
+|------|-------|
+| Antal observationer | ${stats.n} |
+| Medelvärde (mean) | ${stats.mean.toFixed(2)} |
+| Median | ${stats.median.toFixed(2)} |
+| Standardavvikelse | ${stats.stdDev.toFixed(2)} |
+| Minimum | ${stats.min.toFixed(2)} |
+| Maximum | ${stats.max.toFixed(2)} |
+| Q1 (25:e percentilen) | ${stats.q1.toFixed(2)} |
+| Q3 (75:e percentilen) | ${stats.q3.toFixed(2)} |
+| IQR (Q3 - Q1) | ${stats.iqr.toFixed(2)} |
+| Antal outliers (IQR-metod) | ${stats.outliers} |
+
+${transformation === "Ingen" ? `
+### Skillnad med/utan outlier
+
+${includeOutlier ? `
+Med outlier (${outlierValue}):
+- Medelvärde påverkas kraftigt av extremvärdet
+- Medianen är mer robust och påverkas mindre
+` : `
+Utan outlier:
+- Medelvärde och median ligger närmare varandra
+- Lägre standardavvikelse
+`}
+` : ""}
+`
+```
+
+## Jämförelse: Rådata vs Transformerad data
+
+```{ojs}
+//| echo: false
+
+comparison = {
+  const rawStats = {
+    mean: d3.mean(rawData),
+    median: d3.median(rawData),
+    std: d3.deviation(rawData),
+    min: d3.min(rawData),
+    max: d3.max(rawData)
+  };
+
+  return {raw: rawStats, transformed: stats};
+}
+
+md`
+| Mått | Rådata | ${transformation !== "Ingen" ? "Transformerad" : ""} |
+|------|--------|-------------|
+| Medelvärde | ${comparison.raw.mean.toFixed(2)} | ${transformation !== "Ingen" ? stats.mean.toFixed(2) : "–"} |
+| Median | ${comparison.raw.median.toFixed(2)} | ${transformation !== "Ingen" ? stats.median.toFixed(2) : "–"} |
+| Std.avvikelse | ${comparison.raw.std.toFixed(2)} | ${transformation !== "Ingen" ? stats.stdDev.toFixed(2) : "–"} |
+| Min | ${comparison.raw.min.toFixed(2)} | ${transformation !== "Ingen" ? stats.min.toFixed(2) : "–"} |
+| Max | ${comparison.raw.max.toFixed(2)} | ${transformation !== "Ingen" ? stats.max.toFixed(2) : "–"} |
+
+${transformation === "Logaritm (log₁₀)" ? `
+### Tolkning av log-transformation
+
+För att konvertera tillbaka:
+- Om log₁₀(x) = ${stats.mean.toFixed(2)}, då x = 10^${stats.mean.toFixed(2)} ≈ ${Math.pow(10, stats.mean).toFixed(1)}
+
+**Effekt:** Logaritmtransformation komprimerar stora värden mer än små värden, vilket minskar effekten av outliers.
+` : ""}
+
+${transformation === "Kvadratrot" ? `
+### Tolkning av kvadratrotstransformation
+
+För att konvertera tillbaka:
+- Om √x = ${stats.mean.toFixed(2)}, då x = (${stats.mean.toFixed(2)})² ≈ ${Math.pow(stats.mean, 2).toFixed(1)}
+
+**Effekt:** Kvadratrotstransformation minskar skevhet i måttlig grad, mindre drastisk än log-transformation.
+` : ""}
+
+${transformation === "Z-score standardisering" ? `
+### Tolkning av Z-score standardisering
+
+**Resultat:**
+- Medelvärde = ${stats.mean.toFixed(2)} (nära 0)
+- Standardavvikelse = ${stats.stdDev.toFixed(2)} (nära 1)
+
+**Användning:** Jämföra variabler med olika skalor, eller identifiera outliers (|z| > 2 eller 3).
+` : ""}
+`
+```
+
+## Identifiera outliers
+
+```{ojs}
+//| echo: false
+
+// Z-scores for raw data
+zScores = {
+  const mean = d3.mean(rawData);
+  const std = d3.deviation(rawData);
+  return rawData.map((x, i) => ({
+    value: x,
+    z: (x - mean) / std,
+    index: i
+  }));
+}
+
+outliersTable = zScores.filter(d => Math.abs(d.z) > 2)
+
+md`
+### Z-score metoden
+
+Värden med |Z| > 2 betraktas som möjliga outliers:
+
+${outliersTable.length > 0 ? `
+| Värde | Z-score | Tolkning |
+|-------|---------|----------|
+${outliersTable.map(d => `| ${d.value.toFixed(1)} | ${d.z.toFixed(2)} | ${Math.abs(d.z) > 3 ? "Stark outlier" : "Möjlig outlier"} |`).join('\n')}
+` : "*Inga outliers identifierade med Z-score metoden*"}
+
+### IQR-metoden
+
+**Gränser:**
+- Nedre gräns: Q1 - 1.5 × IQR = ${comparison.raw.median !== undefined ? (stats.q1 - 1.5 * stats.iqr).toFixed(2) : "–"}
+- Övre gräns: Q3 + 1.5 × IQR = ${comparison.raw.median !== undefined ? (stats.q3 + 1.5 * stats.iqr).toFixed(2) : "–"}
+
+**Outliers:** ${stats.outliers} värden ligger utanför dessa gränser
+`
+```
+
+## Praktiska insikter
+
+```{ojs}
+//| echo: false
+
+md`
+### När ska du ta bort outliers?
+
+✅ **Ta bort när:**
+- Uppenbart mätfel (t.ex. ålder = 999)
+- Datainmatningsfel som kan verifieras
+- Värdet inte tillhör målpopulationen
+
+❌ **Behåll när:**
+- Genuina extremvärden som är viktiga för studien
+- Du studerar extremfall eller sällsynta händelser
+- Outliers ger viktig information om variabiliteten
+
+### När ska du transformera data?
+
+✅ **Använd log-transformation för:**
+- Höger-skev data (lång svans åt höger)
+- Data som spänner flera storleksordningar
+- Inkomst, priser, befolkningsstorlek
+
+✅ **Använd kvadratrot för:**
+- Måttligt skev data
+- Räknedata (count data)
+
+✅ **Använd Z-score standardisering för:**
+- Jämföra variabler med olika enheter
+- Identifiera outliers numeriskt
+- Förberedelse för vissa analyser
+
+### Viktig påminnelse
+
+📊 **Rapportera alltid:**
+- Vilka transformationer som använts
+- Antal borttagna outliers
+- Motivering för beslut
+- Effekt på resultat
+`
+```
+
+## Experimentera!
+
+Prova att:
+1. **Slå på/av outlier** - Se hur det påverkar medelvärde vs median
+2. **Ändra outlier-värdet** - Se när det blir extremt nog att klassas som outlier
+3. **Applicera log-transformation** - Observera hur extremvärden komprimeras
+4. **Jämför transformationer** - Vilken fungerar bäst för denna data?
+
+## Läs mer
+
+Se [Databehandling och rensning](../lessons/databehandling.qmd) för detaljerad förklaring av outliers, transformationer och best practices.

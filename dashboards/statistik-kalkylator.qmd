@@ -1,0 +1,258 @@
+---
+title: "Statistikkalkylator"
+subtitle: "Beräkna beskrivande statistik på egen data"
+citation:
+  type: document
+  title: "Statistikkalkylator"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/statistik-kalkylator.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Ange din data
+
+Skriv in dina värden separerade med komma eller mellanslag.
+
+```{ojs}
+//| echo: false
+
+viewof dataInput = Inputs.textarea({
+  label: "Data:",
+  placeholder: "Ex: 23, 45, 67, 34, 56, 78, 45, 32, 67, 54",
+  rows: 3,
+  value: "23, 45, 67, 34, 56, 78, 45, 32, 67, 54, 89, 43, 51, 62, 38"
+})
+```
+
+```{ojs}
+//| echo: false
+
+// Parse input data
+parsedData = {
+  const cleaned = dataInput.replace(/[,;\s]+/g, ' ').trim();
+  const values = cleaned.split(' ')
+    .map(s => parseFloat(s))
+    .filter(n => !isNaN(n));
+  return values;
+}
+
+// Calculate statistics
+stats = {
+  if (parsedData.length === 0) {
+    return {n: 0, valid: false};
+  }
+
+  const sorted = [...parsedData].sort((a, b) => a - b);
+  const n = sorted.length;
+  const sum = sorted.reduce((a, b) => a + b, 0);
+  const mean = sum / n;
+
+  // Variance and std
+  const variance = sorted.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / (n - 1);
+  const std = Math.sqrt(variance);
+
+  // Median
+  const median = n % 2 === 0
+    ? (sorted[n/2 - 1] + sorted[n/2]) / 2
+    : sorted[Math.floor(n/2)];
+
+  // Quartiles
+  const q1Index = Math.floor(n * 0.25);
+  const q3Index = Math.floor(n * 0.75);
+  const q1 = sorted[q1Index];
+  const q3 = sorted[q3Index];
+  const iqr = q3 - q1;
+
+  // Mode
+  const counts = {};
+  sorted.forEach(v => counts[v] = (counts[v] || 0) + 1);
+  const maxCount = Math.max(...Object.values(counts));
+  const modes = Object.keys(counts).filter(k => counts[k] === maxCount).map(Number);
+
+  // Min, Max
+  const min = sorted[0];
+  const max = sorted[n - 1];
+
+  return {
+    n, sum, mean, variance, std, median,
+    q1, q3, iqr, min, max, modes, maxCount,
+    sorted, valid: true
+  };
+}
+```
+
+## Beskrivande statistik
+
+```{ojs}
+//| echo: false
+
+{
+  if (!stats.valid) {
+    return md`*Ange minst ett giltigt numeriskt värde*`;
+  }
+
+  return md`
+### Centralmått
+| Mått | Värde |
+|------|-------|
+| **Antal (n)** | ${stats.n} |
+| **Summa** | ${stats.sum.toFixed(2)} |
+| **Medelvärde (mean)** | ${stats.mean.toFixed(2)} |
+| **Median** | ${stats.median.toFixed(2)} |
+| **Typvärde (mode)** | ${stats.modes.join(', ')} (förekommer ${stats.maxCount} gånger) |
+
+### Spridningsmått
+| Mått | Värde |
+|------|-------|
+| **Minimum** | ${stats.min.toFixed(2)} |
+| **Maximum** | ${stats.max.toFixed(2)} |
+| **Variationsbredd (range)** | ${(stats.max - stats.min).toFixed(2)} |
+| **Varians** | ${stats.variance.toFixed(2)} |
+| **Standardavvikelse (std)** | ${stats.std.toFixed(2)} |
+| **Q1 (25:e percentilen)** | ${stats.q1.toFixed(2)} |
+| **Q3 (75:e percentilen)** | ${stats.q3.toFixed(2)} |
+| **IQR (Q3 - Q1)** | ${stats.iqr.toFixed(2)} |
+  `;
+}
+```
+
+## Visualiseringar
+
+### Histogram
+
+```{ojs}
+//| echo: false
+
+{
+  if (!stats.valid || stats.n < 2) {
+    return md`*Behöver minst 2 värden för histogram*`;
+  }
+
+  const bins = d3.bin().thresholds(10)(parsedData);
+
+  return Plot.plot({
+    width: 600,
+    height: 300,
+    x: {label: "Värde"},
+    y: {label: "Frekvens"},
+    marks: [
+      Plot.rectY(bins, {x1: d => d.x0, x2: d => d.x1, y: d => d.length, fill: "steelblue"}),
+      Plot.ruleX([stats.mean], {stroke: "red", strokeWidth: 2}),
+      Plot.ruleX([stats.median], {stroke: "orange", strokeWidth: 2, strokeDasharray: "4,4"})
+    ]
+  });
+}
+```
+
+<span style="color: red">■</span> Medelvärde &nbsp;&nbsp; <span style="color: orange">■</span> Median
+
+### Boxplot (lådagram)
+
+```{ojs}
+//| echo: false
+
+{
+  if (!stats.valid || stats.n < 5) {
+    return md`*Behöver minst 5 värden för boxplot*`;
+  }
+
+  // Calculate whiskers (1.5 * IQR rule)
+  const lowerWhisker = Math.max(stats.min, stats.q1 - 1.5 * stats.iqr);
+  const upperWhisker = Math.min(stats.max, stats.q3 + 1.5 * stats.iqr);
+
+  // Find outliers
+  const outliers = parsedData.filter(d => d < lowerWhisker || d > upperWhisker);
+
+  return Plot.plot({
+    width: 600,
+    height: 150,
+    x: {
+      domain: [stats.min - stats.iqr * 0.5, stats.max + stats.iqr * 0.5],
+      label: "Värde"
+    },
+    y: {axis: null, domain: [-1, 1]},
+    marks: [
+      // Box
+      Plot.rect([{x1: stats.q1, x2: stats.q3, y1: -0.4, y2: 0.4}], {
+        x1: "x1", x2: "x2", y1: "y1", y2: "y2",
+        fill: "steelblue", fillOpacity: 0.3, stroke: "steelblue"
+      }),
+      // Median line
+      Plot.ruleX([stats.median], {y1: -0.4, y2: 0.4, stroke: "steelblue", strokeWidth: 3}),
+      // Whiskers
+      Plot.link([
+        {x1: lowerWhisker, x2: stats.q1, y: 0},
+        {x1: stats.q3, x2: upperWhisker, y: 0}
+      ], {x1: "x1", x2: "x2", y1: "y", y2: "y", stroke: "steelblue"}),
+      // Whisker caps
+      Plot.ruleX([lowerWhisker, upperWhisker], {y1: -0.2, y2: 0.2, stroke: "steelblue"}),
+      // Outliers
+      Plot.dot(outliers.map(d => ({x: d, y: 0})), {x: "x", y: "y", fill: "red", r: 4})
+    ]
+  });
+}
+```
+
+```{ojs}
+//| echo: false
+
+{
+  if (!stats.valid) return md``;
+
+  const lowerWhisker = Math.max(stats.min, stats.q1 - 1.5 * stats.iqr);
+  const upperWhisker = Math.min(stats.max, stats.q3 + 1.5 * stats.iqr);
+  const outliers = parsedData.filter(d => d < lowerWhisker || d > upperWhisker);
+
+  return md`
+**Fem-siffrors sammanfattning:** ${stats.min.toFixed(1)} | ${stats.q1.toFixed(1)} | ${stats.median.toFixed(1)} | ${stats.q3.toFixed(1)} | ${stats.max.toFixed(1)}
+
+${outliers.length > 0 ? `**Extremvärden (outliers):** ${outliers.map(o => o.toFixed(1)).join(', ')}` : '*Inga extremvärden*'}
+  `;
+}
+```
+
+### Punktdiagram
+
+```{ojs}
+//| echo: false
+
+{
+  if (!stats.valid) {
+    return md``;
+  }
+
+  return Plot.plot({
+    width: 600,
+    height: 100,
+    x: {
+      domain: [stats.min - stats.std * 0.5, stats.max + stats.std * 0.5],
+      label: "Värde"
+    },
+    y: {axis: null},
+    marks: [
+      Plot.dot(parsedData.map(d => ({x: d, y: 0})), {
+        x: "x", y: "y", fill: "steelblue", r: 5, fillOpacity: 0.6
+      }),
+      Plot.ruleX([stats.mean], {stroke: "red", strokeWidth: 2}),
+      Plot.ruleX([stats.mean - stats.std, stats.mean + stats.std], {
+        stroke: "orange", strokeDasharray: "4,4"
+      })
+    ]
+  });
+}
+```
+
+<span style="color: red">■</span> Medelvärde &nbsp;&nbsp; <span style="color: orange">■</span> ±1 standardavvikelse
+
+---
+
+## Prova!
+
+1. Ändra värdena ovan och se hur statistiken förändras
+2. Lägg till ett extremvärde (t.ex. 500) och se effekten på medelvärde vs median
+3. Testa med jämnt fördelade värden vs klustrade värden

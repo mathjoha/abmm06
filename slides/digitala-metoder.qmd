@@ -1,0 +1,94 @@
+---
+title: "Digitala metoder"
+subtitle: "Digital Methods"
+citation:
+  type: document
+  title: "Digitala metoder"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/digitala-metoder.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Vad är digitala metoder?
+
+Ett metodologiskt perspektiv som anpassar sig till webbens egenskaper och möjligheter
+
+- Forskning om det "nativt digitala"
+- Forskning med och genom webben
+- Webbbaserade verktyg och metoder
+
+## Definition
+
+> En metodologisk ansats för akademisk forskning på webben som prioriterar användningen av webbens inneboende verktyg, tekniker och data för social och kulturell forskning.
+
+## Webbens analysenheter
+
+- **Mikro:**
+  - Hyperlänkar
+  - Hashtags #
+  - Omnämnanden @
+
+- **Makro:**
+  - Sökmotorer
+  - Sociala medieplattformar
+
+## Exempel: Google-sökresultat
+
+Sökresultat i t.ex. Google:
+
+- Tillhandahåller information
+- Är rankade (analyserbara)
+- Bär social betydelse
+- Kan visa författarskap av organisationer och/eller samhälleliga villkor
+
+## Fallstudie: COVID och gråzonsmediciner
+
+- **Bakgrund:**
+  - COVID-pandemin och "icke-officiella" mediciner
+  - Google-sök och ansvar, kontroll, relevans
+
+- **Frågor:**
+  - Hur kuraterar man Google resultat?
+  - Hur kontrolleras tillgång till information om tveksamma medicinska produkter?
+
+## Metod
+
+- **Teori:** Informationsinfrastruktur (Star & Ruhleder)
+- **Verktyg:** Google Trends, webbskrapning
+- **Analys:** Nätverksanalys (visuell)
+
+## Resultat
+
+- Vissa söktermer kringgår moderering
+- "köpa" → gråzonens apotek i sökresultat
+- Illvillig omdirigering för att styra trafik
+
+*Sundin, Andersson, Söderström (2023)*
+
+```bib
+@article{sundin2023controlling,
+  title = {Controlling the Machinery of Knowledge: {{Google}} and Access to {{COVID-19}} Grey-Zone Medicines},
+  shorttitle = {Controlling the Machinery of Knowledge},
+  author = {Sundin, Olof and Andersson, Cecilia and S{\"o}derstr{\"o}m, Kristofer},
+  year = 2023,
+  journal = {Medicine Across Borders: Exploration of Grey Zones},
+  pages = {35},
+  urldate = {2025-12-02},
+}
+```

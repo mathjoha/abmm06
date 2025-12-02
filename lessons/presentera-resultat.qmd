@@ -1,0 +1,123 @@
+---
+title: "Presentera resultat"
+subtitle: "Hur man visar enkätresultat"
+citation:
+  type: document
+  title: "Presentera resultat"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/lessons/presentera-resultat.html
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Tillbaka till grunderna
+
+Hur du presenterar dina resultat beror på vilken typ av data du har samlat in.
+
+## Datatyper och presentation
+
+### Slutna frågor
+
+| Datatyp | Lämpliga visualiseringar | Statistik |
+|---------|-------------------------|-----------|
+| **Nominal** | Stapeldiagram, cirkeldiagram | Frekvens, typvärde |
+| **Ordinal** | Stapeldiagram, staplad stapel | Median, percentiler |
+| **Intervall** | Histogram, linjediagram | Medelvärde, standardavvikelse |
+| **Kvot** | Alla ovan + spridningsdiagram | Alla statistiska mått |
+
+### Öppna frågor
+
+- Textanalys / innehållsanalys
+- Tematisk kodning
+- Ordmoln (word clouds)
+- Citat som illustration
+
+## Beskrivande statistik
+
+### Centralmått
+
+**Medelvärde (Mean):**
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+**Median:** Mittvärdet när data är sorterat
+
+**Typvärde (Mode):** Det vanligaste värdet
+
+### Spridningsmått
+
+**Standardavvikelse (Standard deviation):**
+$$s = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}$$
+
+**Kvartiler:**
+- Q1 (25:e percentilen)
+- Q2 (median, 50:e percentilen)
+- Q3 (75:e percentilen)
+
+**Interkvartilt intervall (IQR):** Q3 - Q1
+
+## Att tänka på vid presentation
+
+### Om enkäten i sig
+
+- Design och antal frågor
+- Vilka typer av frågor användes
+
+### Om distributionen
+
+- Hur samlades svaren in?
+- Digital/papper/telefon?
+
+### Om urvalet
+
+- Vem fick enkäten?
+- Hur valdes respondenterna?
+
+### Om utfallet
+
+- Svarsfrekvens
+- Bortfallsanalys
+
+### Metodreflektion
+
+- Styrkor och svagheter
+- Vad kunde gjorts bättre?
+
+## Visualiseringsprinciper
+
+1. **Välj rätt diagramtyp** för din data
+2. **Tydliga etiketter** - axlar, titel, legend
+3. **Undvik 3D-diagram** - de förvränger data
+4. **Konsekvent färgschema**
+5. **Visa osäkerhet** - felstaplar, konfidensintervall
+
+## Exempel på bra presentation
+
+```
+Resultat: Nöjdhet med bibliotekstjänster (n=150)
+
+Mycket nöjd:    ████████████████████ 40%
+Nöjd:           ████████████████ 32%
+Neutral:        ██████ 12%
+Missnöjd:       ██████ 12%
+Mycket missnöjd:██ 4%
+
+Medelvärde: 3.9 (skala 1-5)
+Standardavvikelse: 1.1
+Svarsfrekvens: 75%
+```
+
+## Referenser
+
+- Fangen, K. & Sellerberg, A-M. (red.). *Många möjliga metoder*. Kapitel 5: Kvantitativ metod
+- Rogers, R. (2013). *Digital Methods*. Cambridge, MA: MIT Press

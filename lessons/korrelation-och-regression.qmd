@@ -1,0 +1,205 @@
+---
+title: "Korrelation och regression"
+citation:
+  type: document
+  title: "Korrelation och regression"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/lessons/korrelation-och-regression.html
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Introduktion
+
+Denna lektion behandlar två centrala statistiska metoder för att analysera samband mellan variabler: korrelation och regression. Vi går igenom beräkningar, tolkning och inferentiell statistik.
+
+## Korrelation
+
+Korrelation mäter styrkan och riktningen på ett linjärt samband mellan två variabler.
+
+### Korrelationskoefficienten (Pearson's r)
+
+Korrelationskoefficienten *r* varierar mellan -1 och +1:
+
+- **r = +1**: Perfekt positivt linjärt samband
+- **r = 0**: Inget linjärt samband
+- **r = -1**: Perfekt negativt linjärt samband
+
+### Beräkning
+
+$$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}}$$
+
+### Tolkning
+
+| Värde på r | Tolkning |
+|------------|----------|
+| 0.7 till 1.0 | Stark positiv korrelation |
+| 0.3 till 0.7 | Måttlig positiv korrelation |
+| -0.3 till 0.3 | Svag eller ingen korrelation |
+| -0.7 till -0.3 | Måttlig negativ korrelation |
+| -1.0 till -0.7 | Stark negativ korrelation |
+
+### Exempel
+
+Anta att vi har data för studietid (X) och tentamensresultat (Y):
+
+| Student | Studietid (h) | Resultat (%) |
+|---------|---------------|--------------|
+| 1 | 2 | 55 |
+| 2 | 4 | 65 |
+| 3 | 6 | 75 |
+| 4 | 8 | 85 |
+| 5 | 10 | 90 |
+
+Med dessa data får vi r ≈ 0.98, vilket indikerar en stark positiv korrelation.
+
+## Enkel linjär regression
+
+Regression används för att förutsäga värdet på en beroende variabel (Y) baserat på en oberoende variabel (X).
+
+### Regressionsekvationen
+
+$$\hat{y} = a + bx$$
+
+- $\hat{y}$ = förutsagt värde
+- *a* = intercept (y-värde när x = 0)
+- *b* = lutning (förändring i y per enhet x)
+
+### Beräkna koefficienter
+
+**Lutning (b):**
+$$b = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$$
+
+**Intercept (a):**
+$$a = \bar{y} - b\bar{x}$$
+
+### Exempel (fortsättning)
+
+Med data från exemplet ovan:
+
+- Medelvärde X: $\bar{x} = 6$
+- Medelvärde Y: $\bar{y} = 74$
+
+Beräkningar ger:
+- b ≈ 4.5
+- a ≈ 47
+
+**Regressionsekvation:** $\hat{y} = 47 + 4.5x$
+
+Detta betyder att för varje extra timme studietid förväntas resultatet öka med 4.5 procentenheter.
+
+## Residualer (fel)
+
+Residualen är skillnaden mellan det observerade värdet och det värde som regressionen förutsäger:
+
+$$e_i = y_i - \hat{y}_i$$
+
+- Positiv residual: Observerat värde är högre än förutsagt
+- Negativ residual: Observerat värde är lägre än förutsagt
+
+Minsta-kvadratmetoden minimerar summan av de kvadrerade residualerna.
+
+## Determinationskoefficienten R²
+
+$$R^2 = r^2$$
+
+R² anger andelen av variansen i Y som förklaras av X:
+
+- R² = 0.81 betyder att 81% av variationen i Y förklaras av X
+- Värdet varierar från 0 (ingen förklaring) till 1 (perfekt förklaring)
+
+## Inferentiell statistik
+
+### Hypotestest för korrelation
+
+**Nollhypotes:** $H_0: \rho = 0$ (ingen korrelation i populationen)
+
+**Teststatistika:**
+$$t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$$
+
+- Frihetsgrader: df = n - 2
+- Om p < 0.05 förkastar vi nollhypotesen och säger att korrelationen är statistiskt signifikant
+
+### Konfidensintervall för lutningen
+
+$$b \pm t_{\alpha/2} \cdot SE_b$$
+
+Standardfelet för b beräknas som:
+
+$$SE_b = \frac{s_e}{\sqrt{\sum(x_i - \bar{x})^2}}$$
+
+där $s_e$ är standardfelet för residualerna.
+
+Ett 95% konfidensintervall som inte innehåller 0 indikerar ett signifikant samband.
+
+## Antaganden
+
+För att regressionsanalysen ska vara giltig bör följande antaganden uppfyllas:
+
+1. **Linjäritet** – Sambandet mellan X och Y är linjärt
+2. **Oberoende** – Observationerna är oberoende av varandra
+3. **Normalfördelning** – Residualerna är normalfördelade
+4. **Homoskedasticitet** – Variansen i residualerna är konstant
+
+## Korrelation vs kausalitet
+
+**Viktigt:** Korrelation innebär inte orsakssamband (kausalitet).
+
+Ett observerat samband kan bero på:
+
+- **Omvänd kausalitet:** Y orsakar X, inte tvärtom
+- **Confounding:** En tredje variabel påverkar både X och Y
+- **Slump:** Särskilt vid små urval
+
+### Klassiska exempel
+
+- Glasskonsumtion korrelerar med drunkningsolyckor
+  - Bakomliggande variabel: Sommarväder
+- Antalet brandmän korrelerar med brandens storlek
+  - Kausaliteten går åt andra hållet
+
+## Viktiga begrepp
+
+| Svenska | Engelska |
+|---------|----------|
+| Korrelation | Correlation |
+| Regression | Regression |
+| Lutning | Slope |
+| Intercept | Intercept |
+| Residual | Residual |
+| Determinationskoefficient | Coefficient of determination |
+| Standardfel | Standard error |
+| Konfidensintervall | Confidence interval |
+| Signifikans | Significance |
+
+## Interaktivt verktyg
+
+Använd det [interaktiva regressionsverktyget](../dashboards/regression-viz.qmd) för att:
+
+- Skapa egna datapunkter genom att klicka
+- Se regressionslinjen uppdateras i realtid
+- Visualisera residualer (fel)
+- Utforska hur olika punktmönster påverkar korrelation och R²
+
+## Referenser
+
+- Wikipedia: [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)
+- Wikipedia: [Simple linear regression](https://en.wikipedia.org/wiki/Simple_linear_regression)
+- Wikipedia: [Least squares](https://en.wikipedia.org/wiki/Least_squares)
+- Wikipedia: [Coefficient of determination (R²)](https://en.wikipedia.org/wiki/Coefficient_of_determination)
+- Wikipedia: [Errors and residuals](https://en.wikipedia.org/wiki/Errors_and_residuals)
+- Wikipedia: [Regression analysis](https://en.wikipedia.org/wiki/Regression_analysis)
+- Wikipedia: [Correlation does not imply causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation)
+- Wikipedia: [Standard error](https://en.wikipedia.org/wiki/Standard_error)
+- Wikipedia: [Confounding](https://en.wikipedia.org/wiki/Confounding)

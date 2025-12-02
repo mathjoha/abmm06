@@ -1,0 +1,597 @@
+---
+title: "Monty Hall-problemet"
+subtitle: "En klassisk sannolikhetsparadox"
+citation:
+  type: document
+  title: "Monty Hall-problemet"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/monty-hall.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Problemet
+
+1. Du är med i en tävling med **n** dörrar. Bakom en dörr finns ett pris.
+2. Du väljer en dörr.
+3. Programledaren (som vet var priset är) öppnar några dörrar som INTE har priset.
+4. Du får välja: **Byt dörr** eller **Stanna kvar**?
+
+*Vad bör du göra för att maximera chansen att vinna?*
+
+---
+
+## Spela själv
+
+```{ojs}
+//| echo: false
+
+viewof numDoors = Inputs.range([3, 10], {
+  label: "Antal dörrar:",
+  step: 1,
+  value: 3
+})
+
+viewof doorsToReveal = Inputs.range([1, numDoors - 2], {
+  label: "Dörrar som öppnas:",
+  step: 1,
+  value: Math.max(1, numDoors - 2)
+})
+```
+
+```{ojs}
+//| echo: false
+
+mutable gameState = ({
+  phase: "pick", // pick, revealed, result
+  prizeDoor: Math.floor(Math.random() * numDoors),
+  playerPick: null,
+  revealedDoors: [],
+  switched: null,
+  won: null
+})
+
+mutable stats = ({
+  stayWins: 0,
+  stayTotal: 0,
+  switchWins: 0,
+  switchTotal: 0
+})
+```
+
+```{ojs}
+//| echo: false
+
+// Reset game when door count changes
+{
+  numDoors;
+  mutable gameState = {
+    phase: "pick",
+    prizeDoor: Math.floor(Math.random() * numDoors),
+    playerPick: null,
+    revealedDoors: [],
+    switched: null,
+    won: null
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+
+function pickDoor(doorIndex) {
+  if (gameState.phase !== "pick") return;
+
+  // Reveal doors (not player's pick, not prize)
+  const available = [];
+  for (let i = 0; i < numDoors; i++) {
+    if (i !== doorIndex && i !== gameState.prizeDoor) {
+      available.push(i);
+    }
+  }
+
+  // Shuffle and take doorsToReveal
+  const shuffled = available.sort(() => Math.random() - 0.5);
+  const revealed = shuffled.slice(0, doorsToReveal);
+
+  mutable gameState = {
+    ...gameState,
+    phase: "revealed",
+    playerPick: doorIndex,
+    revealedDoors: revealed
+  };
+}
+
+function makeChoice(switchDoor) {
+  if (gameState.phase !== "revealed") return;
+
+  let finalPick = gameState.playerPick;
+
+  if (switchDoor) {
+    // Find a door that's not revealed and not current pick
+    for (let i = 0; i < numDoors; i++) {
+      if (i !== gameState.playerPick && !gameState.revealedDoors.includes(i)) {
+        finalPick = i;
+        break;
+      }
+    }
+  }
+
+  const won = finalPick === gameState.prizeDoor;
+
+  // Update stats
+  if (switchDoor) {
+    mutable stats = {
+      ...stats,
+      switchTotal: stats.switchTotal + 1,
+      switchWins: stats.switchWins + (won ? 1 : 0)
+    };
+  } else {
+    mutable stats = {
+      ...stats,
+      stayTotal: stats.stayTotal + 1,
+      stayWins: stats.stayWins + (won ? 1 : 0)
+    };
+  }
+
+  mutable gameState = {
+    ...gameState,
+    phase: "result",
+    switched: switchDoor,
+    won: won,
+    finalPick: finalPick
+  };
+}
+
+function newGame() {
+  mutable gameState = {
+    phase: "pick",
+    prizeDoor: Math.floor(Math.random() * numDoors),
+    playerPick: null,
+    revealedDoors: [],
+    switched: null,
+    won: null
+  };
+}
+
+function resetStats() {
+  mutable stats = {
+    stayWins: 0,
+    stayTotal: 0,
+    switchWins: 0,
+    switchTotal: 0
+  };
+}
+```
+
+### Dörrar
+
+```{ojs}
+//| echo: false
+
+{
+  const width = 600;
+  const height = 200;
+  const doorWidth = Math.min(60, (width - 40) / numDoors - 10);
+  const doorHeight = 120;
+  const startX = (width - (numDoors * (doorWidth + 10) - 10)) / 2;
+
+  const svg = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  // Draw doors
+  for (let i = 0; i < numDoors; i++) {
+    const x = startX + i * (doorWidth + 10);
+    const y = 30;
+
+    const isRevealed = gameState.revealedDoors.includes(i);
+    const isPlayerPick = gameState.playerPick === i;
+    const isPrize = gameState.prizeDoor === i;
+    const isFinalPick = gameState.phase === "result" && gameState.finalPick === i;
+    const showPrize = gameState.phase === "result" || isRevealed;
+
+    // Door background
+    let fillColor = "#8B4513"; // Brown door
+    if (isRevealed) {
+      fillColor = "#d3d3d3"; // Gray for opened
+    } else if (gameState.phase === "result") {
+      if (isPrize) {
+        fillColor = "#FFD700"; // Gold for prize
+      } else {
+        fillColor = "#d3d3d3";
+      }
+    }
+
+    // Door rectangle
+    svg.append("rect")
+      .attr("x", x)
+      .attr("y", y)
+      .attr("width", doorWidth)
+      .attr("height", doorHeight)
+      .attr("fill", fillColor)
+      .attr("stroke", isPlayerPick ? "#0066cc" : (isFinalPick ? "#00cc00" : "#333"))
+      .attr("stroke-width", isPlayerPick || isFinalPick ? 4 : 2)
+      .attr("rx", 5)
+      .style("cursor", gameState.phase === "pick" ? "pointer" : "default")
+      .on("click", () => pickDoor(i));
+
+    // Door number
+    svg.append("text")
+      .attr("x", x + doorWidth / 2)
+      .attr("y", y + 25)
+      .attr("text-anchor", "middle")
+      .attr("fill", isRevealed || gameState.phase === "result" ? "#666" : "#fff")
+      .attr("font-size", "16px")
+      .attr("font-weight", "bold")
+      .text(i + 1);
+
+    // Show content if revealed or game ended
+    if (showPrize) {
+      if (isPrize) {
+        // Prize emoji
+        svg.append("text")
+          .attr("x", x + doorWidth / 2)
+          .attr("y", y + doorHeight - 30)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "30px")
+          .text("🎁");
+      } else {
+        // Goat/nothing
+        svg.append("text")
+          .attr("x", x + doorWidth / 2)
+          .attr("y", y + doorHeight - 30)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "30px")
+          .text("🐐");
+      }
+    }
+
+    // Door handle
+    if (!isRevealed && gameState.phase !== "result") {
+      svg.append("circle")
+        .attr("cx", x + doorWidth - 10)
+        .attr("cy", y + doorHeight / 2)
+        .attr("r", 4)
+        .attr("fill", "#FFD700");
+    }
+  }
+
+  // Instructions
+  let instruction = "";
+  if (gameState.phase === "pick") {
+    instruction = "👆 Klicka på en dörr för att välja";
+  } else if (gameState.phase === "revealed") {
+    instruction = "Programledaren öppnade " + gameState.revealedDoors.length + " dörr(ar). Vill du byta?";
+  } else if (gameState.phase === "result") {
+    instruction = gameState.won ? "🎉 Du vann!" : "😔 Du förlorade";
+    if (gameState.switched !== null) {
+      instruction += gameState.switched ? " (du bytte)" : " (du stannade)";
+    }
+  }
+
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - 10)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "14px")
+    .attr("fill", "#333")
+    .text(instruction);
+
+  return svg.node();
+}
+```
+
+```{ojs}
+//| echo: false
+
+viewof stayButton = {
+  if (gameState.phase === "revealed") {
+    const btn = html`<button style="padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; background: #f0f0f0; border: 2px solid #666; border-radius: 5px;">🚪 Stanna kvar</button>`;
+    btn.onclick = () => makeChoice(false);
+    return btn;
+  }
+  return html`<span></span>`;
+}
+
+viewof switchButton = {
+  if (gameState.phase === "revealed") {
+    const btn = html`<button style="padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; background: #e6f3ff; border: 2px solid #0066cc; border-radius: 5px;">🔄 Byt dörr</button>`;
+    btn.onclick = () => makeChoice(true);
+    return btn;
+  }
+  return html`<span></span>`;
+}
+
+viewof newGameButton = {
+  if (gameState.phase === "result") {
+    const btn = html`<button style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #e6ffe6; border: 2px solid #00cc00; border-radius: 5px;">🔄 Nytt spel</button>`;
+    btn.onclick = () => newGame();
+    return btn;
+  }
+  return html`<span></span>`;
+}
+```
+
+```{ojs}
+//| echo: false
+
+html`<div style="text-align: center; margin: 20px 0;">${stayButton}${switchButton}${newGameButton}</div>`
+```
+
+---
+
+## Statistik
+
+```{ojs}
+//| echo: false
+
+{
+  const stayRate = stats.stayTotal > 0 ? (stats.stayWins / stats.stayTotal * 100).toFixed(1) : "-";
+  const switchRate = stats.switchTotal > 0 ? (stats.switchWins / stats.switchTotal * 100).toFixed(1) : "-";
+
+  return md`
+| Strategi | Vinster | Totalt | Vinstprocent |
+|----------|---------|--------|--------------|
+| **Stanna kvar** | ${stats.stayWins} | ${stats.stayTotal} | ${stayRate}% |
+| **Byta dörr** | ${stats.switchWins} | ${stats.switchTotal} | ${switchRate}% |
+
+*Spela flera gånger för att se mönstret!*
+  `;
+}
+```
+
+```{ojs}
+//| echo: false
+
+viewof resetButton = {
+  const btn = html`<button style="padding: 5px 15px; font-size: 12px; cursor: pointer;">Nollställ statistik</button>`;
+  btn.onclick = () => resetStats();
+  return btn;
+}
+```
+
+```{ojs}
+//| echo: false
+
+html`<div style="text-align: center; margin: 10px 0;">${resetButton}</div>`
+```
+
+---
+
+## Förklaring
+
+### Varför är det bättre att byta?
+
+Med **${numDoors} dörrar**:
+
+- **Om du stannar:** Du vinner om ditt första val var rätt.
+  - Sannolikhet: **1/${numDoors}** = ${(100/numDoors).toFixed(1)}%
+
+- **Om du byter:** Du vinner om ditt första val var FEL.
+  - Sannolikhet: **${numDoors-1}/${numDoors}** = ${(100*(numDoors-1)/numDoors).toFixed(1)}%
+
+### Intuition
+
+När du först väljer har du **1/${numDoors}** chans att ha rätt.
+
+Programledaren ger dig sedan information genom att öppna förlorande dörrar.
+Denna information hjälper dig BARA om du byter!
+
+Om du hade fel från början (vilket händer ${numDoors-1}/${numDoors} gånger),
+pekar de kvarvarande dörrarna mot priset.
+
+```{ojs}
+//| echo: false
+
+{
+  // Visual explanation
+  const data = [
+    {strategy: "Stanna", probability: 1/numDoors, label: `${(100/numDoors).toFixed(1)}%`},
+    {strategy: "Byta", probability: (numDoors-1)/numDoors, label: `${(100*(numDoors-1)/numDoors).toFixed(1)}%`}
+  ];
+
+  return Plot.plot({
+    width: 400,
+    height: 200,
+    x: {label: "Strategi"},
+    y: {label: "Sannolikhet att vinna", domain: [0, 1]},
+    marks: [
+      Plot.barY(data, {x: "strategy", y: "probability", fill: d => d.strategy === "Byta" ? "steelblue" : "#999"}),
+      Plot.text(data, {x: "strategy", y: "probability", text: "label", dy: -10, fontSize: 14})
+    ]
+  });
+}
+```
+
+### Med fler dörrar blir effekten tydligare!
+
+Testa att öka antalet dörrar till 10. Då blir sannolikheten att vinna genom att byta **90%**!
+
+---
+
+## Simulering: Jämför strategier
+
+Kör en simulering med många spel för att bevisa matematiken!
+
+```{ojs}
+//| echo: false
+
+viewof simulations = Inputs.range([100, 10000], {
+  label: "Antal simuleringar:",
+  step: 100,
+  value: 1000
+})
+
+viewof runSimulation = Inputs.button("Kör simulering")
+```
+
+```{ojs}
+//| echo: false
+
+simulationResults = {
+  runSimulation; // Trigger on button click
+
+  const results = {
+    alwaysStay: { wins: 0, total: simulations },
+    alwaysSwitch: { wins: 0, total: simulations },
+    random: { wins: 0, total: simulations }
+  };
+
+  // Run simulations
+  for (let i = 0; i < simulations; i++) {
+    const prizeDoor = Math.floor(Math.random() * numDoors);
+    const initialPick = Math.floor(Math.random() * numDoors);
+
+    // Find doors to reveal (not prize, not initial pick)
+    const available = [];
+    for (let d = 0; d < numDoors; d++) {
+      if (d !== initialPick && d !== prizeDoor) {
+        available.push(d);
+      }
+    }
+
+    // Reveal doorsToReveal doors
+    const revealed = available.sort(() => Math.random() - 0.5).slice(0, doorsToReveal);
+
+    // Find remaining door (for switching)
+    let switchDoor = initialPick;
+    for (let d = 0; d < numDoors; d++) {
+      if (d !== initialPick && !revealed.includes(d)) {
+        switchDoor = d;
+        break;
+      }
+    }
+
+    // Strategy 1: Always stay
+    if (initialPick === prizeDoor) {
+      results.alwaysStay.wins++;
+    }
+
+    // Strategy 2: Always switch
+    if (switchDoor === prizeDoor) {
+      results.alwaysSwitch.wins++;
+    }
+
+    // Strategy 3: Random (50/50 stay or switch)
+    const randomChoice = Math.random() < 0.5 ? initialPick : switchDoor;
+    if (randomChoice === prizeDoor) {
+      results.random.wins++;
+    }
+  }
+
+  return results;
+}
+```
+
+## Simuleringsresultat
+
+```{ojs}
+//| echo: false
+
+md`
+| Strategi | Vinster | Totalt spel | Vinstprocent | Teoretisk sannolikhet |
+|----------|---------|-------------|--------------|----------------------|
+| **Alltid stanna** | ${simulationResults.alwaysStay.wins} | ${simulationResults.alwaysStay.total} | **${(100 * simulationResults.alwaysStay.wins / simulationResults.alwaysStay.total).toFixed(1)}%** | ${(100/numDoors).toFixed(1)}% |
+| **Alltid byta** | ${simulationResults.alwaysSwitch.wins} | ${simulationResults.alwaysSwitch.total} | **${(100 * simulationResults.alwaysSwitch.wins / simulationResults.alwaysSwitch.total).toFixed(1)}%** | ${(100*(numDoors-1)/numDoors).toFixed(1)}% |
+| **Slumpmässigt** | ${simulationResults.random.wins} | ${simulationResults.random.total} | **${(100 * simulationResults.random.wins / simulationResults.random.total).toFixed(1)}%** | ≈${((100/numDoors + 100*(numDoors-1)/numDoors)/2).toFixed(1)}% |
+
+### Jämförelse
+
+Med **${numDoors} dörrar** och **${doorsToReveal} dörrar som öppnas**:
+- Att **alltid byta** är ${((simulationResults.alwaysSwitch.wins / simulationResults.alwaysStay.wins) - 1) > 0 ? `**${((simulationResults.alwaysSwitch.wins / simulationResults.alwaysStay.wins) * 100 - 100).toFixed(0)}% bättre**` : "sämre"} än att alltid stanna
+- Slumpmässig strategi ger i genomsnitt resultatet mellan de två
+`
+```
+
+```{ojs}
+//| echo: false
+
+// Visualization
+{
+  const data = [
+    {
+      strategy: "Alltid stanna",
+      winRate: simulationResults.alwaysStay.wins / simulationResults.alwaysStay.total,
+      theoretical: 1 / numDoors,
+      color: "#999"
+    },
+    {
+      strategy: "Alltid byta",
+      winRate: simulationResults.alwaysSwitch.wins / simulationResults.alwaysSwitch.total,
+      theoretical: (numDoors - 1) / numDoors,
+      color: "steelblue"
+    },
+    {
+      strategy: "Slumpmässigt",
+      winRate: simulationResults.random.wins / simulationResults.random.total,
+      theoretical: (1/numDoors + (numDoors-1)/numDoors) / 2,
+      color: "#ff9800"
+    }
+  ];
+
+  return Plot.plot({
+    width: 600,
+    height: 300,
+    marginLeft: 120,
+    x: {
+      label: "Vinstprocent",
+      domain: [0, 1],
+      tickFormat: d => `${(d * 100).toFixed(0)}%`
+    },
+    y: {
+      label: null
+    },
+    marks: [
+      // Theoretical lines
+      Plot.ruleX(data, {
+        x: "theoretical",
+        y: "strategy",
+        stroke: "#ddd",
+        strokeWidth: 2,
+        strokeDasharray: "4,4"
+      }),
+      // Simulated results
+      Plot.barX(data, {
+        y: "strategy",
+        x: "winRate",
+        fill: "color"
+      }),
+      // Labels
+      Plot.text(data, {
+        y: "strategy",
+        x: "winRate",
+        text: d => `${(d.winRate * 100).toFixed(1)}%`,
+        dx: -50,
+        fill: "white",
+        fontSize: 14,
+        fontWeight: "bold"
+      })
+    ]
+  });
+}
+```
+
+**Förklaring:**
+- **Staplar**: Faktiska resultat från simuleringen
+- **Streckade linjer**: Teoretiska sannolikheter
+
+### Insikter
+
+Simuleringen bekräftar matematiken:
+
+1. **Alltid byta** ger nästan exakt ${(100*(numDoors-1)/numDoors).toFixed(1)}% vinstchans
+2. **Alltid stanna** ger bara ${(100/numDoors).toFixed(1)}% vinstchans
+3. **Slumpmässigt** ger ett genomsnitt av de två strategierna
+
+Ju fler simuleringar du kör, desto närmare kommer resultaten de teoretiska värdena!
+
+## Referenser
+
+- Wikipedia: [Monty Hall problem](https://en.wikipedia.org/wiki/Monty_Hall_problem)
+- Wikipedia: [Probability](https://en.wikipedia.org/wiki/Probability)
+- Wikipedia: [Conditional probability](https://en.wikipedia.org/wiki/Conditional_probability)

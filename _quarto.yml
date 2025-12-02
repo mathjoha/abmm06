@@ -1,0 +1,100 @@
+project:
+  type: website
+  output-dir: _site
+
+lang: sv
+
+author:
+  - name: Mathias Johansson
+    affiliation: Lunds universitet
+    email: mathias.johansson@kultur.lu.se
+  - name: Kristofer Söderström
+    affiliation: Lunds universitet
+    email: kristofer.soderstrom@kultur.lu.se
+
+date: 2025-12-15
+
+website:
+  title: "ABMM06 - Kvantitativa metoder"
+  repo-url: https://github.com/mathjoha/abmm06
+  repo-actions: [edit, issue]
+  navbar:
+    left:
+      - text: Presentationer
+        menu:
+          - href: slides/kvantitativa-metoder.qmd
+            text: Kvantitativa metoder
+            target: _blank
+          - href: slides/urval.qmd
+            text: Urval och representativitet
+            target: _blank
+          - href: slides/datatyper.qmd
+            text: Datatyper
+            target: _blank
+          - href: slides/sannolikhet.qmd
+            text: Slump och sannolikhet
+            target: _blank
+          - href: slides/beskrivande-statistik.qmd
+            text: Beskrivande statistik
+            target: _blank
+          - href: slides/korrelation-och-regression.qmd
+            text: Korrelation och regression
+            target: _blank
+          - href: slides/digitala-metoder.qmd
+            text: Digitala metoder
+            target: _blank
+          - href: slides/enkat.qmd
+            text: Enkäter
+            target: _blank
+      - text: Lektioner
+        menu:
+          - href: lessons/fragettyper.qmd
+            text: Frågetyper
+          - href: lessons/presentera-resultat.qmd
+            text: Presentera resultat
+          - href: lessons/korrelation-och-regression.qmd
+            text: Korrelation och regression
+          - href: lessons/inferentiell-statistik.qmd
+            text: Inferentiell statistik
+          - href: lessons/databehandling.qmd
+            text: Databehandling och rensning
+      - text: Interaktiva verktyg
+        menu:
+          - href: dashboards/datatyper-viz.qmd
+            text: Datatyper
+          - href: dashboards/sannolikhet-viz.qmd
+            text: Sannolikhet
+          - href: dashboards/statistik-kalkylator.qmd
+            text: Statistikkalkylator
+          - href: dashboards/regression-viz.qmd
+            text: Regression
+          - href: dashboards/accuracy-precision-viz.qmd
+            text: Noggrannhet vs Precision
+          - href: dashboards/sample-size-calculator.qmd
+            text: Urvalsstorlekskalkylator
+          - href: dashboards/data-cleaning-viz.qmd
+            text: Databehandling
+          - href: dashboards/monty-hall.qmd
+            text: Monty Hall
+    right:
+      - href: about.qmd
+        text: Om
+
+citation:
+  type: webpage
+  title: "ABMM06: Kvantitativa metoder"
+  url: https://mathjoha.github.io/abmm06
+  publisher: Lunds universitet
+  issued: 2025
+  license: "CC-BY-NC 4.0"
+
+format:
+  html:
+    theme:
+      - cosmo
+    css: styles.css
+    toc: true
+    code-tools:
+      source: true
+      toggle: true
+    citations-hover: true

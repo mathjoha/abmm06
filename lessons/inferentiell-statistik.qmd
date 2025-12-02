@@ -1,0 +1,267 @@
+---
+title: "Inferentiell statistik"
+subtitle: "Z-värden, p-värden och felmarginaler"
+citation:
+  type: document
+  title: "Inferentiell statistik"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/lessons/inferentiell-statistik.html
+format:
+  html:
+    toc: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Introduktion
+
+Inferentiell statistik handlar om att dra slutsatser om en population baserat på ett urval. Tre centrala begrepp är Z-värden, p-värden och felmarginaler.
+
+## Z-värden (Z-scores)
+
+### Vad är ett Z-värde?
+
+Ett Z-värde anger hur många standardavvikelser ett värde ligger från medelvärdet i en normalfördelning.
+
+$$z = \frac{x - \mu}{\sigma}$$
+
+- $z$ = Z-värde
+- $x$ = Observerat värde
+- $\mu$ = Medelvärde
+- $\sigma$ = Standardavvikelse
+
+### Tolkning
+
+- **Z = 0**: Värdet är exakt på medelvärdet
+- **Z = 1**: Värdet ligger 1 standardavvikelse över medelvärdet
+- **Z = -1**: Värdet ligger 1 standardavvikelse under medelvärdet
+- **Z = 2**: Värdet ligger 2 standardavvikelser över medelvärdet
+
+### Z-värden och normalfördelningen
+
+I en normalfördelning:
+- **68%** av värdena ligger inom ±1 standardavvikelse (Z mellan -1 och +1)
+- **95%** av värdena ligger inom ±1.96 standardavvikelser (Z mellan -1.96 och +1.96)
+- **99%** av värdena ligger inom ±2.58 standardavvikelser (Z mellan -2.58 och +2.58)
+
+### Kritiska Z-värden för konfidensnivåer
+
+| Konfidensnivå | Z-värde | Användning |
+|---------------|---------|------------|
+| 90% | 1.645 | Explorativa studier |
+| **95%** | **1.96** | **Standard i forskning** |
+| 99% | 2.576 | Hög säkerhet |
+| 99.9% | 3.291 | Mycket hög säkerhet |
+
+### Exempel: IQ-test
+
+IQ har medelvärde 100 och standardavvikelse 15.
+
+Om en person har IQ 130:
+$$z = \frac{130 - 100}{15} = \frac{30}{15} = 2$$
+
+Detta betyder att personen ligger 2 standardavvikelser över medelvärdet, vilket är högre än ca 97.5% av populationen.
+
+## P-värden (P-values)
+
+### Vad är ett p-värde?
+
+P-värdet är sannolikheten att få ett resultat som är lika extremt eller mer extremt än det observerade resultatet, *givet att nollhypotesen är sann*.
+
+### Tolkning
+
+- **p < 0.001**: Mycket starkt bevis mot nollhypotesen (***)
+- **p < 0.01**: Starkt bevis mot nollhypotesen (**)
+- **p < 0.05**: Måttligt bevis mot nollhypotesen (*)
+- **p ≥ 0.05**: Otillräckligt bevis för att förkasta nollhypotesen
+
+### Vanliga missförstånd
+
+**FELAKTIGT:** "p = 0.05 betyder att det är 5% chans att nollhypotesen är sann"
+
+**KORREKT:** "p = 0.05 betyder att om nollhypotesen vore sann, skulle vi se dessa data (eller mer extrema) i 5% av fallen"
+
+### Signifikansnivå (α)
+
+Signifikansnivån (ofta α = 0.05) är tröskeln vi sätter *innan* studien för att bestämma om ett resultat ska betraktas som statistiskt signifikant.
+
+- Om p < α: Förkasta nollhypotesen (signifikant resultat)
+- Om p ≥ α: Behåll nollhypotesen (icke-signifikant resultat)
+
+### Exempel: Myntkast
+
+Nollhypotes: Myntet är rättvist (p = 0.5 för krona)
+
+Du kastar 100 gånger och får 65 kronor.
+
+Fråga: Hur troligt är det att få 65 eller fler kronor med ett rättvist mynt?
+
+Om p-värdet = 0.003, betyder det att denna extrema utfall skulle inträffa i endast 0.3% av fallen med ett rättvist mynt. Vi förkastar därför nollhypotesen och drar slutsatsen att myntet troligen inte är rättvist.
+
+## Felmarginaler (Margin of Error)
+
+### Vad är en felmarginal?
+
+Felmarginalen anger det intervall inom vilket det sanna populationsvärdet troligen ligger, baserat på ditt urval.
+
+$$\text{Felmarginal} = Z \times \frac{\sigma}{\sqrt{n}}$$
+
+- $Z$ = Z-värde för önskad konfidensnivå
+- $\sigma$ = Standardavvikelse
+- $n$ = Urvalsstorlek
+
+### Konfidensintervall
+
+Ett konfidensintervall konstrueras som:
+
+$$\text{Estimat} \pm \text{Felmarginal}$$
+
+Exempel: Om 52% av urvalet säger "ja" med felmarginal ±3%, är konfidensintervallet 49% till 55%.
+
+### Faktorer som påverkar felmarginalen
+
+1. **Konfidensnivå** (Z)
+   - Högre konfidensnivå → Större felmarginal
+   - 90% konfidensintervall är smalare än 95%
+
+2. **Urvalsstorlek** (n)
+   - Större urval → Mindre felmarginal
+   - Kvadratroten betyder att du behöver 4 gånger så stort urval för att halvera felmarginalen
+
+3. **Variation i populationen** (σ)
+   - Mer variation → Större felmarginal
+   - Mer homogen population → Mindre felmarginal
+
+### Exempel: Opinionsundersökning
+
+En undersökning av 1000 väljare visar att 48% tänker rösta på parti A.
+
+Med 95% konfidensnivå:
+- Z = 1.96
+- Standardfel ≈ 0.016 (beräknas från p(1-p)/n)
+- Felmarginal = 1.96 × 0.016 ≈ 0.031 = ±3.1%
+
+**Tolkning:** Med 95% säkerhet ligger det sanna stödet för parti A mellan 44.9% och 51.1%.
+
+## Samband mellan begreppen
+
+### Z-värden och p-värden
+
+Z-värden används för att beräkna p-värden:
+
+| Z-värde | p-värde (tvåsidigt) | Tolkning |
+|---------|---------------------|----------|
+| 1.96 | 0.05 | Gränsen för signifikans vid α = 0.05 |
+| 2.58 | 0.01 | Starkt signifikant |
+| 3.29 | 0.001 | Mycket starkt signifikant |
+
+### Z-värden och felmarginaler
+
+Högre Z-värde (högre konfidensnivå) ger större felmarginal:
+
+| Konfidensnivå | Z | Effekt på felmarginal |
+|---------------|---|----------------------|
+| 90% | 1.645 | Smalare intervall |
+| 95% | 1.96 | Standard |
+| 99% | 2.576 | Bredare intervall |
+
+## Praktisk tillämpning
+
+### Hypotestest i 5 steg
+
+1. **Formulera hypoteser**
+   - H₀: Nollhypotes (ingen effekt/skillnad)
+   - H₁: Alternativhypotes (det finns en effekt/skillnad)
+
+2. **Välj signifikansnivå**
+   - Vanligen α = 0.05
+
+3. **Samla data och beräkna teststatistika**
+   - T.ex. Z-värde
+
+4. **Beräkna p-värde**
+   - Sannolikheten för observerade data under H₀
+
+5. **Dra slutsats**
+   - Om p < α: Förkasta H₀
+   - Om p ≥ α: Behåll H₀
+
+### Exempel: Är studenter längre än genomsnittet?
+
+1. **Hypoteser:**
+   - H₀: μ = 170 cm (studenter är lika långa som genomsnittet)
+   - H₁: μ > 170 cm (studenter är längre)
+
+2. **Signifikansnivå:** α = 0.05
+
+3. **Data:**
+   - Urval: n = 50 studenter
+   - Medellängd: x̄ = 173 cm
+   - Standardavvikelse: s = 8 cm
+
+4. **Beräkning:**
+   $$z = \frac{173 - 170}{8/\sqrt{50}} = \frac{3}{1.13} = 2.65$$
+
+   p-värde ≈ 0.004
+
+5. **Slutsats:**
+   p < 0.05, så vi förkastar H₀. Det finns statistiskt signifikant bevis för att studenter i genomsnitt är längre än 170 cm.
+
+## Vanliga misstag att undvika
+
+### 1. P-hacking
+Att testa många olika hypoteser tills man hittar en signifikant (p < 0.05) leder till falska positiva resultat.
+
+### 2. Förväxla statistisk och praktisk signifikans
+Ett resultat kan vara statistiskt signifikant (p < 0.05) men praktiskt oviktigt (mycket liten effekt).
+
+### 3. Ignorera urvalsstorlek
+Stora urval kan ge signifikanta resultat även för små, praktiskt ointressanta effekter.
+
+### 4. Feltolkning av konfidensintervall
+"95% konfidensintervall" betyder INTE att det är 95% chans att det sanna värdet ligger i intervallet. Det betyder att om vi upprepar studien många gånger, kommer 95% av intervallen att innehålla det sanna värdet.
+
+## Viktiga begrepp
+
+| Svenska | Engelska | Symbol |
+|---------|----------|--------|
+| Z-värde | Z-score | $z$ |
+| P-värde | P-value | $p$ |
+| Felmarginal | Margin of error | $E$ eller $ME$ |
+| Konfidensnivå | Confidence level | - |
+| Konfidensintervall | Confidence interval | $CI$ |
+| Signifikansnivå | Significance level | $\alpha$ |
+| Nollhypotes | Null hypothesis | $H_0$ |
+| Alternativhypotes | Alternative hypothesis | $H_1$ |
+| Standardfel | Standard error | $SE$ |
+
+## Interaktiva verktyg
+
+- **[Sannolikhet](../dashboards/sannolikhet-viz.qmd)** - Utforska normalfördelning och konfidensintervall
+- **[Urvalsstorlekskalkylator](../dashboards/sample-size-calculator.qmd)** - Se hur Z-värden påverkar nödvändig urvalsstorlek
+- **[Regression](../dashboards/regression-viz.qmd)** - Inferens för korrelation och regression
+
+## Vidare läsning
+
+För djupare förståelse, se:
+- [Korrelation och regression](korrelation-och-regression.qmd) - Hypotestest för samband
+- Presentationer om [Slump och sannolikhet](../slides/sannolikhet.qmd)
+
+## Referenser
+
+- Wikipedia: [Standard score (Z-score)](https://en.wikipedia.org/wiki/Standard_score)
+- Wikipedia: [P-value](https://en.wikipedia.org/wiki/P-value)
+- Wikipedia: [Margin of error](https://en.wikipedia.org/wiki/Margin_of_error)
+- Wikipedia: [Confidence interval](https://en.wikipedia.org/wiki/Confidence_interval)
+- Wikipedia: [Statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing)
+- Wikipedia: [Significance level](https://en.wikipedia.org/wiki/Statistical_significance)
+- Wikipedia: [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution)
+- Wikipedia: [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule)

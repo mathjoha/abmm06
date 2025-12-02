@@ -1,0 +1,25 @@
+---
+title: "Om denna webbplats"
+---
+
+## Skapare
+
+Denna webbplats har skapats av **Mathias Johansson** i samarbete med **Kristoffer Söderström** för kursen ABMM06 - Kvantitativa metoder vid Lunds universitet.
+
+## Verktyg och teknologi
+
+Webbplatsen är byggd med följande verktyg:
+
+- **[Quarto](https://quarto.org/)** - Publiceringsystem för teknisk och vetenskaplig kommunikation
+- **[RevealJS](https://revealjs.com/)** - Ramverk för interaktiva presentationer
+- **[Observable JavaScript](https://observablehq.com/)** - För interaktiva visualiseringar och dashboards
+- **[Claude](https://claude.ai/)** - AI-assistent för utveckling och innehållsskapande
+- **[GitHub Pages](https://pages.github.com/)** - Webbhotell
+
+## Licens
+
+Innehållet är licensierat under [CC-BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+## Källkod
+
+Källkoden för denna webbplats finns tillgänglig på [GitHub](https://github.com/mathjoha/abmm06).

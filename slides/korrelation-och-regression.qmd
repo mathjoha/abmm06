@@ -1,0 +1,162 @@
+---
+title: "Korrelation och regression"
+subtitle: "Samband mellan variabler"
+citation:
+  type: document
+  title: "Korrelation och regression"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/korrelation-och-regression.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Korrelation
+
+- Mäter styrkan och riktningen på ett linjärt samband mellan två variabler
+- Korrelationskoefficienten (r) varierar från -1 till +1
+- **r = +1**: Perfekt positivt samband
+- **r = 0**: Inget linjärt samband
+- **r = -1**: Perfekt negativt samband
+
+## Tolkning av korrelation
+
+| Värde på r | Tolkning |
+|------------|----------|
+| 0.7 – 1.0 | Stark positiv |
+| 0.3 – 0.7 | Måttlig positiv |
+| -0.3 – 0.3 | Svag/ingen |
+| -0.7 – -0.3 | Måttlig negativ |
+| -1.0 – -0.7 | Stark negativ |
+
+## Beräkna korrelation (Pearson)
+
+$$r = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum (x_i - \bar{x})^2 \cdot \sum (y_i - \bar{y})^2}}$$
+
+- $\bar{x}$ och $\bar{y}$ är medelvärden
+- Mäter hur väl punkterna följer en rät linje
+
+## Enkel linjär regression
+
+Förutsäger värdet på Y baserat på X:
+
+$$\hat{y} = a + bx$$
+
+- **a** = intercept (skärningspunkt med y-axeln)
+- **b** = lutning (slope)
+- $\hat{y}$ = förutsagt värde
+
+## Beräkna regressionskoefficienter
+
+**Lutning:**
+$$b = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}$$
+
+**Intercept:**
+$$a = \bar{y} - b\bar{x}$$
+
+## Residualer (fel)
+
+- **Residual** = Observerat värde - Förutsagt värde
+- $e_i = y_i - \hat{y}_i$
+- Visar hur långt varje punkt ligger från regressionslinjen
+- Summan av residualerna = 0 (i minsta-kvadratmetoden)
+
+## Determinationskoefficienten R²
+
+$$R^2 = r^2$$
+
+- Andelen av variansen i Y som förklaras av X
+- Varierar från 0 till 1 (0% till 100%)
+- R² = 0.64 betyder att 64% av variationen förklaras
+
+## Inferentiell statistik för korrelation
+
+**Nollhypotes:** $H_0: \rho = 0$ (ingen korrelation i populationen)
+
+**Teststatistika:**
+$$t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$$
+
+- Frihetsgrader: df = n - 2
+- Om p < 0.05: Korrelationen är statistiskt signifikant
+
+## Konfidensintervall för lutning
+
+$$b \pm t_{\alpha/2} \cdot SE_b$$
+
+där standardfelet för b:
+
+$$SE_b = \frac{s_e}{\sqrt{\sum(x_i - \bar{x})^2}}$$
+
+- $s_e$ = standardfelet för residualerna
+- Ger ett intervall för den "sanna" lutningen
+
+## Antaganden för regression
+
+1. **Linjäritet** – Sambandet är linjärt
+2. **Oberoende** – Observationerna är oberoende
+3. **Normalitet** – Residualerna är normalfördelade
+4. **Homoskedasticitet** – Konstant varians i residualerna
+
+## Korrelation vs Kausalitet
+
+- **Viktigt!** Korrelation innebär inte orsakssamband
+- "Correlation is not causation"
+- Kan finnas:
+  - Omvänd kausalitet
+  - Bakomliggande variabel (confounding)
+  - Slumpmässigt samband
+
+## Exempel på falska samband
+
+- Glasskonsumtion korrelerar med drunkningsolyckor
+  - Bakomliggande variabel: Sommarväder
+- Antalet filmer med Nicolas Cage korrelerar med drunkningar i pooler
+  - Slumpmässigt samband
+
+## Praktisk tillämpning
+
+1. Visualisera alltid data först (scatterplot)
+2. Beräkna r och R²
+3. Testa om korrelationen är signifikant
+4. Tolka resultaten i kontext
+5. Var försiktig med extrapolering
+
+## Sammanfattning
+
+| Begrepp | Beskrivning |
+|---------|-------------|
+| r | Korrelationskoefficient (-1 till +1) |
+| R² | Förklarad varians (0 till 1) |
+| a | Intercept (y när x=0) |
+| b | Lutning (ändring i y per enhet x) |
+| Residual | Fel = observerat - förutsagt |
+
+## Interaktivt verktyg
+
+Prova det interaktiva regressionsverktyget för att:
+
+- Klicka och skapa egna datapunkter
+- Se regressionslinjen uppdateras i realtid
+- Visualisera residualer (fel)
+
+Se: [Interaktiv regression](../dashboards/regression-viz.qmd)
+
+## Referenser
+
+- [Pearson correlation](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)
+- [Linear regression](https://en.wikipedia.org/wiki/Simple_linear_regression)
+- [Correlation vs causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation)

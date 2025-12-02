@@ -1,0 +1,147 @@
+---
+title: "Slump och sannolikhet"
+subtitle: "Random chance & Probability"
+citation:
+  type: document
+  title: "Slump och sannolikhet"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/slides/sannolikhet.html
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    chalkboard: true
+    smaller: false
+    scrollable: true
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+---
+
+## Vad är sannolikhet?
+
+Sannolikhet (probability) mäter hur troligt det är att en händelse inträffar.
+
+$$P(A) = \frac{\text{antal gynnsamma utfall}}{\text{antal möjliga utfall}}$$
+
+Värde mellan 0 (omöjligt) och 1 (säkert)
+
+## Exempel: Tärningskast
+
+**Ett tärningskast:**
+
+- P(6) = 1/6 ≈ 0.167 (16.7%)
+- P(udda) = 3/6 = 0.5 (50%)
+- P(≤4) = 4/6 ≈ 0.667 (66.7%)
+
+## Slump i forskning
+
+Varför är slumpmässighet viktigt?
+
+- **Urval:** Representativitet kräver slumpmässigt urval
+- **Experiment:** Randomisering minskar bias
+- **Statistik:** Många metoder bygger på sannolikhetsteori
+
+## Stora talens lag
+
+När antalet observationer ökar, närmar sig det observerade medelvärdet det förväntade värdet.
+
+*Exempel:* Ju fler myntkast, desto närmare 50% krona
+
+## Normalfördelningen
+
+Den klassiska "klockkurvan" (Gausskurvan)
+
+- Medelvärdet i mitten
+- Symmetrisk
+- 68% inom ±1 standardavvikelse
+- 95% inom ±2 standardavvikelser
+- 99.7% inom ±3 standardavvikelser
+
+## Normalfördelningen - visualisering
+
+```
+          ████
+        ████████
+       ██████████
+      ████████████
+     ██████████████
+    ████████████████
+   ██████████████████
+  ████████████████████
+ ██████████████████████
+█████████████████████████
+|----|----|μ|----|-----|
+   -2σ   -1σ    +1σ   +2σ
+```
+
+## Centrala gränsvärdessatsen
+
+Oavsett populationens fördelning blir urvalsmedelvärden normalfördelade när urvalet är tillräckligt stort (n ≥ 30).
+
+**Varför är detta viktigt?**
+
+Det låter oss använda normalfördelningen för att dra slutsatser om populationer.
+
+## Konfidensintervall
+
+Ett intervall som med viss sannolikhet innehåller det sanna populationsvärdet.
+
+**95% konfidensintervall:**
+$$\bar{x} \pm 1.96 \times \frac{s}{\sqrt{n}}$$
+
+*"Vi är 95% säkra på att det sanna värdet ligger i detta intervall"*
+
+## Statistisk signifikans
+
+**p-värde:** Sannolikheten att få detta resultat (eller mer extremt) om nollhypotesen är sann.
+
+- p < 0.05: "Statistiskt signifikant"
+- p < 0.01: "Starkt signifikant"
+
+**OBS:** Signifikans ≠ praktisk betydelse!
+
+## Vanliga missförstånd
+
+1. ~~"Jag har tur/otur"~~ → Slumpen har inget minne
+2. ~~"Det måste jämna ut sig"~~ → Spelarens felslut (gambler's fallacy)
+3. ~~"p = 0.05 betyder 95% chans att vara sann"~~ → Fel tolkning av p-värde
+
+## Samplingfel vs systematiska fel
+
+_ **Samplingfel (random error):**
+  - Beror på slumpen i urvalet
+  - Minskar med större urval
+  - Kan skattas statistiskt
+
+- **Systematiska fel (bias):**
+  - Beror på metodfel
+  - Minskar INTE med större urval
+  - Svårare att upptäcka
+
+## Praktisk tillämpning
+
+Vid enkätundersökningar:
+
+1. Hur stort urval behöver jag?
+2. Vad är felmarginalen?
+3. Kan jag generalisera resultaten?
+
+Dessa frågor kräver förståelse för sannolikhet och slump.
+
+## Referenser
+
+- [Probability](https://en.wikipedia.org/wiki/Probability)
+- [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution)
+- [Central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem)
+- [Confidence interval](https://en.wikipedia.org/wiki/Confidence_interval)
+- [Law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)
+- [P-value](https://en.wikipedia.org/wiki/P-value)
+- [68–95–99.7 rule](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule)

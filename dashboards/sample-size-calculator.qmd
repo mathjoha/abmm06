@@ -1,0 +1,268 @@
+---
+title: "Urvalsstorlekskalkylator"
+subtitle: "Beräkna nödvändig urvalsstorlek för din studie"
+citation:
+  type: document
+  title: "Urvalsstorlekskalkylator"
+  container-title: "ABMM06: Kvantitativa metoder"
+  publisher: Lunds universitet
+  license: "CC-BY-NC 4.0"
+  url: https://mathjoha.github.io/abmm06/dashboards/sample-size-calculator.html
+format:
+  html:
+    page-layout: full
+    toc: true
+---
+
+## Beräkna urvalsstorlek
+
+Denna kalkylator hjälper dig att bestämma hur många respondenter du behöver för din studie baserat på populationsstorlek, konfidensnivå och felmarginal.
+
+```{ojs}
+//| echo: false
+
+viewof studyType = Inputs.radio(
+  ["proportion", "mean"],
+  {
+    label: "Typ av studie:",
+    value: "proportion",
+    format: x => x === "proportion" ? "Andel/Proportion (t.ex. ja/nej-frågor)" : "Medelvärde (kontinuerliga mätningar)"
+  }
+)
+```
+
+### Grundläggande parametrar
+
+```{ojs}
+//| echo: false
+
+viewof populationSize = Inputs.range([50, 1000000], {
+  label: "Populationsstorlek (N):",
+  step: 50,
+  value: 1000,
+  transform: Math.round
+})
+
+viewof confidenceLevel = Inputs.select(
+  [0.90, 0.95, 0.99],
+  {
+    label: "Konfidensnivå:",
+    value: 0.95,
+    format: x => `${(x * 100).toFixed(0)}%`
+  }
+)
+
+viewof marginOfError = Inputs.range([0.01, 0.15], {
+  label: "Felmarginal (margin of error):",
+  step: 0.005,
+  value: 0.05,
+  format: x => `±${(x * 100).toFixed(1)}%`
+})
+```
+
+### Parametrar för andel/proportion
+
+```{ojs}
+//| echo: false
+
+viewof expectedProportion = studyType === "proportion" ? Inputs.range([0.1, 0.9], {
+  label: "Förväntad andel (p):",
+  step: 0.05,
+  value: 0.5,
+  format: x => `${(x * 100).toFixed(0)}%`
+}) : Inputs.range([0.5, 0.5], {value: 0.5})
+```
+
+${studyType === "proportion" ? html`<p style="font-size: 0.9em; color: #666; margin-top: -10px;">
+<em>Tips: Om du är osäker, använd 0.5 (50%) för maximal urvalsstorlek</em>
+</p>` : ""}
+
+### Parametrar för medelvärde
+
+```{ojs}
+//| echo: false
+
+viewof populationStdDev = studyType === "mean" ? Inputs.range([1, 50], {
+  label: "Uppskattad standardavvikelse (σ):",
+  step: 0.5,
+  value: 10
+}) : Inputs.range([10, 10], {value: 10})
+```
+
+${studyType === "mean" ? html`<p style="font-size: 0.9em; color: #666; margin-top: -10px;">
+<em>Tips: Använd data från pilotstudie eller tidigare forskning</em>
+</p>` : ""}
+
+```{ojs}
+//| echo: false
+
+// Z-scores for different confidence levels
+zScore = {
+  const zScores = {
+    0.90: 1.645,
+    0.95: 1.96,
+    0.99: 2.576
+  };
+  return zScores[confidenceLevel];
+}
+```
+
+```{ojs}
+//| echo: false
+
+// Calculate sample size
+sampleSize = {
+  let n0; // Initial sample size (infinite population)
+
+  if (studyType === "proportion") {
+    // For proportions: n = (Z² × p × (1-p)) / E²
+    const p = expectedProportion;
+    const E = marginOfError;
+    n0 = (zScore ** 2 * p * (1 - p)) / (E ** 2);
+  } else {
+    // For means: n = (Z² × σ²) / E²
+    const sigma = populationStdDev;
+    const E = marginOfError * 100; // Convert to same scale as std dev
+    n0 = (zScore ** 2 * sigma ** 2) / (E ** 2);
+  }
+
+  // Adjust for finite population using finite population correction
+  // n = n0 / (1 + (n0 - 1) / N)
+  const N = populationSize;
+  const n = n0 / (1 + (n0 - 1) / N);
+
+  return {
+    unadjusted: Math.ceil(n0),
+    adjusted: Math.ceil(n),
+    responseRate: Math.ceil(n / 0.7), // Assuming 70% response rate
+    responseRate50: Math.ceil(n / 0.5), // Assuming 50% response rate
+    zScore: zScore
+  };
+}
+```
+
+## Resultat
+
+```{ojs}
+//| echo: false
+
+md`
+### Rekommenderad urvalsstorlek
+
+| Scenario | Antal respondenter |
+|----------|-------------------|
+| **Minimiantal (100% svarsfrekvens)** | **${sampleSize.adjusted}** |
+| Med 70% svarsfrekvens | ${sampleSize.responseRate} |
+| Med 50% svarsfrekvens | ${sampleSize.responseRate50} |
+
+${populationSize < 10000 ? `
+*Finite population correction applicerad eftersom populationen är mindre än 10,000.*
+` : ""}
+`
+```
+
+## Förklaring
+
+```{ojs}
+//| echo: false
+
+md`
+### Parametrar
+
+- **Populationsstorlek (N)**: Totalt antal individer i målpopulationen (${populationSize.toLocaleString('sv-SE')})
+- **Konfidensnivå**: Sannolikheten att det sanna värdet ligger inom felmarginalen (${(confidenceLevel * 100).toFixed(0)}%)
+  - Z-värde: ${zScore}
+- **Felmarginal**: Maximalt acceptabelt fel i resultaten (±${(marginOfError * 100).toFixed(1)}%)
+
+${studyType === "proportion" ? `
+- **Förväntad andel (p)**: Uppskattad andel i populationen (${(expectedProportion * 100).toFixed(0)}%)
+  - Om osäker, använd 50% för maximal säkerhet
+` : `
+- **Standardavvikelse (σ)**: Spridning i populationen (${populationStdDev})
+  - Basera på pilotstudie eller liknande forskning
+`}
+
+### Tolkning
+
+Med dessa parametrar behöver du **minst ${sampleSize.adjusted} respondenter** för att få statistiskt signifikanta resultat med ${(confidenceLevel * 100).toFixed(0)}% konfidensnivå och ±${(marginOfError * 100).toFixed(1)}% felmarginal.
+
+**Praktiska rekommendationer:**
+
+1. **Planera för bortfall**: Med typisk svarsfrekvens på 70% bör du kontakta ${sampleSize.responseRate} personer
+2. **Om låg svarsfrekvens**: Vid 50% svarsfrekvens, kontakta ${sampleSize.responseRate50} personer
+3. **Stratifiera vid behov**: Om din population har olika subgrupper kan du behöva större urval
+4. **Pilotstudie**: Överväg en pilotstudie för att estimera parametrar bättre
+
+### Formel
+
+${studyType === "proportion" ? `
+**För proportioner:**
+
+$$n_0 = \\\\frac{Z^2 \\\\times p \\\\times (1-p)}{E^2}$$
+
+- \\\\(n_0\\\\) = Initial urvalsstorlek (oändlig population)
+- \\\\(Z\\\\) = Z-värde för konfidensnivån (${zScore})
+- \\\\(p\\\\) = Förväntad proportion (${expectedProportion})
+- \\\\(E\\\\) = Felmarginal (${marginOfError})
+
+**Resultat:** \\\\(n_0 = ${sampleSize.unadjusted}\\\\)
+` : `
+**För medelvärden:**
+
+$$n_0 = \\\\frac{Z^2 \\\\times \\\\sigma^2}{E^2}$$
+
+- \\\\(n_0\\\\) = Initial urvalsstorlek (oändlig population)
+- \\\\(Z\\\\) = Z-värde för konfidensnivån (${zScore})
+- \\\\(\\\\sigma\\\\) = Standardavvikelse (${populationStdDev})
+- \\\\(E\\\\) = Felmarginal (${(marginOfError * 100).toFixed(1)})
+
+**Resultat:** \\\\(n_0 = ${sampleSize.unadjusted}\\\\)
+`}
+
+${populationSize < 1000000 ? `
+**Finite population correction:**
+
+$$n = \\\\frac{n_0}{1 + \\\\frac{n_0 - 1}{N}}$$
+
+- \\\\(N\\\\) = Populationsstorlek (${populationSize.toLocaleString('sv-SE')})
+
+**Justerad urvalsstorlek:** \\\\(n = ${sampleSize.adjusted}\\\\)
+` : ""}
+`
+```
+
+## Vanliga konfidensnivåer
+
+| Konfidensnivå | Z-värde | Betydelse |
+|---------------|---------|-----------|
+| 90% | 1.645 | Acceptabelt för explorativa studier |
+| **95%** | **1.96** | **Standard i samhällsvetenskap** |
+| 99% | 2.576 | Hög säkerhet, större urval krävs |
+
+## Exempel
+
+### Exempel 1: Enkätundersökning om biblioteksanvändning
+
+- Population: 5,000 studenter
+- Konfidensnivå: 95%
+- Felmarginal: ±5%
+- Förväntad andel som använder biblioteket: 50%
+
+**Resultat**: ~357 respondenter behövs
+
+### Exempel 2: Mätning av genomsnittlig lästid
+
+- Population: 1,000 medlemmar
+- Konfidensnivå: 95%
+- Felmarginal: ±0.5 timmar
+- Uppskattad standardavvikelse: 2 timmar
+
+**Resultat**: Beror på parametrarna i kalkylatorn ovan
+
+## Tips
+
+1. **Högre konfidensnivå** = Större urval behövs
+2. **Mindre felmarginal** = Större urval behövs
+3. **p = 0.5 (50%)** ger den största urvalsstorleken (mest konservativ estimering)
+4. **Liten population** (< 1000) kräver relativt större andel av populationen
+5. **Stor population** (> 100,000) påverkar knappt urvalsstorleken
