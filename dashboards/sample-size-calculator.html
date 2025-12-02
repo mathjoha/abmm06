@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mathias Johansson">
+<meta name="author" content="Kristofer Söderström">
+<meta name="dcterms.date" content="2025-12-15">
+
+<title>Urvalsstorlekskalkylator – ABMM06 - Kvantitativa metoder</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Inget resultat",
+    "search-matching-documents-text": "matchande dokument",
+    "search-copy-link-title": "Kopiera länk för att söka",
+    "search-hide-matches-text": "Göm ytterligare resultat",
+    "search-more-match-text": "annat resultat i detta dokument",
+    "search-more-matches-text": "fler resultat i detta dokument",
+    "search-clear-button-title": "Rensa",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Verkställ",
+    "search-label": "Sök"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ABMM06 - Kvantitativa metoder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Sök"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Skifta navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentationer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Presentationer</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-presentationer">    
+        <li>
+    <a class="dropdown-item" href="../slides/kvantitativa-metoder.html" target="_blank">
+ <span class="dropdown-text">Kvantitativa metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/urval.html" target="_blank">
+ <span class="dropdown-text">Urval och representativitet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/datatyper.html" target="_blank">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/sannolikhet.html" target="_blank">
+ <span class="dropdown-text">Slump och sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/beskrivande-statistik.html" target="_blank">
+ <span class="dropdown-text">Beskrivande statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/korrelation-och-regression.html" target="_blank">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/digitala-metoder.html" target="_blank">
+ <span class="dropdown-text">Digitala metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/enkat.html" target="_blank">
+ <span class="dropdown-text">Enkäter</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lektioner" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lektioner</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lektioner">    
+        <li>
+    <a class="dropdown-item" href="../lessons/fragettyper.html">
+ <span class="dropdown-text">Frågetyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/presentera-resultat.html">
+ <span class="dropdown-text">Presentera resultat</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/korrelation-och-regression.html">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/inferentiell-statistik.html">
+ <span class="dropdown-text">Inferentiell statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/databehandling.html">
+ <span class="dropdown-text">Databehandling och rensning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-interaktiva-verktyg" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Interaktiva verktyg</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-interaktiva-verktyg">    
+        <li>
+    <a class="dropdown-item" href="../dashboards/datatyper-viz.html">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sannolikhet-viz.html">
+ <span class="dropdown-text">Sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/statistik-kalkylator.html">
+ <span class="dropdown-text">Statistikkalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/regression-viz.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/accuracy-precision-viz.html">
+ <span class="dropdown-text">Noggrannhet vs Precision</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sample-size-calculator.html">
+ <span class="dropdown-text">Urvalsstorlekskalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/data-cleaning-viz.html">
+ <span class="dropdown-text">Databehandling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/monty-hall.html">
+ <span class="dropdown-text">Monty Hall</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Om</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denna sida</h2>
+   
+  <ul>
+  <li><a href="#beräkna-urvalsstorlek" id="toc-beräkna-urvalsstorlek" class="nav-link active" data-scroll-target="#beräkna-urvalsstorlek">Beräkna urvalsstorlek</a>
+  <ul class="collapse">
+  <li><a href="#grundläggande-parametrar" id="toc-grundläggande-parametrar" class="nav-link" data-scroll-target="#grundläggande-parametrar">Grundläggande parametrar</a></li>
+  <li><a href="#parametrar-för-andelproportion" id="toc-parametrar-för-andelproportion" class="nav-link" data-scroll-target="#parametrar-för-andelproportion">Parametrar för andel/proportion</a></li>
+  <li><a href="#parametrar-för-medelvärde" id="toc-parametrar-för-medelvärde" class="nav-link" data-scroll-target="#parametrar-för-medelvärde">Parametrar för medelvärde</a></li>
+  </ul></li>
+  <li><a href="#resultat" id="toc-resultat" class="nav-link" data-scroll-target="#resultat">Resultat</a></li>
+  <li><a href="#förklaring" id="toc-förklaring" class="nav-link" data-scroll-target="#förklaring">Förklaring</a></li>
+  <li><a href="#vanliga-konfidensnivåer" id="toc-vanliga-konfidensnivåer" class="nav-link" data-scroll-target="#vanliga-konfidensnivåer">Vanliga konfidensnivåer</a></li>
+  <li><a href="#exempel" id="toc-exempel" class="nav-link" data-scroll-target="#exempel">Exempel</a>
+  <ul class="collapse">
+  <li><a href="#exempel-1-enkätundersökning-om-biblioteksanvändning" id="toc-exempel-1-enkätundersökning-om-biblioteksanvändning" class="nav-link" data-scroll-target="#exempel-1-enkätundersökning-om-biblioteksanvändning">Exempel 1: Enkätundersökning om biblioteksanvändning</a></li>
+  <li><a href="#exempel-2-mätning-av-genomsnittlig-lästid" id="toc-exempel-2-mätning-av-genomsnittlig-lästid" class="nav-link" data-scroll-target="#exempel-2-mätning-av-genomsnittlig-lästid">Exempel 2: Mätning av genomsnittlig lästid</a></li>
+  </ul></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/sample-size-calculator.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Urvalsstorlekskalkylator</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kod</button></div></div>
+<p class="subtitle lead">Beräkna nödvändig urvalsstorlek för din studie</p>
+</div>
+
+
+<div class="quarto-title-meta-author column-page-left">
+  <div class="quarto-title-meta-heading">Författare</div>
+  <div class="quarto-title-meta-heading">Anknuten</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mathias Johansson <a href="mailto:mathias.johansson@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Kristofer Söderström <a href="mailto:kristofer.soderstrom@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta column-page-left">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Utgiven</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 december 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="beräkna-urvalsstorlek" class="level2">
+<h2 class="anchored" data-anchor-id="beräkna-urvalsstorlek">Beräkna urvalsstorlek</h2>
+<p>Denna kalkylator hjälper dig att bestämma hur många respondenter du behöver för din studie baserat på populationsstorlek, konfidensnivå och felmarginal.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="22" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 21;"><span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>viewof studyType <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"proportion"</span><span class="op">,</span> <span class="st">"mean"</span>]<span class="op">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ av studie:"</span><span class="op">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"proportion"</span><span class="op">,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> x <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="st">"Andel/Proportion (t.ex. ja/nej-frågor)"</span> <span class="op">:</span> <span class="st">"Medelvärde (kontinuerliga mätningar)"</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<section id="grundläggande-parametrar" class="level3">
+<h3 class="anchored" data-anchor-id="grundläggande-parametrar">Grundläggande parametrar</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="39" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 38;"><span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>viewof populationSize <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">1000000</span>]<span class="op">,</span> {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Populationsstorlek (N):"</span><span class="op">,</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="dt">transform</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>viewof confidenceLevel <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  [<span class="fl">0.90</span><span class="op">,</span> <span class="fl">0.95</span><span class="op">,</span> <span class="fl">0.99</span>]<span class="op">,</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Konfidensnivå:"</span><span class="op">,</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="fl">0.95</span><span class="op">,</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>viewof marginOfError <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">0.15</span>]<span class="op">,</span> {</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Felmarginal (margin of error):"</span><span class="op">,</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`±</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="parametrar-för-andelproportion" class="level3">
+<h3 class="anchored" data-anchor-id="parametrar-för-andelproportion">Parametrar för andel/proportion</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="66" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 65;"><span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>viewof expectedProportion <span class="op">=</span> studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.9</span>]<span class="op">,</span> {</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Förväntad andel (p):"</span><span class="op">,</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-1"></span></span></p>
+</section>
+<section id="parametrar-för-medelvärde" class="level3">
+<h3 class="anchored" data-anchor-id="parametrar-för-medelvärde">Parametrar för medelvärde</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="83" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 82;"><span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>viewof populationStdDev <span class="op">=</span> studyType <span class="op">===</span> <span class="st">"mean"</span> <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Uppskattad standardavvikelse (σ):"</span><span class="op">,</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<p><span><span id="ojs-element-id-2"></span></span></p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="97" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 96;"><span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="co">// Z-scores for different confidence levels</span></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>zScore <span class="op">=</span> {</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zScores <span class="op">=</span> {</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.90</span><span class="op">:</span> <span class="fl">1.645</span><span class="op">,</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.95</span><span class="op">:</span> <span class="fl">1.96</span><span class="op">,</span></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.99</span><span class="op">:</span> <span class="fl">2.576</span></span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> zScores[confidenceLevel]<span class="op">;</span></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="111" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 110;"><span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate sample size</span></span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>sampleSize <span class="op">=</span> {</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> n0<span class="op">;</span> <span class="co">// Initial sample size (infinite population)</span></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (studyType <span class="op">===</span> <span class="st">"proportion"</span>) {</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>    <span class="co">// For proportions: n = (Z² × p × (1-p)) / E²</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> p <span class="op">=</span> expectedProportion<span class="op">;</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> marginOfError<span class="op">;</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>    n0 <span class="op">=</span> (zScore <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p)) <span class="op">/</span> (<span class="cn">E</span> <span class="op">**</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>    <span class="co">// For means: n = (Z² × σ²) / E²</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> sigma <span class="op">=</span> populationStdDev<span class="op">;</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> marginOfError <span class="op">*</span> <span class="dv">100</span><span class="op">;</span> <span class="co">// Convert to same scale as std dev</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>    n0 <span class="op">=</span> (zScore <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> sigma <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="cn">E</span> <span class="op">**</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Adjust for finite population using finite population correction</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>  <span class="co">// n = n0 / (1 + (n0 - 1) / N)</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> populationSize<span class="op">;</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> n0 <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> (n0 <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> N)<span class="op">;</span></span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unadjusted</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n0)<span class="op">,</span></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>    <span class="dt">adjusted</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n)<span class="op">,</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>    <span class="dt">responseRate</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n <span class="op">/</span> <span class="fl">0.7</span>)<span class="op">,</span> <span class="co">// Assuming 70% response rate</span></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>    <span class="dt">responseRate50</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n <span class="op">/</span> <span class="fl">0.5</span>)<span class="op">,</span> <span class="co">// Assuming 50% response rate</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zScore</span><span class="op">:</span> zScore</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="resultat" class="level2">
+<h2 class="anchored" data-anchor-id="resultat">Resultat</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="147" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 146;"><span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a><span class="vs">### Rekommenderad urvalsstorlek</span></span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a><span class="vs">| Scenario | Antal respondenter |</span></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a><span class="vs">|----------|-------------------|</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a><span class="vs">| **Minimiantal (100% svarsfrekvens)** | **</span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}</span><span class="vs">** |</span></span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="vs">| Med 70% svarsfrekvens | </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="vs">| Med 50% svarsfrekvens | </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate50</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>populationSize <span class="op">&lt;</span> <span class="dv">10000</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a><span class="vs">*Finite population correction applicerad eftersom populationen är mindre än 10,000.*</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="förklaring" class="level2">
+<h2 class="anchored" data-anchor-id="förklaring">Förklaring</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="167" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 166;"><span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="vs">### Parametrar</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Populationsstorlek (N)**: Totalt antal individer i målpopulationen (</span><span class="sc">${</span>populationSize<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'sv-SE'</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Konfidensnivå**: Sannolikheten att det sanna värdet ligger inom felmarginalen (</span><span class="sc">${</span>(confidenceLevel <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Z-värde: </span><span class="sc">${</span>zScore<span class="sc">}</span></span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Felmarginal**: Maximalt acceptabelt fel i resultaten (±</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Förväntad andel (p)**: Uppskattad andel i populationen (</span><span class="sc">${</span>(expectedProportion <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Om osäker, använd 50% för maximal säkerhet</span></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Standardavvikelse (σ)**: Spridning i populationen (</span><span class="sc">${</span>populationStdDev<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Basera på pilotstudie eller liknande forskning</span></span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning</span></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a><span class="vs">Med dessa parametrar behöver du **minst </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}</span><span class="vs"> respondenter** för att få statistiskt signifikanta resultat med </span><span class="sc">${</span>(confidenceLevel <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">% konfidensnivå och ±</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">% felmarginal.</span></span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a><span class="vs">**Praktiska rekommendationer:**</span></span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a><span class="vs">1. **Planera för bortfall**: Med typisk svarsfrekvens på 70% bör du kontakta </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate</span><span class="sc">}</span><span class="vs"> personer</span></span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a><span class="vs">2. **Om låg svarsfrekvens**: Vid 50% svarsfrekvens, kontakta </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate50</span><span class="sc">}</span><span class="vs"> personer</span></span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a><span class="vs">3. **Stratifiera vid behov**: Om din population har olika subgrupper kan du behöva större urval</span></span>
+<span id="cb8-192"><a href="#cb8-192" aria-hidden="true" tabindex="-1"></a><span class="vs">4. **Pilotstudie**: Överväg en pilotstudie för att estimera parametrar bättre</span></span>
+<span id="cb8-193"><a href="#cb8-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a><span class="vs">### Formel</span></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a><span class="vs">**För proportioner:**</span></span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n_0 = </span><span class="sc">\\\\</span><span class="vs">frac{Z^2 </span><span class="sc">\\\\</span><span class="vs">times p </span><span class="sc">\\\\</span><span class="vs">times (1-p)}{E^2}$$</span></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(n_0</span><span class="sc">\\\\</span><span class="vs">) = Initial urvalsstorlek (oändlig population)</span></span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(Z</span><span class="sc">\\\\</span><span class="vs">) = Z-värde för konfidensnivån (</span><span class="sc">${</span>zScore<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(p</span><span class="sc">\\\\</span><span class="vs">) = Förväntad proportion (</span><span class="sc">${</span>expectedProportion<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(E</span><span class="sc">\\\\</span><span class="vs">) = Felmarginal (</span><span class="sc">${</span>marginOfError<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:** </span><span class="sc">\\\\</span><span class="vs">(n_0 = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">unadjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a><span class="vs">**För medelvärden:**</span></span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n_0 = </span><span class="sc">\\\\</span><span class="vs">frac{Z^2 </span><span class="sc">\\\\</span><span class="vs">times </span><span class="sc">\\\\</span><span class="vs">sigma^2}{E^2}$$</span></span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(n_0</span><span class="sc">\\\\</span><span class="vs">) = Initial urvalsstorlek (oändlig population)</span></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(Z</span><span class="sc">\\\\</span><span class="vs">) = Z-värde för konfidensnivån (</span><span class="sc">${</span>zScore<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(</span><span class="sc">\\\\</span><span class="vs">sigma</span><span class="sc">\\\\</span><span class="vs">) = Standardavvikelse (</span><span class="sc">${</span>populationStdDev<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(E</span><span class="sc">\\\\</span><span class="vs">) = Felmarginal (</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:** </span><span class="sc">\\\\</span><span class="vs">(n_0 = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">unadjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>populationSize <span class="op">&lt;</span> <span class="dv">1000000</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a><span class="vs">**Finite population correction:**</span></span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n = </span><span class="sc">\\\\</span><span class="vs">frac{n_0}{1 + </span><span class="sc">\\\\</span><span class="vs">frac{n_0 - 1}{N}}$$</span></span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(N</span><span class="sc">\\\\</span><span class="vs">) = Populationsstorlek (</span><span class="sc">${</span>populationSize<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'sv-SE'</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a><span class="vs">**Justerad urvalsstorlek:** </span><span class="sc">\\\\</span><span class="vs">(n = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="vanliga-konfidensnivåer" class="level2">
+<h2 class="anchored" data-anchor-id="vanliga-konfidensnivåer">Vanliga konfidensnivåer</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Konfidensnivå</th>
+<th>Z-värde</th>
+<th>Betydelse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>90%</td>
+<td>1.645</td>
+<td>Acceptabelt för explorativa studier</td>
+</tr>
+<tr class="even">
+<td><strong>95%</strong></td>
+<td><strong>1.96</strong></td>
+<td><strong>Standard i samhällsvetenskap</strong></td>
+</tr>
+<tr class="odd">
+<td>99%</td>
+<td>2.576</td>
+<td>Hög säkerhet, större urval krävs</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exempel" class="level2">
+<h2 class="anchored" data-anchor-id="exempel">Exempel</h2>
+<section id="exempel-1-enkätundersökning-om-biblioteksanvändning" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-1-enkätundersökning-om-biblioteksanvändning">Exempel 1: Enkätundersökning om biblioteksanvändning</h3>
+<ul>
+<li>Population: 5,000 studenter</li>
+<li>Konfidensnivå: 95%</li>
+<li>Felmarginal: ±5%</li>
+<li>Förväntad andel som använder biblioteket: 50%</li>
+</ul>
+<p><strong>Resultat</strong>: ~357 respondenter behövs</p>
+</section>
+<section id="exempel-2-mätning-av-genomsnittlig-lästid" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-2-mätning-av-genomsnittlig-lästid">Exempel 2: Mätning av genomsnittlig lästid</h3>
+<ul>
+<li>Population: 1,000 medlemmar</li>
+<li>Konfidensnivå: 95%</li>
+<li>Felmarginal: ±0.5 timmar</li>
+<li>Uppskattad standardavvikelse: 2 timmar</li>
+</ul>
+<p><strong>Resultat</strong>: Beror på parametrarna i kalkylatorn ovan</p>
+</section>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<ol type="1">
+<li><strong>Högre konfidensnivå</strong> = Större urval behövs</li>
+<li><strong>Mindre felmarginal</strong> = Större urval behövs</li>
+<li><strong>p = 0.5 (50%)</strong> ger den största urvalsstorleken (mest konservativ estimering)</li>
+<li><strong>Liten population</strong> (&lt; 1000) kräver relativt större andel av populationen</li>
+<li><strong>Stor population</strong> (&gt; 100,000) påverkar knappt urvalsstorleken</li>
+</ol>
+
+
+<!-- -->
+
+<div class="ojs-auto-generated hidden">
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNvdXJjZSI6Imh0bC5odG1sYDxzcGFuPiR7c3R1ZHlUeXBlID09PSBcInByb3BvcnRpb25cIiA/IGh0bWxcXGA8cCBzdHlsZT1cImZvbnQtc2l6ZTogMC45ZW07IGNvbG9yOiAjNjY2OyBtYXJnaW4tdG9wOiAtMTBweDtcIj4gPGVtPlRpcHM6IE9tIGR1IMOkciBvc8Oka2VyLCBhbnbDpG5kIDAuNSAoNTAlKSBmw7ZyIG1heGltYWwgdXJ2YWxzc3RvcmxlazwvZW0+IDwvcD5cXGAgOiDigJzigJx9PC9zcGFuPmAiLCAiY2VsbE5hbWUiOiJvanMtZWxlbWVudC1pZC0xIn0sICB7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJpbmxpbmUiOiJ0cnVlIiwic291cmNlIjoiaHRsLmh0bWxgPHNwYW4+JHtzdHVkeVR5cGUgPT09IFwibWVhblwiID8gaHRtbFxcYDxwIHN0eWxlPVwiZm9udC1zaXplOiAwLjllbTsgY29sb3I6ICM2NjY7IG1hcmdpbi10b3A6IC0xMHB4O1wiPiA8ZW0+VGlwczogQW52w6RuZCBkYXRhIGZyw6VuIHBpbG90c3R1ZGllIGVsbGVyIHRpZGlnYXJlIGZvcnNrbmluZzwvZW0+IDwvcD5cXGAgOiDigJzigJx9PC9zcGFuPmAiLCAiY2VsbE5hbWUiOiJvanMtZWxlbWVudC1pZC0yIn1dfQ==
+</script>
+</div>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citat</h2><div><div class="quarto-appendix-secondary-label">BibTeX hänvisning:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@misc{johansson2025,
+  author = {Johansson, Mathias and Söderström, Kristofer},
+  publisher = {Lunds universitet},
+  title = {Urvalsstorlekskalkylator},
+  date = {2025},
+  url = {https://mathjoha.github.io/abmm06/dashboards/sample-size-calculator.html},
+  langid = {sv}
+}
+</code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Hänvisa till detta arbete som:</div><div id="ref-johansson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Johansson, Mathias, and Kristofer Söderström. 2025.
+<span>“Urvalsstorlekskalkylator.”</span> <em>ABMM06: Kvantitativa
+metoder</em>. Lunds universitet. <a href="https://mathjoha.github.io/abmm06/dashboards/sample-size-calculator.html">https://mathjoha.github.io/abmm06/dashboards/sample-size-calculator.html</a>.
+</div></div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIHN0dWR5VHlwZSA9IElucHV0cy5yYWRpbyhcbiAgW1wicHJvcG9ydGlvblwiLCBcIm1lYW5cIl0sXG4gIHtcbiAgICBsYWJlbDogXCJUeXAgYXYgc3R1ZGllOlwiLFxuICAgIHZhbHVlOiBcInByb3BvcnRpb25cIixcbiAgICBmb3JtYXQ6IHggPT4geCA9PT0gXCJwcm9wb3J0aW9uXCIgPyBcIkFuZGVsL1Byb3BvcnRpb24gKHQuZXguIGphL25lai1mcsOlZ29yKVwiIDogXCJNZWRlbHbDpHJkZSAoa29udGludWVybGlnYSBtw6R0bmluZ2FyKVwiXG4gIH1cbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIHBvcHVsYXRpb25TaXplID0gSW5wdXRzLnJhbmdlKFs1MCwgMTAwMDAwMF0sIHtcbiAgbGFiZWw6IFwiUG9wdWxhdGlvbnNzdG9ybGVrIChOKTpcIixcbiAgc3RlcDogNTAsXG4gIHZhbHVlOiAxMDAwLFxuICB0cmFuc2Zvcm06IE1hdGgucm91bmRcbn0pXG5cbnZpZXdvZiBjb25maWRlbmNlTGV2ZWwgPSBJbnB1dHMuc2VsZWN0KFxuICBbMC45MCwgMC45NSwgMC45OV0sXG4gIHtcbiAgICBsYWJlbDogXCJLb25maWRlbnNuaXbDpTpcIixcbiAgICB2YWx1ZTogMC45NSxcbiAgICBmb3JtYXQ6IHggPT4gYCR7KHggKiAxMDApLnRvRml4ZWQoMCl9JWBcbiAgfVxuKVxuXG52aWV3b2YgbWFyZ2luT2ZFcnJvciA9IElucHV0cy5yYW5nZShbMC4wMSwgMC4xNV0sIHtcbiAgbGFiZWw6IFwiRmVsbWFyZ2luYWwgKG1hcmdpbiBvZiBlcnJvcik6XCIsXG4gIHN0ZXA6IDAuMDA1LFxuICB2YWx1ZTogMC4wNSxcbiAgZm9ybWF0OiB4ID0+IGDCsSR7KHggKiAxMDApLnRvRml4ZWQoMSl9JWBcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbnZpZXdvZiBleHBlY3RlZFByb3BvcnRpb24gPSBzdHVkeVR5cGUgPT09IFwicHJvcG9ydGlvblwiID8gSW5wdXRzLnJhbmdlKFswLjEsIDAuOV0sIHtcbiAgbGFiZWw6IFwiRsO2cnbDpG50YWQgYW5kZWwgKHApOlwiLFxuICBzdGVwOiAwLjA1LFxuICB2YWx1ZTogMC41LFxuICBmb3JtYXQ6IHggPT4gYCR7KHggKiAxMDApLnRvRml4ZWQoMCl9JWBcbn0pIDogSW5wdXRzLnJhbmdlKFswLjUsIDAuNV0sIHt2YWx1ZTogMC41fSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIHBvcHVsYXRpb25TdGREZXYgPSBzdHVkeVR5cGUgPT09IFwibWVhblwiID8gSW5wdXRzLnJhbmdlKFsxLCA1MF0sIHtcbiAgbGFiZWw6IFwiVXBwc2thdHRhZCBzdGFuZGFyZGF2dmlrZWxzZSAoz4MpOlwiLFxuICBzdGVwOiAwLjUsXG4gIHZhbHVlOiAxMFxufSkgOiBJbnB1dHMucmFuZ2UoWzEwLCAxMF0sIHt2YWx1ZTogMTB9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBaLXNjb3JlcyBmb3IgZGlmZmVyZW50IGNvbmZpZGVuY2UgbGV2ZWxzXG56U2NvcmUgPSB7XG4gIGNvbnN0IHpTY29yZXMgPSB7XG4gICAgMC45MDogMS42NDUsXG4gICAgMC45NTogMS45NixcbiAgICAwLjk5OiAyLjU3NlxuICB9O1xuICByZXR1cm4gelNjb3Jlc1tjb25maWRlbmNlTGV2ZWxdO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBDYWxjdWxhdGUgc2FtcGxlIHNpemVcbnNhbXBsZVNpemUgPSB7XG4gIGxldCBuMDsgLy8gSW5pdGlhbCBzYW1wbGUgc2l6ZSAoaW5maW5pdGUgcG9wdWxhdGlvbilcblxuICBpZiAoc3R1ZHlUeXBlID09PSBcInByb3BvcnRpb25cIikge1xuICAgIC8vIEZvciBwcm9wb3J0aW9uczogbiA9IChawrIgw5cgcCDDlyAoMS1wKSkgLyBFwrJcbiAgICBjb25zdCBwID0gZXhwZWN0ZWRQcm9wb3J0aW9uO1xuICAgIGNvbnN0IEUgPSBtYXJnaW5PZkVycm9yO1xuICAgIG4wID0gKHpTY29yZSAqKiAyICogcCAqICgxIC0gcCkpIC8gKEUgKiogMik7XG4gIH0gZWxzZSB7XG4gICAgLy8gRm9yIG1lYW5zOiBuID0gKFrCsiDDlyDPg8KyKSAvIEXCslxuICAgIGNvbnN0IHNpZ21hID0gcG9wdWxhdGlvblN0ZERldjtcbiAgICBjb25zdCBFID0gbWFyZ2luT2ZFcnJvciAqIDEwMDsgLy8gQ29udmVydCB0byBzYW1lIHNjYWxlIGFzIHN0ZCBkZXZcbiAgICBuMCA9ICh6U2NvcmUgKiogMiAqIHNpZ21hICoqIDIpIC8gKEUgKiogMik7XG4gIH1cblxuICAvLyBBZGp1c3QgZm9yIGZpbml0ZSBwb3B1bGF0aW9uIHVzaW5nIGZpbml0ZSBwb3B1bGF0aW9uIGNvcnJlY3Rpb25cbiAgLy8gbiA9IG4wIC8gKDEgKyAobjAgLSAxKSAvIE4pXG4gIGNvbnN0IE4gPSBwb3B1bGF0aW9uU2l6ZTtcbiAgY29uc3QgbiA9IG4wIC8gKDEgKyAobjAgLSAxKSAvIE4pO1xuXG4gIHJldHVybiB7XG4gICAgdW5hZGp1c3RlZDogTWF0aC5jZWlsKG4wKSxcbiAgICBhZGp1c3RlZDogTWF0aC5jZWlsKG4pLFxuICAgIHJlc3BvbnNlUmF0ZTogTWF0aC5jZWlsKG4gLyAwLjcpLCAvLyBBc3N1bWluZyA3MCUgcmVzcG9uc2UgcmF0ZVxuICAgIHJlc3BvbnNlUmF0ZTUwOiBNYXRoLmNlaWwobiAvIDAuNSksIC8vIEFzc3VtaW5nIDUwJSByZXNwb25zZSByYXRlXG4gICAgelNjb3JlOiB6U2NvcmVcbiAgfTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxubWRgXG4jIyMgUmVrb21tZW5kZXJhZCB1cnZhbHNzdG9ybGVrXG5cbnwgU2NlbmFyaW8gfCBBbnRhbCByZXNwb25kZW50ZXIgfFxufC0tLS0tLS0tLS18LS0tLS0tLS0tLS0tLS0tLS0tLXxcbnwgKipNaW5pbWlhbnRhbCAoMTAwJSBzdmFyc2ZyZWt2ZW5zKSoqIHwgKioke3NhbXBsZVNpemUuYWRqdXN0ZWR9KiogfFxufCBNZWQgNzAlIHN2YXJzZnJla3ZlbnMgfCAke3NhbXBsZVNpemUucmVzcG9uc2VSYXRlfSB8XG58IE1lZCA1MCUgc3ZhcnNmcmVrdmVucyB8ICR7c2FtcGxlU2l6ZS5yZXNwb25zZVJhdGU1MH0gfFxuXG4ke3BvcHVsYXRpb25TaXplIDwgMTAwMDAgPyBgXG4qRmluaXRlIHBvcHVsYXRpb24gY29ycmVjdGlvbiBhcHBsaWNlcmFkIGVmdGVyc29tIHBvcHVsYXRpb25lbiDDpHIgbWluZHJlIMOkbiAxMCwwMDAuKlxuYCA6IFwiXCJ9XG5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTgiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbm1kYFxuIyMjIFBhcmFtZXRyYXJcblxuLSAqKlBvcHVsYXRpb25zc3RvcmxlayAoTikqKjogVG90YWx0IGFudGFsIGluZGl2aWRlciBpIG3DpWxwb3B1bGF0aW9uZW4gKCR7cG9wdWxhdGlvblNpemUudG9Mb2NhbGVTdHJpbmcoJ3N2LVNFJyl9KVxuLSAqKktvbmZpZGVuc25pdsOlKio6IFNhbm5vbGlraGV0ZW4gYXR0IGRldCBzYW5uYSB2w6RyZGV0IGxpZ2dlciBpbm9tIGZlbG1hcmdpbmFsZW4gKCR7KGNvbmZpZGVuY2VMZXZlbCAqIDEwMCkudG9GaXhlZCgwKX0lKVxuICAtIFotdsOkcmRlOiAke3pTY29yZX1cbi0gKipGZWxtYXJnaW5hbCoqOiBNYXhpbWFsdCBhY2NlcHRhYmVsdCBmZWwgaSByZXN1bHRhdGVuICjCsSR7KG1hcmdpbk9mRXJyb3IgKiAxMDApLnRvRml4ZWQoMSl9JSlcblxuJHtzdHVkeVR5cGUgPT09IFwicHJvcG9ydGlvblwiID8gYFxuLSAqKkbDtnJ2w6RudGFkIGFuZGVsIChwKSoqOiBVcHBza2F0dGFkIGFuZGVsIGkgcG9wdWxhdGlvbmVuICgkeyhleHBlY3RlZFByb3BvcnRpb24gKiAxMDApLnRvRml4ZWQoMCl9JSlcbiAgLSBPbSBvc8Oka2VyLCBhbnbDpG5kIDUwJSBmw7ZyIG1heGltYWwgc8Oka2VyaGV0XG5gIDogYFxuLSAqKlN0YW5kYXJkYXZ2aWtlbHNlICjPgykqKjogU3ByaWRuaW5nIGkgcG9wdWxhdGlvbmVuICgke3BvcHVsYXRpb25TdGREZXZ9KVxuICAtIEJhc2VyYSBww6UgcGlsb3RzdHVkaWUgZWxsZXIgbGlrbmFuZGUgZm9yc2tuaW5nXG5gfVxuXG4jIyMgVG9sa25pbmdcblxuTWVkIGRlc3NhIHBhcmFtZXRyYXIgYmVow7Z2ZXIgZHUgKiptaW5zdCAke3NhbXBsZVNpemUuYWRqdXN0ZWR9IHJlc3BvbmRlbnRlcioqIGbDtnIgYXR0IGbDpSBzdGF0aXN0aXNrdCBzaWduaWZpa2FudGEgcmVzdWx0YXQgbWVkICR7KGNvbmZpZGVuY2VMZXZlbCAqIDEwMCkudG9GaXhlZCgwKX0lIGtvbmZpZGVuc25pdsOlIG9jaCDCsSR7KG1hcmdpbk9mRXJyb3IgKiAxMDApLnRvRml4ZWQoMSl9JSBmZWxtYXJnaW5hbC5cblxuKipQcmFrdGlza2EgcmVrb21tZW5kYXRpb25lcjoqKlxuXG4xLiAqKlBsYW5lcmEgZsO2ciBib3J0ZmFsbCoqOiBNZWQgdHlwaXNrIHN2YXJzZnJla3ZlbnMgcMOlIDcwJSBiw7ZyIGR1IGtvbnRha3RhICR7c2FtcGxlU2l6ZS5yZXNwb25zZVJhdGV9IHBlcnNvbmVyXG4yLiAqKk9tIGzDpWcgc3ZhcnNmcmVrdmVucyoqOiBWaWQgNTAlIHN2YXJzZnJla3ZlbnMsIGtvbnRha3RhICR7c2FtcGxlU2l6ZS5yZXNwb25zZVJhdGU1MH0gcGVyc29uZXJcbjMuICoqU3RyYXRpZmllcmEgdmlkIGJlaG92Kio6IE9tIGRpbiBwb3B1bGF0aW9uIGhhciBvbGlrYSBzdWJncnVwcGVyIGthbiBkdSBiZWjDtnZhIHN0w7ZycmUgdXJ2YWxcbjQuICoqUGlsb3RzdHVkaWUqKjogw5Z2ZXJ2w6RnIGVuIHBpbG90c3R1ZGllIGbDtnIgYXR0IGVzdGltZXJhIHBhcmFtZXRyYXIgYsOkdHRyZVxuXG4jIyMgRm9ybWVsXG5cbiR7c3R1ZHlUeXBlID09PSBcInByb3BvcnRpb25cIiA/IGBcbioqRsO2ciBwcm9wb3J0aW9uZXI6KipcblxuJCRuXzAgPSBcXFxcXFxcXGZyYWN7Wl4yIFxcXFxcXFxcdGltZXMgcCBcXFxcXFxcXHRpbWVzICgxLXApfXtFXjJ9JCRcblxuLSBcXFxcXFxcXChuXzBcXFxcXFxcXCkgPSBJbml0aWFsIHVydmFsc3N0b3JsZWsgKG/DpG5kbGlnIHBvcHVsYXRpb24pXG4tIFxcXFxcXFxcKFpcXFxcXFxcXCkgPSBaLXbDpHJkZSBmw7ZyIGtvbmZpZGVuc25pdsOlbiAoJHt6U2NvcmV9KVxuLSBcXFxcXFxcXChwXFxcXFxcXFwpID0gRsO2cnbDpG50YWQgcHJvcG9ydGlvbiAoJHtleHBlY3RlZFByb3BvcnRpb259KVxuLSBcXFxcXFxcXChFXFxcXFxcXFwpID0gRmVsbWFyZ2luYWwgKCR7bWFyZ2luT2ZFcnJvcn0pXG5cbioqUmVzdWx0YXQ6KiogXFxcXFxcXFwobl8wID0gJHtzYW1wbGVTaXplLnVuYWRqdXN0ZWR9XFxcXFxcXFwpXG5gIDogYFxuKipGw7ZyIG1lZGVsdsOkcmRlbjoqKlxuXG4kJG5fMCA9IFxcXFxcXFxcZnJhY3taXjIgXFxcXFxcXFx0aW1lcyBcXFxcXFxcXHNpZ21hXjJ9e0VeMn0kJFxuXG4tIFxcXFxcXFxcKG5fMFxcXFxcXFxcKSA9IEluaXRpYWwgdXJ2YWxzc3RvcmxlayAob8OkbmRsaWcgcG9wdWxhdGlvbilcbi0gXFxcXFxcXFwoWlxcXFxcXFxcKSA9IFotdsOkcmRlIGbDtnIga29uZmlkZW5zbml2w6VuICgke3pTY29yZX0pXG4tIFxcXFxcXFxcKFxcXFxcXFxcc2lnbWFcXFxcXFxcXCkgPSBTdGFuZGFyZGF2dmlrZWxzZSAoJHtwb3B1bGF0aW9uU3RkRGV2fSlcbi0gXFxcXFxcXFwoRVxcXFxcXFxcKSA9IEZlbG1hcmdpbmFsICgkeyhtYXJnaW5PZkVycm9yICogMTAwKS50b0ZpeGVkKDEpfSlcblxuKipSZXN1bHRhdDoqKiBcXFxcXFxcXChuXzAgPSAke3NhbXBsZVNpemUudW5hZGp1c3RlZH1cXFxcXFxcXClcbmB9XG5cbiR7cG9wdWxhdGlvblNpemUgPCAxMDAwMDAwID8gYFxuKipGaW5pdGUgcG9wdWxhdGlvbiBjb3JyZWN0aW9uOioqXG5cbiQkbiA9IFxcXFxcXFxcZnJhY3tuXzB9ezEgKyBcXFxcXFxcXGZyYWN7bl8wIC0gMX17Tn19JCRcblxuLSBcXFxcXFxcXChOXFxcXFxcXFwpID0gUG9wdWxhdGlvbnNzdG9ybGVrICgke3BvcHVsYXRpb25TaXplLnRvTG9jYWxlU3RyaW5nKCdzdi1TRScpfSlcblxuKipKdXN0ZXJhZCB1cnZhbHNzdG9ybGVrOioqIFxcXFxcXFxcKG4gPSAke3NhbXBsZVNpemUuYWRqdXN0ZWR9XFxcXFxcXFwpXG5gIDogXCJcIn1cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3R1ZHlUeXBlJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3BvcHVsYXRpb25TaXplJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2NvbmZpZGVuY2VMZXZlbCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdtYXJnaW5PZkVycm9yJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2V4cGVjdGVkUHJvcG9ydGlvbicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwb3B1bGF0aW9uU3RkRGV2JykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../dashboards";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopierat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopierat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Källkod</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Urvalsstorlekskalkylator"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Beräkna nödvändig urvalsstorlek för din studie"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">citation:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">  type: document</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">  title: "Urvalsstorlekskalkylator"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  container-title: "ABMM06: Kvantitativa metoder"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">  publisher: Lunds universitet</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">  license: "CC-BY-NC 4.0"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">  url: https://mathjoha.github.io/abmm06/dashboards/sample-size-calculator.html</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Beräkna urvalsstorlek</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>Denna kalkylator hjälper dig att bestämma hur många respondenter du behöver för din studie baserat på populationsstorlek, konfidensnivå och felmarginal.</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>viewof studyType <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"proportion"</span><span class="op">,</span> <span class="st">"mean"</span>]<span class="op">,</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ av studie:"</span><span class="op">,</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"proportion"</span><span class="op">,</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> x <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="st">"Andel/Proportion (t.ex. ja/nej-frågor)"</span> <span class="op">:</span> <span class="st">"Medelvärde (kontinuerliga mätningar)"</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grundläggande parametrar</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>viewof populationSize <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">1000000</span>]<span class="op">,</span> {</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Populationsstorlek (N):"</span><span class="op">,</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="dt">transform</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">round</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>viewof confidenceLevel <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>  [<span class="fl">0.90</span><span class="op">,</span> <span class="fl">0.95</span><span class="op">,</span> <span class="fl">0.99</span>]<span class="op">,</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Konfidensnivå:"</span><span class="op">,</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="fl">0.95</span><span class="op">,</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>viewof marginOfError <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">0.15</span>]<span class="op">,</span> {</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Felmarginal (margin of error):"</span><span class="op">,</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`±</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parametrar för andel/proportion</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>viewof expectedProportion <span class="op">=</span> studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.9</span>]<span class="op">,</span> {</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Förväntad andel (p):"</span><span class="op">,</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(x <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.5</span>})</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>${studyType === "proportion" ? html`<span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> style</span><span class="op">=</span><span class="st">"font-size: 0.9em; color: #666; margin-top: -10px;"</span><span class="dt">&gt;</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">em</span><span class="dt">&gt;</span>Tips: Om du är osäker, använd 0.5 (50%) för maximal urvalsstorlek<span class="dt">&lt;/</span><span class="kw">em</span><span class="dt">&gt;</span></span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span>` : ""}</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parametrar för medelvärde</span></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>viewof populationStdDev <span class="op">=</span> studyType <span class="op">===</span> <span class="st">"mean"</span> <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Uppskattad standardavvikelse (σ):"</span><span class="op">,</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span></span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>}) <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">10</span>})</span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>${studyType === "mean" ? html`<span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> style</span><span class="op">=</span><span class="st">"font-size: 0.9em; color: #666; margin-top: -10px;"</span><span class="dt">&gt;</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">em</span><span class="dt">&gt;</span>Tips: Använd data från pilotstudie eller tidigare forskning<span class="dt">&lt;/</span><span class="kw">em</span><span class="dt">&gt;</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span>` : ""}</span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="co">// Z-scores for different confidence levels</span></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a>zScore <span class="op">=</span> {</span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> zScores <span class="op">=</span> {</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.90</span><span class="op">:</span> <span class="fl">1.645</span><span class="op">,</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.95</span><span class="op">:</span> <span class="fl">1.96</span><span class="op">,</span></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.99</span><span class="op">:</span> <span class="fl">2.576</span></span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> zScores[confidenceLevel]<span class="op">;</span></span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate sample size</span></span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>sampleSize <span class="op">=</span> {</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> n0<span class="op">;</span> <span class="co">// Initial sample size (infinite population)</span></span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (studyType <span class="op">===</span> <span class="st">"proportion"</span>) {</span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>    <span class="co">// For proportions: n = (Z² × p × (1-p)) / E²</span></span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> p <span class="op">=</span> expectedProportion<span class="op">;</span></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> marginOfError<span class="op">;</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>    n0 <span class="op">=</span> (zScore <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p)) <span class="op">/</span> (<span class="cn">E</span> <span class="op">**</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>    <span class="co">// For means: n = (Z² × σ²) / E²</span></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> sigma <span class="op">=</span> populationStdDev<span class="op">;</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> <span class="cn">E</span> <span class="op">=</span> marginOfError <span class="op">*</span> <span class="dv">100</span><span class="op">;</span> <span class="co">// Convert to same scale as std dev</span></span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>    n0 <span class="op">=</span> (zScore <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> sigma <span class="op">**</span> <span class="dv">2</span>) <span class="op">/</span> (<span class="cn">E</span> <span class="op">**</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Adjust for finite population using finite population correction</span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a>  <span class="co">// n = n0 / (1 + (n0 - 1) / N)</span></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> N <span class="op">=</span> populationSize<span class="op">;</span></span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> n0 <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> (n0 <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> N)<span class="op">;</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unadjusted</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n0)<span class="op">,</span></span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">adjusted</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n)<span class="op">,</span></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>    <span class="dt">responseRate</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n <span class="op">/</span> <span class="fl">0.7</span>)<span class="op">,</span> <span class="co">// Assuming 70% response rate</span></span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">responseRate50</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">ceil</span>(n <span class="op">/</span> <span class="fl">0.5</span>)<span class="op">,</span> <span class="co">// Assuming 50% response rate</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zScore</span><span class="op">:</span> zScore</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultat</span></span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a><span class="vs">### Rekommenderad urvalsstorlek</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="vs">| Scenario | Antal respondenter |</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a><span class="vs">|----------|-------------------|</span></span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a><span class="vs">| **Minimiantal (100% svarsfrekvens)** | **</span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}</span><span class="vs">** |</span></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="vs">| Med 70% svarsfrekvens | </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a><span class="vs">| Med 50% svarsfrekvens | </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate50</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>populationSize <span class="op">&lt;</span> <span class="dv">10000</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="vs">*Finite population correction applicerad eftersom populationen är mindre än 10,000.*</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a><span class="fu">## Förklaring</span></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a><span class="vs">### Parametrar</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Populationsstorlek (N)**: Totalt antal individer i målpopulationen (</span><span class="sc">${</span>populationSize<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'sv-SE'</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Konfidensnivå**: Sannolikheten att det sanna värdet ligger inom felmarginalen (</span><span class="sc">${</span>(confidenceLevel <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Z-värde: </span><span class="sc">${</span>zScore<span class="sc">}</span></span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Felmarginal**: Maximalt acceptabelt fel i resultaten (±</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Förväntad andel (p)**: Uppskattad andel i populationen (</span><span class="sc">${</span>(expectedProportion <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Om osäker, använd 50% för maximal säkerhet</span></span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a><span class="vs">- **Standardavvikelse (σ)**: Spridning i populationen (</span><span class="sc">${</span>populationStdDev<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a><span class="vs">  - Basera på pilotstudie eller liknande forskning</span></span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning</span></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a><span class="vs">Med dessa parametrar behöver du **minst </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}</span><span class="vs"> respondenter** för att få statistiskt signifikanta resultat med </span><span class="sc">${</span>(confidenceLevel <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">% konfidensnivå och ±</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">% felmarginal.</span></span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a><span class="vs">**Praktiska rekommendationer:**</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a><span class="vs">1. **Planera för bortfall**: Med typisk svarsfrekvens på 70% bör du kontakta </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate</span><span class="sc">}</span><span class="vs"> personer</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a><span class="vs">2. **Om låg svarsfrekvens**: Vid 50% svarsfrekvens, kontakta </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">responseRate50</span><span class="sc">}</span><span class="vs"> personer</span></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a><span class="vs">3. **Stratifiera vid behov**: Om din population har olika subgrupper kan du behöva större urval</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a><span class="vs">4. **Pilotstudie**: Överväg en pilotstudie för att estimera parametrar bättre</span></span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a><span class="vs">### Formel</span></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>studyType <span class="op">===</span> <span class="st">"proportion"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a><span class="vs">**För proportioner:**</span></span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n_0 = </span><span class="sc">\\\\</span><span class="vs">frac{Z^2 </span><span class="sc">\\\\</span><span class="vs">times p </span><span class="sc">\\\\</span><span class="vs">times (1-p)}{E^2}$$</span></span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(n_0</span><span class="sc">\\\\</span><span class="vs">) = Initial urvalsstorlek (oändlig population)</span></span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(Z</span><span class="sc">\\\\</span><span class="vs">) = Z-värde för konfidensnivån (</span><span class="sc">${</span>zScore<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(p</span><span class="sc">\\\\</span><span class="vs">) = Förväntad proportion (</span><span class="sc">${</span>expectedProportion<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(E</span><span class="sc">\\\\</span><span class="vs">) = Felmarginal (</span><span class="sc">${</span>marginOfError<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:** </span><span class="sc">\\\\</span><span class="vs">(n_0 = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">unadjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb9-226"><a href="#cb9-226" aria-hidden="true" tabindex="-1"></a><span class="vs">**För medelvärden:**</span></span>
+<span id="cb9-227"><a href="#cb9-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n_0 = </span><span class="sc">\\\\</span><span class="vs">frac{Z^2 </span><span class="sc">\\\\</span><span class="vs">times </span><span class="sc">\\\\</span><span class="vs">sigma^2}{E^2}$$</span></span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(n_0</span><span class="sc">\\\\</span><span class="vs">) = Initial urvalsstorlek (oändlig population)</span></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(Z</span><span class="sc">\\\\</span><span class="vs">) = Z-värde för konfidensnivån (</span><span class="sc">${</span>zScore<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(</span><span class="sc">\\\\</span><span class="vs">sigma</span><span class="sc">\\\\</span><span class="vs">) = Standardavvikelse (</span><span class="sc">${</span>populationStdDev<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(E</span><span class="sc">\\\\</span><span class="vs">) = Felmarginal (</span><span class="sc">${</span>(marginOfError <span class="op">*</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:** </span><span class="sc">\\\\</span><span class="vs">(n_0 = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">unadjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>populationSize <span class="op">&lt;</span> <span class="dv">1000000</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a><span class="vs">**Finite population correction:**</span></span>
+<span id="cb9-240"><a href="#cb9-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-241"><a href="#cb9-241" aria-hidden="true" tabindex="-1"></a><span class="vs">$$n = </span><span class="sc">\\\\</span><span class="vs">frac{n_0}{1 + </span><span class="sc">\\\\</span><span class="vs">frac{n_0 - 1}{N}}$$</span></span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a><span class="vs">- </span><span class="sc">\\\\</span><span class="vs">(N</span><span class="sc">\\\\</span><span class="vs">) = Populationsstorlek (</span><span class="sc">${</span>populationSize<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="st">'sv-SE'</span>)<span class="sc">}</span><span class="vs">)</span></span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a><span class="vs">**Justerad urvalsstorlek:** </span><span class="sc">\\\\</span><span class="vs">(n = </span><span class="sc">${</span>sampleSize<span class="op">.</span><span class="at">adjusted</span><span class="sc">}\\\\</span><span class="vs">)</span></span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-250"><a href="#cb9-250" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vanliga konfidensnivåer</span></span>
+<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Konfidensnivå <span class="pp">|</span> Z-värde <span class="pp">|</span> Betydelse <span class="pp">|</span></span>
+<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------|---------|-----------|</span></span>
+<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 90% <span class="pp">|</span> 1.645 <span class="pp">|</span> Acceptabelt för explorativa studier <span class="pp">|</span></span>
+<span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **95%** | **1.96** | **Standard i samhällsvetenskap** <span class="pp">|</span></span>
+<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 99% <span class="pp">|</span> 2.576 <span class="pp">|</span> Hög säkerhet, större urval krävs <span class="pp">|</span></span>
+<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exempel</span></span>
+<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel 1: Enkätundersökning om biblioteksanvändning</span></span>
+<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Population: 5,000 studenter</span>
+<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Konfidensnivå: 95%</span>
+<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Felmarginal: ±5%</span>
+<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Förväntad andel som använder biblioteket: 50%</span>
+<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a>**Resultat**: ~357 respondenter behövs</span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel 2: Mätning av genomsnittlig lästid</span></span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Population: 1,000 medlemmar</span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Konfidensnivå: 95%</span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Felmarginal: ±0.5 timmar</span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Uppskattad standardavvikelse: 2 timmar</span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a>**Resultat**: Beror på parametrarna i kalkylatorn ovan</span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tips</span></span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Högre konfidensnivå** = Större urval behövs</span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Mindre felmarginal** = Större urval behövs</span>
+<span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**p = 0.5 (50%)** ger den största urvalsstorleken (mest konservativ estimering)</span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Liten population** (&lt; 1000) kräver relativt större andel av populationen</span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Stor population** (&gt; 100,000) påverkar knappt urvalsstorleken</span>
+</code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/sample-size-calculator.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></div></div></footer></body></html>

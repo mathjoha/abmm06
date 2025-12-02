@@ -1,0 +1,1451 @@
+[
+  {
+    "objectID": "CLAUDE.html",
+    "href": "CLAUDE.html",
+    "title": "",
+    "section": "",
+    "text": "Kod"
+  },
+  {
+    "objectID": "CLAUDE.html#project-overview",
+    "href": "CLAUDE.html#project-overview",
+    "title": "",
+    "section": "Project Overview",
+    "text": "Project Overview\nThis is a Quarto website for ABMM06, a Swedish university course on quantitative methods for ALM (Archive, Library, Museum) master’s students. The course covers surveys, digital methods, and statistical concepts."
+  },
+  {
+    "objectID": "CLAUDE.html#build-commands",
+    "href": "CLAUDE.html#build-commands",
+    "title": "",
+    "section": "Build Commands",
+    "text": "Build Commands\n# Preview site with live reload\nquarto preview\n\n# Build the site\nquarto render\n\n# Render a specific file\nquarto render slides/kvantitativa-metoder.qmd"
+  },
+  {
+    "objectID": "CLAUDE.html#architecture",
+    "href": "CLAUDE.html#architecture",
+    "title": "",
+    "section": "Architecture",
+    "text": "Architecture\n\nQuarto website project configured in _quarto.yml\nOutput directory: _site/ (generated, gitignored)\nLanguage: Swedish (lang: sv)\n\n\nContent Structure\n\nslides/ - RevealJS presentations (.qmd files with reveal format)\nlessons/ - Detailed lesson content\ndashboards/ - Interactive tools using Observable JS (OJS)\nindex.qmd - Course homepage\nabout.qmd - Course information\n\n\n\nInteractive Components\nDashboards use embedded Observable JavaScript ({ojs} code blocks) for interactive visualizations: - Probability simulations - Statistical calculators - Data type explorers"
+  },
+  {
+    "objectID": "CLAUDE.html#content-guidelines",
+    "href": "CLAUDE.html#content-guidelines",
+    "title": "",
+    "section": "Content Guidelines",
+    "text": "Content Guidelines\n\nAll content is in Swedish\nUse Swedish/English terminology table format for key concepts (see index.qmd)\nSlides use RevealJS format via Quarto"
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html",
+    "href": "lessons/inferentiell-statistik.html",
+    "title": "Inferentiell statistik",
+    "section": "",
+    "text": "Inferentiell statistik handlar om att dra slutsatser om en population baserat på ett urval. Tre centrala begrepp är Z-värden, p-värden och felmarginaler."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#introduktion",
+    "href": "lessons/inferentiell-statistik.html#introduktion",
+    "title": "Inferentiell statistik",
+    "section": "",
+    "text": "Inferentiell statistik handlar om att dra slutsatser om en population baserat på ett urval. Tre centrala begrepp är Z-värden, p-värden och felmarginaler."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#z-värden-z-scores",
+    "href": "lessons/inferentiell-statistik.html#z-värden-z-scores",
+    "title": "Inferentiell statistik",
+    "section": "Z-värden (Z-scores)",
+    "text": "Z-värden (Z-scores)\n\nVad är ett Z-värde?\nEtt Z-värde anger hur många standardavvikelser ett värde ligger från medelvärdet i en normalfördelning.\n\\[z = \\frac{x - \\mu}{\\sigma}\\]\n\n\\(z\\) = Z-värde\n\\(x\\) = Observerat värde\n\\(\\mu\\) = Medelvärde\n\\(\\sigma\\) = Standardavvikelse\n\n\n\nTolkning\n\nZ = 0: Värdet är exakt på medelvärdet\nZ = 1: Värdet ligger 1 standardavvikelse över medelvärdet\nZ = -1: Värdet ligger 1 standardavvikelse under medelvärdet\nZ = 2: Värdet ligger 2 standardavvikelser över medelvärdet\n\n\n\nZ-värden och normalfördelningen\nI en normalfördelning: - 68% av värdena ligger inom ±1 standardavvikelse (Z mellan -1 och +1) - 95% av värdena ligger inom ±1.96 standardavvikelser (Z mellan -1.96 och +1.96) - 99% av värdena ligger inom ±2.58 standardavvikelser (Z mellan -2.58 och +2.58)\n\n\nKritiska Z-värden för konfidensnivåer\n\n\n\nKonfidensnivå\nZ-värde\nAnvändning\n\n\n\n\n90%\n1.645\nExplorativa studier\n\n\n95%\n1.96\nStandard i forskning\n\n\n99%\n2.576\nHög säkerhet\n\n\n99.9%\n3.291\nMycket hög säkerhet\n\n\n\n\n\nExempel: IQ-test\nIQ har medelvärde 100 och standardavvikelse 15.\nOm en person har IQ 130: \\[z = \\frac{130 - 100}{15} = \\frac{30}{15} = 2\\]\nDetta betyder att personen ligger 2 standardavvikelser över medelvärdet, vilket är högre än ca 97.5% av populationen."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#p-värden-p-values",
+    "href": "lessons/inferentiell-statistik.html#p-värden-p-values",
+    "title": "Inferentiell statistik",
+    "section": "P-värden (P-values)",
+    "text": "P-värden (P-values)\n\nVad är ett p-värde?\nP-värdet är sannolikheten att få ett resultat som är lika extremt eller mer extremt än det observerade resultatet, givet att nollhypotesen är sann.\n\n\nTolkning\n\np &lt; 0.001: Mycket starkt bevis mot nollhypotesen (***)\np &lt; 0.01: Starkt bevis mot nollhypotesen (**)\np &lt; 0.05: Måttligt bevis mot nollhypotesen (*)\np ≥ 0.05: Otillräckligt bevis för att förkasta nollhypotesen\n\n\n\nVanliga missförstånd\nFELAKTIGT: “p = 0.05 betyder att det är 5% chans att nollhypotesen är sann”\nKORREKT: “p = 0.05 betyder att om nollhypotesen vore sann, skulle vi se dessa data (eller mer extrema) i 5% av fallen”\n\n\nSignifikansnivå (α)\nSignifikansnivån (ofta α = 0.05) är tröskeln vi sätter innan studien för att bestämma om ett resultat ska betraktas som statistiskt signifikant.\n\nOm p &lt; α: Förkasta nollhypotesen (signifikant resultat)\nOm p ≥ α: Behåll nollhypotesen (icke-signifikant resultat)\n\n\n\nExempel: Myntkast\nNollhypotes: Myntet är rättvist (p = 0.5 för krona)\nDu kastar 100 gånger och får 65 kronor.\nFråga: Hur troligt är det att få 65 eller fler kronor med ett rättvist mynt?\nOm p-värdet = 0.003, betyder det att denna extrema utfall skulle inträffa i endast 0.3% av fallen med ett rättvist mynt. Vi förkastar därför nollhypotesen och drar slutsatsen att myntet troligen inte är rättvist."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#felmarginaler-margin-of-error",
+    "href": "lessons/inferentiell-statistik.html#felmarginaler-margin-of-error",
+    "title": "Inferentiell statistik",
+    "section": "Felmarginaler (Margin of Error)",
+    "text": "Felmarginaler (Margin of Error)\n\nVad är en felmarginal?\nFelmarginalen anger det intervall inom vilket det sanna populationsvärdet troligen ligger, baserat på ditt urval.\n\\[\\text{Felmarginal} = Z \\times \\frac{\\sigma}{\\sqrt{n}}\\]\n\n\\(Z\\) = Z-värde för önskad konfidensnivå\n\\(\\sigma\\) = Standardavvikelse\n\\(n\\) = Urvalsstorlek\n\n\n\nKonfidensintervall\nEtt konfidensintervall konstrueras som:\n\\[\\text{Estimat} \\pm \\text{Felmarginal}\\]\nExempel: Om 52% av urvalet säger “ja” med felmarginal ±3%, är konfidensintervallet 49% till 55%.\n\n\nFaktorer som påverkar felmarginalen\n\nKonfidensnivå (Z)\n\nHögre konfidensnivå → Större felmarginal\n90% konfidensintervall är smalare än 95%\n\nUrvalsstorlek (n)\n\nStörre urval → Mindre felmarginal\nKvadratroten betyder att du behöver 4 gånger så stort urval för att halvera felmarginalen\n\nVariation i populationen (σ)\n\nMer variation → Större felmarginal\nMer homogen population → Mindre felmarginal\n\n\n\n\nExempel: Opinionsundersökning\nEn undersökning av 1000 väljare visar att 48% tänker rösta på parti A.\nMed 95% konfidensnivå: - Z = 1.96 - Standardfel ≈ 0.016 (beräknas från p(1-p)/n) - Felmarginal = 1.96 × 0.016 ≈ 0.031 = ±3.1%\nTolkning: Med 95% säkerhet ligger det sanna stödet för parti A mellan 44.9% och 51.1%."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#samband-mellan-begreppen",
+    "href": "lessons/inferentiell-statistik.html#samband-mellan-begreppen",
+    "title": "Inferentiell statistik",
+    "section": "Samband mellan begreppen",
+    "text": "Samband mellan begreppen\n\nZ-värden och p-värden\nZ-värden används för att beräkna p-värden:\n\n\n\nZ-värde\np-värde (tvåsidigt)\nTolkning\n\n\n\n\n1.96\n0.05\nGränsen för signifikans vid α = 0.05\n\n\n2.58\n0.01\nStarkt signifikant\n\n\n3.29\n0.001\nMycket starkt signifikant\n\n\n\n\n\nZ-värden och felmarginaler\nHögre Z-värde (högre konfidensnivå) ger större felmarginal:\n\n\n\nKonfidensnivå\nZ\nEffekt på felmarginal\n\n\n\n\n90%\n1.645\nSmalare intervall\n\n\n95%\n1.96\nStandard\n\n\n99%\n2.576\nBredare intervall"
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#praktisk-tillämpning",
+    "href": "lessons/inferentiell-statistik.html#praktisk-tillämpning",
+    "title": "Inferentiell statistik",
+    "section": "Praktisk tillämpning",
+    "text": "Praktisk tillämpning\n\nHypotestest i 5 steg\n\nFormulera hypoteser\n\nH₀: Nollhypotes (ingen effekt/skillnad)\nH₁: Alternativhypotes (det finns en effekt/skillnad)\n\nVälj signifikansnivå\n\nVanligen α = 0.05\n\nSamla data och beräkna teststatistika\n\nT.ex. Z-värde\n\nBeräkna p-värde\n\nSannolikheten för observerade data under H₀\n\nDra slutsats\n\nOm p &lt; α: Förkasta H₀\nOm p ≥ α: Behåll H₀\n\n\n\n\nExempel: Är studenter längre än genomsnittet?\n\nHypoteser:\n\nH₀: μ = 170 cm (studenter är lika långa som genomsnittet)\nH₁: μ &gt; 170 cm (studenter är längre)\n\nSignifikansnivå: α = 0.05\nData:\n\nUrval: n = 50 studenter\nMedellängd: x̄ = 173 cm\nStandardavvikelse: s = 8 cm\n\nBeräkning: \\[z = \\frac{173 - 170}{8/\\sqrt{50}} = \\frac{3}{1.13} = 2.65\\]\np-värde ≈ 0.004\nSlutsats: p &lt; 0.05, så vi förkastar H₀. Det finns statistiskt signifikant bevis för att studenter i genomsnitt är längre än 170 cm."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#vanliga-misstag-att-undvika",
+    "href": "lessons/inferentiell-statistik.html#vanliga-misstag-att-undvika",
+    "title": "Inferentiell statistik",
+    "section": "Vanliga misstag att undvika",
+    "text": "Vanliga misstag att undvika\n\n1. P-hacking\nAtt testa många olika hypoteser tills man hittar en signifikant (p &lt; 0.05) leder till falska positiva resultat.\n\n\n2. Förväxla statistisk och praktisk signifikans\nEtt resultat kan vara statistiskt signifikant (p &lt; 0.05) men praktiskt oviktigt (mycket liten effekt).\n\n\n3. Ignorera urvalsstorlek\nStora urval kan ge signifikanta resultat även för små, praktiskt ointressanta effekter.\n\n\n4. Feltolkning av konfidensintervall\n“95% konfidensintervall” betyder INTE att det är 95% chans att det sanna värdet ligger i intervallet. Det betyder att om vi upprepar studien många gånger, kommer 95% av intervallen att innehålla det sanna värdet."
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#viktiga-begrepp",
+    "href": "lessons/inferentiell-statistik.html#viktiga-begrepp",
+    "title": "Inferentiell statistik",
+    "section": "Viktiga begrepp",
+    "text": "Viktiga begrepp\n\n\n\nSvenska\nEngelska\nSymbol\n\n\n\n\nZ-värde\nZ-score\n\\(z\\)\n\n\nP-värde\nP-value\n\\(p\\)\n\n\nFelmarginal\nMargin of error\n\\(E\\) eller \\(ME\\)\n\n\nKonfidensnivå\nConfidence level\n-\n\n\nKonfidensintervall\nConfidence interval\n\\(CI\\)\n\n\nSignifikansnivå\nSignificance level\n\\(\\alpha\\)\n\n\nNollhypotes\nNull hypothesis\n\\(H_0\\)\n\n\nAlternativhypotes\nAlternative hypothesis\n\\(H_1\\)\n\n\nStandardfel\nStandard error\n\\(SE\\)"
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#interaktiva-verktyg",
+    "href": "lessons/inferentiell-statistik.html#interaktiva-verktyg",
+    "title": "Inferentiell statistik",
+    "section": "Interaktiva verktyg",
+    "text": "Interaktiva verktyg\n\nSannolikhet - Utforska normalfördelning och konfidensintervall\nUrvalsstorlekskalkylator - Se hur Z-värden påverkar nödvändig urvalsstorlek\nRegression - Inferens för korrelation och regression"
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#vidare-läsning",
+    "href": "lessons/inferentiell-statistik.html#vidare-läsning",
+    "title": "Inferentiell statistik",
+    "section": "Vidare läsning",
+    "text": "Vidare läsning\nFör djupare förståelse, se: - Korrelation och regression - Hypotestest för samband - Presentationer om Slump och sannolikhet"
+  },
+  {
+    "objectID": "lessons/inferentiell-statistik.html#referenser",
+    "href": "lessons/inferentiell-statistik.html#referenser",
+    "title": "Inferentiell statistik",
+    "section": "Referenser",
+    "text": "Referenser\n\nWikipedia: Standard score (Z-score)\nWikipedia: P-value\nWikipedia: Margin of error\nWikipedia: Confidence interval\nWikipedia: Statistical hypothesis testing\nWikipedia: Significance level\nWikipedia: Normal distribution\nWikipedia: 68–95–99.7 rule"
+  },
+  {
+    "objectID": "lessons/fragettyper.html",
+    "href": "lessons/fragettyper.html",
+    "title": "Frågetyper i enkäter",
+    "section": "",
+    "text": "Vid utformning av enkäter är det viktigt att välja rätt frågetyp för att samla in den data du behöver. Denna sida ger en djupare förklaring av de olika frågetyperna."
+  },
+  {
+    "objectID": "lessons/fragettyper.html#översikt",
+    "href": "lessons/fragettyper.html#översikt",
+    "title": "Frågetyper i enkäter",
+    "section": "",
+    "text": "Vid utformning av enkäter är det viktigt att välja rätt frågetyp för att samla in den data du behöver. Denna sida ger en djupare förklaring av de olika frågetyperna."
+  },
+  {
+    "objectID": "lessons/fragettyper.html#öppna-frågor-open-ended-questions",
+    "href": "lessons/fragettyper.html#öppna-frågor-open-ended-questions",
+    "title": "Frågetyper i enkäter",
+    "section": "Öppna frågor (Open-ended questions)",
+    "text": "Öppna frågor (Open-ended questions)\nÖppna frågor låter respondenten svara fritt med egna ord.\nFördelar: - Ger rika, detaljerade svar - Kan avslöja oväntade insikter - Respondenten känner sig hörd\nNackdelar: - Tidskrävande att analysera - Svårt att kvantifiera - Respondenter kan hoppa över dem\nExempel: &gt; Vad tycker du om vår tjänst? &gt; Svar: _______________"
+  },
+  {
+    "objectID": "lessons/fragettyper.html#slutna-frågor-closed-ended-questions",
+    "href": "lessons/fragettyper.html#slutna-frågor-closed-ended-questions",
+    "title": "Frågetyper i enkäter",
+    "section": "Slutna frågor (Closed-ended questions)",
+    "text": "Slutna frågor (Closed-ended questions)\n\nDikotoma frågor (Binary)\nEndast två svarsalternativ.\nNär ska man använda dem: - Ja/Nej-frågor - Sant/Falskt - Före/Efter\nExempel: &gt; Har du besökt biblioteket tidigare? &gt; ○ Ja ○ Nej\n\n\nSvarslistor (Multiple choice)\nVal från en fördefinierad lista.\nDesigntips: - Se till att alternativen är ömsesidigt uteslutande - Inkludera “Annat” om listan inte är uttömmande - Begränsa till 5-7 alternativ\nExempel: &gt; Vilken tjänst använder du mest? &gt; ○ Lån av böcker &gt; ○ Databaser &gt; ○ Studieplatser &gt; ○ Hjälp av personal &gt; ○ Annat: ___\n\n\nGraderade svar (Likert scales)\nMäter intensitet eller grad av åsikt.\nVanliga skalor: - 3-punkts: Nej / Neutral / Ja - 5-punkts: Mycket missnöjd → Mycket nöjd - 7-punkts: För mer nyanserade svar\nExempel (5-punkts): &gt; Hur nöjd är du med servicen? &gt; ○ Mycket missnöjd &gt; ○ Missnöjd &gt; ○ Neutral &gt; ○ Nöjd &gt; ○ Mycket nöjd\n\n\nSjälvskattningar (Self-assessment)\nRespondenten bedömer sin egen förmåga eller kunskap.\nObs: Kan vara opålitliga på grund av: - Dunning-Kruger-effekten - Social önskvärdhet - Olika referensramar\nExempel: &gt; Hur bra är du på att söka i databaser? &gt; ○ Expert &gt; ○ Bra &gt; ○ Grundläggande &gt; ○ Nybörjare\n\n\nSkiljefrågor (Routing/Skip logic)\nStyr respondenterna till olika delar av enkäten baserat på deras svar.\nFördelar: - Kortare enkät för varje respondent - Mer relevanta frågor - Bättre datakvalitet\nExempel: &gt; Använder du sociala medier? &gt; ○ Ja → Gå till fråga 10 &gt; ○ Nej → Gå till fråga 15"
+  },
+  {
+    "objectID": "lessons/fragettyper.html#praktiska-tips",
+    "href": "lessons/fragettyper.html#praktiska-tips",
+    "title": "Frågetyper i enkäter",
+    "section": "Praktiska tips",
+    "text": "Praktiska tips\n\nTesta din enkät - Pilotstudie med några personer\nHåll det kort - Respektera respondenternas tid\nBlanda frågetyper - Variation håller intresset uppe\nUndvik ledande frågor - Var neutral i formuleringen\nTänk på analysen - Hur ska du bearbeta svaren?"
+  },
+  {
+    "objectID": "lessons/fragettyper.html#uppgift",
+    "href": "lessons/fragettyper.html#uppgift",
+    "title": "Frågetyper i enkäter",
+    "section": "Uppgift",
+    "text": "Uppgift\nSkapa 8 olika frågor med följande typer:\n\nÖppen fråga\nSluten fråga\nSvarslista med neutralt alternativ\nSvarslista utan neutralt alternativ\nGraderad fråga (3 alternativ)\nGraderad fråga (7 alternativ)\nSkiljefråga\nAvslutande fritextfråga\n\nFundera: Vilka två frågor skulle du helst kombinera i analysen? Varför?"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html",
+    "href": "dashboards/sample-size-calculator.html",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "",
+    "text": "Denna kalkylator hjälper dig att bestämma hur många respondenter du behöver för din studie baserat på populationsstorlek, konfidensnivå och felmarginal.\n\nviewof studyType = Inputs.radio(\n  [\"proportion\", \"mean\"],\n  {\n    label: \"Typ av studie:\",\n    value: \"proportion\",\n    format: x =&gt; x === \"proportion\" ? \"Andel/Proportion (t.ex. ja/nej-frågor)\" : \"Medelvärde (kontinuerliga mätningar)\"\n  }\n)\n\n\n\n\n\n\n\n\n\nviewof populationSize = Inputs.range([50, 1000000], {\n  label: \"Populationsstorlek (N):\",\n  step: 50,\n  value: 1000,\n  transform: Math.round\n})\n\nviewof confidenceLevel = Inputs.select(\n  [0.90, 0.95, 0.99],\n  {\n    label: \"Konfidensnivå:\",\n    value: 0.95,\n    format: x =&gt; `${(x * 100).toFixed(0)}%`\n  }\n)\n\nviewof marginOfError = Inputs.range([0.01, 0.15], {\n  label: \"Felmarginal (margin of error):\",\n  step: 0.005,\n  value: 0.05,\n  format: x =&gt; `±${(x * 100).toFixed(1)}%`\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof expectedProportion = studyType === \"proportion\" ? Inputs.range([0.1, 0.9], {\n  label: \"Förväntad andel (p):\",\n  step: 0.05,\n  value: 0.5,\n  format: x =&gt; `${(x * 100).toFixed(0)}%`\n}) : Inputs.range([0.5, 0.5], {value: 0.5})\n\n\n\n\n\n\n\n\n\n\n\nviewof populationStdDev = studyType === \"mean\" ? Inputs.range([1, 50], {\n  label: \"Uppskattad standardavvikelse (σ):\",\n  step: 0.5,\n  value: 10\n}) : Inputs.range([10, 10], {value: 10})\n\n\n\n\n\n\n\n\n// Z-scores for different confidence levels\nzScore = {\n  const zScores = {\n    0.90: 1.645,\n    0.95: 1.96,\n    0.99: 2.576\n  };\n  return zScores[confidenceLevel];\n}\n\n\n\n\n\n\n\n// Calculate sample size\nsampleSize = {\n  let n0; // Initial sample size (infinite population)\n\n  if (studyType === \"proportion\") {\n    // For proportions: n = (Z² × p × (1-p)) / E²\n    const p = expectedProportion;\n    const E = marginOfError;\n    n0 = (zScore ** 2 * p * (1 - p)) / (E ** 2);\n  } else {\n    // For means: n = (Z² × σ²) / E²\n    const sigma = populationStdDev;\n    const E = marginOfError * 100; // Convert to same scale as std dev\n    n0 = (zScore ** 2 * sigma ** 2) / (E ** 2);\n  }\n\n  // Adjust for finite population using finite population correction\n  // n = n0 / (1 + (n0 - 1) / N)\n  const N = populationSize;\n  const n = n0 / (1 + (n0 - 1) / N);\n\n  return {\n    unadjusted: Math.ceil(n0),\n    adjusted: Math.ceil(n),\n    responseRate: Math.ceil(n / 0.7), // Assuming 70% response rate\n    responseRate50: Math.ceil(n / 0.5), // Assuming 50% response rate\n    zScore: zScore\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#beräkna-urvalsstorlek",
+    "href": "dashboards/sample-size-calculator.html#beräkna-urvalsstorlek",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "",
+    "text": "Denna kalkylator hjälper dig att bestämma hur många respondenter du behöver för din studie baserat på populationsstorlek, konfidensnivå och felmarginal.\n\nviewof studyType = Inputs.radio(\n  [\"proportion\", \"mean\"],\n  {\n    label: \"Typ av studie:\",\n    value: \"proportion\",\n    format: x =&gt; x === \"proportion\" ? \"Andel/Proportion (t.ex. ja/nej-frågor)\" : \"Medelvärde (kontinuerliga mätningar)\"\n  }\n)\n\n\n\n\n\n\n\n\n\nviewof populationSize = Inputs.range([50, 1000000], {\n  label: \"Populationsstorlek (N):\",\n  step: 50,\n  value: 1000,\n  transform: Math.round\n})\n\nviewof confidenceLevel = Inputs.select(\n  [0.90, 0.95, 0.99],\n  {\n    label: \"Konfidensnivå:\",\n    value: 0.95,\n    format: x =&gt; `${(x * 100).toFixed(0)}%`\n  }\n)\n\nviewof marginOfError = Inputs.range([0.01, 0.15], {\n  label: \"Felmarginal (margin of error):\",\n  step: 0.005,\n  value: 0.05,\n  format: x =&gt; `±${(x * 100).toFixed(1)}%`\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof expectedProportion = studyType === \"proportion\" ? Inputs.range([0.1, 0.9], {\n  label: \"Förväntad andel (p):\",\n  step: 0.05,\n  value: 0.5,\n  format: x =&gt; `${(x * 100).toFixed(0)}%`\n}) : Inputs.range([0.5, 0.5], {value: 0.5})\n\n\n\n\n\n\n\n\n\n\n\nviewof populationStdDev = studyType === \"mean\" ? Inputs.range([1, 50], {\n  label: \"Uppskattad standardavvikelse (σ):\",\n  step: 0.5,\n  value: 10\n}) : Inputs.range([10, 10], {value: 10})\n\n\n\n\n\n\n\n\n// Z-scores for different confidence levels\nzScore = {\n  const zScores = {\n    0.90: 1.645,\n    0.95: 1.96,\n    0.99: 2.576\n  };\n  return zScores[confidenceLevel];\n}\n\n\n\n\n\n\n\n// Calculate sample size\nsampleSize = {\n  let n0; // Initial sample size (infinite population)\n\n  if (studyType === \"proportion\") {\n    // For proportions: n = (Z² × p × (1-p)) / E²\n    const p = expectedProportion;\n    const E = marginOfError;\n    n0 = (zScore ** 2 * p * (1 - p)) / (E ** 2);\n  } else {\n    // For means: n = (Z² × σ²) / E²\n    const sigma = populationStdDev;\n    const E = marginOfError * 100; // Convert to same scale as std dev\n    n0 = (zScore ** 2 * sigma ** 2) / (E ** 2);\n  }\n\n  // Adjust for finite population using finite population correction\n  // n = n0 / (1 + (n0 - 1) / N)\n  const N = populationSize;\n  const n = n0 / (1 + (n0 - 1) / N);\n\n  return {\n    unadjusted: Math.ceil(n0),\n    adjusted: Math.ceil(n),\n    responseRate: Math.ceil(n / 0.7), // Assuming 70% response rate\n    responseRate50: Math.ceil(n / 0.5), // Assuming 50% response rate\n    zScore: zScore\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#resultat",
+    "href": "dashboards/sample-size-calculator.html#resultat",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "Resultat",
+    "text": "Resultat\n\nmd`\n### Rekommenderad urvalsstorlek\n\n| Scenario | Antal respondenter |\n|----------|-------------------|\n| **Minimiantal (100% svarsfrekvens)** | **${sampleSize.adjusted}** |\n| Med 70% svarsfrekvens | ${sampleSize.responseRate} |\n| Med 50% svarsfrekvens | ${sampleSize.responseRate50} |\n\n${populationSize &lt; 10000 ? `\n*Finite population correction applicerad eftersom populationen är mindre än 10,000.*\n` : \"\"}\n`"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#förklaring",
+    "href": "dashboards/sample-size-calculator.html#förklaring",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "Förklaring",
+    "text": "Förklaring\n\nmd`\n### Parametrar\n\n- **Populationsstorlek (N)**: Totalt antal individer i målpopulationen (${populationSize.toLocaleString('sv-SE')})\n- **Konfidensnivå**: Sannolikheten att det sanna värdet ligger inom felmarginalen (${(confidenceLevel * 100).toFixed(0)}%)\n  - Z-värde: ${zScore}\n- **Felmarginal**: Maximalt acceptabelt fel i resultaten (±${(marginOfError * 100).toFixed(1)}%)\n\n${studyType === \"proportion\" ? `\n- **Förväntad andel (p)**: Uppskattad andel i populationen (${(expectedProportion * 100).toFixed(0)}%)\n  - Om osäker, använd 50% för maximal säkerhet\n` : `\n- **Standardavvikelse (σ)**: Spridning i populationen (${populationStdDev})\n  - Basera på pilotstudie eller liknande forskning\n`}\n\n### Tolkning\n\nMed dessa parametrar behöver du **minst ${sampleSize.adjusted} respondenter** för att få statistiskt signifikanta resultat med ${(confidenceLevel * 100).toFixed(0)}% konfidensnivå och ±${(marginOfError * 100).toFixed(1)}% felmarginal.\n\n**Praktiska rekommendationer:**\n\n1. **Planera för bortfall**: Med typisk svarsfrekvens på 70% bör du kontakta ${sampleSize.responseRate} personer\n2. **Om låg svarsfrekvens**: Vid 50% svarsfrekvens, kontakta ${sampleSize.responseRate50} personer\n3. **Stratifiera vid behov**: Om din population har olika subgrupper kan du behöva större urval\n4. **Pilotstudie**: Överväg en pilotstudie för att estimera parametrar bättre\n\n### Formel\n\n${studyType === \"proportion\" ? `\n**För proportioner:**\n\n$$n_0 = \\\\\\\\frac{Z^2 \\\\\\\\times p \\\\\\\\times (1-p)}{E^2}$$\n\n- \\\\\\\\(n_0\\\\\\\\) = Initial urvalsstorlek (oändlig population)\n- \\\\\\\\(Z\\\\\\\\) = Z-värde för konfidensnivån (${zScore})\n- \\\\\\\\(p\\\\\\\\) = Förväntad proportion (${expectedProportion})\n- \\\\\\\\(E\\\\\\\\) = Felmarginal (${marginOfError})\n\n**Resultat:** \\\\\\\\(n_0 = ${sampleSize.unadjusted}\\\\\\\\)\n` : `\n**För medelvärden:**\n\n$$n_0 = \\\\\\\\frac{Z^2 \\\\\\\\times \\\\\\\\sigma^2}{E^2}$$\n\n- \\\\\\\\(n_0\\\\\\\\) = Initial urvalsstorlek (oändlig population)\n- \\\\\\\\(Z\\\\\\\\) = Z-värde för konfidensnivån (${zScore})\n- \\\\\\\\(\\\\\\\\sigma\\\\\\\\) = Standardavvikelse (${populationStdDev})\n- \\\\\\\\(E\\\\\\\\) = Felmarginal (${(marginOfError * 100).toFixed(1)})\n\n**Resultat:** \\\\\\\\(n_0 = ${sampleSize.unadjusted}\\\\\\\\)\n`}\n\n${populationSize &lt; 1000000 ? `\n**Finite population correction:**\n\n$$n = \\\\\\\\frac{n_0}{1 + \\\\\\\\frac{n_0 - 1}{N}}$$\n\n- \\\\\\\\(N\\\\\\\\) = Populationsstorlek (${populationSize.toLocaleString('sv-SE')})\n\n**Justerad urvalsstorlek:** \\\\\\\\(n = ${sampleSize.adjusted}\\\\\\\\)\n` : \"\"}\n`"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#vanliga-konfidensnivåer",
+    "href": "dashboards/sample-size-calculator.html#vanliga-konfidensnivåer",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "Vanliga konfidensnivåer",
+    "text": "Vanliga konfidensnivåer\n\n\n\nKonfidensnivå\nZ-värde\nBetydelse\n\n\n\n\n90%\n1.645\nAcceptabelt för explorativa studier\n\n\n95%\n1.96\nStandard i samhällsvetenskap\n\n\n99%\n2.576\nHög säkerhet, större urval krävs"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#exempel",
+    "href": "dashboards/sample-size-calculator.html#exempel",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "Exempel",
+    "text": "Exempel\n\nExempel 1: Enkätundersökning om biblioteksanvändning\n\nPopulation: 5,000 studenter\nKonfidensnivå: 95%\nFelmarginal: ±5%\nFörväntad andel som använder biblioteket: 50%\n\nResultat: ~357 respondenter behövs\n\n\nExempel 2: Mätning av genomsnittlig lästid\n\nPopulation: 1,000 medlemmar\nKonfidensnivå: 95%\nFelmarginal: ±0.5 timmar\nUppskattad standardavvikelse: 2 timmar\n\nResultat: Beror på parametrarna i kalkylatorn ovan"
+  },
+  {
+    "objectID": "dashboards/sample-size-calculator.html#tips",
+    "href": "dashboards/sample-size-calculator.html#tips",
+    "title": "Urvalsstorlekskalkylator",
+    "section": "Tips",
+    "text": "Tips\n\nHögre konfidensnivå = Större urval behövs\nMindre felmarginal = Större urval behövs\np = 0.5 (50%) ger den största urvalsstorleken (mest konservativ estimering)\nLiten population (&lt; 1000) kräver relativt större andel av populationen\nStor population (&gt; 100,000) påverkar knappt urvalsstorleken"
+  },
+  {
+    "objectID": "dashboards/regression-viz.html",
+    "href": "dashboards/regression-viz.html",
+    "title": "Interaktiv regression",
+    "section": "",
+    "text": "Klicka i diagrammet nedan för att lägga till datapunkter. Regressionslinjen och feltermer (residualer) uppdateras automatiskt.\n\nmutable points = []\n\n// Button to clear points\nviewof clearButton = Inputs.button(\"Rensa alla punkter\")\n\n// Toggle for showing errors\nviewof showErrors = Inputs.toggle({\n  label: \"Visa residualer (fel)\",\n  value: true\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Clear points when button is clicked\n{\n  clearButton;\n  mutable points = [];\n}\n\n\n\n\n\n\n\n// Calculate regression statistics\nstats = {\n  const n = points.length;\n  if (n &lt; 2) {\n    return {\n      slope: 0,\n      intercept: 0,\n      r: 0,\n      r2: 0,\n      valid: false\n    };\n  }\n\n  // Calculate means\n  const meanX = points.reduce((sum, p) =&gt; sum + p.x, 0) / n;\n  const meanY = points.reduce((sum, p) =&gt; sum + p.y, 0) / n;\n\n  // Calculate sums for regression\n  let ssXY = 0, ssXX = 0, ssYY = 0;\n  for (const p of points) {\n    const dx = p.x - meanX;\n    const dy = p.y - meanY;\n    ssXY += dx * dy;\n    ssXX += dx * dx;\n    ssYY += dy * dy;\n  }\n\n  // Regression coefficients\n  const slope = ssXX !== 0 ? ssXY / ssXX : 0;\n  const intercept = meanY - slope * meanX;\n\n  // Correlation coefficient\n  const r = (ssXX !== 0 && ssYY !== 0) ? ssXY / Math.sqrt(ssXX * ssYY) : 0;\n  const r2 = r * r;\n\n  return { slope, intercept, r, r2, valid: true, meanX, meanY };\n}\n\n\n\n\n\n\n\n// Points with predicted values and residuals\npointsWithResiduals = points.map(p =&gt; ({\n  ...p,\n  predicted: stats.intercept + stats.slope * p.x,\n  residual: p.y - (stats.intercept + stats.slope * p.x)\n}))\n\n\n\n\n\n\n\n// Interactive plot\n{\n  const width = 700;\n  const height = 500;\n  const margin = 50;\n\n  // Create SVG\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height])\n    .style(\"cursor\", \"crosshair\")\n    .style(\"background\", \"#fafafa\")\n    .style(\"border\", \"1px solid #ddd\");\n\n  // Scales\n  const xScale = d3.scaleLinear()\n    .domain([0, 100])\n    .range([margin, width - margin]);\n\n  const yScale = d3.scaleLinear()\n    .domain([0, 100])\n    .range([height - margin, margin]);\n\n  // Axes\n  const xAxis = d3.axisBottom(xScale);\n  const yAxis = d3.axisLeft(yScale);\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(0,${height - margin})`)\n    .call(xAxis);\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(${margin},0)`)\n    .call(yAxis);\n\n  // Axis labels\n  svg.append(\"text\")\n    .attr(\"x\", width / 2)\n    .attr(\"y\", height - 10)\n    .attr(\"text-anchor\", \"middle\")\n    .text(\"X\");\n\n  svg.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", height / 2)\n    .attr(\"text-anchor\", \"middle\")\n    .attr(\"transform\", `rotate(-90, 15, ${height / 2})`)\n    .text(\"Y\");\n\n  // Draw regression line if we have enough points\n  if (stats.valid && points.length &gt;= 2) {\n    const x1 = 0;\n    const x2 = 100;\n    const y1 = stats.intercept + stats.slope * x1;\n    const y2 = stats.intercept + stats.slope * x2;\n\n    svg.append(\"line\")\n      .attr(\"x1\", xScale(x1))\n      .attr(\"y1\", yScale(y1))\n      .attr(\"x2\", xScale(x2))\n      .attr(\"y2\", yScale(y2))\n      .attr(\"stroke\", \"#2563eb\")\n      .attr(\"stroke-width\", 2);\n  }\n\n  // Draw residual lines (errors)\n  if (showErrors && stats.valid) {\n    for (const p of pointsWithResiduals) {\n      svg.append(\"line\")\n        .attr(\"x1\", xScale(p.x))\n        .attr(\"y1\", yScale(p.y))\n        .attr(\"x2\", xScale(p.x))\n        .attr(\"y2\", yScale(p.predicted))\n        .attr(\"stroke\", \"#ef4444\")\n        .attr(\"stroke-width\", 1.5)\n        .attr(\"stroke-dasharray\", \"4,2\");\n    }\n  }\n\n  // Draw points\n  for (const p of points) {\n    svg.append(\"circle\")\n      .attr(\"cx\", xScale(p.x))\n      .attr(\"cy\", yScale(p.y))\n      .attr(\"r\", 6)\n      .attr(\"fill\", \"#1f2937\")\n      .attr(\"stroke\", \"#fff\")\n      .attr(\"stroke-width\", 1.5);\n  }\n\n  // Click handler to add points\n  svg.on(\"click\", function(event) {\n    const [mx, my] = d3.pointer(event);\n    const x = xScale.invert(mx);\n    const y = yScale.invert(my);\n\n    // Only add if within plot area\n    if (x &gt;= 0 && x &lt;= 100 && y &gt;= 0 && y &lt;= 100) {\n      mutable points = [...points, { x, y }];\n    }\n  });\n\n  return svg.node();\n}"
+  },
+  {
+    "objectID": "dashboards/regression-viz.html#skapa-din-egen-regression",
+    "href": "dashboards/regression-viz.html#skapa-din-egen-regression",
+    "title": "Interaktiv regression",
+    "section": "",
+    "text": "Klicka i diagrammet nedan för att lägga till datapunkter. Regressionslinjen och feltermer (residualer) uppdateras automatiskt.\n\nmutable points = []\n\n// Button to clear points\nviewof clearButton = Inputs.button(\"Rensa alla punkter\")\n\n// Toggle for showing errors\nviewof showErrors = Inputs.toggle({\n  label: \"Visa residualer (fel)\",\n  value: true\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Clear points when button is clicked\n{\n  clearButton;\n  mutable points = [];\n}\n\n\n\n\n\n\n\n// Calculate regression statistics\nstats = {\n  const n = points.length;\n  if (n &lt; 2) {\n    return {\n      slope: 0,\n      intercept: 0,\n      r: 0,\n      r2: 0,\n      valid: false\n    };\n  }\n\n  // Calculate means\n  const meanX = points.reduce((sum, p) =&gt; sum + p.x, 0) / n;\n  const meanY = points.reduce((sum, p) =&gt; sum + p.y, 0) / n;\n\n  // Calculate sums for regression\n  let ssXY = 0, ssXX = 0, ssYY = 0;\n  for (const p of points) {\n    const dx = p.x - meanX;\n    const dy = p.y - meanY;\n    ssXY += dx * dy;\n    ssXX += dx * dx;\n    ssYY += dy * dy;\n  }\n\n  // Regression coefficients\n  const slope = ssXX !== 0 ? ssXY / ssXX : 0;\n  const intercept = meanY - slope * meanX;\n\n  // Correlation coefficient\n  const r = (ssXX !== 0 && ssYY !== 0) ? ssXY / Math.sqrt(ssXX * ssYY) : 0;\n  const r2 = r * r;\n\n  return { slope, intercept, r, r2, valid: true, meanX, meanY };\n}\n\n\n\n\n\n\n\n// Points with predicted values and residuals\npointsWithResiduals = points.map(p =&gt; ({\n  ...p,\n  predicted: stats.intercept + stats.slope * p.x,\n  residual: p.y - (stats.intercept + stats.slope * p.x)\n}))\n\n\n\n\n\n\n\n// Interactive plot\n{\n  const width = 700;\n  const height = 500;\n  const margin = 50;\n\n  // Create SVG\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height])\n    .style(\"cursor\", \"crosshair\")\n    .style(\"background\", \"#fafafa\")\n    .style(\"border\", \"1px solid #ddd\");\n\n  // Scales\n  const xScale = d3.scaleLinear()\n    .domain([0, 100])\n    .range([margin, width - margin]);\n\n  const yScale = d3.scaleLinear()\n    .domain([0, 100])\n    .range([height - margin, margin]);\n\n  // Axes\n  const xAxis = d3.axisBottom(xScale);\n  const yAxis = d3.axisLeft(yScale);\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(0,${height - margin})`)\n    .call(xAxis);\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(${margin},0)`)\n    .call(yAxis);\n\n  // Axis labels\n  svg.append(\"text\")\n    .attr(\"x\", width / 2)\n    .attr(\"y\", height - 10)\n    .attr(\"text-anchor\", \"middle\")\n    .text(\"X\");\n\n  svg.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", height / 2)\n    .attr(\"text-anchor\", \"middle\")\n    .attr(\"transform\", `rotate(-90, 15, ${height / 2})`)\n    .text(\"Y\");\n\n  // Draw regression line if we have enough points\n  if (stats.valid && points.length &gt;= 2) {\n    const x1 = 0;\n    const x2 = 100;\n    const y1 = stats.intercept + stats.slope * x1;\n    const y2 = stats.intercept + stats.slope * x2;\n\n    svg.append(\"line\")\n      .attr(\"x1\", xScale(x1))\n      .attr(\"y1\", yScale(y1))\n      .attr(\"x2\", xScale(x2))\n      .attr(\"y2\", yScale(y2))\n      .attr(\"stroke\", \"#2563eb\")\n      .attr(\"stroke-width\", 2);\n  }\n\n  // Draw residual lines (errors)\n  if (showErrors && stats.valid) {\n    for (const p of pointsWithResiduals) {\n      svg.append(\"line\")\n        .attr(\"x1\", xScale(p.x))\n        .attr(\"y1\", yScale(p.y))\n        .attr(\"x2\", xScale(p.x))\n        .attr(\"y2\", yScale(p.predicted))\n        .attr(\"stroke\", \"#ef4444\")\n        .attr(\"stroke-width\", 1.5)\n        .attr(\"stroke-dasharray\", \"4,2\");\n    }\n  }\n\n  // Draw points\n  for (const p of points) {\n    svg.append(\"circle\")\n      .attr(\"cx\", xScale(p.x))\n      .attr(\"cy\", yScale(p.y))\n      .attr(\"r\", 6)\n      .attr(\"fill\", \"#1f2937\")\n      .attr(\"stroke\", \"#fff\")\n      .attr(\"stroke-width\", 1.5);\n  }\n\n  // Click handler to add points\n  svg.on(\"click\", function(event) {\n    const [mx, my] = d3.pointer(event);\n    const x = xScale.invert(mx);\n    const y = yScale.invert(my);\n\n    // Only add if within plot area\n    if (x &gt;= 0 && x &lt;= 100 && y &gt;= 0 && y &lt;= 100) {\n      mutable points = [...points, { x, y }];\n    }\n  });\n\n  return svg.node();\n}"
+  },
+  {
+    "objectID": "dashboards/regression-viz.html#statistik",
+    "href": "dashboards/regression-viz.html#statistik",
+    "title": "Interaktiv regression",
+    "section": "Statistik",
+    "text": "Statistik\n\nmd`\n| Mått | Värde |\n|------|-------|\n| Antal punkter | ${points.length} |\n| Lutning (b) | ${stats.valid ? stats.slope.toFixed(3) : \"–\"} |\n| Intercept (a) | ${stats.valid ? stats.intercept.toFixed(3) : \"–\"} |\n| Korrelation (r) | ${stats.valid ? stats.r.toFixed(3) : \"–\"} |\n| R² | ${stats.valid ? (stats.r2 * 100).toFixed(1) + \"%\" : \"–\"} |\n\n**Regressionsekvation:** ${stats.valid && points.length &gt;= 2 ? `y = ${stats.intercept.toFixed(2)} + ${stats.slope.toFixed(2)}x` : \"Lägg till minst 2 punkter\"}\n`"
+  },
+  {
+    "objectID": "dashboards/regression-viz.html#tolkning",
+    "href": "dashboards/regression-viz.html#tolkning",
+    "title": "Interaktiv regression",
+    "section": "Tolkning",
+    "text": "Tolkning\n\nmd`\n${points.length &lt; 2 ? \"Klicka i diagrammet för att lägga till punkter.\" :\n  stats.r &gt; 0.7 ? \"**Stark positiv korrelation** – när X ökar tenderar Y att öka.\" :\n  stats.r &gt; 0.3 ? \"**Måttlig positiv korrelation** – viss tendens att Y ökar med X.\" :\n  stats.r &gt; -0.3 ? \"**Svag eller ingen korrelation** – inget tydligt samband mellan X och Y.\" :\n  stats.r &gt; -0.7 ? \"**Måttlig negativ korrelation** – viss tendens att Y minskar när X ökar.\" :\n  \"**Stark negativ korrelation** – när X ökar tenderar Y att minska.\"}\n\n${showErrors && points.length &gt;= 2 ? \"De **röda streckade linjerna** visar residualerna (felen) – skillnaden mellan varje punkts faktiska Y-värde och det värde som regressionslinjen förutsäger.\" : \"\"}\n`"
+  },
+  {
+    "objectID": "dashboards/regression-viz.html#förklaring",
+    "href": "dashboards/regression-viz.html#förklaring",
+    "title": "Interaktiv regression",
+    "section": "Förklaring",
+    "text": "Förklaring\n\nLutning (b): Hur mycket Y ändras när X ökar med 1 enhet\nIntercept (a): Y-värdet när X = 0\nKorrelation (r): Styrkan och riktningen på sambandet (-1 till +1)\nR²: Andelen av variationen i Y som förklaras av X\nResidualer: Skillnaden mellan observerat och förutsagt värde (felet)"
+  },
+  {
+    "objectID": "dashboards/accuracy-precision-viz.html",
+    "href": "dashboards/accuracy-precision-viz.html",
+    "title": "Noggrannhet vs Precision",
+    "section": "",
+    "text": "Använd kontrollerna nedan för att utforska skillnaden mellan noggrannhet (accuracy) och precision.\n\nviewof accuracyLevel = Inputs.range([0, 1], {\n  label: \"Noggrannhet (Accuracy):\",\n  step: 0.1,\n  value: 0.5\n})\n\nviewof precisionLevel = Inputs.range([0, 1], {\n  label: \"Precision:\",\n  step: 0.1,\n  value: 0.5\n})\n\nviewof numShots = Inputs.range([5, 30], {\n  label: \"Antal skott:\",\n  step: 1,\n  value: 10\n})\n\nviewof newShots = Inputs.button(\"Nya skott\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Generate shot positions based on accuracy and precision\nshots = {\n  newShots; // Trigger regeneration\n\n  const centerX = 50;\n  const centerY = 50;\n\n  // Bias based on accuracy (0 = far from center, 1 = on center)\n  const biasDistance = (1 - accuracyLevel) * 30;\n  const biasAngle = Math.random() * 2 * Math.PI;\n  const biasX = Math.cos(biasAngle) * biasDistance;\n  const biasY = Math.sin(biasAngle) * biasDistance;\n\n  // Spread based on precision (0 = high spread, 1 = tight cluster)\n  const spread = (1 - precisionLevel) * 15 + 2;\n\n  const result = [];\n  for (let i = 0; i &lt; numShots; i++) {\n    // Use Box-Muller transform for normal distribution\n    const u1 = Math.random();\n    const u2 = Math.random();\n    const r = Math.sqrt(-2 * Math.log(u1));\n    const theta = 2 * Math.PI * u2;\n\n    const x = centerX + biasX + r * Math.cos(theta) * spread;\n    const y = centerY + biasY + r * Math.sin(theta) * spread;\n\n    result.push({ x, y, distance: Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) });\n  }\n\n  return result;\n}\n\n\n\n\n\n\n\n// Statistics\nstats = {\n  const centerX = 50;\n  const centerY = 50;\n\n  // Mean position (center of cluster)\n  const meanX = shots.reduce((sum, s) =&gt; sum + s.x, 0) / shots.length;\n  const meanY = shots.reduce((sum, s) =&gt; sum + s.y, 0) / shots.length;\n  const meanDistanceFromTarget = Math.sqrt((meanX - centerX) ** 2 + (meanY - centerY) ** 2);\n\n  // Spread (standard deviation from mean position)\n  const variance = shots.reduce((sum, s) =&gt; {\n    return sum + (s.x - meanX) ** 2 + (s.y - meanY) ** 2;\n  }, 0) / shots.length;\n  const stdDev = Math.sqrt(variance);\n\n  // Average distance from target\n  const avgDistance = shots.reduce((sum, s) =&gt; sum + s.distance, 0) / shots.length;\n\n  return { meanX, meanY, meanDistanceFromTarget, stdDev, avgDistance };\n}\n\n\n\n\n\n\n\n// Target visualization\n{\n  const width = 600;\n  const height = 600;\n  const centerX = 300;\n  const centerY = 300;\n  const scale = 6; // pixels per unit\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height])\n    .style(\"background\", \"#f9fafb\");\n\n  // Draw target circles\n  const circles = [\n    { r: 50, color: \"#fef3c7\", label: \"50\" },\n    { r: 40, color: \"#fde68a\", label: \"40\" },\n    { r: 30, color: \"#fcd34d\", label: \"30\" },\n    { r: 20, color: \"#fbbf24\", label: \"20\" },\n    { r: 10, color: \"#f59e0b\", label: \"10\" }\n  ];\n\n  for (const circle of circles) {\n    svg.append(\"circle\")\n      .attr(\"cx\", centerX)\n      .attr(\"cy\", centerY)\n      .attr(\"r\", circle.r * scale)\n      .attr(\"fill\", circle.color)\n      .attr(\"stroke\", \"#92400e\")\n      .attr(\"stroke-width\", 1);\n  }\n\n  // Bullseye\n  svg.append(\"circle\")\n    .attr(\"cx\", centerX)\n    .attr(\"cy\", centerY)\n    .attr(\"r\", 8)\n    .attr(\"fill\", \"#dc2626\")\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 2);\n\n  // Draw crosshair at center\n  svg.append(\"line\")\n    .attr(\"x1\", centerX - 15)\n    .attr(\"y1\", centerY)\n    .attr(\"x2\", centerX + 15)\n    .attr(\"y2\", centerY)\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 1);\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX)\n    .attr(\"y1\", centerY - 15)\n    .attr(\"x2\", centerX)\n    .attr(\"y2\", centerY + 15)\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 1);\n\n  // Draw mean position (cluster center)\n  svg.append(\"circle\")\n    .attr(\"cx\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"cy\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"r\", 6)\n    .attr(\"fill\", \"none\")\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2)\n    .attr(\"stroke-dasharray\", \"4,2\");\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX + (stats.meanX - 50) * scale - 8)\n    .attr(\"y1\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"x2\", centerX + (stats.meanX - 50) * scale + 8)\n    .attr(\"y2\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"y1\", centerY + (stats.meanY - 50) * scale - 8)\n    .attr(\"x2\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"y2\", centerY + (stats.meanY - 50) * scale + 8)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  // Draw shots\n  for (const shot of shots) {\n    svg.append(\"circle\")\n      .attr(\"cx\", centerX + (shot.x - 50) * scale)\n      .attr(\"cy\", centerY + (shot.y - 50) * scale)\n      .attr(\"r\", 5)\n      .attr(\"fill\", \"#1f2937\")\n      .attr(\"stroke\", \"#fff\")\n      .attr(\"stroke-width\", 1.5)\n      .attr(\"opacity\", 0.8);\n  }\n\n  // Legend\n  const legend = svg.append(\"g\")\n    .attr(\"transform\", \"translate(20, 20)\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 0)\n    .attr(\"r\", 5)\n    .attr(\"fill\", \"#dc2626\");\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 5)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Mål (target)\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 25)\n    .attr(\"r\", 5)\n    .attr(\"fill\", \"#1f2937\")\n    .attr(\"stroke\", \"#fff\")\n    .attr(\"stroke-width\", 1.5);\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 30)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Skott\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 50)\n    .attr(\"r\", 6)\n    .attr(\"fill\", \"none\")\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2)\n    .attr(\"stroke-dasharray\", \"4,2\");\n\n  legend.append(\"line\")\n    .attr(\"x1\", -8)\n    .attr(\"y1\", 50)\n    .attr(\"x2\", 8)\n    .attr(\"y2\", 50)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 55)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Klustrets centrum\");\n\n  return svg.node();\n}"
+  },
+  {
+    "objectID": "dashboards/accuracy-precision-viz.html#målskjutningsanalogi",
+    "href": "dashboards/accuracy-precision-viz.html#målskjutningsanalogi",
+    "title": "Noggrannhet vs Precision",
+    "section": "",
+    "text": "Använd kontrollerna nedan för att utforska skillnaden mellan noggrannhet (accuracy) och precision.\n\nviewof accuracyLevel = Inputs.range([0, 1], {\n  label: \"Noggrannhet (Accuracy):\",\n  step: 0.1,\n  value: 0.5\n})\n\nviewof precisionLevel = Inputs.range([0, 1], {\n  label: \"Precision:\",\n  step: 0.1,\n  value: 0.5\n})\n\nviewof numShots = Inputs.range([5, 30], {\n  label: \"Antal skott:\",\n  step: 1,\n  value: 10\n})\n\nviewof newShots = Inputs.button(\"Nya skott\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Generate shot positions based on accuracy and precision\nshots = {\n  newShots; // Trigger regeneration\n\n  const centerX = 50;\n  const centerY = 50;\n\n  // Bias based on accuracy (0 = far from center, 1 = on center)\n  const biasDistance = (1 - accuracyLevel) * 30;\n  const biasAngle = Math.random() * 2 * Math.PI;\n  const biasX = Math.cos(biasAngle) * biasDistance;\n  const biasY = Math.sin(biasAngle) * biasDistance;\n\n  // Spread based on precision (0 = high spread, 1 = tight cluster)\n  const spread = (1 - precisionLevel) * 15 + 2;\n\n  const result = [];\n  for (let i = 0; i &lt; numShots; i++) {\n    // Use Box-Muller transform for normal distribution\n    const u1 = Math.random();\n    const u2 = Math.random();\n    const r = Math.sqrt(-2 * Math.log(u1));\n    const theta = 2 * Math.PI * u2;\n\n    const x = centerX + biasX + r * Math.cos(theta) * spread;\n    const y = centerY + biasY + r * Math.sin(theta) * spread;\n\n    result.push({ x, y, distance: Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2) });\n  }\n\n  return result;\n}\n\n\n\n\n\n\n\n// Statistics\nstats = {\n  const centerX = 50;\n  const centerY = 50;\n\n  // Mean position (center of cluster)\n  const meanX = shots.reduce((sum, s) =&gt; sum + s.x, 0) / shots.length;\n  const meanY = shots.reduce((sum, s) =&gt; sum + s.y, 0) / shots.length;\n  const meanDistanceFromTarget = Math.sqrt((meanX - centerX) ** 2 + (meanY - centerY) ** 2);\n\n  // Spread (standard deviation from mean position)\n  const variance = shots.reduce((sum, s) =&gt; {\n    return sum + (s.x - meanX) ** 2 + (s.y - meanY) ** 2;\n  }, 0) / shots.length;\n  const stdDev = Math.sqrt(variance);\n\n  // Average distance from target\n  const avgDistance = shots.reduce((sum, s) =&gt; sum + s.distance, 0) / shots.length;\n\n  return { meanX, meanY, meanDistanceFromTarget, stdDev, avgDistance };\n}\n\n\n\n\n\n\n\n// Target visualization\n{\n  const width = 600;\n  const height = 600;\n  const centerX = 300;\n  const centerY = 300;\n  const scale = 6; // pixels per unit\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height])\n    .style(\"background\", \"#f9fafb\");\n\n  // Draw target circles\n  const circles = [\n    { r: 50, color: \"#fef3c7\", label: \"50\" },\n    { r: 40, color: \"#fde68a\", label: \"40\" },\n    { r: 30, color: \"#fcd34d\", label: \"30\" },\n    { r: 20, color: \"#fbbf24\", label: \"20\" },\n    { r: 10, color: \"#f59e0b\", label: \"10\" }\n  ];\n\n  for (const circle of circles) {\n    svg.append(\"circle\")\n      .attr(\"cx\", centerX)\n      .attr(\"cy\", centerY)\n      .attr(\"r\", circle.r * scale)\n      .attr(\"fill\", circle.color)\n      .attr(\"stroke\", \"#92400e\")\n      .attr(\"stroke-width\", 1);\n  }\n\n  // Bullseye\n  svg.append(\"circle\")\n    .attr(\"cx\", centerX)\n    .attr(\"cy\", centerY)\n    .attr(\"r\", 8)\n    .attr(\"fill\", \"#dc2626\")\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 2);\n\n  // Draw crosshair at center\n  svg.append(\"line\")\n    .attr(\"x1\", centerX - 15)\n    .attr(\"y1\", centerY)\n    .attr(\"x2\", centerX + 15)\n    .attr(\"y2\", centerY)\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 1);\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX)\n    .attr(\"y1\", centerY - 15)\n    .attr(\"x2\", centerX)\n    .attr(\"y2\", centerY + 15)\n    .attr(\"stroke\", \"#7f1d1d\")\n    .attr(\"stroke-width\", 1);\n\n  // Draw mean position (cluster center)\n  svg.append(\"circle\")\n    .attr(\"cx\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"cy\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"r\", 6)\n    .attr(\"fill\", \"none\")\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2)\n    .attr(\"stroke-dasharray\", \"4,2\");\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX + (stats.meanX - 50) * scale - 8)\n    .attr(\"y1\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"x2\", centerX + (stats.meanX - 50) * scale + 8)\n    .attr(\"y2\", centerY + (stats.meanY - 50) * scale)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  svg.append(\"line\")\n    .attr(\"x1\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"y1\", centerY + (stats.meanY - 50) * scale - 8)\n    .attr(\"x2\", centerX + (stats.meanX - 50) * scale)\n    .attr(\"y2\", centerY + (stats.meanY - 50) * scale + 8)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  // Draw shots\n  for (const shot of shots) {\n    svg.append(\"circle\")\n      .attr(\"cx\", centerX + (shot.x - 50) * scale)\n      .attr(\"cy\", centerY + (shot.y - 50) * scale)\n      .attr(\"r\", 5)\n      .attr(\"fill\", \"#1f2937\")\n      .attr(\"stroke\", \"#fff\")\n      .attr(\"stroke-width\", 1.5)\n      .attr(\"opacity\", 0.8);\n  }\n\n  // Legend\n  const legend = svg.append(\"g\")\n    .attr(\"transform\", \"translate(20, 20)\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 0)\n    .attr(\"r\", 5)\n    .attr(\"fill\", \"#dc2626\");\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 5)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Mål (target)\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 25)\n    .attr(\"r\", 5)\n    .attr(\"fill\", \"#1f2937\")\n    .attr(\"stroke\", \"#fff\")\n    .attr(\"stroke-width\", 1.5);\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 30)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Skott\");\n\n  legend.append(\"circle\")\n    .attr(\"cx\", 0)\n    .attr(\"cy\", 50)\n    .attr(\"r\", 6)\n    .attr(\"fill\", \"none\")\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2)\n    .attr(\"stroke-dasharray\", \"4,2\");\n\n  legend.append(\"line\")\n    .attr(\"x1\", -8)\n    .attr(\"y1\", 50)\n    .attr(\"x2\", 8)\n    .attr(\"y2\", 50)\n    .attr(\"stroke\", \"#2563eb\")\n    .attr(\"stroke-width\", 2);\n\n  legend.append(\"text\")\n    .attr(\"x\", 15)\n    .attr(\"y\", 55)\n    .attr(\"font-size\", \"14px\")\n    .text(\"Klustrets centrum\");\n\n  return svg.node();\n}"
+  },
+  {
+    "objectID": "dashboards/accuracy-precision-viz.html#statistik",
+    "href": "dashboards/accuracy-precision-viz.html#statistik",
+    "title": "Noggrannhet vs Precision",
+    "section": "Statistik",
+    "text": "Statistik\n\nmd`\n| Mått | Värde |\n|------|-------|\n| Antal skott | ${numShots} |\n| Medelavstånd från mål | ${stats.avgDistance.toFixed(2)} enheter |\n| Klustrets centrum från mål | ${stats.meanDistanceFromTarget.toFixed(2)} enheter |\n| Spridning (std.avvikelse) | ${stats.stdDev.toFixed(2)} enheter |\n`"
+  },
+  {
+    "objectID": "dashboards/accuracy-precision-viz.html#tolkning",
+    "href": "dashboards/accuracy-precision-viz.html#tolkning",
+    "title": "Noggrannhet vs Precision",
+    "section": "Tolkning",
+    "text": "Tolkning\n\ninterpretation = {\n  const highAcc = accuracyLevel &gt; 0.6;\n  const lowAcc = accuracyLevel &lt; 0.4;\n  const highPrec = precisionLevel &gt; 0.6;\n  const lowPrec = precisionLevel &lt; 0.4;\n\n  if (highAcc && highPrec) {\n    return \"**Hög noggrannhet, hög precision**: Idealfallet! Skotten träffar tätt samlade nära målets centrum. Detta representerar både korrekta och konsekventa mätningar.\";\n  } else if (lowAcc && highPrec) {\n    return \"**Låg noggrannhet, hög precision**: Skotten är tätt samlade, men långt från målet. Mätningarna är konsekventa men systematiskt felaktiga (bias/systematiskt fel).\";\n  } else if (highAcc && lowPrec) {\n    return \"**Hög noggrannhet, låg precision**: Skotten spridda runt målets centrum. Mätningarna är i genomsnitt korrekta men inkonsistenta (slumpmässigt fel).\";\n  } else if (lowAcc && lowPrec) {\n    return \"**Låg noggrannhet, låg precision**: Värsta fallet! Skotten spridda långt från målet. Både systematiska och slumpmässiga fel.\";\n  } else {\n    return \"**Måttlig noggrannhet och precision**: Mätningarna har både viss bias och viss spridning.\";\n  }\n}\n\nmd`${interpretation}`"
+  },
+  {
+    "objectID": "dashboards/accuracy-precision-viz.html#förklaring",
+    "href": "dashboards/accuracy-precision-viz.html#förklaring",
+    "title": "Noggrannhet vs Precision",
+    "section": "Förklaring",
+    "text": "Förklaring\n\nRöd prick: Målets centrum (det sanna värdet)\nSvarta prickar: Individuella skott/mätningar\nBlått kors: Klustrets centrum (medelvärdet av mätningarna)\n\n\nKoppling till mätningar\n\nNoggrannhet (Accuracy) ↔︎ Hur nära klustrets centrum är målet\n\nPåverkas av systematiska fel (bias, felkalibrering)\n\nPrecision ↔︎ Hur tätt skotten ligger samlade\n\nPåverkas av slumpmässiga fel (variabilitet, mätinstrumentets upplösning)\n\n\n\n\nPraktiska exempel\nTermometer med systematiskt fel: - Hög precision: Visar samma värde vid upprepade mätningar - Låg noggrannhet: Men alltid 2°C för högt (kalibreringsproblem)\nVåg med dålig upplösning: - Hög noggrannhet: Visar rätt värde i genomsnitt - Låg precision: Men varierar ±0.5 kg mellan mätningar"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html",
+    "href": "dashboards/data-cleaning-viz.html",
+    "title": "Databehandling och rensning",
+    "section": "",
+    "text": "Denna interaktiva visualisering visar hur outliers och datatransformationer påverkar statistiska mått.\n\nviewof includeOutlier = Inputs.toggle({\n  label: \"Inkludera outlier (extremvärde)\",\n  value: true\n})\n\nviewof transformation = Inputs.select(\n  [\"Ingen\", \"Logaritm (log₁₀)\", \"Kvadratrot\", \"Z-score standardisering\"],\n  {\n    label: \"Välj transformation:\",\n    value: \"Ingen\"\n  }\n)\n\nviewof outlierValue = Inputs.range([100, 500], {\n  label: \"Outlier-värde:\",\n  step: 10,\n  value: 200\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbaseData = [\n  15, 18, 20, 22, 24, 25, 26, 28, 30, 32,\n  34, 35, 38, 40, 42, 45, 48, 50, 52, 55\n]\n\n// Add outlier if selected\nrawData = includeOutlier ? [...baseData, outlierValue] : baseData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntransformedData = {\n  if (transformation === \"Ingen\") {\n    return rawData;\n  } else if (transformation === \"Logaritm (log₁₀)\") {\n    return rawData.map(x =&gt; Math.log10(x));\n  } else if (transformation === \"Kvadratrot\") {\n    return rawData.map(x =&gt; Math.sqrt(x));\n  } else if (transformation === \"Z-score standardisering\") {\n    const mean = d3.mean(rawData);\n    const std = d3.deviation(rawData);\n    return rawData.map(x =&gt; (x - mean) / std);\n  }\n}\n\ndisplayData = transformedData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Calculate statistics\nstats = {\n  const data = displayData;\n  const sorted = [...data].sort((a, b) =&gt; a - b);\n  const n = data.length;\n\n  const mean = d3.mean(data);\n  const median = d3.median(data);\n  const stdDev = d3.deviation(data);\n  const min = d3.min(data);\n  const max = d3.max(data);\n\n  // Quartiles\n  const q1 = d3.quantile(sorted, 0.25);\n  const q3 = d3.quantile(sorted, 0.75);\n  const iqr = q3 - q1;\n\n  // Outlier bounds (IQR method)\n  const lowerBound = q1 - 1.5 * iqr;\n  const upperBound = q3 + 1.5 * iqr;\n\n  // Count outliers\n  const outliers = data.filter(x =&gt; x &lt; lowerBound || x &gt; upperBound);\n\n  return {\n    mean, median, stdDev, min, max,\n    q1, q3, iqr,\n    lowerBound, upperBound,\n    outliers: outliers.length,\n    n\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#utforska-outliers-och-transformationer",
+    "href": "dashboards/data-cleaning-viz.html#utforska-outliers-och-transformationer",
+    "title": "Databehandling och rensning",
+    "section": "",
+    "text": "Denna interaktiva visualisering visar hur outliers och datatransformationer påverkar statistiska mått.\n\nviewof includeOutlier = Inputs.toggle({\n  label: \"Inkludera outlier (extremvärde)\",\n  value: true\n})\n\nviewof transformation = Inputs.select(\n  [\"Ingen\", \"Logaritm (log₁₀)\", \"Kvadratrot\", \"Z-score standardisering\"],\n  {\n    label: \"Välj transformation:\",\n    value: \"Ingen\"\n  }\n)\n\nviewof outlierValue = Inputs.range([100, 500], {\n  label: \"Outlier-värde:\",\n  step: 10,\n  value: 200\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbaseData = [\n  15, 18, 20, 22, 24, 25, 26, 28, 30, 32,\n  34, 35, 38, 40, 42, 45, 48, 50, 52, 55\n]\n\n// Add outlier if selected\nrawData = includeOutlier ? [...baseData, outlierValue] : baseData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntransformedData = {\n  if (transformation === \"Ingen\") {\n    return rawData;\n  } else if (transformation === \"Logaritm (log₁₀)\") {\n    return rawData.map(x =&gt; Math.log10(x));\n  } else if (transformation === \"Kvadratrot\") {\n    return rawData.map(x =&gt; Math.sqrt(x));\n  } else if (transformation === \"Z-score standardisering\") {\n    const mean = d3.mean(rawData);\n    const std = d3.deviation(rawData);\n    return rawData.map(x =&gt; (x - mean) / std);\n  }\n}\n\ndisplayData = transformedData\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Calculate statistics\nstats = {\n  const data = displayData;\n  const sorted = [...data].sort((a, b) =&gt; a - b);\n  const n = data.length;\n\n  const mean = d3.mean(data);\n  const median = d3.median(data);\n  const stdDev = d3.deviation(data);\n  const min = d3.min(data);\n  const max = d3.max(data);\n\n  // Quartiles\n  const q1 = d3.quantile(sorted, 0.25);\n  const q3 = d3.quantile(sorted, 0.75);\n  const iqr = q3 - q1;\n\n  // Outlier bounds (IQR method)\n  const lowerBound = q1 - 1.5 * iqr;\n  const upperBound = q3 + 1.5 * iqr;\n\n  // Count outliers\n  const outliers = data.filter(x =&gt; x &lt; lowerBound || x &gt; upperBound);\n\n  return {\n    mean, median, stdDev, min, max,\n    q1, q3, iqr,\n    lowerBound, upperBound,\n    outliers: outliers.length,\n    n\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#visualiseringar",
+    "href": "dashboards/data-cleaning-viz.html#visualiseringar",
+    "title": "Databehandling och rensning",
+    "section": "Visualiseringar",
+    "text": "Visualiseringar\n\n// Histogram\nPlot.plot({\n  width: 700,\n  height: 400,\n  marginLeft: 60,\n  x: {\n    label: transformation === \"Ingen\" ? \"Värde\" : `Värde (${transformation})`\n  },\n  y: {\n    label: \"Frekvens\"\n  },\n  marks: [\n    Plot.rectY(displayData, Plot.binX({y: \"count\"}, {x: d =&gt; d, fill: \"steelblue\"})),\n    Plot.ruleX([stats.mean], {stroke: \"red\", strokeWidth: 2}),\n    Plot.ruleX([stats.median], {stroke: \"green\", strokeWidth: 2, strokeDasharray: \"4,2\"})\n  ]\n})\n\n\n\n\n\n\nFörklaring: - Röd linje: Medelvärde - Grön streckad linje: Median\n\n// Boxplot\nPlot.plot({\n  width: 700,\n  height: 200,\n  marginLeft: 60,\n  x: {\n    label: transformation === \"Ingen\" ? \"Värde\" : `Värde (${transformation})`\n  },\n  marks: [\n    Plot.boxX(displayData, {x: d =&gt; d, fill: \"lightblue\", stroke: \"steelblue\"}),\n    // Mark outliers according to IQR rule\n    Plot.dot(\n      displayData.filter(x =&gt; x &lt; stats.lowerBound || x &gt; stats.upperBound),\n      {x: d =&gt; d, fill: \"red\", r: 5}\n    )\n  ]\n})\n\n\n\n\n\n\nFörklaring: - Box: Visar Q1, median, Q3 - Whiskers: Sträcker sig till min/max inom 1.5×IQR - Röda punkter: Outliers enligt IQR-metoden"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#statistik",
+    "href": "dashboards/data-cleaning-viz.html#statistik",
+    "title": "Databehandling och rensning",
+    "section": "Statistik",
+    "text": "Statistik\n\nmd`\n| Mått | Värde |\n|------|-------|\n| Antal observationer | ${stats.n} |\n| Medelvärde (mean) | ${stats.mean.toFixed(2)} |\n| Median | ${stats.median.toFixed(2)} |\n| Standardavvikelse | ${stats.stdDev.toFixed(2)} |\n| Minimum | ${stats.min.toFixed(2)} |\n| Maximum | ${stats.max.toFixed(2)} |\n| Q1 (25:e percentilen) | ${stats.q1.toFixed(2)} |\n| Q3 (75:e percentilen) | ${stats.q3.toFixed(2)} |\n| IQR (Q3 - Q1) | ${stats.iqr.toFixed(2)} |\n| Antal outliers (IQR-metod) | ${stats.outliers} |\n\n${transformation === \"Ingen\" ? `\n### Skillnad med/utan outlier\n\n${includeOutlier ? `\nMed outlier (${outlierValue}):\n- Medelvärde påverkas kraftigt av extremvärdet\n- Medianen är mer robust och påverkas mindre\n` : `\nUtan outlier:\n- Medelvärde och median ligger närmare varandra\n- Lägre standardavvikelse\n`}\n` : \"\"}\n`"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#jämförelse-rådata-vs-transformerad-data",
+    "href": "dashboards/data-cleaning-viz.html#jämförelse-rådata-vs-transformerad-data",
+    "title": "Databehandling och rensning",
+    "section": "Jämförelse: Rådata vs Transformerad data",
+    "text": "Jämförelse: Rådata vs Transformerad data\n\ncomparison = {\n  const rawStats = {\n    mean: d3.mean(rawData),\n    median: d3.median(rawData),\n    std: d3.deviation(rawData),\n    min: d3.min(rawData),\n    max: d3.max(rawData)\n  };\n\n  return {raw: rawStats, transformed: stats};\n}\n\nmd`\n| Mått | Rådata | ${transformation !== \"Ingen\" ? \"Transformerad\" : \"\"} |\n|------|--------|-------------|\n| Medelvärde | ${comparison.raw.mean.toFixed(2)} | ${transformation !== \"Ingen\" ? stats.mean.toFixed(2) : \"–\"} |\n| Median | ${comparison.raw.median.toFixed(2)} | ${transformation !== \"Ingen\" ? stats.median.toFixed(2) : \"–\"} |\n| Std.avvikelse | ${comparison.raw.std.toFixed(2)} | ${transformation !== \"Ingen\" ? stats.stdDev.toFixed(2) : \"–\"} |\n| Min | ${comparison.raw.min.toFixed(2)} | ${transformation !== \"Ingen\" ? stats.min.toFixed(2) : \"–\"} |\n| Max | ${comparison.raw.max.toFixed(2)} | ${transformation !== \"Ingen\" ? stats.max.toFixed(2) : \"–\"} |\n\n${transformation === \"Logaritm (log₁₀)\" ? `\n### Tolkning av log-transformation\n\nFör att konvertera tillbaka:\n- Om log₁₀(x) = ${stats.mean.toFixed(2)}, då x = 10^${stats.mean.toFixed(2)} ≈ ${Math.pow(10, stats.mean).toFixed(1)}\n\n**Effekt:** Logaritmtransformation komprimerar stora värden mer än små värden, vilket minskar effekten av outliers.\n` : \"\"}\n\n${transformation === \"Kvadratrot\" ? `\n### Tolkning av kvadratrotstransformation\n\nFör att konvertera tillbaka:\n- Om √x = ${stats.mean.toFixed(2)}, då x = (${stats.mean.toFixed(2)})² ≈ ${Math.pow(stats.mean, 2).toFixed(1)}\n\n**Effekt:** Kvadratrotstransformation minskar skevhet i måttlig grad, mindre drastisk än log-transformation.\n` : \"\"}\n\n${transformation === \"Z-score standardisering\" ? `\n### Tolkning av Z-score standardisering\n\n**Resultat:**\n- Medelvärde = ${stats.mean.toFixed(2)} (nära 0)\n- Standardavvikelse = ${stats.stdDev.toFixed(2)} (nära 1)\n\n**Användning:** Jämföra variabler med olika skalor, eller identifiera outliers (|z| &gt; 2 eller 3).\n` : \"\"}\n`"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#identifiera-outliers",
+    "href": "dashboards/data-cleaning-viz.html#identifiera-outliers",
+    "title": "Databehandling och rensning",
+    "section": "Identifiera outliers",
+    "text": "Identifiera outliers\n\nzScores = {\n  const mean = d3.mean(rawData);\n  const std = d3.deviation(rawData);\n  return rawData.map((x, i) =&gt; ({\n    value: x,\n    z: (x - mean) / std,\n    index: i\n  }));\n}\n\noutliersTable = zScores.filter(d =&gt; Math.abs(d.z) &gt; 2)\n\nmd`\n### Z-score metoden\n\nVärden med |Z| &gt; 2 betraktas som möjliga outliers:\n\n${outliersTable.length &gt; 0 ? `\n| Värde | Z-score | Tolkning |\n|-------|---------|----------|\n${outliersTable.map(d =&gt; `| ${d.value.toFixed(1)} | ${d.z.toFixed(2)} | ${Math.abs(d.z) &gt; 3 ? \"Stark outlier\" : \"Möjlig outlier\"} |`).join('\\n')}\n` : \"*Inga outliers identifierade med Z-score metoden*\"}\n\n### IQR-metoden\n\n**Gränser:**\n- Nedre gräns: Q1 - 1.5 × IQR = ${comparison.raw.median !== undefined ? (stats.q1 - 1.5 * stats.iqr).toFixed(2) : \"–\"}\n- Övre gräns: Q3 + 1.5 × IQR = ${comparison.raw.median !== undefined ? (stats.q3 + 1.5 * stats.iqr).toFixed(2) : \"–\"}\n\n**Outliers:** ${stats.outliers} värden ligger utanför dessa gränser\n`"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#praktiska-insikter",
+    "href": "dashboards/data-cleaning-viz.html#praktiska-insikter",
+    "title": "Databehandling och rensning",
+    "section": "Praktiska insikter",
+    "text": "Praktiska insikter\n\nmd`\n### När ska du ta bort outliers?\n\n✅ **Ta bort när:**\n- Uppenbart mätfel (t.ex. ålder = 999)\n- Datainmatningsfel som kan verifieras\n- Värdet inte tillhör målpopulationen\n\n❌ **Behåll när:**\n- Genuina extremvärden som är viktiga för studien\n- Du studerar extremfall eller sällsynta händelser\n- Outliers ger viktig information om variabiliteten\n\n### När ska du transformera data?\n\n✅ **Använd log-transformation för:**\n- Höger-skev data (lång svans åt höger)\n- Data som spänner flera storleksordningar\n- Inkomst, priser, befolkningsstorlek\n\n✅ **Använd kvadratrot för:**\n- Måttligt skev data\n- Räknedata (count data)\n\n✅ **Använd Z-score standardisering för:**\n- Jämföra variabler med olika enheter\n- Identifiera outliers numeriskt\n- Förberedelse för vissa analyser\n\n### Viktig påminnelse\n\n📊 **Rapportera alltid:**\n- Vilka transformationer som använts\n- Antal borttagna outliers\n- Motivering för beslut\n- Effekt på resultat\n`"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#experimentera",
+    "href": "dashboards/data-cleaning-viz.html#experimentera",
+    "title": "Databehandling och rensning",
+    "section": "Experimentera!",
+    "text": "Experimentera!\nProva att: 1. Slå på/av outlier - Se hur det påverkar medelvärde vs median 2. Ändra outlier-värdet - Se när det blir extremt nog att klassas som outlier 3. Applicera log-transformation - Observera hur extremvärden komprimeras 4. Jämför transformationer - Vilken fungerar bäst för denna data?"
+  },
+  {
+    "objectID": "dashboards/data-cleaning-viz.html#läs-mer",
+    "href": "dashboards/data-cleaning-viz.html#läs-mer",
+    "title": "Databehandling och rensning",
+    "section": "Läs mer",
+    "text": "Läs mer\nSe Databehandling och rensning för detaljerad förklaring av outliers, transformationer och best practices."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Om denna webbplats",
+    "section": "",
+    "text": "Denna webbplats har skapats av Mathias Johansson i samarbete med Kristoffer Söderström för kursen ABMM06 - Kvantitativa metoder vid Lunds universitet."
+  },
+  {
+    "objectID": "about.html#skapare",
+    "href": "about.html#skapare",
+    "title": "Om denna webbplats",
+    "section": "",
+    "text": "Denna webbplats har skapats av Mathias Johansson i samarbete med Kristoffer Söderström för kursen ABMM06 - Kvantitativa metoder vid Lunds universitet."
+  },
+  {
+    "objectID": "about.html#verktyg-och-teknologi",
+    "href": "about.html#verktyg-och-teknologi",
+    "title": "Om denna webbplats",
+    "section": "Verktyg och teknologi",
+    "text": "Verktyg och teknologi\nWebbplatsen är byggd med följande verktyg:\n\nQuarto - Publiceringsystem för teknisk och vetenskaplig kommunikation\nRevealJS - Ramverk för interaktiva presentationer\nObservable JavaScript - För interaktiva visualiseringar och dashboards\nClaude - AI-assistent för utveckling och innehållsskapande\nGitHub Pages - Webbhotell"
+  },
+  {
+    "objectID": "about.html#licens",
+    "href": "about.html#licens",
+    "title": "Om denna webbplats",
+    "section": "Licens",
+    "text": "Licens\nInnehållet är licensierat under CC-BY-NC 4.0."
+  },
+  {
+    "objectID": "about.html#källkod",
+    "href": "about.html#källkod",
+    "title": "Om denna webbplats",
+    "section": "Källkod",
+    "text": "Källkod\nKällkoden för denna webbplats finns tillgänglig på GitHub."
+  },
+  {
+    "objectID": "slides/datatyper.html#fyra-datatyper",
+    "href": "slides/datatyper.html#fyra-datatyper",
+    "title": "Datatyper",
+    "section": "Fyra datatyper",
+    "text": "Fyra datatyper\n\nNominal - Kategorier utan ordning\nOrdinal - Kategorier med ordning\nIntervall - Numeriska med godtycklig nollpunkt\nKvot (Ratio) - Numeriska med absolut nollpunkt"
+  },
+  {
+    "objectID": "slides/datatyper.html#nominal",
+    "href": "slides/datatyper.html#nominal",
+    "title": "Datatyper",
+    "section": "Nominal",
+    "text": "Nominal\nKategorier utan inbördes ordning\nExempel: - Bostadsort: Lund, Malmö, Helsingborg - Kön: Man, Kvinna, Annat - Färg: Röd, Blå, Grön\nKan endast räkna frekvenser"
+  },
+  {
+    "objectID": "slides/datatyper.html#ordinal",
+    "href": "slides/datatyper.html#ordinal",
+    "title": "Datatyper",
+    "section": "Ordinal",
+    "text": "Ordinal\nKategorier med meningsfull ordning\nExempel: - Utbildningsnivå: Grundskola &lt; Gymnasium &lt; Universitet - Nöjdhet: Missnöjd &lt; Neutral &lt; Nöjd - Likert-skala: 1-5\nOrdningen har betydelse, men avstånden är inte jämna"
+  },
+  {
+    "objectID": "slides/datatyper.html#intervall",
+    "href": "slides/datatyper.html#intervall",
+    "title": "Datatyper",
+    "section": "Intervall",
+    "text": "Intervall\nNumeriska data med jämna intervall men godtycklig nollpunkt\nExempel: - Temperatur (Celsius): 0°C är inte “ingen temperatur” - År: År 0 är godtyckligt valt - IQ-poäng\nKan beräkna medelvärde och standardavvikelse"
+  },
+  {
+    "objectID": "slides/datatyper.html#kvot-ratio",
+    "href": "slides/datatyper.html#kvot-ratio",
+    "title": "Datatyper",
+    "section": "Kvot (Ratio)",
+    "text": "Kvot (Ratio)\nNumeriska data med absolut nollpunkt\nExempel: - Ålder: 0 år = ingen ålder - Inkomst: 0 kr = ingen inkomst - Längd, vikt, tid\nKan beräkna alla statistiska mått inkl. kvoter"
+  },
+  {
+    "objectID": "slides/datatyper.html#sammanfattning",
+    "href": "slides/datatyper.html#sammanfattning",
+    "title": "Datatyper",
+    "section": "Sammanfattning",
+    "text": "Sammanfattning\n\n\n\nDatatyp\nExempel\nTillåtna operationer\n\n\n\n\nNominal\nBostadsort\nFrekvens, typvärde\n\n\nOrdinal\nNöjdhet\n+ Median, percentiler\n\n\nIntervall\nTemperatur\n+ Medelvärde, std\n\n\nKvot\nÅlder\n+ Kvoter, alla operationer"
+  },
+  {
+    "objectID": "slides/datatyper.html#referenser",
+    "href": "slides/datatyper.html#referenser",
+    "title": "Datatyper",
+    "section": "Referenser",
+    "text": "Referenser\n\nLevel of measurement\nNominal scale\nOrdinal scale\nInterval scale\nRatio scale"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#vad-är-beskrivande-statistik",
+    "href": "slides/beskrivande-statistik.html#vad-är-beskrivande-statistik",
+    "title": "Beskrivande statistik",
+    "section": "Vad är beskrivande statistik?",
+    "text": "Vad är beskrivande statistik?\nMetoder för att sammanfatta och beskriva data\n\nCentralmått: Var ligger “mitten”?\nSpridningsmått: Hur mycket varierar data?\nFördelning: Hur ser data ut?"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#centralmått",
+    "href": "slides/beskrivande-statistik.html#centralmått",
+    "title": "Beskrivande statistik",
+    "section": "Centralmått",
+    "text": "Centralmått\nMedelvärde (Mean)\n\\[\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n} = \\frac{x_1 + x_2 + ... + x_n}{n}\\]\nExempel: 2, 4, 4, 5, 10 \\[\\bar{x} = \\frac{2+4+4+5+10}{5} = \\frac{25}{5} = 5\\]"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#median",
+    "href": "slides/beskrivande-statistik.html#median",
+    "title": "Beskrivande statistik",
+    "section": "Median",
+    "text": "Median\nMittvärdet när data är sorterat\nUdda antal: Mittobservationen Jämnt antal: Medelvärdet av de två mittvärdena\nExempel: 2, 4, 4, 5, 10 Median = 4 (tredje värdet)"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#typvärde-mode",
+    "href": "slides/beskrivande-statistik.html#typvärde-mode",
+    "title": "Beskrivande statistik",
+    "section": "Typvärde (Mode)",
+    "text": "Typvärde (Mode)\nDet värde som förekommer oftast\nExempel: 2, 4, 4, 5, 10 Typvärde = 4 (förekommer 2 gånger)\nKan ha flera typvärden (multimodal fördelning)"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#när-använda-vilket-centralmått",
+    "href": "slides/beskrivande-statistik.html#när-använda-vilket-centralmått",
+    "title": "Beskrivande statistik",
+    "section": "När använda vilket centralmått?",
+    "text": "När använda vilket centralmått?\n\n\n\nDatatyp\nRekommenderat mått\n\n\n\n\nNominal\nTypvärde\n\n\nOrdinal\nMedian\n\n\nIntervall/Kvot\nMedelvärde*\n\n\n\n*Om fördelningen är symmetrisk och utan extremvärden"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#medelvärde-vs-median",
+    "href": "slides/beskrivande-statistik.html#medelvärde-vs-median",
+    "title": "Beskrivande statistik",
+    "section": "Medelvärde vs Median",
+    "text": "Medelvärde vs Median\nSkev fördelning eller extremvärden? → Använd median\nExempel: Inkomster - 5 personer: 25k, 28k, 30k, 32k, 200k - Medelvärde: 63k - Median: 30k\nMedianen ger en mer “typisk” bild!"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#spridningsmått",
+    "href": "slides/beskrivande-statistik.html#spridningsmått",
+    "title": "Beskrivande statistik",
+    "section": "Spridningsmått",
+    "text": "Spridningsmått\nVariationsbredd (Range)\n\\[\\text{Range} = x_{max} - x_{min}\\]\nExempel: 2, 4, 4, 5, 10 Range = 10 - 2 = 8\nKänslig för extremvärden"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#varians-variance",
+    "href": "slides/beskrivande-statistik.html#varians-variance",
+    "title": "Beskrivande statistik",
+    "section": "Varians (Variance)",
+    "text": "Varians (Variance)\nGenomsnittlig kvadrerad avvikelse från medelvärdet\n\\[s^2 = \\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n-1}\\]\nExempel: 2, 4, 4, 5, 10 (medel = 5) \\[s^2 = \\frac{(2-5)^2 + (4-5)^2 + (4-5)^2 + (5-5)^2 + (10-5)^2}{4}\\] \\[s^2 = \\frac{9 + 1 + 1 + 0 + 25}{4} = 9\\]"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#standardavvikelse-standard-deviation",
+    "href": "slides/beskrivande-statistik.html#standardavvikelse-standard-deviation",
+    "title": "Beskrivande statistik",
+    "section": "Standardavvikelse (Standard deviation)",
+    "text": "Standardavvikelse (Standard deviation)\nRoten ur variansen - samma enhet som data\n\\[s = \\sqrt{s^2}\\]\nExempel: \\(s = \\sqrt{9} = 3\\)\nTumregel: Ca 68% av data ligger inom ±1 std från medelvärdet"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#kvartiler-quartiles",
+    "href": "slides/beskrivande-statistik.html#kvartiler-quartiles",
+    "title": "Beskrivande statistik",
+    "section": "Kvartiler (Quartiles)",
+    "text": "Kvartiler (Quartiles)\nDelar data i fyra lika delar\n\nQ1 (25:e percentilen): 25% under\nQ2 (median): 50% under\nQ3 (75:e percentilen): 75% under\n\nInterkvartilt intervall (IQR): Q3 - Q1"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#percentiler-och-kvantiler",
+    "href": "slides/beskrivande-statistik.html#percentiler-och-kvantiler",
+    "title": "Beskrivande statistik",
+    "section": "Percentiler och kvantiler",
+    "text": "Percentiler och kvantiler\nPercentil: Värdet under vilket en viss procent av data ligger\n\n10:e percentilen: 10% under\n90:e percentilen: 90% under\n\nKvantil: Generellt begrepp - Kvartiler = 4 delar - Deciler = 10 delar - Percentiler = 100 delar"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#beräkna-kvartiler",
+    "href": "slides/beskrivande-statistik.html#beräkna-kvartiler",
+    "title": "Beskrivande statistik",
+    "section": "Beräkna kvartiler",
+    "text": "Beräkna kvartiler\nData: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\n\nQ1 = 4 (25%)\nQ2 = 7 (50%, median)\nQ3 = 10 (75%)\nIQR = 10 - 4 = 6"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#boxplot-lådagram",
+    "href": "slides/beskrivande-statistik.html#boxplot-lådagram",
+    "title": "Beskrivande statistik",
+    "section": "Boxplot (lådagram)",
+    "text": "Boxplot (lådagram)\nVisuell sammanfattning av fördelningen\n       Q1   Q2   Q3\n        │    │    │\n    ┌───┼────┼────┼───┐\n────┤   │    │    │   ├────\n    └───┼────┼────┼───┘\n        │    │    │\n       Min       Max\n        └─IQR─┘"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#skevhet-skewness",
+    "href": "slides/beskrivande-statistik.html#skevhet-skewness",
+    "title": "Beskrivande statistik",
+    "section": "Skevhet (Skewness)",
+    "text": "Skevhet (Skewness)\nMått på fördelningens asymmetri\n\nPositivt skev: Svans åt höger (medel &gt; median)\nNegativt skev: Svans åt vänster (medel &lt; median)\nSymmetrisk: Medel ≈ Median"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#sammanfattning---fem-siffror",
+    "href": "slides/beskrivande-statistik.html#sammanfattning---fem-siffror",
+    "title": "Beskrivande statistik",
+    "section": "Sammanfattning - fem siffror",
+    "text": "Sammanfattning - fem siffror\nFive-number summary:\n\nMinimum\nQ1\nMedian (Q2)\nQ3\nMaximum\n\nGer en snabb överblick av datafördelningen!"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#praktisk-tillämpning",
+    "href": "slides/beskrivande-statistik.html#praktisk-tillämpning",
+    "title": "Beskrivande statistik",
+    "section": "Praktisk tillämpning",
+    "text": "Praktisk tillämpning\nNär du presenterar enkätresultat:\n\nAnge alltid n (antal svar)\nVälj rätt centralmått för datatypen\nVisa spridning (std eller IQR)\nVisualisera med lämpligt diagram"
+  },
+  {
+    "objectID": "slides/beskrivande-statistik.html#referenser",
+    "href": "slides/beskrivande-statistik.html#referenser",
+    "title": "Beskrivande statistik",
+    "section": "Referenser",
+    "text": "Referenser\n\nDescriptive statistics\nMean\nMedian\nMode (statistics)\nStandard deviation\nVariance\nQuartile\nBox plot\nSkewness"
+  },
+  {
+    "objectID": "slides/enkat.html#grundläggande-om-enkäter",
+    "href": "slides/enkat.html#grundläggande-om-enkäter",
+    "title": "Enkäter",
+    "section": "Grundläggande om enkäter",
+    "text": "Grundläggande om enkäter\nEn lista med frågor för att samla specifik data från en grupp människor (urval!)"
+  },
+  {
+    "objectID": "slides/enkat.html#designprinciper",
+    "href": "slides/enkat.html#designprinciper",
+    "title": "Enkäter",
+    "section": "Designprinciper",
+    "text": "Designprinciper\n\nKorta och tydliga frågor &gt; öppna frågor\nTydliga frågor och svar, mindre gissning är bättre\nAnpassat till målgrupp\nTänk på längden - både för respondenter och för din egen analys"
+  },
+  {
+    "objectID": "slides/enkat.html#öppna-vs-slutna-frågor",
+    "href": "slides/enkat.html#öppna-vs-slutna-frågor",
+    "title": "Enkäter",
+    "section": "Öppna vs slutna frågor",
+    "text": "Öppna vs slutna frågor\n\nÖppna frågor (fritextsvar):\n\nPotentiellt oändliga kategorier\nExempel: “Vad skulle du vilja förbättra?” ___\n\nSlutna frågor:\n\nHanterar stora mängder respondenter\nKräver mer omsorg vid design\nExempel: “Hur nöjd är du?” ○ Mycket ○ Lite ○ Inte alls"
+  },
+  {
+    "objectID": "slides/enkat.html#dikotoma-frågor-binary",
+    "href": "slides/enkat.html#dikotoma-frågor-binary",
+    "title": "Enkäter",
+    "section": "Dikotoma frågor (Binary)",
+    "text": "Dikotoma frågor (Binary)\nEndast två alternativ:\nHar du barn?\n○ Ja ○ Nej"
+  },
+  {
+    "objectID": "slides/enkat.html#svarslistor-multiple-choice",
+    "href": "slides/enkat.html#svarslistor-multiple-choice",
+    "title": "Enkäter",
+    "section": "Svarslistor (Multiple choice)",
+    "text": "Svarslistor (Multiple choice)\nVal från en lista:\nVar bor du?\n○ Lund ○ Malmö ○ Helsingborg ○ Annat: ___"
+  },
+  {
+    "objectID": "slides/enkat.html#graderade-svar-scales",
+    "href": "slides/enkat.html#graderade-svar-scales",
+    "title": "Enkäter",
+    "section": "Graderade svar (Scales)",
+    "text": "Graderade svar (Scales)\nHur bra är du på att hitta böcker i LUBsearch?\n○ Bra ○ Okej ○ Inte bra\nHur många alternativ bör man ha?"
+  },
+  {
+    "objectID": "slides/enkat.html#likert-skalor",
+    "href": "slides/enkat.html#likert-skalor",
+    "title": "Enkäter",
+    "section": "Likert-skalor",
+    "text": "Likert-skalor\nEn specifik typ av graderad skala som mäter attityder eller åsikter:\nJag tycker att biblioteket har tillräckligt med öppettider\n○ Instämmer helt\n○ Instämmer delvis\n○ Varken eller\n○ Instämmer inte\n○ Instämmer inte alls\nVanligt med 5 eller 7 alternativ"
+  },
+  {
+    "objectID": "slides/enkat.html#likert-skalor-ordinal-data",
+    "href": "slides/enkat.html#likert-skalor-ordinal-data",
+    "title": "Enkäter",
+    "section": "Likert-skalor: Ordinal data",
+    "text": "Likert-skalor: Ordinal data\n\nSvaren har en ordning (från negativ till positiv)\nAvstånden mellan svaren är inte nödvändigtvis lika\nKan summeras till ett sammanlagt “attitydvärde”\nOfta används för:\n\nNöjdhetsmätningar\nAttitydundersökningar\nUtvärderingar"
+  },
+  {
+    "objectID": "slides/enkat.html#neutrala-alternativ",
+    "href": "slides/enkat.html#neutrala-alternativ",
+    "title": "Enkäter",
+    "section": "Neutrala alternativ",
+    "text": "Neutrala alternativ\nMed neutralt alternativ:\nVar innehållet relevant?\n○ Ja ○ Nej ○ Vet ej\nUtan neutralt (tvingar val):\nHur lätt är det att navigera?\n○ Tydligt\n○ Går att förstå\n○ Otydligt"
+  },
+  {
+    "objectID": "slides/enkat.html#självskattningar",
+    "href": "slides/enkat.html#självskattningar",
+    "title": "Enkäter",
+    "section": "Självskattningar",
+    "text": "Självskattningar\nHur bra är du på bowling?\n○ Utmärkt\n○ Bra\n○ Kan bli bättre\n○ Dålig"
+  },
+  {
+    "objectID": "slides/enkat.html#skiljefrågor-arbitration",
+    "href": "slides/enkat.html#skiljefrågor-arbitration",
+    "title": "Enkäter",
+    "section": "Skiljefrågor (Arbitration)",
+    "text": "Skiljefrågor (Arbitration)\nSorterar respondenter i grupper:\nHar du använt X (Twitter) de senaste 6 månaderna?\n○ Ja, minst 5 gånger → fråga 13-20\n○ Ja, men bara en gång → uppföljning 11\n○ Nej → uppföljning 12"
+  },
+  {
+    "objectID": "slides/enkat.html#avslutande-fritextfrågor",
+    "href": "slides/enkat.html#avslutande-fritextfrågor",
+    "title": "Enkäter",
+    "section": "Avslutande fritextfrågor",
+    "text": "Avslutande fritextfrågor\nOfta i slutet av enkäten:\nFinns det något du saknar eller vill förbättra?\nA: ___________\nGer kontext till de slutna frågorna."
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#vad-är-digitala-metoder",
+    "href": "slides/digitala-metoder.html#vad-är-digitala-metoder",
+    "title": "Digitala metoder",
+    "section": "Vad är digitala metoder?",
+    "text": "Vad är digitala metoder?\nEtt metodologiskt perspektiv som anpassar sig till webbens egenskaper och möjligheter\n\nForskning om det “nativt digitala”\nForskning med och genom webben\nWebbbaserade verktyg och metoder"
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#definition",
+    "href": "slides/digitala-metoder.html#definition",
+    "title": "Digitala metoder",
+    "section": "Definition",
+    "text": "Definition\n\nEn metodologisk ansats för akademisk forskning på webben som prioriterar användningen av webbens inneboende verktyg, tekniker och data för social och kulturell forskning."
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#webbens-analysenheter",
+    "href": "slides/digitala-metoder.html#webbens-analysenheter",
+    "title": "Digitala metoder",
+    "section": "Webbens analysenheter",
+    "text": "Webbens analysenheter\n\nMikro:\n\nHyperlänkar\nHashtags #\nOmnämnanden @\n\nMakro:\n\nSökmotorer\nSociala medieplattformar"
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#exempel-google-sökresultat",
+    "href": "slides/digitala-metoder.html#exempel-google-sökresultat",
+    "title": "Digitala metoder",
+    "section": "Exempel: Google-sökresultat",
+    "text": "Exempel: Google-sökresultat\nSökresultat i t.ex. Google:\n\nTillhandahåller information\nÄr rankade (analyserbara)\nBär social betydelse\nKan visa författarskap av organisationer och/eller samhälleliga villkor"
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#fallstudie-covid-och-gråzonsmediciner",
+    "href": "slides/digitala-metoder.html#fallstudie-covid-och-gråzonsmediciner",
+    "title": "Digitala metoder",
+    "section": "Fallstudie: COVID och gråzonsmediciner",
+    "text": "Fallstudie: COVID och gråzonsmediciner\n\nBakgrund:\n\nCOVID-pandemin och “icke-officiella” mediciner\nGoogle-sök och ansvar, kontroll, relevans\n\nFrågor:\n\nHur kuraterar man Google resultat?\nHur kontrolleras tillgång till information om tveksamma medicinska produkter?"
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#metod",
+    "href": "slides/digitala-metoder.html#metod",
+    "title": "Digitala metoder",
+    "section": "Metod",
+    "text": "Metod\n\nTeori: Informationsinfrastruktur (Star & Ruhleder)\nVerktyg: Google Trends, webbskrapning\nAnalys: Nätverksanalys (visuell)"
+  },
+  {
+    "objectID": "slides/digitala-metoder.html#resultat",
+    "href": "slides/digitala-metoder.html#resultat",
+    "title": "Digitala metoder",
+    "section": "Resultat",
+    "text": "Resultat\n\nVissa söktermer kringgår moderering\n“köpa” → gråzonens apotek i sökresultat\nIllvillig omdirigering för att styra trafik\n\nSundin, Andersson, Söderström (2023)\n@article{sundin2023controlling,\n  title = {Controlling the Machinery of Knowledge: {{Google}} and Access to {{COVID-19}} Grey-Zone Medicines},\n  shorttitle = {Controlling the Machinery of Knowledge},\n  author = {Sundin, Olof and Andersson, Cecilia and S{\\\"o}derstr{\\\"o}m, Kristofer},\n  year = 2023,\n  journal = {Medicine Across Borders: Exploration of Grey Zones},\n  pages = {35},\n  urldate = {2025-12-02},\n}"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "",
+    "text": "Denna webbplats innehåller material för föreläsningar om kvantitativa metoder, med fokus på enkäter och digitala metoder för kursen ABM006."
+  },
+  {
+    "objectID": "index.html#välkommen",
+    "href": "index.html#välkommen",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "",
+    "text": "Denna webbplats innehåller material för föreläsningar om kvantitativa metoder, med fokus på enkäter och digitala metoder för kursen ABM006."
+  },
+  {
+    "objectID": "index.html#innehåll",
+    "href": "index.html#innehåll",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Innehåll",
+    "text": "Innehåll\n\nPresentationer\n\nKvantitativa metoder - Översikt och jämförelse med kvalitativa metoder\nUrval och representativitet - Olika urvalsmetoder (sampling)\nDatatyper - Nominal, ordinal, intervall och kvot (ratio)\nSlump och sannolikhet - Sannolikhetsteori och statistiska grunder\nBeskrivande statistik - Medelvärde, standardavvikelse, median, kvartiler\nDigitala metoder - Webbforskning och exempel\nEnkäter - Grundläggande om enkätdesign\n\n\n\nFördjupning\n\nFrågetyper - Detaljerad genomgång av olika frågetyper\nPresentera resultat - Visualisering och statistik\nInferentiell statistik - Z-värden, p-värden och felmarginaler\nDatabehandling och rensning - Outliers, transformationer och datakvalitet\n\n\n\nInteraktiva verktyg\n\nDatatyper - Utforska datatyper och beskrivande statistik\nSannolikhet - Myntkast, tärningar, normalfördelning och konfidensintervall\nStatistikkalkylator - Beräkna statistik på egen data med histogram och boxplot\nRegression - Klicka för att skapa punkter och visualisera regressionslinjen med residualer\nNoggrannhet vs Precision - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi\nUrvalsstorlekskalkylator - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal\nDatabehandling - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)\nMonty Hall - Klassisk sannolikhetsparadox med interaktivt spel"
+  },
+  {
+    "objectID": "index.html#matematiska-symboler",
+    "href": "index.html#matematiska-symboler",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Matematiska symboler",
+    "text": "Matematiska symboler\n\n\n\nSymbol\nBetydelse\nExempel\n\n\n\n\n\\(\\bar{x}\\)\nMedelvärde (mean)\n\\(\\bar{x} = 5.2\\)\n\n\n\\(\\mu\\)\nPopulationsmedelvärde\n\\(\\mu = 100\\)\n\n\n\\(\\sigma\\)\nStandardavvikelse (population)\n\\(\\sigma = 15\\)\n\n\n\\(s\\)\nStandardavvikelse (urval)\n\\(s = 12.3\\)\n\n\n\\(\\sigma^2\\)\nVarians (population)\n\\(\\sigma^2 = 225\\)\n\n\n\\(s^2\\)\nVarians (urval)\n\\(s^2 = 151.3\\)\n\n\n\\(n\\)\nAntal observationer\n\\(n = 50\\)\n\n\n\\(\\sum\\)\nSumma\n\\(\\sum x_i\\)\n\n\n\\(r\\)\nKorrelationskoefficient\n\\(r = 0.85\\)\n\n\n\\(R^2\\)\nDeterminationskoefficient\n\\(R^2 = 0.72\\)\n\n\n\\(\\hat{y}\\)\nFörutsagt värde\n\\(\\hat{y} = 3.2\\)\n\n\n\\(\\%\\)\nProcent\n\\(25\\%\\)\n\n\n\\(\\pm\\)\nPlus/minus (felmarginal)\n\\(50 \\pm 3\\)"
+  },
+  {
+    "objectID": "index.html#viktiga-begrepp",
+    "href": "index.html#viktiga-begrepp",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Viktiga begrepp",
+    "text": "Viktiga begrepp\n\n\n\nSvenska\nEngelska\n\n\n\n\nUrval\nSampling\n\n\nSannolikhet\nProbability\n\n\nSlump\nRandom chance\n\n\nMedelvärde\nMean\n\n\nStandardavvikelse\nStandard deviation\n\n\nVarians\nVariance\n\n\nMedian\nMedian\n\n\nKvartiler\nQuartiles\n\n\nKvantiler\nQuantiles\n\n\nNormalfördelning\nNormal distribution\n\n\nKonfidensintervall\nConfidence interval\n\n\nKorrelation\nCorrelation\n\n\nRegression\nRegression\n\n\nResidual\nResidual\n\n\nNoggrannhet\nAccuracy\n\n\nPrecision\nPrecision\n\n\nValiditet\nValidity\n\n\nReliabilitet\nReliability\n\n\nDikotom fråga\nBinary question\n\n\nSvarslista\nMultiple choice\n\n\nGraderade svar\nLikert scale\n\n\nSkiljefråga\nRouting question\n\n\n\n\nNoggrannhet (Accuracy) vs Precision\n\nNoggrannhet (Accuracy): Hur nära ett mätvärde är det verkliga/sanna värdet\n\nExempel: Om den sanna temperaturen är 20°C och du mäter 20.1°C har du hög noggrannhet\n\nPrecision: Hur nära upprepade mätningar ligger varandra (konsistens)\n\nExempel: Om du mäter 19.5°C fem gånger i rad har du hög precision, men kanske låg noggrannhet\n\n\nMålskjutningsanalogi: - Hög precision, låg noggrannhet: Alla skott träffar tätt ihop, men långt från centrum - Hög noggrannhet, låg precision: Skotten spridda runt centrum - Hög precision och noggrannhet: Alla skott träffar tätt ihop i centrum - Låg precision och noggrannhet: Skotten spridda långt från centrum"
+  },
+  {
+    "objectID": "index.html#resurser",
+    "href": "index.html#resurser",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Resurser",
+    "text": "Resurser\n\nHumanities Lab\nLU Humanities Lab är en universitetsövergripande forskningsinfrastruktur som erbjuder LU-forskare fri tillgång till avancerade instrument och metodologisk kompetens för att mäta mänskligt beteende, expertis inom datahantering, samt forskarförberedande utbildning och användarstöd i en tvärvetenskaplig och internationell miljö.\nÖppet även för studenter!\nhumlab.lu.se/education"
+  },
+  {
+    "objectID": "index.html#citera-detta-material",
+    "href": "index.html#citera-detta-material",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Citera detta material",
+    "text": "Citera detta material\nLicens: Detta material är publicerat under CC-BY-NC 4.0 licens.\nHela sidan:\nJohansson, M., & Söderström, K. (2025). ABMM06: Kvantitativa metoder.\nLunds universitet. https://mathjoha.github.io/abmm06\nLicens: CC-BY-NC 4.0\nEnskilda sidor: Använd formatet ovan och lägg till sidans titel och URL. Varje sida innehåller citationsmetadata.\nBibTeX:\n@misc{abmm06,\n  author = {Johansson, Mathias and Söderström, Kristofer},\n  title = {ABMM06: Kvantitativa metoder},\n  year = {2025},\n  publisher = {Lunds universitet},\n  url = {https://mathjoha.github.io/abmm06},\n  note = {Licens: CC-BY-NC 4.0}\n}"
+  },
+  {
+    "objectID": "index.html#ladda-ner-som-pdf",
+    "href": "index.html#ladda-ner-som-pdf",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Ladda ner som PDF",
+    "text": "Ladda ner som PDF\nAlla presentationer och lektioner kan laddas ner som PDF för offline-läsning. För att generera PDFs, se README.md för instruktioner."
+  },
+  {
+    "objectID": "index.html#kontakt",
+    "href": "index.html#kontakt",
+    "title": "ABMM06: Kvantitativa metoder",
+    "section": "Kontakt",
+    "text": "Kontakt\nMathias Johansson Lunds universitet mathias.johansson@kultur.lu.se\nKristofer Söderström Information studies kristofer.soderstrom@kultur.lu.se"
+  },
+  {
+    "objectID": "slides/urval.html#urval-n-från-population-n",
+    "href": "slides/urval.html#urval-n-från-population-n",
+    "title": "Urval och representativitet",
+    "section": "Urval (n) från population (N)",
+    "text": "Urval (n) från population (N)\nOlika urvalsmetoder för att välja deltagare från en population"
+  },
+  {
+    "objectID": "slides/urval.html#urvalsmetoder",
+    "href": "slides/urval.html#urvalsmetoder",
+    "title": "Urval och representativitet",
+    "section": "Urvalsmetoder",
+    "text": "Urvalsmetoder\n\n\n\n\n\n\n\n\n\nMetod\nDefinition\nFördelar\nNackdelar\n\n\n\n\nTotal population (N)\nAlla inkluderade\nKomplett bild\nNästan omöjligt\n\n\nSlumpmässigt urval (n)\nVälj n genom slumpprocess\nSnabbt, enkelt\nTillräckligt med data?, oavsiktlig bias"
+  },
+  {
+    "objectID": "slides/urval.html#urvalsmetoder-forts.",
+    "href": "slides/urval.html#urvalsmetoder-forts.",
+    "title": "Urval och representativitet",
+    "section": "Urvalsmetoder (forts.)",
+    "text": "Urvalsmetoder (forts.)\n\n\n\n\n\n\n\n\n\nMetod\nDefinition\nFördelar\nNackdelar\n\n\n\n\nBekvämlighetsurval (n)\nVälj n personer du känner\nNära till hands, effektivt\nBias, ej generaliserbart\n\n\nSnöbollsurval (n)\nDeltagare rekryterar andra\nLöser brist på deltagande\nBias kan fördjupas"
+  },
+  {
+    "objectID": "slides/urval.html#urvalsmetoder-forts.-1",
+    "href": "slides/urval.html#urvalsmetoder-forts.-1",
+    "title": "Urval och representativitet",
+    "section": "Urvalsmetoder (forts.)",
+    "text": "Urvalsmetoder (forts.)\n\n\n\n\n\n\n\n\n\nMetod\nDefinition\nFördelar\nNackdelar\n\n\n\n\nStratifierat urval (n)\nSlumpmässigt urval av stratifierade undergrupper\nRimliga skattningar av alla undergrupper\nKräver förklassificering"
+  },
+  {
+    "objectID": "slides/urval.html#representativitet",
+    "href": "slides/urval.html#representativitet",
+    "title": "Urval och representativitet",
+    "section": "Representativitet",
+    "text": "Representativitet\n\nSpeglar urvalet populationen?\nVilka grupper är över/underrepresenterade?\nHur påverkar detta resultaten?"
+  },
+  {
+    "objectID": "slides/urval.html#referenser",
+    "href": "slides/urval.html#referenser",
+    "title": "Urval och representativitet",
+    "section": "Referenser",
+    "text": "Referenser\n\nSampling (statistics)\nSimple random sample\nStratified sampling\nCluster sampling\nSystematic sampling\nConvenience sampling\nSample size determination"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#vad-är-sannolikhet",
+    "href": "slides/sannolikhet.html#vad-är-sannolikhet",
+    "title": "Slump och sannolikhet",
+    "section": "Vad är sannolikhet?",
+    "text": "Vad är sannolikhet?\nSannolikhet (probability) mäter hur troligt det är att en händelse inträffar.\n\\[P(A) = \\frac{\\text{antal gynnsamma utfall}}{\\text{antal möjliga utfall}}\\]\nVärde mellan 0 (omöjligt) och 1 (säkert)"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#exempel-tärningskast",
+    "href": "slides/sannolikhet.html#exempel-tärningskast",
+    "title": "Slump och sannolikhet",
+    "section": "Exempel: Tärningskast",
+    "text": "Exempel: Tärningskast\nEtt tärningskast:\n\nP(6) = 1/6 ≈ 0.167 (16.7%)\nP(udda) = 3/6 = 0.5 (50%)\nP(≤4) = 4/6 ≈ 0.667 (66.7%)"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#slump-i-forskning",
+    "href": "slides/sannolikhet.html#slump-i-forskning",
+    "title": "Slump och sannolikhet",
+    "section": "Slump i forskning",
+    "text": "Slump i forskning\nVarför är slumpmässighet viktigt?\n\nUrval: Representativitet kräver slumpmässigt urval\nExperiment: Randomisering minskar bias\nStatistik: Många metoder bygger på sannolikhetsteori"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#stora-talens-lag",
+    "href": "slides/sannolikhet.html#stora-talens-lag",
+    "title": "Slump och sannolikhet",
+    "section": "Stora talens lag",
+    "text": "Stora talens lag\nNär antalet observationer ökar, närmar sig det observerade medelvärdet det förväntade värdet.\nExempel: Ju fler myntkast, desto närmare 50% krona"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#normalfördelningen",
+    "href": "slides/sannolikhet.html#normalfördelningen",
+    "title": "Slump och sannolikhet",
+    "section": "Normalfördelningen",
+    "text": "Normalfördelningen\nDen klassiska “klockkurvan” (Gausskurvan)\n\nMedelvärdet i mitten\nSymmetrisk\n68% inom ±1 standardavvikelse\n95% inom ±2 standardavvikelser\n99.7% inom ±3 standardavvikelser"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#normalfördelningen---visualisering",
+    "href": "slides/sannolikhet.html#normalfördelningen---visualisering",
+    "title": "Slump och sannolikhet",
+    "section": "Normalfördelningen - visualisering",
+    "text": "Normalfördelningen - visualisering\n          ████\n        ████████\n       ██████████\n      ████████████\n     ██████████████\n    ████████████████\n   ██████████████████\n  ████████████████████\n ██████████████████████\n█████████████████████████\n|----|----|μ|----|-----|\n   -2σ   -1σ    +1σ   +2σ"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#centrala-gränsvärdessatsen",
+    "href": "slides/sannolikhet.html#centrala-gränsvärdessatsen",
+    "title": "Slump och sannolikhet",
+    "section": "Centrala gränsvärdessatsen",
+    "text": "Centrala gränsvärdessatsen\nOavsett populationens fördelning blir urvalsmedelvärden normalfördelade när urvalet är tillräckligt stort (n ≥ 30).\nVarför är detta viktigt?\nDet låter oss använda normalfördelningen för att dra slutsatser om populationer."
+  },
+  {
+    "objectID": "slides/sannolikhet.html#konfidensintervall",
+    "href": "slides/sannolikhet.html#konfidensintervall",
+    "title": "Slump och sannolikhet",
+    "section": "Konfidensintervall",
+    "text": "Konfidensintervall\nEtt intervall som med viss sannolikhet innehåller det sanna populationsvärdet.\n95% konfidensintervall: \\[\\bar{x} \\pm 1.96 \\times \\frac{s}{\\sqrt{n}}\\]\n“Vi är 95% säkra på att det sanna värdet ligger i detta intervall”"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#statistisk-signifikans",
+    "href": "slides/sannolikhet.html#statistisk-signifikans",
+    "title": "Slump och sannolikhet",
+    "section": "Statistisk signifikans",
+    "text": "Statistisk signifikans\np-värde: Sannolikheten att få detta resultat (eller mer extremt) om nollhypotesen är sann.\n\np &lt; 0.05: “Statistiskt signifikant”\np &lt; 0.01: “Starkt signifikant”\n\nOBS: Signifikans ≠ praktisk betydelse!"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#vanliga-missförstånd",
+    "href": "slides/sannolikhet.html#vanliga-missförstånd",
+    "title": "Slump och sannolikhet",
+    "section": "Vanliga missförstånd",
+    "text": "Vanliga missförstånd\n\n“Jag har tur/otur” → Slumpen har inget minne\n“Det måste jämna ut sig” → Spelarens felslut (gambler’s fallacy)\n“p = 0.05 betyder 95% chans att vara sann” → Fel tolkning av p-värde"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#samplingfel-vs-systematiska-fel",
+    "href": "slides/sannolikhet.html#samplingfel-vs-systematiska-fel",
+    "title": "Slump och sannolikhet",
+    "section": "Samplingfel vs systematiska fel",
+    "text": "Samplingfel vs systematiska fel\n_ Samplingfel (random error): - Beror på slumpen i urvalet - Minskar med större urval - Kan skattas statistiskt\n\nSystematiska fel (bias):\n\nBeror på metodfel\nMinskar INTE med större urval\nSvårare att upptäcka"
+  },
+  {
+    "objectID": "slides/sannolikhet.html#praktisk-tillämpning",
+    "href": "slides/sannolikhet.html#praktisk-tillämpning",
+    "title": "Slump och sannolikhet",
+    "section": "Praktisk tillämpning",
+    "text": "Praktisk tillämpning\nVid enkätundersökningar:\n\nHur stort urval behöver jag?\nVad är felmarginalen?\nKan jag generalisera resultaten?\n\nDessa frågor kräver förståelse för sannolikhet och slump."
+  },
+  {
+    "objectID": "slides/sannolikhet.html#referenser",
+    "href": "slides/sannolikhet.html#referenser",
+    "title": "Slump och sannolikhet",
+    "section": "Referenser",
+    "text": "Referenser\n\nProbability\nNormal distribution\nCentral limit theorem\nConfidence interval\nLaw of large numbers\nP-value\n68–95–99.7 rule"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#korrelation",
+    "href": "slides/korrelation-och-regression.html#korrelation",
+    "title": "Korrelation och regression",
+    "section": "Korrelation",
+    "text": "Korrelation\n\nMäter styrkan och riktningen på ett linjärt samband mellan två variabler\nKorrelationskoefficienten (r) varierar från -1 till +1\nr = +1: Perfekt positivt samband\nr = 0: Inget linjärt samband\nr = -1: Perfekt negativt samband"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#tolkning-av-korrelation",
+    "href": "slides/korrelation-och-regression.html#tolkning-av-korrelation",
+    "title": "Korrelation och regression",
+    "section": "Tolkning av korrelation",
+    "text": "Tolkning av korrelation\n\n\n\nVärde på r\nTolkning\n\n\n\n\n0.7 – 1.0\nStark positiv\n\n\n0.3 – 0.7\nMåttlig positiv\n\n\n-0.3 – 0.3\nSvag/ingen\n\n\n-0.7 – -0.3\nMåttlig negativ\n\n\n-1.0 – -0.7\nStark negativ"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#beräkna-korrelation-pearson",
+    "href": "slides/korrelation-och-regression.html#beräkna-korrelation-pearson",
+    "title": "Korrelation och regression",
+    "section": "Beräkna korrelation (Pearson)",
+    "text": "Beräkna korrelation (Pearson)\n\\[r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\cdot \\sum (y_i - \\bar{y})^2}}\\]\n\n\\(\\bar{x}\\) och \\(\\bar{y}\\) är medelvärden\nMäter hur väl punkterna följer en rät linje"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#enkel-linjär-regression",
+    "href": "slides/korrelation-och-regression.html#enkel-linjär-regression",
+    "title": "Korrelation och regression",
+    "section": "Enkel linjär regression",
+    "text": "Enkel linjär regression\nFörutsäger värdet på Y baserat på X:\n\\[\\hat{y} = a + bx\\]\n\na = intercept (skärningspunkt med y-axeln)\nb = lutning (slope)\n\\(\\hat{y}\\) = förutsagt värde"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#beräkna-regressionskoefficienter",
+    "href": "slides/korrelation-och-regression.html#beräkna-regressionskoefficienter",
+    "title": "Korrelation och regression",
+    "section": "Beräkna regressionskoefficienter",
+    "text": "Beräkna regressionskoefficienter\nLutning: \\[b = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\]\nIntercept: \\[a = \\bar{y} - b\\bar{x}\\]"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#residualer-fel",
+    "href": "slides/korrelation-och-regression.html#residualer-fel",
+    "title": "Korrelation och regression",
+    "section": "Residualer (fel)",
+    "text": "Residualer (fel)\n\nResidual = Observerat värde - Förutsagt värde\n\\(e_i = y_i - \\hat{y}_i\\)\nVisar hur långt varje punkt ligger från regressionslinjen\nSumman av residualerna = 0 (i minsta-kvadratmetoden)"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#determinationskoefficienten-r²",
+    "href": "slides/korrelation-och-regression.html#determinationskoefficienten-r²",
+    "title": "Korrelation och regression",
+    "section": "Determinationskoefficienten R²",
+    "text": "Determinationskoefficienten R²\n\\[R^2 = r^2\\]\n\nAndelen av variansen i Y som förklaras av X\nVarierar från 0 till 1 (0% till 100%)\nR² = 0.64 betyder att 64% av variationen förklaras"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#inferentiell-statistik-för-korrelation",
+    "href": "slides/korrelation-och-regression.html#inferentiell-statistik-för-korrelation",
+    "title": "Korrelation och regression",
+    "section": "Inferentiell statistik för korrelation",
+    "text": "Inferentiell statistik för korrelation\nNollhypotes: \\(H_0: \\rho = 0\\) (ingen korrelation i populationen)\nTeststatistika: \\[t = \\frac{r\\sqrt{n-2}}{\\sqrt{1-r^2}}\\]\n\nFrihetsgrader: df = n - 2\nOm p &lt; 0.05: Korrelationen är statistiskt signifikant"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#konfidensintervall-för-lutning",
+    "href": "slides/korrelation-och-regression.html#konfidensintervall-för-lutning",
+    "title": "Korrelation och regression",
+    "section": "Konfidensintervall för lutning",
+    "text": "Konfidensintervall för lutning\n\\[b \\pm t_{\\alpha/2} \\cdot SE_b\\]\ndär standardfelet för b:\n\\[SE_b = \\frac{s_e}{\\sqrt{\\sum(x_i - \\bar{x})^2}}\\]\n\n\\(s_e\\) = standardfelet för residualerna\nGer ett intervall för den “sanna” lutningen"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#antaganden-för-regression",
+    "href": "slides/korrelation-och-regression.html#antaganden-för-regression",
+    "title": "Korrelation och regression",
+    "section": "Antaganden för regression",
+    "text": "Antaganden för regression\n\nLinjäritet – Sambandet är linjärt\nOberoende – Observationerna är oberoende\nNormalitet – Residualerna är normalfördelade\nHomoskedasticitet – Konstant varians i residualerna"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#korrelation-vs-kausalitet",
+    "href": "slides/korrelation-och-regression.html#korrelation-vs-kausalitet",
+    "title": "Korrelation och regression",
+    "section": "Korrelation vs Kausalitet",
+    "text": "Korrelation vs Kausalitet\n\nViktigt! Korrelation innebär inte orsakssamband\n“Correlation is not causation”\nKan finnas:\n\nOmvänd kausalitet\nBakomliggande variabel (confounding)\nSlumpmässigt samband"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#exempel-på-falska-samband",
+    "href": "slides/korrelation-och-regression.html#exempel-på-falska-samband",
+    "title": "Korrelation och regression",
+    "section": "Exempel på falska samband",
+    "text": "Exempel på falska samband\n\nGlasskonsumtion korrelerar med drunkningsolyckor\n\nBakomliggande variabel: Sommarväder\n\nAntalet filmer med Nicolas Cage korrelerar med drunkningar i pooler\n\nSlumpmässigt samband"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#praktisk-tillämpning",
+    "href": "slides/korrelation-och-regression.html#praktisk-tillämpning",
+    "title": "Korrelation och regression",
+    "section": "Praktisk tillämpning",
+    "text": "Praktisk tillämpning\n\nVisualisera alltid data först (scatterplot)\nBeräkna r och R²\nTesta om korrelationen är signifikant\nTolka resultaten i kontext\nVar försiktig med extrapolering"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#sammanfattning",
+    "href": "slides/korrelation-och-regression.html#sammanfattning",
+    "title": "Korrelation och regression",
+    "section": "Sammanfattning",
+    "text": "Sammanfattning\n\n\n\nBegrepp\nBeskrivning\n\n\n\n\nr\nKorrelationskoefficient (-1 till +1)\n\n\nR²\nFörklarad varians (0 till 1)\n\n\na\nIntercept (y när x=0)\n\n\nb\nLutning (ändring i y per enhet x)\n\n\nResidual\nFel = observerat - förutsagt"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#interaktivt-verktyg",
+    "href": "slides/korrelation-och-regression.html#interaktivt-verktyg",
+    "title": "Korrelation och regression",
+    "section": "Interaktivt verktyg",
+    "text": "Interaktivt verktyg\nProva det interaktiva regressionsverktyget för att:\n\nKlicka och skapa egna datapunkter\nSe regressionslinjen uppdateras i realtid\nVisualisera residualer (fel)\n\nSe: Interaktiv regression"
+  },
+  {
+    "objectID": "slides/korrelation-och-regression.html#referenser",
+    "href": "slides/korrelation-och-regression.html#referenser",
+    "title": "Korrelation och regression",
+    "section": "Referenser",
+    "text": "Referenser\n\nPearson correlation\nLinear regression\nCorrelation vs causation"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#vad-är-kvantitativa-metoder",
+    "href": "slides/kvantitativa-metoder.html#vad-är-kvantitativa-metoder",
+    "title": "Kvantitativa metoder",
+    "section": "Vad är kvantitativa metoder?",
+    "text": "Vad är kvantitativa metoder?\nFrån latinets quantitas - mätbart\n\nKan säga något om hur utbrett ett fenomen är\nOm fenomenet är olika utbrett inom olika populationsgrupper\nRobusta, lätta att validera"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#dock",
+    "href": "slides/kvantitativa-metoder.html#dock",
+    "title": "Kvantitativa metoder",
+    "section": "Dock…",
+    "text": "Dock…\n\nMer “på ytan” - inte lika djupt som kvalitativa metoder\nSvårt att få insikt i tankar, motivationer, drivkrafter\nSvårt att besvara frågan “Varför?”"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#jämförelse-med-kvalitativa-metoder",
+    "href": "slides/kvantitativa-metoder.html#jämförelse-med-kvalitativa-metoder",
+    "title": "Kvantitativa metoder",
+    "section": "Jämförelse med kvalitativa metoder",
+    "text": "Jämförelse med kvalitativa metoder\n\n\n\nAspekt\nKvantitativ\nKvalitativ\n\n\n\n\nFokus\nMängd, utbredning\nDjup, mening\n\n\nData\nSiffror, statistik\nText, ord\n\n\nAnalys\nStatistisk\nTolkande\n\n\nResultat\nGeneraliserbart\nKontextbundet"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#noggrannhet-vs-precision",
+    "href": "slides/kvantitativa-metoder.html#noggrannhet-vs-precision",
+    "title": "Kvantitativa metoder",
+    "section": "Noggrannhet vs Precision",
+    "text": "Noggrannhet vs Precision\nTvå viktiga begrepp för mätkvalitet:\n\nNoggrannhet (Accuracy): Hur nära mätningen är det sanna värdet\nPrecision: Hur konsekventa upprepade mätningar är\n\nOBS! Man kan ha hög precision utan hög noggrannhet, och vice versa."
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#målskjutningsanalogi",
+    "href": "slides/kvantitativa-metoder.html#målskjutningsanalogi",
+    "title": "Kvantitativa metoder",
+    "section": "Målskjutningsanalogi",
+    "text": "Målskjutningsanalogi\n\n\n\n\n\n\n\nKombination\nBeskrivning\n\n\n\n\nHög precision, låg noggrannhet\nSkotten tätt samlade, men långt från centrum\n\n\nHög noggrannhet, låg precision\nSkotten spridda runt centrum\n\n\nHög precision och noggrannhet\nSkotten tätt samlade i centrum\n\n\nLåg precision och noggrannhet\nSkotten spridda långt från centrum"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#noggrannhet-accuracy",
+    "href": "slides/kvantitativa-metoder.html#noggrannhet-accuracy",
+    "title": "Kvantitativa metoder",
+    "section": "Noggrannhet (Accuracy)",
+    "text": "Noggrannhet (Accuracy)\n\nMäter systematiska fel (bias)\nPåverkas av:\n\nFelaktig kalibrering\nMetodfel\nOperatörsfel\n\nExempel: En termometer som alltid visar 2°C för högt"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#precision",
+    "href": "slides/kvantitativa-metoder.html#precision",
+    "title": "Kvantitativa metoder",
+    "section": "Precision",
+    "text": "Precision\n\nMäter slumpmässiga fel (variabilitet)\nPåverkas av:\n\nInstrumentets upplösning\nOmgivningsfaktorer (temperatur, fukt)\nMätprocedur\n\nExempel: En våg som varierar ±0.5 kg mellan mätningar"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#validitet-och-reliabilitet",
+    "href": "slides/kvantitativa-metoder.html#validitet-och-reliabilitet",
+    "title": "Kvantitativa metoder",
+    "section": "Validitet och Reliabilitet",
+    "text": "Validitet och Reliabilitet\nRelaterade begrepp i forskning:\n\nValiditet: Mäter vi verkligen det vi avser att mäta?\n\nKopplat till noggrannhet\n\nReliabilitet: Får vi samma resultat vid upprepade mätningar?\n\nKopplat till precision"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#praktiskt-exempel-enkätfrågor",
+    "href": "slides/kvantitativa-metoder.html#praktiskt-exempel-enkätfrågor",
+    "title": "Kvantitativa metoder",
+    "section": "Praktiskt exempel: Enkätfrågor",
+    "text": "Praktiskt exempel: Enkätfrågor\nLåg validitet: “Hur ofta är du lycklig?” → Mäter vi verkligen livstillfredsställelse?\nLåg reliabilitet: Frågan tolkas olika vid olika tillfällen → Inkonsistenta svar\nLösning: Väldefinierade, konkreta frågor"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#interaktivt-verktyg",
+    "href": "slides/kvantitativa-metoder.html#interaktivt-verktyg",
+    "title": "Kvantitativa metoder",
+    "section": "Interaktivt verktyg",
+    "text": "Interaktivt verktyg\nSe den interaktiva visualiseringen för att utforska:\n\nOlika kombinationer av noggrannhet och precision\nHur bias och spridning påverkar mätningar\nMålskjutningsanalogien i praktiken"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#översikt",
+    "href": "slides/kvantitativa-metoder.html#översikt",
+    "title": "Kvantitativa metoder",
+    "section": "Översikt",
+    "text": "Översikt\n\nUrval och representativitet\nDatatyper (nominal, ordinal, intervall, kvot)\nDigitala metoder\nEnkäter och frågetyper\nPresentera resultat"
+  },
+  {
+    "objectID": "slides/kvantitativa-metoder.html#referenser",
+    "href": "slides/kvantitativa-metoder.html#referenser",
+    "title": "Kvantitativa metoder",
+    "section": "Referenser",
+    "text": "Referenser\n\nQuantitative research\nAccuracy and precision\nValidity (statistics)\nReliability (statistics)"
+  },
+  {
+    "objectID": "dashboards/datatyper-viz.html",
+    "href": "dashboards/datatyper-viz.html",
+    "title": "Interaktiv visualisering",
+    "section": "",
+    "text": "Använd de interaktiva visualiseringarna nedan för att utforska olika datatyper och beräkna beskrivande statistik.\n\n// Sample data for different data types\nviewof dataType = Inputs.select(\n  [\"Nominal\", \"Ordinal\", \"Intervall\", \"Kvot\"],\n  {label: \"Välj datatyp:\", value: \"Ordinal\"}\n)\n\n\n\n\n\n\n\n// Generate sample data based on type\nsampleData = {\n  if (dataType === \"Nominal\") {\n    return [\n      {category: \"Lund\", count: 45},\n      {category: \"Malmö\", count: 38},\n      {category: \"Helsingborg\", count: 22},\n      {category: \"Annat\", count: 15}\n    ];\n  } else if (dataType === \"Ordinal\") {\n    return [\n      {category: \"Mycket missnöjd\", count: 5, order: 1},\n      {category: \"Missnöjd\", count: 12, order: 2},\n      {category: \"Neutral\", count: 18, order: 3},\n      {category: \"Nöjd\", count: 35, order: 4},\n      {category: \"Mycket nöjd\", count: 30, order: 5}\n    ];\n  } else if (dataType === \"Intervall\") {\n    return d3.range(100).map(() =&gt; ({value: d3.randomNormal(20, 5)()}));\n  } else {\n    return d3.range(100).map(() =&gt; ({value: Math.abs(d3.randomNormal(35, 10)())}));\n  }\n}\n\n\n\n\n\n\n\n// Visualization\n{\n  const width = 600;\n  const height = 400;\n  const margin = {top: 20, right: 20, bottom: 60, left: 60};\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height]);\n\n  if (dataType === \"Nominal\" || dataType === \"Ordinal\") {\n    // Bar chart for categorical data\n    const data = dataType === \"Ordinal\"\n      ? sampleData.sort((a, b) =&gt; a.order - b.order)\n      : sampleData;\n\n    const x = d3.scaleBand()\n      .domain(data.map(d =&gt; d.category))\n      .range([margin.left, width - margin.right])\n      .padding(0.1);\n\n    const y = d3.scaleLinear()\n      .domain([0, d3.max(data, d =&gt; d.count)])\n      .nice()\n      .range([height - margin.bottom, margin.top]);\n\n    svg.append(\"g\")\n      .attr(\"fill\", \"steelblue\")\n      .selectAll(\"rect\")\n      .data(data)\n      .join(\"rect\")\n      .attr(\"x\", d =&gt; x(d.category))\n      .attr(\"y\", d =&gt; y(d.count))\n      .attr(\"height\", d =&gt; y(0) - y(d.count))\n      .attr(\"width\", x.bandwidth());\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n      .call(d3.axisBottom(x))\n      .selectAll(\"text\")\n      .attr(\"transform\", \"rotate(-45)\")\n      .style(\"text-anchor\", \"end\");\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(${margin.left},0)`)\n      .call(d3.axisLeft(y));\n\n    svg.append(\"text\")\n      .attr(\"x\", width / 2)\n      .attr(\"y\", height - 5)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Kategori\");\n\n    svg.append(\"text\")\n      .attr(\"transform\", \"rotate(-90)\")\n      .attr(\"x\", -height / 2)\n      .attr(\"y\", 15)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Antal\");\n\n  } else {\n    // Histogram for numerical data\n    const values = sampleData.map(d =&gt; d.value);\n\n    const x = d3.scaleLinear()\n      .domain(d3.extent(values))\n      .nice()\n      .range([margin.left, width - margin.right]);\n\n    const bins = d3.bin()\n      .domain(x.domain())\n      .thresholds(x.ticks(20))(values);\n\n    const y = d3.scaleLinear()\n      .domain([0, d3.max(bins, d =&gt; d.length)])\n      .nice()\n      .range([height - margin.bottom, margin.top]);\n\n    svg.append(\"g\")\n      .attr(\"fill\", \"steelblue\")\n      .selectAll(\"rect\")\n      .data(bins)\n      .join(\"rect\")\n      .attr(\"x\", d =&gt; x(d.x0) + 1)\n      .attr(\"width\", d =&gt; Math.max(0, x(d.x1) - x(d.x0) - 1))\n      .attr(\"y\", d =&gt; y(d.length))\n      .attr(\"height\", d =&gt; y(0) - y(d.length));\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n      .call(d3.axisBottom(x));\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(${margin.left},0)`)\n      .call(d3.axisLeft(y));\n\n    svg.append(\"text\")\n      .attr(\"x\", width / 2)\n      .attr(\"y\", height - 5)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Värde\");\n\n    svg.append(\"text\")\n      .attr(\"transform\", \"rotate(-90)\")\n      .attr(\"x\", -height / 2)\n      .attr(\"y\", 15)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Frekvens\");\n  }\n\n  return svg.node();\n}\n\n\n\n\n\n\n\n// Statistics display\n{\n  if (dataType === \"Nominal\") {\n    const total = d3.sum(sampleData, d =&gt; d.count);\n    const mode = sampleData.reduce((a, b) =&gt; a.count &gt; b.count ? a : b);\n    return md`\n**Tillåten statistik för nominal data:**\n- Totalt antal: ${total}\n- Typvärde (mode): ${mode.category} (${mode.count} st, ${(mode.count/total*100).toFixed(1)}%)\n    `;\n  } else if (dataType === \"Ordinal\") {\n    const total = d3.sum(sampleData, d =&gt; d.count);\n    const sorted = sampleData.sort((a, b) =&gt; a.order - b.order);\n    let cumSum = 0;\n    let median = \"\";\n    for (const d of sorted) {\n      cumSum += d.count;\n      if (cumSum &gt;= total / 2 && !median) {\n        median = d.category;\n      }\n    }\n    return md`\n**Tillåten statistik för ordinal data:**\n- Totalt antal: ${total}\n- Median: ${median}\n- Typvärde: ${sampleData.reduce((a, b) =&gt; a.count &gt; b.count ? a : b).category}\n    `;\n  } else {\n    const values = sampleData.map(d =&gt; d.value);\n    const mean = d3.mean(values);\n    const median = d3.median(values);\n    const std = d3.deviation(values);\n    const q1 = d3.quantile(values.sort((a, b) =&gt; a - b), 0.25);\n    const q3 = d3.quantile(values.sort((a, b) =&gt; a - b), 0.75);\n\n    return md`\n**Beskrivande statistik för ${dataType.toLowerCase()} data:**\n- Antal observationer: ${values.length}\n- Medelvärde (mean): ${mean.toFixed(2)}\n- Standardavvikelse (std): ${std.toFixed(2)}\n- Median: ${median.toFixed(2)}\n- Q1 (25:e percentilen): ${q1.toFixed(2)}\n- Q3 (75:e percentilen): ${q3.toFixed(2)}\n- IQR: ${(q3 - q1).toFixed(2)}\n    `;\n  }\n}"
+  },
+  {
+    "objectID": "dashboards/datatyper-viz.html#datatyper-och-statistik",
+    "href": "dashboards/datatyper-viz.html#datatyper-och-statistik",
+    "title": "Interaktiv visualisering",
+    "section": "",
+    "text": "Använd de interaktiva visualiseringarna nedan för att utforska olika datatyper och beräkna beskrivande statistik.\n\n// Sample data for different data types\nviewof dataType = Inputs.select(\n  [\"Nominal\", \"Ordinal\", \"Intervall\", \"Kvot\"],\n  {label: \"Välj datatyp:\", value: \"Ordinal\"}\n)\n\n\n\n\n\n\n\n// Generate sample data based on type\nsampleData = {\n  if (dataType === \"Nominal\") {\n    return [\n      {category: \"Lund\", count: 45},\n      {category: \"Malmö\", count: 38},\n      {category: \"Helsingborg\", count: 22},\n      {category: \"Annat\", count: 15}\n    ];\n  } else if (dataType === \"Ordinal\") {\n    return [\n      {category: \"Mycket missnöjd\", count: 5, order: 1},\n      {category: \"Missnöjd\", count: 12, order: 2},\n      {category: \"Neutral\", count: 18, order: 3},\n      {category: \"Nöjd\", count: 35, order: 4},\n      {category: \"Mycket nöjd\", count: 30, order: 5}\n    ];\n  } else if (dataType === \"Intervall\") {\n    return d3.range(100).map(() =&gt; ({value: d3.randomNormal(20, 5)()}));\n  } else {\n    return d3.range(100).map(() =&gt; ({value: Math.abs(d3.randomNormal(35, 10)())}));\n  }\n}\n\n\n\n\n\n\n\n// Visualization\n{\n  const width = 600;\n  const height = 400;\n  const margin = {top: 20, right: 20, bottom: 60, left: 60};\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n    .attr(\"viewBox\", [0, 0, width, height]);\n\n  if (dataType === \"Nominal\" || dataType === \"Ordinal\") {\n    // Bar chart for categorical data\n    const data = dataType === \"Ordinal\"\n      ? sampleData.sort((a, b) =&gt; a.order - b.order)\n      : sampleData;\n\n    const x = d3.scaleBand()\n      .domain(data.map(d =&gt; d.category))\n      .range([margin.left, width - margin.right])\n      .padding(0.1);\n\n    const y = d3.scaleLinear()\n      .domain([0, d3.max(data, d =&gt; d.count)])\n      .nice()\n      .range([height - margin.bottom, margin.top]);\n\n    svg.append(\"g\")\n      .attr(\"fill\", \"steelblue\")\n      .selectAll(\"rect\")\n      .data(data)\n      .join(\"rect\")\n      .attr(\"x\", d =&gt; x(d.category))\n      .attr(\"y\", d =&gt; y(d.count))\n      .attr(\"height\", d =&gt; y(0) - y(d.count))\n      .attr(\"width\", x.bandwidth());\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n      .call(d3.axisBottom(x))\n      .selectAll(\"text\")\n      .attr(\"transform\", \"rotate(-45)\")\n      .style(\"text-anchor\", \"end\");\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(${margin.left},0)`)\n      .call(d3.axisLeft(y));\n\n    svg.append(\"text\")\n      .attr(\"x\", width / 2)\n      .attr(\"y\", height - 5)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Kategori\");\n\n    svg.append(\"text\")\n      .attr(\"transform\", \"rotate(-90)\")\n      .attr(\"x\", -height / 2)\n      .attr(\"y\", 15)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Antal\");\n\n  } else {\n    // Histogram for numerical data\n    const values = sampleData.map(d =&gt; d.value);\n\n    const x = d3.scaleLinear()\n      .domain(d3.extent(values))\n      .nice()\n      .range([margin.left, width - margin.right]);\n\n    const bins = d3.bin()\n      .domain(x.domain())\n      .thresholds(x.ticks(20))(values);\n\n    const y = d3.scaleLinear()\n      .domain([0, d3.max(bins, d =&gt; d.length)])\n      .nice()\n      .range([height - margin.bottom, margin.top]);\n\n    svg.append(\"g\")\n      .attr(\"fill\", \"steelblue\")\n      .selectAll(\"rect\")\n      .data(bins)\n      .join(\"rect\")\n      .attr(\"x\", d =&gt; x(d.x0) + 1)\n      .attr(\"width\", d =&gt; Math.max(0, x(d.x1) - x(d.x0) - 1))\n      .attr(\"y\", d =&gt; y(d.length))\n      .attr(\"height\", d =&gt; y(0) - y(d.length));\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(0,${height - margin.bottom})`)\n      .call(d3.axisBottom(x));\n\n    svg.append(\"g\")\n      .attr(\"transform\", `translate(${margin.left},0)`)\n      .call(d3.axisLeft(y));\n\n    svg.append(\"text\")\n      .attr(\"x\", width / 2)\n      .attr(\"y\", height - 5)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Värde\");\n\n    svg.append(\"text\")\n      .attr(\"transform\", \"rotate(-90)\")\n      .attr(\"x\", -height / 2)\n      .attr(\"y\", 15)\n      .attr(\"text-anchor\", \"middle\")\n      .text(\"Frekvens\");\n  }\n\n  return svg.node();\n}\n\n\n\n\n\n\n\n// Statistics display\n{\n  if (dataType === \"Nominal\") {\n    const total = d3.sum(sampleData, d =&gt; d.count);\n    const mode = sampleData.reduce((a, b) =&gt; a.count &gt; b.count ? a : b);\n    return md`\n**Tillåten statistik för nominal data:**\n- Totalt antal: ${total}\n- Typvärde (mode): ${mode.category} (${mode.count} st, ${(mode.count/total*100).toFixed(1)}%)\n    `;\n  } else if (dataType === \"Ordinal\") {\n    const total = d3.sum(sampleData, d =&gt; d.count);\n    const sorted = sampleData.sort((a, b) =&gt; a.order - b.order);\n    let cumSum = 0;\n    let median = \"\";\n    for (const d of sorted) {\n      cumSum += d.count;\n      if (cumSum &gt;= total / 2 && !median) {\n        median = d.category;\n      }\n    }\n    return md`\n**Tillåten statistik för ordinal data:**\n- Totalt antal: ${total}\n- Median: ${median}\n- Typvärde: ${sampleData.reduce((a, b) =&gt; a.count &gt; b.count ? a : b).category}\n    `;\n  } else {\n    const values = sampleData.map(d =&gt; d.value);\n    const mean = d3.mean(values);\n    const median = d3.median(values);\n    const std = d3.deviation(values);\n    const q1 = d3.quantile(values.sort((a, b) =&gt; a - b), 0.25);\n    const q3 = d3.quantile(values.sort((a, b) =&gt; a - b), 0.75);\n\n    return md`\n**Beskrivande statistik för ${dataType.toLowerCase()} data:**\n- Antal observationer: ${values.length}\n- Medelvärde (mean): ${mean.toFixed(2)}\n- Standardavvikelse (std): ${std.toFixed(2)}\n- Median: ${median.toFixed(2)}\n- Q1 (25:e percentilen): ${q1.toFixed(2)}\n- Q3 (75:e percentilen): ${q3.toFixed(2)}\n- IQR: ${(q3 - q1).toFixed(2)}\n    `;\n  }\n}"
+  },
+  {
+    "objectID": "dashboards/datatyper-viz.html#prova-själv",
+    "href": "dashboards/datatyper-viz.html#prova-själv",
+    "title": "Interaktiv visualisering",
+    "section": "Prova själv",
+    "text": "Prova själv\nVälj olika datatyper i menyn ovan för att se hur visualiseringar och tillåtna statistiska mått förändras. Lägg märke till att:\n\nNominal data endast tillåter frekvensräkning och typvärde\nOrdinal data tillåter även median och percentiler\nIntervall- och kvotdata tillåter alla statistiska mått inklusive medelvärde och standardavvikelse"
+  },
+  {
+    "objectID": "dashboards/sannolikhet-viz.html",
+    "href": "dashboards/sannolikhet-viz.html",
+    "title": "Interaktiv sannolikhet",
+    "section": "",
+    "text": "Se hur frekvensen närmar sig det förväntade värdet när antalet försök ökar.\n\nviewof numFlips = Inputs.range([10, 1000], {\n  label: \"Antal myntkast:\",\n  step: 10,\n  value: 100\n})\n\nviewof runSimulation = Inputs.button(\"Kasta mynt\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncoinFlips = {\n  runSimulation;\n  const flips = [];\n  let heads = 0;\n  for (let i = 1; i &lt;= numFlips; i++) {\n    if (Math.random() &lt; 0.5) heads++;\n    flips.push({\n      trial: i,\n      proportion: heads / i,\n      heads: heads,\n      tails: i - heads\n    });\n  }\n  return flips;\n}\n\n\n\n\n\n\n\nPlot.plot({\n  width: 700,\n  height: 400,\n  y: {\n    domain: [0, 1],\n    label: \"Andel krona\"\n  },\n  x: {\n    label: \"Antal kast\"\n  },\n  marks: [\n    Plot.ruleY([0.5], {stroke: \"red\", strokeDasharray: \"4,4\"}),\n    Plot.line(coinFlips, {x: \"trial\", y: \"proportion\", stroke: \"steelblue\", strokeWidth: 2}),\n    Plot.text([[numFlips * 0.8, 0.52]], {text: [\"Förväntat värde (0.5)\"], fill: \"red\"})\n  ]\n})\n\n\n\n\n\n\n\nmd`**Resultat efter ${numFlips} kast:**\n- Krona: ${coinFlips[coinFlips.length-1].heads} (${(coinFlips[coinFlips.length-1].proportion * 100).toFixed(1)}%)\n- Klave: ${coinFlips[coinFlips.length-1].tails} (${((1 - coinFlips[coinFlips.length-1].proportion) * 100).toFixed(1)}%)\n\n*Öka antalet kast för att se hur andelen närmar sig 50%*`"
+  },
+  {
+    "objectID": "dashboards/sannolikhet-viz.html#stora-talens-lag",
+    "href": "dashboards/sannolikhet-viz.html#stora-talens-lag",
+    "title": "Interaktiv sannolikhet",
+    "section": "",
+    "text": "Se hur frekvensen närmar sig det förväntade värdet när antalet försök ökar.\n\nviewof numFlips = Inputs.range([10, 1000], {\n  label: \"Antal myntkast:\",\n  step: 10,\n  value: 100\n})\n\nviewof runSimulation = Inputs.button(\"Kasta mynt\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncoinFlips = {\n  runSimulation;\n  const flips = [];\n  let heads = 0;\n  for (let i = 1; i &lt;= numFlips; i++) {\n    if (Math.random() &lt; 0.5) heads++;\n    flips.push({\n      trial: i,\n      proportion: heads / i,\n      heads: heads,\n      tails: i - heads\n    });\n  }\n  return flips;\n}\n\n\n\n\n\n\n\nPlot.plot({\n  width: 700,\n  height: 400,\n  y: {\n    domain: [0, 1],\n    label: \"Andel krona\"\n  },\n  x: {\n    label: \"Antal kast\"\n  },\n  marks: [\n    Plot.ruleY([0.5], {stroke: \"red\", strokeDasharray: \"4,4\"}),\n    Plot.line(coinFlips, {x: \"trial\", y: \"proportion\", stroke: \"steelblue\", strokeWidth: 2}),\n    Plot.text([[numFlips * 0.8, 0.52]], {text: [\"Förväntat värde (0.5)\"], fill: \"red\"})\n  ]\n})\n\n\n\n\n\n\n\nmd`**Resultat efter ${numFlips} kast:**\n- Krona: ${coinFlips[coinFlips.length-1].heads} (${(coinFlips[coinFlips.length-1].proportion * 100).toFixed(1)}%)\n- Klave: ${coinFlips[coinFlips.length-1].tails} (${((1 - coinFlips[coinFlips.length-1].proportion) * 100).toFixed(1)}%)\n\n*Öka antalet kast för att se hur andelen närmar sig 50%*`"
+  },
+  {
+    "objectID": "dashboards/sannolikhet-viz.html#tärningskast",
+    "href": "dashboards/sannolikhet-viz.html#tärningskast",
+    "title": "Interaktiv sannolikhet",
+    "section": "Tärningskast",
+    "text": "Tärningskast\nSimulera tärningskast och se fördelningen.\n\nviewof numDice = Inputs.range([10, 500], {\n  label: \"Antal tärningskast:\",\n  step: 10,\n  value: 100\n})\n\nviewof rollDice = Inputs.button(\"Kasta tärning\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndiceRolls = {\n  rollDice;\n  const counts = [0, 0, 0, 0, 0, 0];\n  for (let i = 0; i &lt; numDice; i++) {\n    const roll = Math.floor(Math.random() * 6);\n    counts[roll]++;\n  }\n  return [1, 2, 3, 4, 5, 6].map((value, i) =&gt; ({\n    value: value,\n    count: counts[i],\n    proportion: counts[i] / numDice,\n    expected: 1/6\n  }));\n}\n\n\n\n\n\n\n\nPlot.plot({\n  width: 600,\n  height: 350,\n  x: {\n    label: \"Tärningsvärde\",\n    domain: [1, 2, 3, 4, 5, 6]\n  },\n  y: {\n    label: \"Andel\",\n    domain: [0, Math.max(0.3, d3.max(diceRolls, d =&gt; d.proportion))]\n  },\n  marks: [\n    Plot.barY(diceRolls, {x: \"value\", y: \"proportion\", fill: \"steelblue\"}),\n    Plot.ruleY([1/6], {stroke: \"red\", strokeDasharray: \"4,4\"}),\n    Plot.text([[4, 1/6 + 0.02]], {text: [\"Förväntat (16.7%)\"], fill: \"red\"})\n  ]\n})"
+  },
+  {
+    "objectID": "dashboards/sannolikhet-viz.html#normalfördelningen",
+    "href": "dashboards/sannolikhet-viz.html#normalfördelningen",
+    "title": "Interaktiv sannolikhet",
+    "section": "Normalfördelningen",
+    "text": "Normalfördelningen\nUtforska hur medelvärde och standardavvikelse påverkar normalfördelningen.\n\nviewof mean = Inputs.range([-10, 10], {\n  label: \"Medelvärde (μ):\",\n  step: 0.5,\n  value: 0\n})\n\nviewof stdDev = Inputs.range([0.5, 5], {\n  label: \"Standardavvikelse (σ):\",\n  step: 0.25,\n  value: 1\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nnormalData = {\n  const data = [];\n  for (let x = mean - 4 * stdDev; x &lt;= mean + 4 * stdDev; x += 0.1) {\n    const y = (1 / (stdDev * Math.sqrt(2 * Math.PI))) *\n              Math.exp(-0.5 * Math.pow((x - mean) / stdDev, 2));\n    data.push({x, y});\n  }\n  return data;\n}\n\n// Areas for highlighting\nareaData = {\n  return {\n    oneStd: normalData.filter(d =&gt; d.x &gt;= mean - stdDev && d.x &lt;= mean + stdDev),\n    twoStd: normalData.filter(d =&gt; d.x &gt;= mean - 2*stdDev && d.x &lt;= mean + 2*stdDev)\n  };\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlot.plot({\n  width: 700,\n  height: 400,\n  x: {\n    label: \"Värde\",\n    domain: [mean - 4 * stdDev, mean + 4 * stdDev]\n  },\n  y: {\n    label: \"Täthet\"\n  },\n  marks: [\n    Plot.areaY(areaData.twoStd, {x: \"x\", y: \"y\", fill: \"#cce5ff\", fillOpacity: 0.5}),\n    Plot.areaY(areaData.oneStd, {x: \"x\", y: \"y\", fill: \"#99ccff\", fillOpacity: 0.7}),\n    Plot.line(normalData, {x: \"x\", y: \"y\", stroke: \"steelblue\", strokeWidth: 2}),\n    Plot.ruleX([mean], {stroke: \"red\", strokeWidth: 2}),\n    Plot.ruleX([mean - stdDev, mean + stdDev], {stroke: \"orange\", strokeDasharray: \"4,4\"}),\n    Plot.ruleX([mean - 2*stdDev, mean + 2*stdDev], {stroke: \"green\", strokeDasharray: \"4,4\"})\n  ]\n})\n\n\n\n\n\n\n\nmd`**Fördelningsegenskaper:**\n- &lt;span style=\"color: red\"&gt;■&lt;/span&gt; Medelvärde (μ) = ${mean}\n- &lt;span style=\"color: orange\"&gt;■&lt;/span&gt; ±1σ (68% av data): [${(mean - stdDev).toFixed(1)}, ${(mean + stdDev).toFixed(1)}]\n- &lt;span style=\"color: green\"&gt;■&lt;/span&gt; ±2σ (95% av data): [${(mean - 2*stdDev).toFixed(1)}, ${(mean + 2*stdDev).toFixed(1)}]`"
+  },
+  {
+    "objectID": "dashboards/sannolikhet-viz.html#konfidensintervall",
+    "href": "dashboards/sannolikhet-viz.html#konfidensintervall",
+    "title": "Interaktiv sannolikhet",
+    "section": "Konfidensintervall",
+    "text": "Konfidensintervall\nSe hur urvalsstorlek påverkar konfidensintervallets bredd.\n\nviewof sampleSize = Inputs.range([10, 200], {\n  label: \"Urvalsstorlek (n):\",\n  step: 5,\n  value: 30\n})\n\nviewof trueMean = Inputs.range([40, 60], {\n  label: \"Sant populationsmedelvärde:\",\n  step: 1,\n  value: 50\n})\n\nviewof trueStd = Inputs.range([5, 20], {\n  label: \"Populationens standardavvikelse:\",\n  step: 1,\n  value: 10\n})\n\nviewof takeSample = Inputs.button(\"Ta nytt urval\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsampleData = {\n  takeSample;\n  const samples = [];\n  let sum = 0;\n  for (let i = 0; i &lt; sampleSize; i++) {\n    // Box-Muller transform for normal distribution\n    const u1 = Math.random();\n    const u2 = Math.random();\n    const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);\n    const value = trueMean + trueStd * z;\n    samples.push(value);\n    sum += value;\n  }\n\n  const sampleMean = sum / sampleSize;\n  const sampleVariance = samples.reduce((acc, val) =&gt; acc + Math.pow(val - sampleMean, 2), 0) / (sampleSize - 1);\n  const sampleStd = Math.sqrt(sampleVariance);\n  const standardError = sampleStd / Math.sqrt(sampleSize);\n  const marginOfError = 1.96 * standardError;\n\n  return {\n    samples,\n    mean: sampleMean,\n    std: sampleStd,\n    se: standardError,\n    ci_lower: sampleMean - marginOfError,\n    ci_upper: sampleMean + marginOfError,\n    contains_true: trueMean &gt;= sampleMean - marginOfError && trueMean &lt;= sampleMean + marginOfError\n  };\n}\n\n\n\n\n\n\n\nmd`**Urvalsstatistik:**\n- Urvalsmedelvärde: ${sampleData.mean.toFixed(2)}\n- Urvalets standardavvikelse: ${sampleData.std.toFixed(2)}\n- Standardfel: ${sampleData.se.toFixed(2)}\n\n**95% konfidensintervall:** [${sampleData.ci_lower.toFixed(2)}, ${sampleData.ci_upper.toFixed(2)}]\n\n${sampleData.contains_true ?\n  \"✅ Intervallet innehåller det sanna medelvärdet (\" + trueMean + \")\" :\n  \"❌ Intervallet missar det sanna medelvärdet (\" + trueMean + \")\"}`\n\n\n\n\n\n\n\nPlot.plot({\n  width: 600,\n  height: 100,\n  x: {\n    domain: [trueMean - 3 * trueStd / Math.sqrt(10), trueMean + 3 * trueStd / Math.sqrt(10)],\n    label: \"Värde\"\n  },\n  y: {\n    axis: null\n  },\n  marks: [\n    Plot.ruleX([trueMean], {stroke: \"red\", strokeWidth: 3}),\n    Plot.ruleX([sampleData.ci_lower, sampleData.ci_upper], {stroke: \"steelblue\", strokeWidth: 2}),\n    Plot.link([{x1: sampleData.ci_lower, x2: sampleData.ci_upper, y: 0}], {\n      x1: \"x1\", x2: \"x2\", y1: \"y\", y2: \"y\", stroke: \"steelblue\", strokeWidth: 4\n    }),\n    Plot.dot([{x: sampleData.mean, y: 0}], {x: \"x\", y: \"y\", fill: \"steelblue\", r: 6}),\n    Plot.text([[trueMean, 0.3]], {text: [\"Sant μ\"], fill: \"red\"})\n  ]\n})\n\n\n\n\n\n\nTa flera urval och se att ca 95% av konfidensintervallen innehåller det sanna medelvärdet!"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html",
+    "href": "dashboards/monty-hall.html",
+    "title": "Monty Hall-problemet",
+    "section": "",
+    "text": "Du är med i en tävling med n dörrar. Bakom en dörr finns ett pris.\nDu väljer en dörr.\nProgramledaren (som vet var priset är) öppnar några dörrar som INTE har priset.\nDu får välja: Byt dörr eller Stanna kvar?\n\nVad bör du göra för att maximera chansen att vinna?"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#problemet",
+    "href": "dashboards/monty-hall.html#problemet",
+    "title": "Monty Hall-problemet",
+    "section": "",
+    "text": "Du är med i en tävling med n dörrar. Bakom en dörr finns ett pris.\nDu väljer en dörr.\nProgramledaren (som vet var priset är) öppnar några dörrar som INTE har priset.\nDu får välja: Byt dörr eller Stanna kvar?\n\nVad bör du göra för att maximera chansen att vinna?"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#spela-själv",
+    "href": "dashboards/monty-hall.html#spela-själv",
+    "title": "Monty Hall-problemet",
+    "section": "Spela själv",
+    "text": "Spela själv\n\nviewof numDoors = Inputs.range([3, 10], {\n  label: \"Antal dörrar:\",\n  step: 1,\n  value: 3\n})\n\nviewof doorsToReveal = Inputs.range([1, numDoors - 2], {\n  label: \"Dörrar som öppnas:\",\n  step: 1,\n  value: Math.max(1, numDoors - 2)\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmutable gameState = ({\n  phase: \"pick\", // pick, revealed, result\n  prizeDoor: Math.floor(Math.random() * numDoors),\n  playerPick: null,\n  revealedDoors: [],\n  switched: null,\n  won: null\n})\n\nmutable stats = ({\n  stayWins: 0,\n  stayTotal: 0,\n  switchWins: 0,\n  switchTotal: 0\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// Reset game when door count changes\n{\n  numDoors;\n  mutable gameState = {\n    phase: \"pick\",\n    prizeDoor: Math.floor(Math.random() * numDoors),\n    playerPick: null,\n    revealedDoors: [],\n    switched: null,\n    won: null\n  };\n}\n\n\n\n\n\n\n\nfunction pickDoor(doorIndex) {\n  if (gameState.phase !== \"pick\") return;\n\n  // Reveal doors (not player's pick, not prize)\n  const available = [];\n  for (let i = 0; i &lt; numDoors; i++) {\n    if (i !== doorIndex && i !== gameState.prizeDoor) {\n      available.push(i);\n    }\n  }\n\n  // Shuffle and take doorsToReveal\n  const shuffled = available.sort(() =&gt; Math.random() - 0.5);\n  const revealed = shuffled.slice(0, doorsToReveal);\n\n  mutable gameState = {\n    ...gameState,\n    phase: \"revealed\",\n    playerPick: doorIndex,\n    revealedDoors: revealed\n  };\n}\n\nfunction makeChoice(switchDoor) {\n  if (gameState.phase !== \"revealed\") return;\n\n  let finalPick = gameState.playerPick;\n\n  if (switchDoor) {\n    // Find a door that's not revealed and not current pick\n    for (let i = 0; i &lt; numDoors; i++) {\n      if (i !== gameState.playerPick && !gameState.revealedDoors.includes(i)) {\n        finalPick = i;\n        break;\n      }\n    }\n  }\n\n  const won = finalPick === gameState.prizeDoor;\n\n  // Update stats\n  if (switchDoor) {\n    mutable stats = {\n      ...stats,\n      switchTotal: stats.switchTotal + 1,\n      switchWins: stats.switchWins + (won ? 1 : 0)\n    };\n  } else {\n    mutable stats = {\n      ...stats,\n      stayTotal: stats.stayTotal + 1,\n      stayWins: stats.stayWins + (won ? 1 : 0)\n    };\n  }\n\n  mutable gameState = {\n    ...gameState,\n    phase: \"result\",\n    switched: switchDoor,\n    won: won,\n    finalPick: finalPick\n  };\n}\n\nfunction newGame() {\n  mutable gameState = {\n    phase: \"pick\",\n    prizeDoor: Math.floor(Math.random() * numDoors),\n    playerPick: null,\n    revealedDoors: [],\n    switched: null,\n    won: null\n  };\n}\n\nfunction resetStats() {\n  mutable stats = {\n    stayWins: 0,\n    stayTotal: 0,\n    switchWins: 0,\n    switchTotal: 0\n  };\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDörrar\n\n{\n  const width = 600;\n  const height = 200;\n  const doorWidth = Math.min(60, (width - 40) / numDoors - 10);\n  const doorHeight = 120;\n  const startX = (width - (numDoors * (doorWidth + 10) - 10)) / 2;\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height);\n\n  // Draw doors\n  for (let i = 0; i &lt; numDoors; i++) {\n    const x = startX + i * (doorWidth + 10);\n    const y = 30;\n\n    const isRevealed = gameState.revealedDoors.includes(i);\n    const isPlayerPick = gameState.playerPick === i;\n    const isPrize = gameState.prizeDoor === i;\n    const isFinalPick = gameState.phase === \"result\" && gameState.finalPick === i;\n    const showPrize = gameState.phase === \"result\" || isRevealed;\n\n    // Door background\n    let fillColor = \"#8B4513\"; // Brown door\n    if (isRevealed) {\n      fillColor = \"#d3d3d3\"; // Gray for opened\n    } else if (gameState.phase === \"result\") {\n      if (isPrize) {\n        fillColor = \"#FFD700\"; // Gold for prize\n      } else {\n        fillColor = \"#d3d3d3\";\n      }\n    }\n\n    // Door rectangle\n    svg.append(\"rect\")\n      .attr(\"x\", x)\n      .attr(\"y\", y)\n      .attr(\"width\", doorWidth)\n      .attr(\"height\", doorHeight)\n      .attr(\"fill\", fillColor)\n      .attr(\"stroke\", isPlayerPick ? \"#0066cc\" : (isFinalPick ? \"#00cc00\" : \"#333\"))\n      .attr(\"stroke-width\", isPlayerPick || isFinalPick ? 4 : 2)\n      .attr(\"rx\", 5)\n      .style(\"cursor\", gameState.phase === \"pick\" ? \"pointer\" : \"default\")\n      .on(\"click\", () =&gt; pickDoor(i));\n\n    // Door number\n    svg.append(\"text\")\n      .attr(\"x\", x + doorWidth / 2)\n      .attr(\"y\", y + 25)\n      .attr(\"text-anchor\", \"middle\")\n      .attr(\"fill\", isRevealed || gameState.phase === \"result\" ? \"#666\" : \"#fff\")\n      .attr(\"font-size\", \"16px\")\n      .attr(\"font-weight\", \"bold\")\n      .text(i + 1);\n\n    // Show content if revealed or game ended\n    if (showPrize) {\n      if (isPrize) {\n        // Prize emoji\n        svg.append(\"text\")\n          .attr(\"x\", x + doorWidth / 2)\n          .attr(\"y\", y + doorHeight - 30)\n          .attr(\"text-anchor\", \"middle\")\n          .attr(\"font-size\", \"30px\")\n          .text(\"🎁\");\n      } else {\n        // Goat/nothing\n        svg.append(\"text\")\n          .attr(\"x\", x + doorWidth / 2)\n          .attr(\"y\", y + doorHeight - 30)\n          .attr(\"text-anchor\", \"middle\")\n          .attr(\"font-size\", \"30px\")\n          .text(\"🐐\");\n      }\n    }\n\n    // Door handle\n    if (!isRevealed && gameState.phase !== \"result\") {\n      svg.append(\"circle\")\n        .attr(\"cx\", x + doorWidth - 10)\n        .attr(\"cy\", y + doorHeight / 2)\n        .attr(\"r\", 4)\n        .attr(\"fill\", \"#FFD700\");\n    }\n  }\n\n  // Instructions\n  let instruction = \"\";\n  if (gameState.phase === \"pick\") {\n    instruction = \"👆 Klicka på en dörr för att välja\";\n  } else if (gameState.phase === \"revealed\") {\n    instruction = \"Programledaren öppnade \" + gameState.revealedDoors.length + \" dörr(ar). Vill du byta?\";\n  } else if (gameState.phase === \"result\") {\n    instruction = gameState.won ? \"🎉 Du vann!\" : \"😔 Du förlorade\";\n    if (gameState.switched !== null) {\n      instruction += gameState.switched ? \" (du bytte)\" : \" (du stannade)\";\n    }\n  }\n\n  svg.append(\"text\")\n    .attr(\"x\", width / 2)\n    .attr(\"y\", height - 10)\n    .attr(\"text-anchor\", \"middle\")\n    .attr(\"font-size\", \"14px\")\n    .attr(\"fill\", \"#333\")\n    .text(instruction);\n\n  return svg.node();\n}\n\n\n\n\n\n\n\nviewof stayButton = {\n  if (gameState.phase === \"revealed\") {\n    const btn = html`&lt;button style=\"padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; background: #f0f0f0; border: 2px solid #666; border-radius: 5px;\"&gt;🚪 Stanna kvar&lt;/button&gt;`;\n    btn.onclick = () =&gt; makeChoice(false);\n    return btn;\n  }\n  return html`&lt;span&gt;&lt;/span&gt;`;\n}\n\nviewof switchButton = {\n  if (gameState.phase === \"revealed\") {\n    const btn = html`&lt;button style=\"padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; background: #e6f3ff; border: 2px solid #0066cc; border-radius: 5px;\"&gt;🔄 Byt dörr&lt;/button&gt;`;\n    btn.onclick = () =&gt; makeChoice(true);\n    return btn;\n  }\n  return html`&lt;span&gt;&lt;/span&gt;`;\n}\n\nviewof newGameButton = {\n  if (gameState.phase === \"result\") {\n    const btn = html`&lt;button style=\"padding: 10px 20px; font-size: 16px; cursor: pointer; background: #e6ffe6; border: 2px solid #00cc00; border-radius: 5px;\"&gt;🔄 Nytt spel&lt;/button&gt;`;\n    btn.onclick = () =&gt; newGame();\n    return btn;\n  }\n  return html`&lt;span&gt;&lt;/span&gt;`;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhtml`&lt;div style=\"text-align: center; margin: 20px 0;\"&gt;${stayButton}${switchButton}${newGameButton}&lt;/div&gt;`"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#statistik",
+    "href": "dashboards/monty-hall.html#statistik",
+    "title": "Monty Hall-problemet",
+    "section": "Statistik",
+    "text": "Statistik\n\n{\n  const stayRate = stats.stayTotal &gt; 0 ? (stats.stayWins / stats.stayTotal * 100).toFixed(1) : \"-\";\n  const switchRate = stats.switchTotal &gt; 0 ? (stats.switchWins / stats.switchTotal * 100).toFixed(1) : \"-\";\n\n  return md`\n| Strategi | Vinster | Totalt | Vinstprocent |\n|----------|---------|--------|--------------|\n| **Stanna kvar** | ${stats.stayWins} | ${stats.stayTotal} | ${stayRate}% |\n| **Byta dörr** | ${stats.switchWins} | ${stats.switchTotal} | ${switchRate}% |\n\n*Spela flera gånger för att se mönstret!*\n  `;\n}\n\n\n\n\n\n\n\nviewof resetButton = {\n  const btn = html`&lt;button style=\"padding: 5px 15px; font-size: 12px; cursor: pointer;\"&gt;Nollställ statistik&lt;/button&gt;`;\n  btn.onclick = () =&gt; resetStats();\n  return btn;\n}\n\n\n\n\n\n\n\nhtml`&lt;div style=\"text-align: center; margin: 10px 0;\"&gt;${resetButton}&lt;/div&gt;`"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#förklaring",
+    "href": "dashboards/monty-hall.html#förklaring",
+    "title": "Monty Hall-problemet",
+    "section": "Förklaring",
+    "text": "Förklaring\n\nVarför är det bättre att byta?\nMed  dörrar:\n\nOm du stannar: Du vinner om ditt första val var rätt.\n\nSannolikhet: 1/ = %\n\nOm du byter: Du vinner om ditt första val var FEL.\n\nSannolikhet: \\({numDoors-1}/\\){numDoors} = %\n\n\n\n\nIntuition\nNär du först väljer har du 1/ chans att ha rätt.\nProgramledaren ger dig sedan information genom att öppna förlorande dörrar. Denna information hjälper dig BARA om du byter!\nOm du hade fel från början (vilket händer \\({numDoors-1}/\\){numDoors} gånger), pekar de kvarvarande dörrarna mot priset.\n\n{\n  // Visual explanation\n  const data = [\n    {strategy: \"Stanna\", probability: 1/numDoors, label: `${(100/numDoors).toFixed(1)}%`},\n    {strategy: \"Byta\", probability: (numDoors-1)/numDoors, label: `${(100*(numDoors-1)/numDoors).toFixed(1)}%`}\n  ];\n\n  return Plot.plot({\n    width: 400,\n    height: 200,\n    x: {label: \"Strategi\"},\n    y: {label: \"Sannolikhet att vinna\", domain: [0, 1]},\n    marks: [\n      Plot.barY(data, {x: \"strategy\", y: \"probability\", fill: d =&gt; d.strategy === \"Byta\" ? \"steelblue\" : \"#999\"}),\n      Plot.text(data, {x: \"strategy\", y: \"probability\", text: \"label\", dy: -10, fontSize: 14})\n    ]\n  });\n}\n\n\n\n\n\n\n\n\nMed fler dörrar blir effekten tydligare!\nTesta att öka antalet dörrar till 10. Då blir sannolikheten att vinna genom att byta 90%!"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#simulering-jämför-strategier",
+    "href": "dashboards/monty-hall.html#simulering-jämför-strategier",
+    "title": "Monty Hall-problemet",
+    "section": "Simulering: Jämför strategier",
+    "text": "Simulering: Jämför strategier\nKör en simulering med många spel för att bevisa matematiken!\n\nviewof simulations = Inputs.range([100, 10000], {\n  label: \"Antal simuleringar:\",\n  step: 100,\n  value: 1000\n})\n\nviewof runSimulation = Inputs.button(\"Kör simulering\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsimulationResults = {\n  runSimulation; // Trigger on button click\n\n  const results = {\n    alwaysStay: { wins: 0, total: simulations },\n    alwaysSwitch: { wins: 0, total: simulations },\n    random: { wins: 0, total: simulations }\n  };\n\n  // Run simulations\n  for (let i = 0; i &lt; simulations; i++) {\n    const prizeDoor = Math.floor(Math.random() * numDoors);\n    const initialPick = Math.floor(Math.random() * numDoors);\n\n    // Find doors to reveal (not prize, not initial pick)\n    const available = [];\n    for (let d = 0; d &lt; numDoors; d++) {\n      if (d !== initialPick && d !== prizeDoor) {\n        available.push(d);\n      }\n    }\n\n    // Reveal doorsToReveal doors\n    const revealed = available.sort(() =&gt; Math.random() - 0.5).slice(0, doorsToReveal);\n\n    // Find remaining door (for switching)\n    let switchDoor = initialPick;\n    for (let d = 0; d &lt; numDoors; d++) {\n      if (d !== initialPick && !revealed.includes(d)) {\n        switchDoor = d;\n        break;\n      }\n    }\n\n    // Strategy 1: Always stay\n    if (initialPick === prizeDoor) {\n      results.alwaysStay.wins++;\n    }\n\n    // Strategy 2: Always switch\n    if (switchDoor === prizeDoor) {\n      results.alwaysSwitch.wins++;\n    }\n\n    // Strategy 3: Random (50/50 stay or switch)\n    const randomChoice = Math.random() &lt; 0.5 ? initialPick : switchDoor;\n    if (randomChoice === prizeDoor) {\n      results.random.wins++;\n    }\n  }\n\n  return results;\n}"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#simuleringsresultat",
+    "href": "dashboards/monty-hall.html#simuleringsresultat",
+    "title": "Monty Hall-problemet",
+    "section": "Simuleringsresultat",
+    "text": "Simuleringsresultat\n\nmd`\n| Strategi | Vinster | Totalt spel | Vinstprocent | Teoretisk sannolikhet |\n|----------|---------|-------------|--------------|----------------------|\n| **Alltid stanna** | ${simulationResults.alwaysStay.wins} | ${simulationResults.alwaysStay.total} | **${(100 * simulationResults.alwaysStay.wins / simulationResults.alwaysStay.total).toFixed(1)}%** | ${(100/numDoors).toFixed(1)}% |\n| **Alltid byta** | ${simulationResults.alwaysSwitch.wins} | ${simulationResults.alwaysSwitch.total} | **${(100 * simulationResults.alwaysSwitch.wins / simulationResults.alwaysSwitch.total).toFixed(1)}%** | ${(100*(numDoors-1)/numDoors).toFixed(1)}% |\n| **Slumpmässigt** | ${simulationResults.random.wins} | ${simulationResults.random.total} | **${(100 * simulationResults.random.wins / simulationResults.random.total).toFixed(1)}%** | ≈${((100/numDoors + 100*(numDoors-1)/numDoors)/2).toFixed(1)}% |\n\n### Jämförelse\n\nMed **${numDoors} dörrar** och **${doorsToReveal} dörrar som öppnas**:\n- Att **alltid byta** är ${((simulationResults.alwaysSwitch.wins / simulationResults.alwaysStay.wins) - 1) &gt; 0 ? `**${((simulationResults.alwaysSwitch.wins / simulationResults.alwaysStay.wins) * 100 - 100).toFixed(0)}% bättre**` : \"sämre\"} än att alltid stanna\n- Slumpmässig strategi ger i genomsnitt resultatet mellan de två\n`\n\n\n\n\n\n\n\n// Visualization\n{\n  const data = [\n    {\n      strategy: \"Alltid stanna\",\n      winRate: simulationResults.alwaysStay.wins / simulationResults.alwaysStay.total,\n      theoretical: 1 / numDoors,\n      color: \"#999\"\n    },\n    {\n      strategy: \"Alltid byta\",\n      winRate: simulationResults.alwaysSwitch.wins / simulationResults.alwaysSwitch.total,\n      theoretical: (numDoors - 1) / numDoors,\n      color: \"steelblue\"\n    },\n    {\n      strategy: \"Slumpmässigt\",\n      winRate: simulationResults.random.wins / simulationResults.random.total,\n      theoretical: (1/numDoors + (numDoors-1)/numDoors) / 2,\n      color: \"#ff9800\"\n    }\n  ];\n\n  return Plot.plot({\n    width: 600,\n    height: 300,\n    marginLeft: 120,\n    x: {\n      label: \"Vinstprocent\",\n      domain: [0, 1],\n      tickFormat: d =&gt; `${(d * 100).toFixed(0)}%`\n    },\n    y: {\n      label: null\n    },\n    marks: [\n      // Theoretical lines\n      Plot.ruleX(data, {\n        x: \"theoretical\",\n        y: \"strategy\",\n        stroke: \"#ddd\",\n        strokeWidth: 2,\n        strokeDasharray: \"4,4\"\n      }),\n      // Simulated results\n      Plot.barX(data, {\n        y: \"strategy\",\n        x: \"winRate\",\n        fill: \"color\"\n      }),\n      // Labels\n      Plot.text(data, {\n        y: \"strategy\",\n        x: \"winRate\",\n        text: d =&gt; `${(d.winRate * 100).toFixed(1)}%`,\n        dx: -50,\n        fill: \"white\",\n        fontSize: 14,\n        fontWeight: \"bold\"\n      })\n    ]\n  });\n}\n\n\n\n\n\n\nFörklaring: - Staplar: Faktiska resultat från simuleringen - Streckade linjer: Teoretiska sannolikheter\n\nInsikter\nSimuleringen bekräftar matematiken:\n\nAlltid byta ger nästan exakt % vinstchans\nAlltid stanna ger bara % vinstchans\nSlumpmässigt ger ett genomsnitt av de två strategierna\n\nJu fler simuleringar du kör, desto närmare kommer resultaten de teoretiska värdena!"
+  },
+  {
+    "objectID": "dashboards/monty-hall.html#referenser",
+    "href": "dashboards/monty-hall.html#referenser",
+    "title": "Monty Hall-problemet",
+    "section": "Referenser",
+    "text": "Referenser\n\nWikipedia: Monty Hall problem\nWikipedia: Probability\nWikipedia: Conditional probability"
+  },
+  {
+    "objectID": "dashboards/statistik-kalkylator.html",
+    "href": "dashboards/statistik-kalkylator.html",
+    "title": "Statistikkalkylator",
+    "section": "",
+    "text": "Skriv in dina värden separerade med komma eller mellanslag.\n\nviewof dataInput = Inputs.textarea({\n  label: \"Data:\",\n  placeholder: \"Ex: 23, 45, 67, 34, 56, 78, 45, 32, 67, 54\",\n  rows: 3,\n  value: \"23, 45, 67, 34, 56, 78, 45, 32, 67, 54, 89, 43, 51, 62, 38\"\n})\n\n\n\n\n\n\n\nparsedData = {\n  const cleaned = dataInput.replace(/[,;\\s]+/g, ' ').trim();\n  const values = cleaned.split(' ')\n    .map(s =&gt; parseFloat(s))\n    .filter(n =&gt; !isNaN(n));\n  return values;\n}\n\n// Calculate statistics\nstats = {\n  if (parsedData.length === 0) {\n    return {n: 0, valid: false};\n  }\n\n  const sorted = [...parsedData].sort((a, b) =&gt; a - b);\n  const n = sorted.length;\n  const sum = sorted.reduce((a, b) =&gt; a + b, 0);\n  const mean = sum / n;\n\n  // Variance and std\n  const variance = sorted.reduce((acc, val) =&gt; acc + Math.pow(val - mean, 2), 0) / (n - 1);\n  const std = Math.sqrt(variance);\n\n  // Median\n  const median = n % 2 === 0\n    ? (sorted[n/2 - 1] + sorted[n/2]) / 2\n    : sorted[Math.floor(n/2)];\n\n  // Quartiles\n  const q1Index = Math.floor(n * 0.25);\n  const q3Index = Math.floor(n * 0.75);\n  const q1 = sorted[q1Index];\n  const q3 = sorted[q3Index];\n  const iqr = q3 - q1;\n\n  // Mode\n  const counts = {};\n  sorted.forEach(v =&gt; counts[v] = (counts[v] || 0) + 1);\n  const maxCount = Math.max(...Object.values(counts));\n  const modes = Object.keys(counts).filter(k =&gt; counts[k] === maxCount).map(Number);\n\n  // Min, Max\n  const min = sorted[0];\n  const max = sorted[n - 1];\n\n  return {\n    n, sum, mean, variance, std, median,\n    q1, q3, iqr, min, max, modes, maxCount,\n    sorted, valid: true\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/statistik-kalkylator.html#ange-din-data",
+    "href": "dashboards/statistik-kalkylator.html#ange-din-data",
+    "title": "Statistikkalkylator",
+    "section": "",
+    "text": "Skriv in dina värden separerade med komma eller mellanslag.\n\nviewof dataInput = Inputs.textarea({\n  label: \"Data:\",\n  placeholder: \"Ex: 23, 45, 67, 34, 56, 78, 45, 32, 67, 54\",\n  rows: 3,\n  value: \"23, 45, 67, 34, 56, 78, 45, 32, 67, 54, 89, 43, 51, 62, 38\"\n})\n\n\n\n\n\n\n\nparsedData = {\n  const cleaned = dataInput.replace(/[,;\\s]+/g, ' ').trim();\n  const values = cleaned.split(' ')\n    .map(s =&gt; parseFloat(s))\n    .filter(n =&gt; !isNaN(n));\n  return values;\n}\n\n// Calculate statistics\nstats = {\n  if (parsedData.length === 0) {\n    return {n: 0, valid: false};\n  }\n\n  const sorted = [...parsedData].sort((a, b) =&gt; a - b);\n  const n = sorted.length;\n  const sum = sorted.reduce((a, b) =&gt; a + b, 0);\n  const mean = sum / n;\n\n  // Variance and std\n  const variance = sorted.reduce((acc, val) =&gt; acc + Math.pow(val - mean, 2), 0) / (n - 1);\n  const std = Math.sqrt(variance);\n\n  // Median\n  const median = n % 2 === 0\n    ? (sorted[n/2 - 1] + sorted[n/2]) / 2\n    : sorted[Math.floor(n/2)];\n\n  // Quartiles\n  const q1Index = Math.floor(n * 0.25);\n  const q3Index = Math.floor(n * 0.75);\n  const q1 = sorted[q1Index];\n  const q3 = sorted[q3Index];\n  const iqr = q3 - q1;\n\n  // Mode\n  const counts = {};\n  sorted.forEach(v =&gt; counts[v] = (counts[v] || 0) + 1);\n  const maxCount = Math.max(...Object.values(counts));\n  const modes = Object.keys(counts).filter(k =&gt; counts[k] === maxCount).map(Number);\n\n  // Min, Max\n  const min = sorted[0];\n  const max = sorted[n - 1];\n\n  return {\n    n, sum, mean, variance, std, median,\n    q1, q3, iqr, min, max, modes, maxCount,\n    sorted, valid: true\n  };\n}"
+  },
+  {
+    "objectID": "dashboards/statistik-kalkylator.html#beskrivande-statistik",
+    "href": "dashboards/statistik-kalkylator.html#beskrivande-statistik",
+    "title": "Statistikkalkylator",
+    "section": "Beskrivande statistik",
+    "text": "Beskrivande statistik\n\n{\n  if (!stats.valid) {\n    return md`*Ange minst ett giltigt numeriskt värde*`;\n  }\n\n  return md`\n### Centralmått\n| Mått | Värde |\n|------|-------|\n| **Antal (n)** | ${stats.n} |\n| **Summa** | ${stats.sum.toFixed(2)} |\n| **Medelvärde (mean)** | ${stats.mean.toFixed(2)} |\n| **Median** | ${stats.median.toFixed(2)} |\n| **Typvärde (mode)** | ${stats.modes.join(', ')} (förekommer ${stats.maxCount} gånger) |\n\n### Spridningsmått\n| Mått | Värde |\n|------|-------|\n| **Minimum** | ${stats.min.toFixed(2)} |\n| **Maximum** | ${stats.max.toFixed(2)} |\n| **Variationsbredd (range)** | ${(stats.max - stats.min).toFixed(2)} |\n| **Varians** | ${stats.variance.toFixed(2)} |\n| **Standardavvikelse (std)** | ${stats.std.toFixed(2)} |\n| **Q1 (25:e percentilen)** | ${stats.q1.toFixed(2)} |\n| **Q3 (75:e percentilen)** | ${stats.q3.toFixed(2)} |\n| **IQR (Q3 - Q1)** | ${stats.iqr.toFixed(2)} |\n  `;\n}"
+  },
+  {
+    "objectID": "dashboards/statistik-kalkylator.html#visualiseringar",
+    "href": "dashboards/statistik-kalkylator.html#visualiseringar",
+    "title": "Statistikkalkylator",
+    "section": "Visualiseringar",
+    "text": "Visualiseringar\n\nHistogram\n\n{\n  if (!stats.valid || stats.n &lt; 2) {\n    return md`*Behöver minst 2 värden för histogram*`;\n  }\n\n  const bins = d3.bin().thresholds(10)(parsedData);\n\n  return Plot.plot({\n    width: 600,\n    height: 300,\n    x: {label: \"Värde\"},\n    y: {label: \"Frekvens\"},\n    marks: [\n      Plot.rectY(bins, {x1: d =&gt; d.x0, x2: d =&gt; d.x1, y: d =&gt; d.length, fill: \"steelblue\"}),\n      Plot.ruleX([stats.mean], {stroke: \"red\", strokeWidth: 2}),\n      Plot.ruleX([stats.median], {stroke: \"orange\", strokeWidth: 2, strokeDasharray: \"4,4\"})\n    ]\n  });\n}\n\n\n\n\n\n\n■ Medelvärde    ■ Median\n\n\nBoxplot (lådagram)\n\n{\n  if (!stats.valid || stats.n &lt; 5) {\n    return md`*Behöver minst 5 värden för boxplot*`;\n  }\n\n  // Calculate whiskers (1.5 * IQR rule)\n  const lowerWhisker = Math.max(stats.min, stats.q1 - 1.5 * stats.iqr);\n  const upperWhisker = Math.min(stats.max, stats.q3 + 1.5 * stats.iqr);\n\n  // Find outliers\n  const outliers = parsedData.filter(d =&gt; d &lt; lowerWhisker || d &gt; upperWhisker);\n\n  return Plot.plot({\n    width: 600,\n    height: 150,\n    x: {\n      domain: [stats.min - stats.iqr * 0.5, stats.max + stats.iqr * 0.5],\n      label: \"Värde\"\n    },\n    y: {axis: null, domain: [-1, 1]},\n    marks: [\n      // Box\n      Plot.rect([{x1: stats.q1, x2: stats.q3, y1: -0.4, y2: 0.4}], {\n        x1: \"x1\", x2: \"x2\", y1: \"y1\", y2: \"y2\",\n        fill: \"steelblue\", fillOpacity: 0.3, stroke: \"steelblue\"\n      }),\n      // Median line\n      Plot.ruleX([stats.median], {y1: -0.4, y2: 0.4, stroke: \"steelblue\", strokeWidth: 3}),\n      // Whiskers\n      Plot.link([\n        {x1: lowerWhisker, x2: stats.q1, y: 0},\n        {x1: stats.q3, x2: upperWhisker, y: 0}\n      ], {x1: \"x1\", x2: \"x2\", y1: \"y\", y2: \"y\", stroke: \"steelblue\"}),\n      // Whisker caps\n      Plot.ruleX([lowerWhisker, upperWhisker], {y1: -0.2, y2: 0.2, stroke: \"steelblue\"}),\n      // Outliers\n      Plot.dot(outliers.map(d =&gt; ({x: d, y: 0})), {x: \"x\", y: \"y\", fill: \"red\", r: 4})\n    ]\n  });\n}\n\n\n\n\n\n\n\n{\n  if (!stats.valid) return md``;\n\n  const lowerWhisker = Math.max(stats.min, stats.q1 - 1.5 * stats.iqr);\n  const upperWhisker = Math.min(stats.max, stats.q3 + 1.5 * stats.iqr);\n  const outliers = parsedData.filter(d =&gt; d &lt; lowerWhisker || d &gt; upperWhisker);\n\n  return md`\n**Fem-siffrors sammanfattning:** ${stats.min.toFixed(1)} | ${stats.q1.toFixed(1)} | ${stats.median.toFixed(1)} | ${stats.q3.toFixed(1)} | ${stats.max.toFixed(1)}\n\n${outliers.length &gt; 0 ? `**Extremvärden (outliers):** ${outliers.map(o =&gt; o.toFixed(1)).join(', ')}` : '*Inga extremvärden*'}\n  `;\n}\n\n\n\n\n\n\n\n\nPunktdiagram\n\n{\n  if (!stats.valid) {\n    return md``;\n  }\n\n  return Plot.plot({\n    width: 600,\n    height: 100,\n    x: {\n      domain: [stats.min - stats.std * 0.5, stats.max + stats.std * 0.5],\n      label: \"Värde\"\n    },\n    y: {axis: null},\n    marks: [\n      Plot.dot(parsedData.map(d =&gt; ({x: d, y: 0})), {\n        x: \"x\", y: \"y\", fill: \"steelblue\", r: 5, fillOpacity: 0.6\n      }),\n      Plot.ruleX([stats.mean], {stroke: \"red\", strokeWidth: 2}),\n      Plot.ruleX([stats.mean - stats.std, stats.mean + stats.std], {\n        stroke: \"orange\", strokeDasharray: \"4,4\"\n      })\n    ]\n  });\n}\n\n\n\n\n\n\n■ Medelvärde    ■ ±1 standardavvikelse"
+  },
+  {
+    "objectID": "dashboards/statistik-kalkylator.html#prova",
+    "href": "dashboards/statistik-kalkylator.html#prova",
+    "title": "Statistikkalkylator",
+    "section": "Prova!",
+    "text": "Prova!\n\nÄndra värdena ovan och se hur statistiken förändras\nLägg till ett extremvärde (t.ex. 500) och se effekten på medelvärde vs median\nTesta med jämnt fördelade värden vs klustrade värden"
+  },
+  {
+    "objectID": "lessons/databehandling.html",
+    "href": "lessons/databehandling.html",
+    "title": "Databehandling och rensning",
+    "section": "",
+    "text": "Innan statistisk analys måste data ofta rensas och bearbetas. Denna lektion behandlar identifiering och hantering av extremvärden (outliers) samt datatransformationer."
+  },
+  {
+    "objectID": "lessons/databehandling.html#introduktion",
+    "href": "lessons/databehandling.html#introduktion",
+    "title": "Databehandling och rensning",
+    "section": "",
+    "text": "Innan statistisk analys måste data ofta rensas och bearbetas. Denna lektion behandlar identifiering och hantering av extremvärden (outliers) samt datatransformationer."
+  },
+  {
+    "objectID": "lessons/databehandling.html#outliers-extremvärden",
+    "href": "lessons/databehandling.html#outliers-extremvärden",
+    "title": "Databehandling och rensning",
+    "section": "Outliers (Extremvärden)",
+    "text": "Outliers (Extremvärden)\n\nVad är en outlier?\nEn outlier är en observation som ligger onormalt långt från övriga värden i datasetet. Outliers kan vara:\n\nGenuina extremvärden: Verkliga observationer som är ovanliga\nMätfel: Felaktiga värden från felinmatning eller mätfel\nDatainmatningsfel: T.ex. “1000” istället för “100”\n\n\n\nIdentifiera outliers\n\n1. Visuell inspektion\nBoxplot: - Värden utanför 1.5 × IQR från kvartilerna markeras som outliers - IQR (Interquartile Range) = Q3 - Q1\nHistogram: - Isolerade värden långt från huvuddistributionen\nScatterplot: - Punkter långt från huvudmönstret\n\n\n2. Statistiska metoder\nZ-score metod: \\[z = \\frac{x - \\bar{x}}{s}\\]\n\nOm |z| &gt; 3: Potentiell outlier (ligger mer än 3 standardavvikelser från medelvärdet)\nOm |z| &gt; 2: Möjlig outlier\n\nIQR-metod: - Nedre gräns: Q1 - 1.5 × IQR - Övre gräns: Q3 + 1.5 × IQR - Värden utanför dessa gränser är outliers\n\n\n\nExempel: Identifiera outliers\nData: Ålder på biblioteksanvändare\n18, 19, 21, 22, 23, 24, 25, 26, 28, 95\nBoxplot-metoden: - Q1 = 20, Q3 = 26 - IQR = 26 - 20 = 6 - Övre gräns: 26 + 1.5 × 6 = 35 - Värdet 95 är en outlier\nZ-score-metoden: - Medelvärde ≈ 30.1 - Standardavvikelse ≈ 23.3 - Z-score för 95: (95 - 30.1) / 23.3 ≈ 2.78\nVärdet 95 är en möjlig outlier (|z| &gt; 2)."
+  },
+  {
+    "objectID": "lessons/databehandling.html#hantera-outliers",
+    "href": "lessons/databehandling.html#hantera-outliers",
+    "title": "Databehandling och rensning",
+    "section": "Hantera outliers",
+    "text": "Hantera outliers\n\n1. Undersök orsaken\nFrågor att ställa: - Är det ett mätfel eller inmatningsfel? - Är det ett genuint extremvärde? - Kan det förklaras av speciella omständigheter?\n\n\n2. Olika strategier\n\nA. Ta bort outliers\nNär: - Uppenbart fel (t.ex. ålder = 999) - Mätfel som inte kan korrigeras\nFörsiktighet: - Dokumentera alltid vad som tagits bort och varför - Rapportera antal borttagna observationer\n\n\nB. Behåll outliers\nNär: - Genuina extremvärden som är viktiga för analysen - Studien handlar om att identifiera extremfall\n\n\nC. Transformera data\nNär: - Outliers gör distributionen skev - Du vill behålla informationen men minska påverkan\n\n\nD. Använd robusta metoder\nNär: - Outliers finns men du är osäker på orsaken - Använd median istället för medelvärde - Använd IQR istället för standardavvikelse\n\n\n\n3. Exempel: Hantera outliers\nScenario: Löneddata med några extremt höga värden\nAlternativ 1 - Ta bort:\nOriginal: 30k, 32k, 35k, 38k, 40k, 42k, 500k\nRenad: 30k, 32k, 35k, 38k, 40k, 42k\nAlternativ 2 - Transformera: Använd logaritmtransformation (se nedan)\nAlternativ 3 - Robust metod: - Använd median (38k) istället för medelvärde (102k)"
+  },
+  {
+    "objectID": "lessons/databehandling.html#datatransformationer",
+    "href": "lessons/databehandling.html#datatransformationer",
+    "title": "Databehandling och rensning",
+    "section": "Datatransformationer",
+    "text": "Datatransformationer\n\nVarför transformera?\n\nHantera skevhet: Göra fördelningen mer symmetrisk\nStabilisera varians: Göra spridningen mer konstant\nLinearisera samband: Göra icke-linjära samband linjära\nMinska outliers påverkan: Komprimera extremvärden\n\n\n\nVanliga transformationer\n\n1. Logaritmtransformation\nFormel: \\[y' = \\log(y)\\]\neller: \\[y' = \\log(y + 1)\\] (om data innehåller nollor)\nAnvändning: - Höger-skev data (lång svans åt höger) - Exponentiell tillväxt - Data som spänner över flera storleksordningar\nExempel:\nOriginal: 10, 100, 1000, 10000\nLog₁₀:    1,   2,    3,     4\nPraktiska tillämpningar: - Inkomst/löner - Befolkningsstorlek - Husantika priser - Viruspartiklar\n\n\n2. Kvadratrotstransformation\nFormel: \\[y' = \\sqrt{y}\\]\nAnvändning: - Måttligt skev data - Räknedata (count data) som följer Poisson-fördelning\nExempel:\nOriginal: 1,  4,  9,  16,  25\nSqrt:     1,  2,  3,   4,   5\n\n\n3. Kvadrattransformation\nFormel: \\[y' = y^2\\]\nAnvändning: - Vänster-skev data - När man vill förstärka skillnader\n\n\n4. Reciprok (invers) transformation\nFormel: \\[y' = \\frac{1}{y}\\]\nAnvändning: - Starkt höger-skev data - Tidsmätningar (konvertera tid till hastighet)\n\n\n5. Box-Cox transformation\nFormel: \\[y' = \\begin{cases}\n\\frac{y^\\lambda - 1}{\\lambda} & \\text{om } \\lambda \\neq 0 \\\\\n\\log(y) & \\text{om } \\lambda = 0\n\\end{cases}\\]\nAnvändning: - Automatisk val av bästa transformation - λ hittas genom att maximera normalitet\n\n\n\nExempel: Logaritmtransformation av inkomstdata\nOriginal data (tusen kr/månad):\nData: 25, 28, 30, 32, 35, 38, 40, 45, 120\nMedelvärde: 43.7\nStandardavvikelse: 28.6\nSkevhet: Höger-skev\nEfter log-transformation:\nLog-data: 3.22, 3.33, 3.40, 3.47, 3.56, 3.64, 3.69, 3.81, 4.79\nMedelvärde: 3.66\nStandardavvikelse: 0.45\nSkevhet: Mindre skev, mer normalfördelad\nFördel: Extremvärdet (120) har mindre påverkan efter transformation."
+  },
+  {
+    "objectID": "lessons/databehandling.html#tolkning-av-transformerad-data",
+    "href": "lessons/databehandling.html#tolkning-av-transformerad-data",
+    "title": "Databehandling och rensning",
+    "section": "Tolkning av transformerad data",
+    "text": "Tolkning av transformerad data\n\nBacktransformation\nNär du använt log-transformation:\nlog(y) = 2.5\ny = 10^2.5 ≈ 316  (om log₁₀)\ny = e^2.5 ≈ 12.2  (om ln)\n\n\nTolkning av resultat\nOriginal skala: “Medellönen är 43,700 kr”\nLog-skala: “Median log-lönen är 3.64, vilket motsvarar en lön på 10^3.64 ≈ 43,650 kr”\nViktigt: Efter log-transformation representerar medelvärdet den geometriska medellönen, inte den aritmetiska."
+  },
+  {
+    "objectID": "lessons/databehandling.html#standardisering-och-normalisering",
+    "href": "lessons/databehandling.html#standardisering-och-normalisering",
+    "title": "Databehandling och rensning",
+    "section": "Standardisering och normalisering",
+    "text": "Standardisering och normalisering\n\nZ-score standardisering\nFormel: \\[z = \\frac{x - \\bar{x}}{s}\\]\nResultat: - Medelvärde = 0 - Standardavvikelse = 1\nAnvändning: - Jämföra variabler med olika skalor - Före vissa statistiska analyser\n\n\nMin-Max normalisering\nFormel: \\[x' = \\frac{x - \\min(x)}{\\max(x) - \\min(x)}\\]\nResultat: - Värden mellan 0 och 1\nAnvändning: - Maskininlärning - När du vill behålla relativa avstånd"
+  },
+  {
+    "objectID": "lessons/databehandling.html#praktiska-riktlinjer",
+    "href": "lessons/databehandling.html#praktiska-riktlinjer",
+    "title": "Databehandling och rensning",
+    "section": "Praktiska riktlinjer",
+    "text": "Praktiska riktlinjer\n\nChecklista för databehandling\n\nInspektera data\n\nVisualisera med histogram, boxplot\nKontrollera för saknade värden\nIdentifiera potentiella outliers\n\nValidera outliers\n\nKontrollera om det är mätfel\nUndersök bakomliggande orsaker\nDokumentera alla beslut\n\nVälj strategi\n\nTa bort, behåll eller transformera?\nBasera på forskningsfråga och datatyp\n\nDokumentera\n\nAntal borttagna observationer\nVilka transformationer använts\nMotivering för beslut\n\nRapportera\n\nBeskriv databehandling i metodavsnittet\nRapportera effekt på resultat\nVar transparent\n\n\n\n\nExempel: Komplett arbetsflöde\n1. Rådata: Antal besök på webbplats per dag\n15, 18, 20, 22, 25, 28, 30, 35, 40, 500\n2. Identifiera: - Boxplot visar 500 som outlier - Z-score för 500: ≈ 3.2 (stark outlier)\n3. Undersök: - Kontrollera loggar: Visar sig vara botaktivitet, inte äkta besök\n4. Beslut: - Ta bort värdet 500\n5. Resultat:\nRenad data: 15, 18, 20, 22, 25, 28, 30, 35, 40\nMedelvärde: före = 73.3, efter = 25.9\n6. Rapportering: “En observation (500 besök) identifierades som outlier och verifierades vara botaktivitet. Denna observation exkluderades från analysen, vilket resulterade i ett dataset med n=9.”"
+  },
+  {
+    "objectID": "lessons/databehandling.html#varningar-och-etiska-överväganden",
+    "href": "lessons/databehandling.html#varningar-och-etiska-överväganden",
+    "title": "Databehandling och rensning",
+    "section": "Varningar och etiska överväganden",
+    "text": "Varningar och etiska överväganden\n\nUndvik cherry-picking\n\nFEL: Ta bort outliers för att få “bättre” resultat\nRÄTT: Ta bort outliers baserat på objektiva kriterier definierade i förväg\n\n\n\nRapportera alltid\n\nAntal borttagna observationer\nKriterier för borttagning\nSkillnad i resultat med/utan outliers\n\n\n\nVar försiktig med transformationer\n\nLog-transformation kan dölja viktiga extremvärden\nAlltid visa både original och transformerad data\nTolkning blir mer komplex\n\n\n\nSensitivitetsanalys\nKör analysen både: 1. Med outliers 2. Utan outliers 3. Med transformerad data\nOm resultaten skiljer sig dramatiskt, var extra försiktig med slutsatser."
+  },
+  {
+    "objectID": "lessons/databehandling.html#viktiga-begrepp",
+    "href": "lessons/databehandling.html#viktiga-begrepp",
+    "title": "Databehandling och rensning",
+    "section": "Viktiga begrepp",
+    "text": "Viktiga begrepp\n\n\n\nSvenska\nEngelska\n\n\n\n\nExtremvärde\nOutlier\n\n\nTransformation\nTransformation\n\n\nLogaritm\nLogarithm\n\n\nKvadratrot\nSquare root\n\n\nStandardisering\nStandardization\n\n\nNormalisering\nNormalization\n\n\nSkevhet\nSkewness\n\n\nBacktransformation\nBack-transformation\n\n\nRobust statistik\nRobust statistics"
+  },
+  {
+    "objectID": "lessons/databehandling.html#interaktiva-verktyg",
+    "href": "lessons/databehandling.html#interaktiva-verktyg",
+    "title": "Databehandling och rensning",
+    "section": "Interaktiva verktyg",
+    "text": "Interaktiva verktyg\n\nDatatyper - Utforska effekten av log-transformation och outlier-borttagning\nStatistikkalkylator - Beräkna statistik och se effekten av outliers"
+  },
+  {
+    "objectID": "lessons/databehandling.html#vidare-läsning",
+    "href": "lessons/databehandling.html#vidare-läsning",
+    "title": "Databehandling och rensning",
+    "section": "Vidare läsning",
+    "text": "Vidare läsning\n\nBeskrivande statistik - Grundläggande statistiska mått\nPresentera resultat - Visualisera data effektivt"
+  },
+  {
+    "objectID": "lessons/databehandling.html#referenser",
+    "href": "lessons/databehandling.html#referenser",
+    "title": "Databehandling och rensning",
+    "section": "Referenser",
+    "text": "Referenser\n\nWikipedia: Outlier\nWikipedia: Data transformation (statistics)\nWikipedia: Logarithmic scale\nWikipedia: Box-Cox transformation\nWikipedia: Interquartile range\nWikipedia: Standard score\nWikipedia: Normalization (statistics)\nWikipedia: Robust statistics\nWikipedia: Skewness"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html",
+    "href": "lessons/presentera-resultat.html",
+    "title": "Presentera resultat",
+    "section": "",
+    "text": "Hur du presenterar dina resultat beror på vilken typ av data du har samlat in."
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#tillbaka-till-grunderna",
+    "href": "lessons/presentera-resultat.html#tillbaka-till-grunderna",
+    "title": "Presentera resultat",
+    "section": "",
+    "text": "Hur du presenterar dina resultat beror på vilken typ av data du har samlat in."
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#datatyper-och-presentation",
+    "href": "lessons/presentera-resultat.html#datatyper-och-presentation",
+    "title": "Presentera resultat",
+    "section": "Datatyper och presentation",
+    "text": "Datatyper och presentation\n\nSlutna frågor\n\n\n\n\n\n\n\n\nDatatyp\nLämpliga visualiseringar\nStatistik\n\n\n\n\nNominal\nStapeldiagram, cirkeldiagram\nFrekvens, typvärde\n\n\nOrdinal\nStapeldiagram, staplad stapel\nMedian, percentiler\n\n\nIntervall\nHistogram, linjediagram\nMedelvärde, standardavvikelse\n\n\nKvot\nAlla ovan + spridningsdiagram\nAlla statistiska mått\n\n\n\n\n\nÖppna frågor\n\nTextanalys / innehållsanalys\nTematisk kodning\nOrdmoln (word clouds)\nCitat som illustration"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#beskrivande-statistik",
+    "href": "lessons/presentera-resultat.html#beskrivande-statistik",
+    "title": "Presentera resultat",
+    "section": "Beskrivande statistik",
+    "text": "Beskrivande statistik\n\nCentralmått\nMedelvärde (Mean): \\[\\bar{x} = \\frac{\\sum_{i=1}^{n} x_i}{n}\\]\nMedian: Mittvärdet när data är sorterat\nTypvärde (Mode): Det vanligaste värdet\n\n\nSpridningsmått\nStandardavvikelse (Standard deviation): \\[s = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n-1}}\\]\nKvartiler: - Q1 (25:e percentilen) - Q2 (median, 50:e percentilen) - Q3 (75:e percentilen)\nInterkvartilt intervall (IQR): Q3 - Q1"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#att-tänka-på-vid-presentation",
+    "href": "lessons/presentera-resultat.html#att-tänka-på-vid-presentation",
+    "title": "Presentera resultat",
+    "section": "Att tänka på vid presentation",
+    "text": "Att tänka på vid presentation\n\nOm enkäten i sig\n\nDesign och antal frågor\nVilka typer av frågor användes\n\n\n\nOm distributionen\n\nHur samlades svaren in?\nDigital/papper/telefon?\n\n\n\nOm urvalet\n\nVem fick enkäten?\nHur valdes respondenterna?\n\n\n\nOm utfallet\n\nSvarsfrekvens\nBortfallsanalys\n\n\n\nMetodreflektion\n\nStyrkor och svagheter\nVad kunde gjorts bättre?"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#visualiseringsprinciper",
+    "href": "lessons/presentera-resultat.html#visualiseringsprinciper",
+    "title": "Presentera resultat",
+    "section": "Visualiseringsprinciper",
+    "text": "Visualiseringsprinciper\n\nVälj rätt diagramtyp för din data\nTydliga etiketter - axlar, titel, legend\nUndvik 3D-diagram - de förvränger data\nKonsekvent färgschema\nVisa osäkerhet - felstaplar, konfidensintervall"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#exempel-på-bra-presentation",
+    "href": "lessons/presentera-resultat.html#exempel-på-bra-presentation",
+    "title": "Presentera resultat",
+    "section": "Exempel på bra presentation",
+    "text": "Exempel på bra presentation\nResultat: Nöjdhet med bibliotekstjänster (n=150)\n\nMycket nöjd:    ████████████████████ 40%\nNöjd:           ████████████████ 32%\nNeutral:        ██████ 12%\nMissnöjd:       ██████ 12%\nMycket missnöjd:██ 4%\n\nMedelvärde: 3.9 (skala 1-5)\nStandardavvikelse: 1.1\nSvarsfrekvens: 75%"
+  },
+  {
+    "objectID": "lessons/presentera-resultat.html#referenser",
+    "href": "lessons/presentera-resultat.html#referenser",
+    "title": "Presentera resultat",
+    "section": "Referenser",
+    "text": "Referenser\n\nFangen, K. & Sellerberg, A-M. (red.). Många möjliga metoder. Kapitel 5: Kvantitativ metod\nRogers, R. (2013). Digital Methods. Cambridge, MA: MIT Press"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html",
+    "href": "lessons/korrelation-och-regression.html",
+    "title": "Korrelation och regression",
+    "section": "",
+    "text": "Denna lektion behandlar två centrala statistiska metoder för att analysera samband mellan variabler: korrelation och regression. Vi går igenom beräkningar, tolkning och inferentiell statistik."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#introduktion",
+    "href": "lessons/korrelation-och-regression.html#introduktion",
+    "title": "Korrelation och regression",
+    "section": "",
+    "text": "Denna lektion behandlar två centrala statistiska metoder för att analysera samband mellan variabler: korrelation och regression. Vi går igenom beräkningar, tolkning och inferentiell statistik."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#korrelation",
+    "href": "lessons/korrelation-och-regression.html#korrelation",
+    "title": "Korrelation och regression",
+    "section": "Korrelation",
+    "text": "Korrelation\nKorrelation mäter styrkan och riktningen på ett linjärt samband mellan två variabler.\n\nKorrelationskoefficienten (Pearson’s r)\nKorrelationskoefficienten r varierar mellan -1 och +1:\n\nr = +1: Perfekt positivt linjärt samband\nr = 0: Inget linjärt samband\nr = -1: Perfekt negativt linjärt samband\n\n\n\nBeräkning\n\\[r = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sqrt{\\sum (x_i - \\bar{x})^2 \\cdot \\sum (y_i - \\bar{y})^2}}\\]\n\n\nTolkning\n\n\n\nVärde på r\nTolkning\n\n\n\n\n0.7 till 1.0\nStark positiv korrelation\n\n\n0.3 till 0.7\nMåttlig positiv korrelation\n\n\n-0.3 till 0.3\nSvag eller ingen korrelation\n\n\n-0.7 till -0.3\nMåttlig negativ korrelation\n\n\n-1.0 till -0.7\nStark negativ korrelation\n\n\n\n\n\nExempel\nAnta att vi har data för studietid (X) och tentamensresultat (Y):\n\n\n\nStudent\nStudietid (h)\nResultat (%)\n\n\n\n\n1\n2\n55\n\n\n2\n4\n65\n\n\n3\n6\n75\n\n\n4\n8\n85\n\n\n5\n10\n90\n\n\n\nMed dessa data får vi r ≈ 0.98, vilket indikerar en stark positiv korrelation."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#enkel-linjär-regression",
+    "href": "lessons/korrelation-och-regression.html#enkel-linjär-regression",
+    "title": "Korrelation och regression",
+    "section": "Enkel linjär regression",
+    "text": "Enkel linjär regression\nRegression används för att förutsäga värdet på en beroende variabel (Y) baserat på en oberoende variabel (X).\n\nRegressionsekvationen\n\\[\\hat{y} = a + bx\\]\n\n\\(\\hat{y}\\) = förutsagt värde\na = intercept (y-värde när x = 0)\nb = lutning (förändring i y per enhet x)\n\n\n\nBeräkna koefficienter\nLutning (b): \\[b = \\frac{\\sum (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum (x_i - \\bar{x})^2}\\]\nIntercept (a): \\[a = \\bar{y} - b\\bar{x}\\]\n\n\nExempel (fortsättning)\nMed data från exemplet ovan:\n\nMedelvärde X: \\(\\bar{x} = 6\\)\nMedelvärde Y: \\(\\bar{y} = 74\\)\n\nBeräkningar ger: - b ≈ 4.5 - a ≈ 47\nRegressionsekvation: \\(\\hat{y} = 47 + 4.5x\\)\nDetta betyder att för varje extra timme studietid förväntas resultatet öka med 4.5 procentenheter."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#residualer-fel",
+    "href": "lessons/korrelation-och-regression.html#residualer-fel",
+    "title": "Korrelation och regression",
+    "section": "Residualer (fel)",
+    "text": "Residualer (fel)\nResidualen är skillnaden mellan det observerade värdet och det värde som regressionen förutsäger:\n\\[e_i = y_i - \\hat{y}_i\\]\n\nPositiv residual: Observerat värde är högre än förutsagt\nNegativ residual: Observerat värde är lägre än förutsagt\n\nMinsta-kvadratmetoden minimerar summan av de kvadrerade residualerna."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#determinationskoefficienten-r²",
+    "href": "lessons/korrelation-och-regression.html#determinationskoefficienten-r²",
+    "title": "Korrelation och regression",
+    "section": "Determinationskoefficienten R²",
+    "text": "Determinationskoefficienten R²\n\\[R^2 = r^2\\]\nR² anger andelen av variansen i Y som förklaras av X:\n\nR² = 0.81 betyder att 81% av variationen i Y förklaras av X\nVärdet varierar från 0 (ingen förklaring) till 1 (perfekt förklaring)"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#inferentiell-statistik",
+    "href": "lessons/korrelation-och-regression.html#inferentiell-statistik",
+    "title": "Korrelation och regression",
+    "section": "Inferentiell statistik",
+    "text": "Inferentiell statistik\n\nHypotestest för korrelation\nNollhypotes: \\(H_0: \\rho = 0\\) (ingen korrelation i populationen)\nTeststatistika: \\[t = \\frac{r\\sqrt{n-2}}{\\sqrt{1-r^2}}\\]\n\nFrihetsgrader: df = n - 2\nOm p &lt; 0.05 förkastar vi nollhypotesen och säger att korrelationen är statistiskt signifikant\n\n\n\nKonfidensintervall för lutningen\n\\[b \\pm t_{\\alpha/2} \\cdot SE_b\\]\nStandardfelet för b beräknas som:\n\\[SE_b = \\frac{s_e}{\\sqrt{\\sum(x_i - \\bar{x})^2}}\\]\ndär \\(s_e\\) är standardfelet för residualerna.\nEtt 95% konfidensintervall som inte innehåller 0 indikerar ett signifikant samband."
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#antaganden",
+    "href": "lessons/korrelation-och-regression.html#antaganden",
+    "title": "Korrelation och regression",
+    "section": "Antaganden",
+    "text": "Antaganden\nFör att regressionsanalysen ska vara giltig bör följande antaganden uppfyllas:\n\nLinjäritet – Sambandet mellan X och Y är linjärt\nOberoende – Observationerna är oberoende av varandra\nNormalfördelning – Residualerna är normalfördelade\nHomoskedasticitet – Variansen i residualerna är konstant"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#korrelation-vs-kausalitet",
+    "href": "lessons/korrelation-och-regression.html#korrelation-vs-kausalitet",
+    "title": "Korrelation och regression",
+    "section": "Korrelation vs kausalitet",
+    "text": "Korrelation vs kausalitet\nViktigt: Korrelation innebär inte orsakssamband (kausalitet).\nEtt observerat samband kan bero på:\n\nOmvänd kausalitet: Y orsakar X, inte tvärtom\nConfounding: En tredje variabel påverkar både X och Y\nSlump: Särskilt vid små urval\n\n\nKlassiska exempel\n\nGlasskonsumtion korrelerar med drunkningsolyckor\n\nBakomliggande variabel: Sommarväder\n\nAntalet brandmän korrelerar med brandens storlek\n\nKausaliteten går åt andra hållet"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#viktiga-begrepp",
+    "href": "lessons/korrelation-och-regression.html#viktiga-begrepp",
+    "title": "Korrelation och regression",
+    "section": "Viktiga begrepp",
+    "text": "Viktiga begrepp\n\n\n\nSvenska\nEngelska\n\n\n\n\nKorrelation\nCorrelation\n\n\nRegression\nRegression\n\n\nLutning\nSlope\n\n\nIntercept\nIntercept\n\n\nResidual\nResidual\n\n\nDeterminationskoefficient\nCoefficient of determination\n\n\nStandardfel\nStandard error\n\n\nKonfidensintervall\nConfidence interval\n\n\nSignifikans\nSignificance"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#interaktivt-verktyg",
+    "href": "lessons/korrelation-och-regression.html#interaktivt-verktyg",
+    "title": "Korrelation och regression",
+    "section": "Interaktivt verktyg",
+    "text": "Interaktivt verktyg\nAnvänd det interaktiva regressionsverktyget för att:\n\nSkapa egna datapunkter genom att klicka\nSe regressionslinjen uppdateras i realtid\nVisualisera residualer (fel)\nUtforska hur olika punktmönster påverkar korrelation och R²"
+  },
+  {
+    "objectID": "lessons/korrelation-och-regression.html#referenser",
+    "href": "lessons/korrelation-och-regression.html#referenser",
+    "title": "Korrelation och regression",
+    "section": "Referenser",
+    "text": "Referenser\n\nWikipedia: Pearson correlation coefficient\nWikipedia: Simple linear regression\nWikipedia: Least squares\nWikipedia: Coefficient of determination (R²)\nWikipedia: Errors and residuals\nWikipedia: Regression analysis\nWikipedia: Correlation does not imply causation\nWikipedia: Standard error\nWikipedia: Confounding"
+  }
+]

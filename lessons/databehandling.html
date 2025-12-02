@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mathias Johansson">
+<meta name="author" content="Kristofer Söderström">
+<meta name="dcterms.date" content="2025-12-15">
+
+<title>Databehandling och rensning – ABMM06 - Kvantitativa metoder</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Inget resultat",
+    "search-matching-documents-text": "matchande dokument",
+    "search-copy-link-title": "Kopiera länk för att söka",
+    "search-hide-matches-text": "Göm ytterligare resultat",
+    "search-more-match-text": "annat resultat i detta dokument",
+    "search-more-matches-text": "fler resultat i detta dokument",
+    "search-clear-button-title": "Rensa",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Verkställ",
+    "search-label": "Sök"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ABMM06 - Kvantitativa metoder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Sök"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Skifta navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentationer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Presentationer</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-presentationer">    
+        <li>
+    <a class="dropdown-item" href="../slides/kvantitativa-metoder.html" target="_blank">
+ <span class="dropdown-text">Kvantitativa metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/urval.html" target="_blank">
+ <span class="dropdown-text">Urval och representativitet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/datatyper.html" target="_blank">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/sannolikhet.html" target="_blank">
+ <span class="dropdown-text">Slump och sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/beskrivande-statistik.html" target="_blank">
+ <span class="dropdown-text">Beskrivande statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/korrelation-och-regression.html" target="_blank">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/digitala-metoder.html" target="_blank">
+ <span class="dropdown-text">Digitala metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/enkat.html" target="_blank">
+ <span class="dropdown-text">Enkäter</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lektioner" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lektioner</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lektioner">    
+        <li>
+    <a class="dropdown-item" href="../lessons/fragettyper.html">
+ <span class="dropdown-text">Frågetyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/presentera-resultat.html">
+ <span class="dropdown-text">Presentera resultat</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/korrelation-och-regression.html">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/inferentiell-statistik.html">
+ <span class="dropdown-text">Inferentiell statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/databehandling.html">
+ <span class="dropdown-text">Databehandling och rensning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-interaktiva-verktyg" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Interaktiva verktyg</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-interaktiva-verktyg">    
+        <li>
+    <a class="dropdown-item" href="../dashboards/datatyper-viz.html">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sannolikhet-viz.html">
+ <span class="dropdown-text">Sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/statistik-kalkylator.html">
+ <span class="dropdown-text">Statistikkalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/regression-viz.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/accuracy-precision-viz.html">
+ <span class="dropdown-text">Noggrannhet vs Precision</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sample-size-calculator.html">
+ <span class="dropdown-text">Urvalsstorlekskalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/data-cleaning-viz.html">
+ <span class="dropdown-text">Databehandling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/monty-hall.html">
+ <span class="dropdown-text">Monty Hall</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Om</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denna sida</h2>
+   
+  <ul>
+  <li><a href="#introduktion" id="toc-introduktion" class="nav-link active" data-scroll-target="#introduktion">Introduktion</a></li>
+  <li><a href="#outliers-extremvärden" id="toc-outliers-extremvärden" class="nav-link" data-scroll-target="#outliers-extremvärden">Outliers (Extremvärden)</a>
+  <ul class="collapse">
+  <li><a href="#vad-är-en-outlier" id="toc-vad-är-en-outlier" class="nav-link" data-scroll-target="#vad-är-en-outlier">Vad är en outlier?</a></li>
+  <li><a href="#identifiera-outliers" id="toc-identifiera-outliers" class="nav-link" data-scroll-target="#identifiera-outliers">Identifiera outliers</a></li>
+  <li><a href="#exempel-identifiera-outliers" id="toc-exempel-identifiera-outliers" class="nav-link" data-scroll-target="#exempel-identifiera-outliers">Exempel: Identifiera outliers</a></li>
+  </ul></li>
+  <li><a href="#hantera-outliers" id="toc-hantera-outliers" class="nav-link" data-scroll-target="#hantera-outliers">Hantera outliers</a>
+  <ul class="collapse">
+  <li><a href="#undersök-orsaken" id="toc-undersök-orsaken" class="nav-link" data-scroll-target="#undersök-orsaken">1. Undersök orsaken</a></li>
+  <li><a href="#olika-strategier" id="toc-olika-strategier" class="nav-link" data-scroll-target="#olika-strategier">2. Olika strategier</a></li>
+  <li><a href="#exempel-hantera-outliers" id="toc-exempel-hantera-outliers" class="nav-link" data-scroll-target="#exempel-hantera-outliers">3. Exempel: Hantera outliers</a></li>
+  </ul></li>
+  <li><a href="#datatransformationer" id="toc-datatransformationer" class="nav-link" data-scroll-target="#datatransformationer">Datatransformationer</a>
+  <ul class="collapse">
+  <li><a href="#varför-transformera" id="toc-varför-transformera" class="nav-link" data-scroll-target="#varför-transformera">Varför transformera?</a></li>
+  <li><a href="#vanliga-transformationer" id="toc-vanliga-transformationer" class="nav-link" data-scroll-target="#vanliga-transformationer">Vanliga transformationer</a></li>
+  <li><a href="#exempel-logaritmtransformation-av-inkomstdata" id="toc-exempel-logaritmtransformation-av-inkomstdata" class="nav-link" data-scroll-target="#exempel-logaritmtransformation-av-inkomstdata">Exempel: Logaritmtransformation av inkomstdata</a></li>
+  </ul></li>
+  <li><a href="#tolkning-av-transformerad-data" id="toc-tolkning-av-transformerad-data" class="nav-link" data-scroll-target="#tolkning-av-transformerad-data">Tolkning av transformerad data</a>
+  <ul class="collapse">
+  <li><a href="#backtransformation" id="toc-backtransformation" class="nav-link" data-scroll-target="#backtransformation">Backtransformation</a></li>
+  <li><a href="#tolkning-av-resultat" id="toc-tolkning-av-resultat" class="nav-link" data-scroll-target="#tolkning-av-resultat">Tolkning av resultat</a></li>
+  </ul></li>
+  <li><a href="#standardisering-och-normalisering" id="toc-standardisering-och-normalisering" class="nav-link" data-scroll-target="#standardisering-och-normalisering">Standardisering och normalisering</a>
+  <ul class="collapse">
+  <li><a href="#z-score-standardisering" id="toc-z-score-standardisering" class="nav-link" data-scroll-target="#z-score-standardisering">Z-score standardisering</a></li>
+  <li><a href="#min-max-normalisering" id="toc-min-max-normalisering" class="nav-link" data-scroll-target="#min-max-normalisering">Min-Max normalisering</a></li>
+  </ul></li>
+  <li><a href="#praktiska-riktlinjer" id="toc-praktiska-riktlinjer" class="nav-link" data-scroll-target="#praktiska-riktlinjer">Praktiska riktlinjer</a>
+  <ul class="collapse">
+  <li><a href="#checklista-för-databehandling" id="toc-checklista-för-databehandling" class="nav-link" data-scroll-target="#checklista-för-databehandling">Checklista för databehandling</a></li>
+  <li><a href="#exempel-komplett-arbetsflöde" id="toc-exempel-komplett-arbetsflöde" class="nav-link" data-scroll-target="#exempel-komplett-arbetsflöde">Exempel: Komplett arbetsflöde</a></li>
+  </ul></li>
+  <li><a href="#varningar-och-etiska-överväganden" id="toc-varningar-och-etiska-överväganden" class="nav-link" data-scroll-target="#varningar-och-etiska-överväganden">Varningar och etiska överväganden</a>
+  <ul class="collapse">
+  <li><a href="#undvik-cherry-picking" id="toc-undvik-cherry-picking" class="nav-link" data-scroll-target="#undvik-cherry-picking">Undvik cherry-picking</a></li>
+  <li><a href="#rapportera-alltid" id="toc-rapportera-alltid" class="nav-link" data-scroll-target="#rapportera-alltid">Rapportera alltid</a></li>
+  <li><a href="#var-försiktig-med-transformationer" id="toc-var-försiktig-med-transformationer" class="nav-link" data-scroll-target="#var-försiktig-med-transformationer">Var försiktig med transformationer</a></li>
+  <li><a href="#sensitivitetsanalys" id="toc-sensitivitetsanalys" class="nav-link" data-scroll-target="#sensitivitetsanalys">Sensitivitetsanalys</a></li>
+  </ul></li>
+  <li><a href="#viktiga-begrepp" id="toc-viktiga-begrepp" class="nav-link" data-scroll-target="#viktiga-begrepp">Viktiga begrepp</a></li>
+  <li><a href="#interaktiva-verktyg" id="toc-interaktiva-verktyg" class="nav-link" data-scroll-target="#interaktiva-verktyg">Interaktiva verktyg</a></li>
+  <li><a href="#vidare-läsning" id="toc-vidare-läsning" class="nav-link" data-scroll-target="#vidare-läsning">Vidare läsning</a></li>
+  <li><a href="#referenser" id="toc-referenser" class="nav-link" data-scroll-target="#referenser">Referenser</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/lessons/databehandling.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div><div class="quarto-alternate-formats"><h2>Andra Format</h2><ul><li><a href="databehandling.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Databehandling och rensning</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kod</button></div></div>
+<p class="subtitle lead">Outliers, transformationer och datakvalitet</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Författare</div>
+  <div class="quarto-title-meta-heading">Anknuten</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mathias Johansson <a href="mailto:mathias.johansson@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Kristofer Söderström <a href="mailto:kristofer.soderstrom@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Utgiven</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 december 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduktion" class="level2">
+<h2 class="anchored" data-anchor-id="introduktion">Introduktion</h2>
+<p>Innan statistisk analys måste data ofta rensas och bearbetas. Denna lektion behandlar identifiering och hantering av extremvärden (outliers) samt datatransformationer.</p>
+</section>
+<section id="outliers-extremvärden" class="level2">
+<h2 class="anchored" data-anchor-id="outliers-extremvärden">Outliers (Extremvärden)</h2>
+<section id="vad-är-en-outlier" class="level3">
+<h3 class="anchored" data-anchor-id="vad-är-en-outlier">Vad är en outlier?</h3>
+<p>En <strong>outlier</strong> är en observation som ligger onormalt långt från övriga värden i datasetet. Outliers kan vara:</p>
+<ol type="1">
+<li><strong>Genuina extremvärden</strong>: Verkliga observationer som är ovanliga</li>
+<li><strong>Mätfel</strong>: Felaktiga värden från felinmatning eller mätfel</li>
+<li><strong>Datainmatningsfel</strong>: T.ex. “1000” istället för “100”</li>
+</ol>
+</section>
+<section id="identifiera-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="identifiera-outliers">Identifiera outliers</h3>
+<section id="visuell-inspektion" class="level4">
+<h4 class="anchored" data-anchor-id="visuell-inspektion">1. Visuell inspektion</h4>
+<p><strong>Boxplot:</strong> - Värden utanför 1.5 × IQR från kvartilerna markeras som outliers - IQR (Interquartile Range) = Q3 - Q1</p>
+<p><strong>Histogram:</strong> - Isolerade värden långt från huvuddistributionen</p>
+<p><strong>Scatterplot:</strong> - Punkter långt från huvudmönstret</p>
+</section>
+<section id="statistiska-metoder" class="level4">
+<h4 class="anchored" data-anchor-id="statistiska-metoder">2. Statistiska metoder</h4>
+<p><strong>Z-score metod:</strong> <span class="math display">\[z = \frac{x - \bar{x}}{s}\]</span></p>
+<ul>
+<li>Om |z| &gt; 3: Potentiell outlier (ligger mer än 3 standardavvikelser från medelvärdet)</li>
+<li>Om |z| &gt; 2: Möjlig outlier</li>
+</ul>
+<p><strong>IQR-metod:</strong> - Nedre gräns: Q1 - 1.5 × IQR - Övre gräns: Q3 + 1.5 × IQR - Värden utanför dessa gränser är outliers</p>
+</section>
+</section>
+<section id="exempel-identifiera-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-identifiera-outliers">Exempel: Identifiera outliers</h3>
+<p>Data: Ålder på biblioteksanvändare</p>
+<pre><code>18, 19, 21, 22, 23, 24, 25, 26, 28, 95</code></pre>
+<p><strong>Boxplot-metoden:</strong> - Q1 = 20, Q3 = 26 - IQR = 26 - 20 = 6 - Övre gräns: 26 + 1.5 × 6 = 35 - Värdet 95 är en outlier</p>
+<p><strong>Z-score-metoden:</strong> - Medelvärde ≈ 30.1 - Standardavvikelse ≈ 23.3 - Z-score för 95: (95 - 30.1) / 23.3 ≈ 2.78</p>
+<p>Värdet 95 är en möjlig outlier (|z| &gt; 2).</p>
+</section>
+</section>
+<section id="hantera-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="hantera-outliers">Hantera outliers</h2>
+<section id="undersök-orsaken" class="level3">
+<h3 class="anchored" data-anchor-id="undersök-orsaken">1. Undersök orsaken</h3>
+<p><strong>Frågor att ställa:</strong> - Är det ett mätfel eller inmatningsfel? - Är det ett genuint extremvärde? - Kan det förklaras av speciella omständigheter?</p>
+</section>
+<section id="olika-strategier" class="level3">
+<h3 class="anchored" data-anchor-id="olika-strategier">2. Olika strategier</h3>
+<section id="a.-ta-bort-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="a.-ta-bort-outliers">A. Ta bort outliers</h4>
+<p><strong>När:</strong> - Uppenbart fel (t.ex. ålder = 999) - Mätfel som inte kan korrigeras</p>
+<p><strong>Försiktighet:</strong> - Dokumentera alltid vad som tagits bort och varför - Rapportera antal borttagna observationer</p>
+</section>
+<section id="b.-behåll-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="b.-behåll-outliers">B. Behåll outliers</h4>
+<p><strong>När:</strong> - Genuina extremvärden som är viktiga för analysen - Studien handlar om att identifiera extremfall</p>
+</section>
+<section id="c.-transformera-data" class="level4">
+<h4 class="anchored" data-anchor-id="c.-transformera-data">C. Transformera data</h4>
+<p><strong>När:</strong> - Outliers gör distributionen skev - Du vill behålla informationen men minska påverkan</p>
+</section>
+<section id="d.-använd-robusta-metoder" class="level4">
+<h4 class="anchored" data-anchor-id="d.-använd-robusta-metoder">D. Använd robusta metoder</h4>
+<p><strong>När:</strong> - Outliers finns men du är osäker på orsaken - Använd median istället för medelvärde - Använd IQR istället för standardavvikelse</p>
+</section>
+</section>
+<section id="exempel-hantera-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-hantera-outliers">3. Exempel: Hantera outliers</h3>
+<p><strong>Scenario:</strong> Löneddata med några extremt höga värden</p>
+<p><strong>Alternativ 1 - Ta bort:</strong></p>
+<pre><code>Original: 30k, 32k, 35k, 38k, 40k, 42k, 500k
+Renad: 30k, 32k, 35k, 38k, 40k, 42k</code></pre>
+<p><strong>Alternativ 2 - Transformera:</strong> Använd logaritmtransformation (se nedan)</p>
+<p><strong>Alternativ 3 - Robust metod:</strong> - Använd median (38k) istället för medelvärde (102k)</p>
+</section>
+</section>
+<section id="datatransformationer" class="level2">
+<h2 class="anchored" data-anchor-id="datatransformationer">Datatransformationer</h2>
+<section id="varför-transformera" class="level3">
+<h3 class="anchored" data-anchor-id="varför-transformera">Varför transformera?</h3>
+<ol type="1">
+<li><strong>Hantera skevhet</strong>: Göra fördelningen mer symmetrisk</li>
+<li><strong>Stabilisera varians</strong>: Göra spridningen mer konstant</li>
+<li><strong>Linearisera samband</strong>: Göra icke-linjära samband linjära</li>
+<li><strong>Minska outliers påverkan</strong>: Komprimera extremvärden</li>
+</ol>
+</section>
+<section id="vanliga-transformationer" class="level3">
+<h3 class="anchored" data-anchor-id="vanliga-transformationer">Vanliga transformationer</h3>
+<section id="logaritmtransformation" class="level4">
+<h4 class="anchored" data-anchor-id="logaritmtransformation">1. Logaritmtransformation</h4>
+<p><strong>Formel:</strong> <span class="math display">\[y' = \log(y)\]</span></p>
+<p>eller: <span class="math display">\[y' = \log(y + 1)\]</span> (om data innehåller nollor)</p>
+<p><strong>Användning:</strong> - Höger-skev data (lång svans åt höger) - Exponentiell tillväxt - Data som spänner över flera storleksordningar</p>
+<p><strong>Exempel:</strong></p>
+<pre><code>Original: 10, 100, 1000, 10000
+Log₁₀:    1,   2,    3,     4</code></pre>
+<p><strong>Praktiska tillämpningar:</strong> - Inkomst/löner - Befolkningsstorlek - Husantika priser - Viruspartiklar</p>
+</section>
+<section id="kvadratrotstransformation" class="level4">
+<h4 class="anchored" data-anchor-id="kvadratrotstransformation">2. Kvadratrotstransformation</h4>
+<p><strong>Formel:</strong> <span class="math display">\[y' = \sqrt{y}\]</span></p>
+<p><strong>Användning:</strong> - Måttligt skev data - Räknedata (count data) som följer Poisson-fördelning</p>
+<p><strong>Exempel:</strong></p>
+<pre><code>Original: 1,  4,  9,  16,  25
+Sqrt:     1,  2,  3,   4,   5</code></pre>
+</section>
+<section id="kvadrattransformation" class="level4">
+<h4 class="anchored" data-anchor-id="kvadrattransformation">3. Kvadrattransformation</h4>
+<p><strong>Formel:</strong> <span class="math display">\[y' = y^2\]</span></p>
+<p><strong>Användning:</strong> - Vänster-skev data - När man vill förstärka skillnader</p>
+</section>
+<section id="reciprok-invers-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="reciprok-invers-transformation">4. Reciprok (invers) transformation</h4>
+<p><strong>Formel:</strong> <span class="math display">\[y' = \frac{1}{y}\]</span></p>
+<p><strong>Användning:</strong> - Starkt höger-skev data - Tidsmätningar (konvertera tid till hastighet)</p>
+</section>
+<section id="box-cox-transformation" class="level4">
+<h4 class="anchored" data-anchor-id="box-cox-transformation">5. Box-Cox transformation</h4>
+<p><strong>Formel:</strong> <span class="math display">\[y' = \begin{cases}
+\frac{y^\lambda - 1}{\lambda} &amp; \text{om } \lambda \neq 0 \\
+\log(y) &amp; \text{om } \lambda = 0
+\end{cases}\]</span></p>
+<p><strong>Användning:</strong> - Automatisk val av bästa transformation - λ hittas genom att maximera normalitet</p>
+</section>
+</section>
+<section id="exempel-logaritmtransformation-av-inkomstdata" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-logaritmtransformation-av-inkomstdata">Exempel: Logaritmtransformation av inkomstdata</h3>
+<p><strong>Original data (tusen kr/månad):</strong></p>
+<pre><code>Data: 25, 28, 30, 32, 35, 38, 40, 45, 120
+Medelvärde: 43.7
+Standardavvikelse: 28.6
+Skevhet: Höger-skev</code></pre>
+<p><strong>Efter log-transformation:</strong></p>
+<pre><code>Log-data: 3.22, 3.33, 3.40, 3.47, 3.56, 3.64, 3.69, 3.81, 4.79
+Medelvärde: 3.66
+Standardavvikelse: 0.45
+Skevhet: Mindre skev, mer normalfördelad</code></pre>
+<p><strong>Fördel:</strong> Extremvärdet (120) har mindre påverkan efter transformation.</p>
+</section>
+</section>
+<section id="tolkning-av-transformerad-data" class="level2">
+<h2 class="anchored" data-anchor-id="tolkning-av-transformerad-data">Tolkning av transformerad data</h2>
+<section id="backtransformation" class="level3">
+<h3 class="anchored" data-anchor-id="backtransformation">Backtransformation</h3>
+<p>När du använt log-transformation:</p>
+<pre><code>log(y) = 2.5
+y = 10^2.5 ≈ 316  (om log₁₀)
+y = e^2.5 ≈ 12.2  (om ln)</code></pre>
+</section>
+<section id="tolkning-av-resultat" class="level3">
+<h3 class="anchored" data-anchor-id="tolkning-av-resultat">Tolkning av resultat</h3>
+<p><strong>Original skala:</strong> “Medellönen är 43,700 kr”</p>
+<p><strong>Log-skala:</strong> “Median log-lönen är 3.64, vilket motsvarar en lön på 10^3.64 ≈ 43,650 kr”</p>
+<p><strong>Viktigt:</strong> Efter log-transformation representerar medelvärdet den geometriska medellönen, inte den aritmetiska.</p>
+</section>
+</section>
+<section id="standardisering-och-normalisering" class="level2">
+<h2 class="anchored" data-anchor-id="standardisering-och-normalisering">Standardisering och normalisering</h2>
+<section id="z-score-standardisering" class="level3">
+<h3 class="anchored" data-anchor-id="z-score-standardisering">Z-score standardisering</h3>
+<p><strong>Formel:</strong> <span class="math display">\[z = \frac{x - \bar{x}}{s}\]</span></p>
+<p><strong>Resultat:</strong> - Medelvärde = 0 - Standardavvikelse = 1</p>
+<p><strong>Användning:</strong> - Jämföra variabler med olika skalor - Före vissa statistiska analyser</p>
+</section>
+<section id="min-max-normalisering" class="level3">
+<h3 class="anchored" data-anchor-id="min-max-normalisering">Min-Max normalisering</h3>
+<p><strong>Formel:</strong> <span class="math display">\[x' = \frac{x - \min(x)}{\max(x) - \min(x)}\]</span></p>
+<p><strong>Resultat:</strong> - Värden mellan 0 och 1</p>
+<p><strong>Användning:</strong> - Maskininlärning - När du vill behålla relativa avstånd</p>
+</section>
+</section>
+<section id="praktiska-riktlinjer" class="level2">
+<h2 class="anchored" data-anchor-id="praktiska-riktlinjer">Praktiska riktlinjer</h2>
+<section id="checklista-för-databehandling" class="level3">
+<h3 class="anchored" data-anchor-id="checklista-för-databehandling">Checklista för databehandling</h3>
+<ol type="1">
+<li><strong>Inspektera data</strong>
+<ul>
+<li>Visualisera med histogram, boxplot</li>
+<li>Kontrollera för saknade värden</li>
+<li>Identifiera potentiella outliers</li>
+</ul></li>
+<li><strong>Validera outliers</strong>
+<ul>
+<li>Kontrollera om det är mätfel</li>
+<li>Undersök bakomliggande orsaker</li>
+<li>Dokumentera alla beslut</li>
+</ul></li>
+<li><strong>Välj strategi</strong>
+<ul>
+<li>Ta bort, behåll eller transformera?</li>
+<li>Basera på forskningsfråga och datatyp</li>
+</ul></li>
+<li><strong>Dokumentera</strong>
+<ul>
+<li>Antal borttagna observationer</li>
+<li>Vilka transformationer använts</li>
+<li>Motivering för beslut</li>
+</ul></li>
+<li><strong>Rapportera</strong>
+<ul>
+<li>Beskriv databehandling i metodavsnittet</li>
+<li>Rapportera effekt på resultat</li>
+<li>Var transparent</li>
+</ul></li>
+</ol>
+</section>
+<section id="exempel-komplett-arbetsflöde" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-komplett-arbetsflöde">Exempel: Komplett arbetsflöde</h3>
+<p><strong>1. Rådata:</strong> Antal besök på webbplats per dag</p>
+<pre><code>15, 18, 20, 22, 25, 28, 30, 35, 40, 500</code></pre>
+<p><strong>2. Identifiera:</strong> - Boxplot visar 500 som outlier - Z-score för 500: ≈ 3.2 (stark outlier)</p>
+<p><strong>3. Undersök:</strong> - Kontrollera loggar: Visar sig vara botaktivitet, inte äkta besök</p>
+<p><strong>4. Beslut:</strong> - Ta bort värdet 500</p>
+<p><strong>5. Resultat:</strong></p>
+<pre><code>Renad data: 15, 18, 20, 22, 25, 28, 30, 35, 40
+Medelvärde: före = 73.3, efter = 25.9</code></pre>
+<p><strong>6. Rapportering:</strong> “En observation (500 besök) identifierades som outlier och verifierades vara botaktivitet. Denna observation exkluderades från analysen, vilket resulterade i ett dataset med n=9.”</p>
+</section>
+</section>
+<section id="varningar-och-etiska-överväganden" class="level2">
+<h2 class="anchored" data-anchor-id="varningar-och-etiska-överväganden">Varningar och etiska överväganden</h2>
+<section id="undvik-cherry-picking" class="level3">
+<h3 class="anchored" data-anchor-id="undvik-cherry-picking">Undvik cherry-picking</h3>
+<ul>
+<li><strong>FEL:</strong> Ta bort outliers för att få “bättre” resultat</li>
+<li><strong>RÄTT:</strong> Ta bort outliers baserat på objektiva kriterier definierade i förväg</li>
+</ul>
+</section>
+<section id="rapportera-alltid" class="level3">
+<h3 class="anchored" data-anchor-id="rapportera-alltid">Rapportera alltid</h3>
+<ul>
+<li>Antal borttagna observationer</li>
+<li>Kriterier för borttagning</li>
+<li>Skillnad i resultat med/utan outliers</li>
+</ul>
+</section>
+<section id="var-försiktig-med-transformationer" class="level3">
+<h3 class="anchored" data-anchor-id="var-försiktig-med-transformationer">Var försiktig med transformationer</h3>
+<ul>
+<li>Log-transformation kan dölja viktiga extremvärden</li>
+<li>Alltid visa både original och transformerad data</li>
+<li>Tolkning blir mer komplex</li>
+</ul>
+</section>
+<section id="sensitivitetsanalys" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivitetsanalys">Sensitivitetsanalys</h3>
+<p>Kör analysen både: 1. Med outliers 2. Utan outliers 3. Med transformerad data</p>
+<p>Om resultaten skiljer sig dramatiskt, var extra försiktig med slutsatser.</p>
+</section>
+</section>
+<section id="viktiga-begrepp" class="level2">
+<h2 class="anchored" data-anchor-id="viktiga-begrepp">Viktiga begrepp</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Svenska</th>
+<th>Engelska</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Extremvärde</td>
+<td>Outlier</td>
+</tr>
+<tr class="even">
+<td>Transformation</td>
+<td>Transformation</td>
+</tr>
+<tr class="odd">
+<td>Logaritm</td>
+<td>Logarithm</td>
+</tr>
+<tr class="even">
+<td>Kvadratrot</td>
+<td>Square root</td>
+</tr>
+<tr class="odd">
+<td>Standardisering</td>
+<td>Standardization</td>
+</tr>
+<tr class="even">
+<td>Normalisering</td>
+<td>Normalization</td>
+</tr>
+<tr class="odd">
+<td>Skevhet</td>
+<td>Skewness</td>
+</tr>
+<tr class="even">
+<td>Backtransformation</td>
+<td>Back-transformation</td>
+</tr>
+<tr class="odd">
+<td>Robust statistik</td>
+<td>Robust statistics</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="interaktiva-verktyg" class="level2">
+<h2 class="anchored" data-anchor-id="interaktiva-verktyg">Interaktiva verktyg</h2>
+<ul>
+<li><strong><a href="../dashboards/datatyper-viz.html">Datatyper</a></strong> - Utforska effekten av log-transformation och outlier-borttagning</li>
+<li><strong><a href="../dashboards/statistik-kalkylator.html">Statistikkalkylator</a></strong> - Beräkna statistik och se effekten av outliers</li>
+</ul>
+</section>
+<section id="vidare-läsning" class="level2">
+<h2 class="anchored" data-anchor-id="vidare-läsning">Vidare läsning</h2>
+<ul>
+<li><a href="../slides/beskrivande-statistik.html">Beskrivande statistik</a> - Grundläggande statistiska mått</li>
+<li><a href="../lessons/presentera-resultat.html">Presentera resultat</a> - Visualisera data effektivt</li>
+</ul>
+</section>
+<section id="referenser" class="level2">
+<h2 class="anchored" data-anchor-id="referenser">Referenser</h2>
+<ul>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Outlier">Outlier</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Data_transformation_(statistics)">Data transformation (statistics)</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Logarithmic_scale">Logarithmic scale</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation">Box-Cox transformation</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Interquartile_range">Interquartile range</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Standard_score">Standard score</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Normalization_(statistics)">Normalization (statistics)</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Robust_statistics">Robust statistics</a></li>
+<li>Wikipedia: <a href="https://en.wikipedia.org/wiki/Skewness">Skewness</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citat</h2><div><div class="quarto-appendix-secondary-label">BibTeX hänvisning:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@misc{johansson2025,
+  author = {Johansson, Mathias and Söderström, Kristofer},
+  publisher = {Lunds universitet},
+  title = {Databehandling och rensning},
+  date = {2025},
+  url = {https://mathjoha.github.io/abmm06/lessons/databehandling.html},
+  langid = {sv}
+}
+</code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Hänvisa till detta arbete som:</div><div id="ref-johansson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Johansson, Mathias, and Kristofer Söderström. 2025.
+<span>“Databehandling och rensning.”</span> <em>ABMM06: Kvantitativa
+metoder</em>. Lunds universitet. <a href="https://mathjoha.github.io/abmm06/lessons/databehandling.html">https://mathjoha.github.io/abmm06/lessons/databehandling.html</a>.
+</div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopierat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopierat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Källkod</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Databehandling och rensning"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Outliers, transformationer och datakvalitet"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">citation:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">  type: document</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">  title: "Databehandling och rensning"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">  container-title: "ABMM06: Kvantitativa metoder"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">  publisher: Lunds universitet</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">  license: "CC-BY-NC 4.0"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">  url: https://mathjoha.github.io/abmm06/lessons/databehandling.html</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">    colorlinks: true</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">    papersize: a4</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry:</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">      - margin=2.5cm</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduktion</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>Innan statistisk analys måste data ofta rensas och bearbetas. Denna lektion behandlar identifiering och hantering av extremvärden (outliers) samt datatransformationer.</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Outliers (Extremvärden)</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### Vad är en outlier?</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>En **outlier** är en observation som ligger onormalt långt från övriga värden i datasetet. Outliers kan vara:</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Genuina extremvärden**: Verkliga observationer som är ovanliga</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Mätfel**: Felaktiga värden från felinmatning eller mätfel</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Datainmatningsfel**: T.ex. "1000" istället för "100"</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="fu">### Identifiera outliers</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. Visuell inspektion</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>**Boxplot:**</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Värden utanför 1.5 × IQR från kvartilerna markeras som outliers</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>IQR (Interquartile Range) = Q3 - Q1</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>**Histogram:**</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Isolerade värden långt från huvuddistributionen</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>**Scatterplot:**</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Punkter långt från huvudmönstret</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. Statistiska metoder</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>**Z-score metod:**</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>$$z = \frac{x - \bar{x}}{s}$$</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Om |z| &gt; 3: Potentiell outlier (ligger mer än 3 standardavvikelser från medelvärdet)</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Om |z| &gt; 2: Möjlig outlier</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>**IQR-metod:**</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nedre gräns: Q1 - 1.5 × IQR</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Övre gräns: Q3 + 1.5 × IQR</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Värden utanför dessa gränser är outliers</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel: Identifiera outliers</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>Data: Ålder på biblioteksanvändare</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="in">18, 19, 21, 22, 23, 24, 25, 26, 28, 95</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>**Boxplot-metoden:**</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Q1 = 20, Q3 = 26</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>IQR = 26 - 20 = 6</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Övre gräns: 26 + 1.5 × 6 = 35</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Värdet 95 är en outlier</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a>**Z-score-metoden:**</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Medelvärde ≈ 30.1</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standardavvikelse ≈ 23.3</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Z-score för 95: (95 - 30.1) / 23.3 ≈ 2.78</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>Värdet 95 är en möjlig outlier (|z| &gt; 2).</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Hantera outliers</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Undersök orsaken</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>**Frågor att ställa:**</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Är det ett mätfel eller inmatningsfel?</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Är det ett genuint extremvärde?</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kan det förklaras av speciella omständigheter?</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Olika strategier</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="fu">#### A. Ta bort outliers</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>**När:**</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Uppenbart fel (t.ex. ålder = 999)</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mätfel som inte kan korrigeras</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>**Försiktighet:**</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Dokumentera alltid vad som tagits bort och varför</span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Rapportera antal borttagna observationer</span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a><span class="fu">#### B. Behåll outliers</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>**När:**</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Genuina extremvärden som är viktiga för analysen</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Studien handlar om att identifiera extremfall</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="fu">#### C. Transformera data</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>**När:**</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outliers gör distributionen skev</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Du vill behålla informationen men minska påverkan</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="fu">#### D. Använd robusta metoder</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>**När:**</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outliers finns men du är osäker på orsaken</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Använd median istället för medelvärde</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Använd IQR istället för standardavvikelse</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Exempel: Hantera outliers</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>**Scenario:** Löneddata med några extremt höga värden</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>**Alternativ 1 - Ta bort:**</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="in">Original: 30k, 32k, 35k, 38k, 40k, 42k, 500k</span></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">Renad: 30k, 32k, 35k, 38k, 40k, 42k</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>**Alternativ 2 - Transformera:**</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>Använd logaritmtransformation (se nedan)</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>**Alternativ 3 - Robust metod:**</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Använd median (38k) istället för medelvärde (102k)</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="fu">## Datatransformationer</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a><span class="fu">### Varför transformera?</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Hantera skevhet**: Göra fördelningen mer symmetrisk</span>
+<span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Stabilisera varians**: Göra spridningen mer konstant</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Linearisera samband**: Göra icke-linjära samband linjära</span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Minska outliers påverkan**: Komprimera extremvärden</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### Vanliga transformationer</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 1. Logaritmtransformation</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>$$y' = \log(y)$$</span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>eller:</span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>$$y' = \log(y + 1)$$</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>(om data innehåller nollor)</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Höger-skev data (lång svans åt höger)</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Exponentiell tillväxt</span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data som spänner över flera storleksordningar</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>**Exempel:**</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="in">Original: 10, 100, 1000, 10000</span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="in">Log₁₀:    1,   2,    3,     4</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>**Praktiska tillämpningar:**</span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inkomst/löner</span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Befolkningsstorlek</span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Husantika priser</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Viruspartiklar</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 2. Kvadratrotstransformation</span></span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a>$$y' = \sqrt{y}$$</span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Måttligt skev data</span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Räknedata (count data) som följer Poisson-fördelning</span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a>**Exempel:**</span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="in">Original: 1,  4,  9,  16,  25</span></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="in">Sqrt:     1,  2,  3,   4,   5</span></span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 3. Kvadrattransformation</span></span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a>$$y' = y^2$$</span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Vänster-skev data</span>
+<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>När man vill förstärka skillnader</span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4. Reciprok (invers) transformation</span></span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>$$y' = \frac{1}{y}$$</span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Starkt höger-skev data</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tidsmätningar (konvertera tid till hastighet)</span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 5. Box-Cox transformation</span></span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>$$y' = \begin{cases}</span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>\frac{y^\lambda - 1}{\lambda} &amp; \text{om } \lambda \neq 0 <span class="sc">\\</span></span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a>\log(y) &amp; \text{om } \lambda = 0</span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a>\end{cases}$$</span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Automatisk val av bästa transformation</span>
+<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>λ hittas genom att maximera normalitet</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel: Logaritmtransformation av inkomstdata</span></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a>**Original data (tusen kr/månad):**</span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="in">Data: 25, 28, 30, 32, 35, 38, 40, 45, 120</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a><span class="in">Medelvärde: 43.7</span></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a><span class="in">Standardavvikelse: 28.6</span></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="in">Skevhet: Höger-skev</span></span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>**Efter log-transformation:**</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="in">Log-data: 3.22, 3.33, 3.40, 3.47, 3.56, 3.64, 3.69, 3.81, 4.79</span></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="in">Medelvärde: 3.66</span></span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a><span class="in">Standardavvikelse: 0.45</span></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="in">Skevhet: Mindre skev, mer normalfördelad</span></span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a>**Fördel:** Extremvärdet (120) har mindre påverkan efter transformation.</span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tolkning av transformerad data</span></span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a><span class="fu">### Backtransformation</span></span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a>När du använt log-transformation:</span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a><span class="in">log(y) = 2.5</span></span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a><span class="in">y = 10^2.5 ≈ 316  (om log₁₀)</span></span>
+<span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a><span class="in">y = e^2.5 ≈ 12.2  (om ln)</span></span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tolkning av resultat</span></span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a>**Original skala:**</span>
+<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a>"Medellönen är 43,700 kr"</span>
+<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a>**Log-skala:**</span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a>"Median log-lönen är 3.64, vilket motsvarar en lön på 10^3.64 ≈ 43,650 kr"</span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a>**Viktigt:** Efter log-transformation representerar medelvärdet den geometriska medellönen, inte den aritmetiska.</span>
+<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## Standardisering och normalisering</span></span>
+<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a><span class="fu">### Z-score standardisering</span></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>$$z = \frac{x - \bar{x}}{s}$$</span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a>**Resultat:**</span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Medelvärde = 0</span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standardavvikelse = 1</span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Jämföra variabler med olika skalor</span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Före vissa statistiska analyser</span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a><span class="fu">### Min-Max normalisering</span></span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a>**Formel:**</span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a>$$x' = \frac{x - \min(x)}{\max(x) - \min(x)}$$</span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a>**Resultat:**</span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Värden mellan 0 och 1</span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>**Användning:**</span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Maskininlärning</span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>När du vill behålla relativa avstånd</span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a><span class="fu">## Praktiska riktlinjer</span></span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### Checklista för databehandling</span></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Inspektera data**</span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Visualisera med histogram, boxplot</span>
+<span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Kontrollera för saknade värden</span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Identifiera potentiella outliers</span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Validera outliers**</span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Kontrollera om det är mätfel</span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Undersök bakomliggande orsaker</span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Dokumentera alla beslut</span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Välj strategi**</span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Ta bort, behåll eller transformera?</span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Basera på forskningsfråga och datatyp</span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Dokumentera**</span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Antal borttagna observationer</span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Vilka transformationer använts</span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Motivering för beslut</span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Rapportera**</span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Beskriv databehandling i metodavsnittet</span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Rapportera effekt på resultat</span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Var transparent</span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel: Komplett arbetsflöde</span></span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>**1. Rådata:** Antal besök på webbplats per dag</span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a><span class="in">15, 18, 20, 22, 25, 28, 30, 35, 40, 500</span></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a>**2. Identifiera:**</span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Boxplot visar 500 som outlier</span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Z-score för 500: ≈ 3.2 (stark outlier)</span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a>**3. Undersök:**</span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kontrollera loggar: Visar sig vara botaktivitet, inte äkta besök</span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a>**4. Beslut:**</span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ta bort värdet 500</span>
+<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a>**5. Resultat:**</span>
+<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="in">Renad data: 15, 18, 20, 22, 25, 28, 30, 35, 40</span></span>
+<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a><span class="in">Medelvärde: före = 73.3, efter = 25.9</span></span>
+<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a>**6. Rapportering:**</span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a>"En observation (500 besök) identifierades som outlier och verifierades vara botaktivitet. Denna observation exkluderades från analysen, vilket resulterade i ett dataset med n=9."</span>
+<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="fu">## Varningar och etiska överväganden</span></span>
+<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### Undvik cherry-picking</span></span>
+<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FEL:** Ta bort outliers för att få "bättre" resultat</span>
+<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**RÄTT:** Ta bort outliers baserat på objektiva kriterier definierade i förväg</span>
+<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a><span class="fu">### Rapportera alltid</span></span>
+<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Antal borttagna observationer</span>
+<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kriterier för borttagning</span>
+<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Skillnad i resultat med/utan outliers</span>
+<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a><span class="fu">### Var försiktig med transformationer</span></span>
+<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Log-transformation kan dölja viktiga extremvärden</span>
+<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Alltid visa både original och transformerad data</span>
+<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tolkning blir mer komplex</span>
+<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sensitivitetsanalys</span></span>
+<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a>Kör analysen både:</span>
+<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Med outliers</span>
+<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Utan outliers</span>
+<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Med transformerad data</span>
+<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a>Om resultaten skiljer sig dramatiskt, var extra försiktig med slutsatser.</span>
+<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a><span class="fu">## Viktiga begrepp</span></span>
+<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Svenska <span class="pp">|</span> Engelska <span class="pp">|</span></span>
+<span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|----------|</span></span>
+<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Extremvärde <span class="pp">|</span> Outlier <span class="pp">|</span></span>
+<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Transformation <span class="pp">|</span> Transformation <span class="pp">|</span></span>
+<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logaritm <span class="pp">|</span> Logarithm <span class="pp">|</span></span>
+<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kvadratrot <span class="pp">|</span> Square root <span class="pp">|</span></span>
+<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standardisering <span class="pp">|</span> Standardization <span class="pp">|</span></span>
+<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Normalisering <span class="pp">|</span> Normalization <span class="pp">|</span></span>
+<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Skevhet <span class="pp">|</span> Skewness <span class="pp">|</span></span>
+<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Backtransformation <span class="pp">|</span> Back-transformation <span class="pp">|</span></span>
+<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Robust statistik <span class="pp">|</span> Robust statistics <span class="pp">|</span></span>
+<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interaktiva verktyg</span></span>
+<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**[Datatyper](../dashboards/datatyper-viz.qmd)** - Utforska effekten av log-transformation och outlier-borttagning</span>
+<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**[Statistikkalkylator](../dashboards/statistik-kalkylator.qmd)** - Beräkna statistik och se effekten av outliers</span>
+<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vidare läsning</span></span>
+<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-390"><a href="#cb10-390" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Beskrivande statistik</span><span class="co">](../slides/beskrivande-statistik.qmd)</span> - Grundläggande statistiska mått</span>
+<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Presentera resultat</span><span class="co">](presentera-resultat.qmd)</span> - Visualisera data effektivt</span>
+<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a><span class="fu">## Referenser</span></span>
+<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Outlier</span><span class="co">](https://en.wikipedia.org/wiki/Outlier)</span></span>
+<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Data transformation (statistics)</span><span class="co">]</span>(https://en.wikipedia.org/wiki/Data_transformation_(statistics))</span>
+<span id="cb10-397"><a href="#cb10-397" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Logarithmic scale</span><span class="co">](https://en.wikipedia.org/wiki/Logarithmic_scale)</span></span>
+<span id="cb10-398"><a href="#cb10-398" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Box-Cox transformation</span><span class="co">](https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation)</span></span>
+<span id="cb10-399"><a href="#cb10-399" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Interquartile range</span><span class="co">](https://en.wikipedia.org/wiki/Interquartile_range)</span></span>
+<span id="cb10-400"><a href="#cb10-400" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Standard score</span><span class="co">](https://en.wikipedia.org/wiki/Standard_score)</span></span>
+<span id="cb10-401"><a href="#cb10-401" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Normalization (statistics)</span><span class="co">]</span>(https://en.wikipedia.org/wiki/Normalization_(statistics))</span>
+<span id="cb10-402"><a href="#cb10-402" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Robust statistics</span><span class="co">](https://en.wikipedia.org/wiki/Robust_statistics)</span></span>
+<span id="cb10-403"><a href="#cb10-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wikipedia: <span class="co">[</span><span class="ot">Skewness</span><span class="co">](https://en.wikipedia.org/wiki/Skewness)</span></span></code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/lessons/databehandling.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></div></div></footer></body></html>

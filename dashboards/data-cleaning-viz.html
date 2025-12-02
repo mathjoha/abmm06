@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mathias Johansson">
+<meta name="author" content="Kristofer Söderström">
+<meta name="dcterms.date" content="2025-12-15">
+
+<title>Databehandling och rensning – ABMM06 - Kvantitativa metoder</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Inget resultat",
+    "search-matching-documents-text": "matchande dokument",
+    "search-copy-link-title": "Kopiera länk för att söka",
+    "search-hide-matches-text": "Göm ytterligare resultat",
+    "search-more-match-text": "annat resultat i detta dokument",
+    "search-more-matches-text": "fler resultat i detta dokument",
+    "search-clear-button-title": "Rensa",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Verkställ",
+    "search-label": "Sök"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ABMM06 - Kvantitativa metoder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Sök"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Skifta navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentationer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Presentationer</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-presentationer">    
+        <li>
+    <a class="dropdown-item" href="../slides/kvantitativa-metoder.html" target="_blank">
+ <span class="dropdown-text">Kvantitativa metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/urval.html" target="_blank">
+ <span class="dropdown-text">Urval och representativitet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/datatyper.html" target="_blank">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/sannolikhet.html" target="_blank">
+ <span class="dropdown-text">Slump och sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/beskrivande-statistik.html" target="_blank">
+ <span class="dropdown-text">Beskrivande statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/korrelation-och-regression.html" target="_blank">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/digitala-metoder.html" target="_blank">
+ <span class="dropdown-text">Digitala metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/enkat.html" target="_blank">
+ <span class="dropdown-text">Enkäter</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lektioner" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lektioner</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lektioner">    
+        <li>
+    <a class="dropdown-item" href="../lessons/fragettyper.html">
+ <span class="dropdown-text">Frågetyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/presentera-resultat.html">
+ <span class="dropdown-text">Presentera resultat</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/korrelation-och-regression.html">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/inferentiell-statistik.html">
+ <span class="dropdown-text">Inferentiell statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/databehandling.html">
+ <span class="dropdown-text">Databehandling och rensning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-interaktiva-verktyg" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Interaktiva verktyg</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-interaktiva-verktyg">    
+        <li>
+    <a class="dropdown-item" href="../dashboards/datatyper-viz.html">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sannolikhet-viz.html">
+ <span class="dropdown-text">Sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/statistik-kalkylator.html">
+ <span class="dropdown-text">Statistikkalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/regression-viz.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/accuracy-precision-viz.html">
+ <span class="dropdown-text">Noggrannhet vs Precision</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sample-size-calculator.html">
+ <span class="dropdown-text">Urvalsstorlekskalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/data-cleaning-viz.html">
+ <span class="dropdown-text">Databehandling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/monty-hall.html">
+ <span class="dropdown-text">Monty Hall</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Om</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denna sida</h2>
+   
+  <ul>
+  <li><a href="#utforska-outliers-och-transformationer" id="toc-utforska-outliers-och-transformationer" class="nav-link active" data-scroll-target="#utforska-outliers-och-transformationer">Utforska outliers och transformationer</a></li>
+  <li><a href="#visualiseringar" id="toc-visualiseringar" class="nav-link" data-scroll-target="#visualiseringar">Visualiseringar</a></li>
+  <li><a href="#statistik" id="toc-statistik" class="nav-link" data-scroll-target="#statistik">Statistik</a></li>
+  <li><a href="#jämförelse-rådata-vs-transformerad-data" id="toc-jämförelse-rådata-vs-transformerad-data" class="nav-link" data-scroll-target="#jämförelse-rådata-vs-transformerad-data">Jämförelse: Rådata vs Transformerad data</a></li>
+  <li><a href="#identifiera-outliers" id="toc-identifiera-outliers" class="nav-link" data-scroll-target="#identifiera-outliers">Identifiera outliers</a></li>
+  <li><a href="#praktiska-insikter" id="toc-praktiska-insikter" class="nav-link" data-scroll-target="#praktiska-insikter">Praktiska insikter</a></li>
+  <li><a href="#experimentera" id="toc-experimentera" class="nav-link" data-scroll-target="#experimentera">Experimentera!</a></li>
+  <li><a href="#läs-mer" id="toc-läs-mer" class="nav-link" data-scroll-target="#läs-mer">Läs mer</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/data-cleaning-viz.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Databehandling och rensning</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kod</button></div></div>
+<p class="subtitle lead">Interaktiv demonstration av outliers och transformationer</p>
+</div>
+
+
+<div class="quarto-title-meta-author column-page-left">
+  <div class="quarto-title-meta-heading">Författare</div>
+  <div class="quarto-title-meta-heading">Anknuten</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mathias Johansson <a href="mailto:mathias.johansson@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Kristofer Söderström <a href="mailto:kristofer.soderstrom@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta column-page-left">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Utgiven</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 december 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="utforska-outliers-och-transformationer" class="level2">
+<h2 class="anchored" data-anchor-id="utforska-outliers-och-transformationer">Utforska outliers och transformationer</h2>
+<p>Denna interaktiva visualisering visar hur outliers och datatransformationer påverkar statistiska mått.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="24" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 23;"><span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>viewof includeOutlier <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Inkludera outlier (extremvärde)"</span><span class="op">,</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>viewof transformation <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Ingen"</span><span class="op">,</span> <span class="st">"Logaritm (log₁₀)"</span><span class="op">,</span> <span class="st">"Kvadratrot"</span><span class="op">,</span> <span class="st">"Z-score standardisering"</span>]<span class="op">,</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Välj transformation:"</span><span class="op">,</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"Ingen"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>viewof outlierValue <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Outlier-värde:"</span><span class="op">,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">200</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="48" data-source-offset="-23"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 47;"><span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>baseData <span class="op">=</span> [</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="dv">15</span><span class="op">,</span> <span class="dv">18</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">26</span><span class="op">,</span> <span class="dv">28</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="dv">34</span><span class="op">,</span> <span class="dv">35</span><span class="op">,</span> <span class="dv">38</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">42</span><span class="op">,</span> <span class="dv">45</span><span class="op">,</span> <span class="dv">48</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">52</span><span class="op">,</span> <span class="dv">55</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co">// Add outlier if selected</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>rawData <span class="op">=</span> includeOutlier <span class="op">?</span> [<span class="op">...</span>baseData<span class="op">,</span> outlierValue] <span class="op">:</span> baseData</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="61" data-source-offset="-25"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 60;"><span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>transformedData <span class="op">=</span> {</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Ingen"</span>) {</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">;</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Logaritm (log₁₀)"</span>) {</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(x))<span class="op">;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Kvadratrot"</span>) {</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x))<span class="op">;</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Z-score standardisering"</span>) {</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">;</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> std <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> (x <span class="op">-</span> mean) <span class="op">/</span> std)<span class="op">;</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a>displayData <span class="op">=</span> transformedData</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="79" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 78;"><span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate statistics</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> {</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> displayData<span class="op">;</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sorted <span class="op">=</span> [<span class="op">...</span>data]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> data<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(data)<span class="op">;</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> median <span class="op">=</span> d3<span class="op">.</span><span class="fu">median</span>(data)<span class="op">;</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> stdDev <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(data)<span class="op">;</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> min <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(data)<span class="op">;</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> max <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(data)<span class="op">;</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Quartiles</span></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q1 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(sorted<span class="op">,</span> <span class="fl">0.25</span>)<span class="op">;</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q3 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(sorted<span class="op">,</span> <span class="fl">0.75</span>)<span class="op">;</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> iqr <span class="op">=</span> q3 <span class="op">-</span> q1<span class="op">;</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Outlier bounds (IQR method)</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lowerBound <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr<span class="op">;</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> upperBound <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr<span class="op">;</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Count outliers</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> outliers <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(x <span class="kw">=&gt;</span> x <span class="op">&lt;</span> lowerBound <span class="op">||</span> x <span class="op">&gt;</span> upperBound)<span class="op">;</span></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    mean<span class="op">,</span> median<span class="op">,</span> stdDev<span class="op">,</span> min<span class="op">,</span> max<span class="op">,</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>    q1<span class="op">,</span> q3<span class="op">,</span> iqr<span class="op">,</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>    lowerBound<span class="op">,</span> upperBound<span class="op">,</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>    <span class="dt">outliers</span><span class="op">:</span> outliers<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>    n</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
+<section id="visualiseringar" class="level2">
+<h2 class="anchored" data-anchor-id="visualiseringar">Visualiseringar</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="118" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 117;"><span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="co">// Histogram</span></span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span></span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Värde"</span> <span class="op">:</span> <span class="vs">`Värde (</span><span class="sc">${</span>transformation<span class="sc">}</span><span class="vs">)`</span></span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Frekvens"</span></span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rectY</span>(displayData<span class="op">,</span> Plot<span class="op">.</span><span class="fu">binX</span>({<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"steelblue"</span>}))<span class="op">,</span></span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([stats<span class="op">.</span><span class="at">mean</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([stats<span class="op">.</span><span class="at">median</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"green"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,2"</span>})</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><strong>Förklaring:</strong> - <strong>Röd linje</strong>: Medelvärde - <strong>Grön streckad linje</strong>: Median</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="144" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 143;"><span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="co">// Boxplot</span></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Värde"</span> <span class="op">:</span> <span class="vs">`Värde (</span><span class="sc">${</span>transformation<span class="sc">}</span><span class="vs">)`</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">boxX</span>(displayData<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"lightblue"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"steelblue"</span>})<span class="op">,</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Mark outliers according to IQR rule</span></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>      displayData<span class="op">.</span><span class="fu">filter</span>(x <span class="kw">=&gt;</span> x <span class="op">&lt;</span> stats<span class="op">.</span><span class="at">lowerBound</span> <span class="op">||</span> x <span class="op">&gt;</span> stats<span class="op">.</span><span class="at">upperBound</span>)<span class="op">,</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>      {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>}</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><strong>Förklaring:</strong> - <strong>Box</strong>: Visar Q1, median, Q3 - <strong>Whiskers</strong>: Sträcker sig till min/max inom 1.5×IQR - <strong>Röda punkter</strong>: Outliers enligt IQR-metoden</p>
+</section>
+<section id="statistik" class="level2">
+<h2 class="anchored" data-anchor-id="statistik">Statistik</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="173" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 172;"><span id="cb7-173"><a href="#cb7-173" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb7-174"><a href="#cb7-174" aria-hidden="true" tabindex="-1"></a><span class="vs">| Mått | Värde |</span></span>
+<span id="cb7-175"><a href="#cb7-175" aria-hidden="true" tabindex="-1"></a><span class="vs">|------|-------|</span></span>
+<span id="cb7-176"><a href="#cb7-176" aria-hidden="true" tabindex="-1"></a><span class="vs">| Antal observationer | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-177"><a href="#cb7-177" aria-hidden="true" tabindex="-1"></a><span class="vs">| Medelvärde (mean) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-178"><a href="#cb7-178" aria-hidden="true" tabindex="-1"></a><span class="vs">| Median | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-179"><a href="#cb7-179" aria-hidden="true" tabindex="-1"></a><span class="vs">| Standardavvikelse | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-180"><a href="#cb7-180" aria-hidden="true" tabindex="-1"></a><span class="vs">| Minimum | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-181"><a href="#cb7-181" aria-hidden="true" tabindex="-1"></a><span class="vs">| Maximum | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-182"><a href="#cb7-182" aria-hidden="true" tabindex="-1"></a><span class="vs">| Q1 (25:e percentilen) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">q1</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-183"><a href="#cb7-183" aria-hidden="true" tabindex="-1"></a><span class="vs">| Q3 (75:e percentilen) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">q3</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-184"><a href="#cb7-184" aria-hidden="true" tabindex="-1"></a><span class="vs">| IQR (Q3 - Q1) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">iqr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-185"><a href="#cb7-185" aria-hidden="true" tabindex="-1"></a><span class="vs">| Antal outliers (IQR-metod) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">outliers</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb7-186"><a href="#cb7-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-187"><a href="#cb7-187" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb7-188"><a href="#cb7-188" aria-hidden="true" tabindex="-1"></a><span class="vs">### Skillnad med/utan outlier</span></span>
+<span id="cb7-189"><a href="#cb7-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-190"><a href="#cb7-190" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>includeOutlier <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb7-191"><a href="#cb7-191" aria-hidden="true" tabindex="-1"></a><span class="vs">Med outlier (</span><span class="sc">${</span>outlierValue<span class="sc">}</span><span class="vs">):</span></span>
+<span id="cb7-192"><a href="#cb7-192" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde påverkas kraftigt av extremvärdet</span></span>
+<span id="cb7-193"><a href="#cb7-193" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medianen är mer robust och påverkas mindre</span></span>
+<span id="cb7-194"><a href="#cb7-194" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb7-195"><a href="#cb7-195" aria-hidden="true" tabindex="-1"></a><span class="vs">Utan outlier:</span></span>
+<span id="cb7-196"><a href="#cb7-196" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde och median ligger närmare varandra</span></span>
+<span id="cb7-197"><a href="#cb7-197" aria-hidden="true" tabindex="-1"></a><span class="vs">- Lägre standardavvikelse</span></span>
+<span id="cb7-198"><a href="#cb7-198" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb7-199"><a href="#cb7-199" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb7-200"><a href="#cb7-200" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="jämförelse-rådata-vs-transformerad-data" class="level2">
+<h2 class="anchored" data-anchor-id="jämförelse-rådata-vs-transformerad-data">Jämförelse: Rådata vs Transformerad data</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="210" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 209;"><span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> {</span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rawStats <span class="op">=</span> {</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mean</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">,</span></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a>    <span class="dt">median</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">median</span>(rawData)<span class="op">,</span></span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a>    <span class="dt">std</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">,</span></span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">min</span>(rawData)<span class="op">,</span></span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a>    <span class="dt">max</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">max</span>(rawData)</span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-219"><a href="#cb8-219" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">raw</span><span class="op">:</span> rawStats<span class="op">,</span> <span class="dt">transformed</span><span class="op">:</span> stats}<span class="op">;</span></span>
+<span id="cb8-220"><a href="#cb8-220" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a><span class="vs">| Mått | Rådata | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Transformerad"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a><span class="vs">|------|--------|-------------|</span></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="vs">| Medelvärde | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a><span class="vs">| Median | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a><span class="vs">| Std.avvikelse | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">std</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a><span class="vs">| Min | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a><span class="vs">| Max | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Logaritm (log₁₀)"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av log-transformation</span></span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a><span class="vs">För att konvertera tillbaka:</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a><span class="vs">- Om log₁₀(x) = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, då x = 10^</span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> ≈ </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> stats<span class="op">.</span><span class="at">mean</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span></span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a><span class="vs">**Effekt:** Logaritmtransformation komprimerar stora värden mer än små värden, vilket minskar effekten av outliers.</span></span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Kvadratrot"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av kvadratrotstransformation</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a><span class="vs">För att konvertera tillbaka:</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a><span class="vs">- Om √x = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, då x = (</span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)² ≈ </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(stats<span class="op">.</span><span class="at">mean</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span></span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a><span class="vs">**Effekt:** Kvadratrotstransformation minskar skevhet i måttlig grad, mindre drastisk än log-transformation.</span></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Z-score standardisering"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av Z-score standardisering</span></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:**</span></span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (nära 0)</span></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a><span class="vs">- Standardavvikelse = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (nära 1)</span></span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a><span class="vs">**Användning:** Jämföra variabler med olika skalor, eller identifiera outliers (|z| &gt; 2 eller 3).</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-8-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="identifiera-outliers" class="level2">
+<h2 class="anchored" data-anchor-id="identifiera-outliers">Identifiera outliers</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="267" data-source-offset="-26"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 266;"><span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a>zScores <span class="op">=</span> {</span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">;</span></span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> std <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">;</span></span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>((x<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> (x <span class="op">-</span> mean) <span class="op">/</span> std<span class="op">,</span></span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a>    <span class="dt">index</span><span class="op">:</span> i</span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a>outliersTable <span class="op">=</span> zScores<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">z</span>) <span class="op">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a><span class="vs">### Z-score metoden</span></span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a><span class="vs">Värden med |Z| &gt; 2 betraktas som möjliga outliers:</span></span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>outliersTable<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a><span class="vs">| Värde | Z-score | Tolkning |</span></span>
+<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a><span class="vs">|-------|---------|----------|</span></span>
+<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>outliersTable<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="vs">`| </span><span class="sc">${</span>d<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>d<span class="op">.</span><span class="at">z</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">z</span>) <span class="op">&gt;</span> <span class="dv">3</span> <span class="op">?</span> <span class="st">"Stark outlier"</span> <span class="op">:</span> <span class="st">"Möjlig outlier"</span><span class="sc">}</span><span class="vs"> |`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)<span class="sc">}</span></span>
+<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">"*Inga outliers identifierade med Z-score metoden*"</span><span class="sc">}</span></span>
+<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a><span class="vs">### IQR-metoden</span></span>
+<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a><span class="vs">**Gränser:**</span></span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a><span class="vs">- Nedre gräns: Q1 - 1.5 × IQR = </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span> <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> (stats<span class="op">.</span><span class="at">q1</span> <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> stats<span class="op">.</span><span class="at">iqr</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span></span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a><span class="vs">- Övre gräns: Q3 + 1.5 × IQR = </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span> <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> (stats<span class="op">.</span><span class="at">q3</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> stats<span class="op">.</span><span class="at">iqr</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span></span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a><span class="vs">**Outliers:** </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">outliers</span><span class="sc">}</span><span class="vs"> värden ligger utanför dessa gränser</span></span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-9-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-9-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-9-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="praktiska-insikter" class="level2">
+<h2 class="anchored" data-anchor-id="praktiska-insikter">Praktiska insikter</h2>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="303" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 302;"><span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="vs">### När ska du ta bort outliers?</span></span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Ta bort när:**</span></span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a><span class="vs">- Uppenbart mätfel (t.ex. ålder = 999)</span></span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="vs">- Datainmatningsfel som kan verifieras</span></span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a><span class="vs">- Värdet inte tillhör målpopulationen</span></span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a><span class="vs">❌ **Behåll när:**</span></span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a><span class="vs">- Genuina extremvärden som är viktiga för studien</span></span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="vs">- Du studerar extremfall eller sällsynta händelser</span></span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a><span class="vs">- Outliers ger viktig information om variabiliteten</span></span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a><span class="vs">### När ska du transformera data?</span></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd log-transformation för:**</span></span>
+<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a><span class="vs">- Höger-skev data (lång svans åt höger)</span></span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a><span class="vs">- Data som spänner flera storleksordningar</span></span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a><span class="vs">- Inkomst, priser, befolkningsstorlek</span></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd kvadratrot för:**</span></span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="vs">- Måttligt skev data</span></span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a><span class="vs">- Räknedata (count data)</span></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd Z-score standardisering för:**</span></span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a><span class="vs">- Jämföra variabler med olika enheter</span></span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="vs">- Identifiera outliers numeriskt</span></span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a><span class="vs">- Förberedelse för vissa analyser</span></span>
+<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="vs">### Viktig påminnelse</span></span>
+<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="vs">📊 **Rapportera alltid:**</span></span>
+<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a><span class="vs">- Vilka transformationer som använts</span></span>
+<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="vs">- Antal borttagna outliers</span></span>
+<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a><span class="vs">- Motivering för beslut</span></span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a><span class="vs">- Effekt på resultat</span></span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+<section id="experimentera" class="level2">
+<h2 class="anchored" data-anchor-id="experimentera">Experimentera!</h2>
+<p>Prova att: 1. <strong>Slå på/av outlier</strong> - Se hur det påverkar medelvärde vs median 2. <strong>Ändra outlier-värdet</strong> - Se när det blir extremt nog att klassas som outlier 3. <strong>Applicera log-transformation</strong> - Observera hur extremvärden komprimeras 4. <strong>Jämför transformationer</strong> - Vilken fungerar bäst för denna data?</p>
+</section>
+<section id="läs-mer" class="level2">
+<h2 class="anchored" data-anchor-id="läs-mer">Läs mer</h2>
+<p>Se <a href="../lessons/databehandling.html">Databehandling och rensning</a> för detaljerad förklaring av outliers, transformationer och best practices.</p>
+
+
+<!-- -->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citat</h2><div><div class="quarto-appendix-secondary-label">BibTeX hänvisning:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@misc{johansson2025,
+  author = {Johansson, Mathias and Söderström, Kristofer},
+  publisher = {Lunds universitet},
+  title = {Databehandling - Interaktiv visualisering},
+  date = {2025},
+  url = {https://mathjoha.github.io/abmm06/dashboards/data-cleaning-viz.html},
+  langid = {sv}
+}
+</code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Hänvisa till detta arbete som:</div><div id="ref-johansson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Johansson, Mathias, and Kristofer Söderström. 2025.
+<span>“Databehandling - Interaktiv visualisering.”</span> <em>ABMM06:
+Kvantitativa metoder</em>. Lunds universitet. <a href="https://mathjoha.github.io/abmm06/dashboards/data-cleaning-viz.html">https://mathjoha.github.io/abmm06/dashboards/data-cleaning-viz.html</a>.
+</div></div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGluY2x1ZGVPdXRsaWVyID0gSW5wdXRzLnRvZ2dsZSh7XG4gIGxhYmVsOiBcIklua2x1ZGVyYSBvdXRsaWVyIChleHRyZW12w6RyZGUpXCIsXG4gIHZhbHVlOiB0cnVlXG59KVxuXG52aWV3b2YgdHJhbnNmb3JtYXRpb24gPSBJbnB1dHMuc2VsZWN0KFxuICBbXCJJbmdlblwiLCBcIkxvZ2FyaXRtIChsb2figoHigoApXCIsIFwiS3ZhZHJhdHJvdFwiLCBcIlotc2NvcmUgc3RhbmRhcmRpc2VyaW5nXCJdLFxuICB7XG4gICAgbGFiZWw6IFwiVsOkbGogdHJhbnNmb3JtYXRpb246XCIsXG4gICAgdmFsdWU6IFwiSW5nZW5cIlxuICB9XG4pXG5cbnZpZXdvZiBvdXRsaWVyVmFsdWUgPSBJbnB1dHMucmFuZ2UoWzEwMCwgNTAwXSwge1xuICBsYWJlbDogXCJPdXRsaWVyLXbDpHJkZTpcIixcbiAgc3RlcDogMTAsXG4gIHZhbHVlOiAyMDBcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIEdlbmVyYXRlIGJhc2UgZGF0YVxuYmFzZURhdGEgPSBbXG4gIDE1LCAxOCwgMjAsIDIyLCAyNCwgMjUsIDI2LCAyOCwgMzAsIDMyLFxuICAzNCwgMzUsIDM4LCA0MCwgNDIsIDQ1LCA0OCwgNTAsIDUyLCA1NVxuXVxuXG4vLyBBZGQgb3V0bGllciBpZiBzZWxlY3RlZFxucmF3RGF0YSA9IGluY2x1ZGVPdXRsaWVyID8gWy4uLmJhc2VEYXRhLCBvdXRsaWVyVmFsdWVdIDogYmFzZURhdGFcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gQXBwbHkgdHJhbnNmb3JtYXRpb25cbnRyYW5zZm9ybWVkRGF0YSA9IHtcbiAgaWYgKHRyYW5zZm9ybWF0aW9uID09PSBcIkluZ2VuXCIpIHtcbiAgICByZXR1cm4gcmF3RGF0YTtcbiAgfSBlbHNlIGlmICh0cmFuc2Zvcm1hdGlvbiA9PT0gXCJMb2dhcml0bSAobG9n4oKB4oKAKVwiKSB7XG4gICAgcmV0dXJuIHJhd0RhdGEubWFwKHggPT4gTWF0aC5sb2cxMCh4KSk7XG4gIH0gZWxzZSBpZiAodHJhbnNmb3JtYXRpb24gPT09IFwiS3ZhZHJhdHJvdFwiKSB7XG4gICAgcmV0dXJuIHJhd0RhdGEubWFwKHggPT4gTWF0aC5zcXJ0KHgpKTtcbiAgfSBlbHNlIGlmICh0cmFuc2Zvcm1hdGlvbiA9PT0gXCJaLXNjb3JlIHN0YW5kYXJkaXNlcmluZ1wiKSB7XG4gICAgY29uc3QgbWVhbiA9IGQzLm1lYW4ocmF3RGF0YSk7XG4gICAgY29uc3Qgc3RkID0gZDMuZGV2aWF0aW9uKHJhd0RhdGEpO1xuICAgIHJldHVybiByYXdEYXRhLm1hcCh4ID0+ICh4IC0gbWVhbikgLyBzdGQpO1xuICB9XG59XG5cbmRpc3BsYXlEYXRhID0gdHJhbnNmb3JtZWREYXRhXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIENhbGN1bGF0ZSBzdGF0aXN0aWNzXG5zdGF0cyA9IHtcbiAgY29uc3QgZGF0YSA9IGRpc3BsYXlEYXRhO1xuICBjb25zdCBzb3J0ZWQgPSBbLi4uZGF0YV0uc29ydCgoYSwgYikgPT4gYSAtIGIpO1xuICBjb25zdCBuID0gZGF0YS5sZW5ndGg7XG5cbiAgY29uc3QgbWVhbiA9IGQzLm1lYW4oZGF0YSk7XG4gIGNvbnN0IG1lZGlhbiA9IGQzLm1lZGlhbihkYXRhKTtcbiAgY29uc3Qgc3RkRGV2ID0gZDMuZGV2aWF0aW9uKGRhdGEpO1xuICBjb25zdCBtaW4gPSBkMy5taW4oZGF0YSk7XG4gIGNvbnN0IG1heCA9IGQzLm1heChkYXRhKTtcblxuICAvLyBRdWFydGlsZXNcbiAgY29uc3QgcTEgPSBkMy5xdWFudGlsZShzb3J0ZWQsIDAuMjUpO1xuICBjb25zdCBxMyA9IGQzLnF1YW50aWxlKHNvcnRlZCwgMC43NSk7XG4gIGNvbnN0IGlxciA9IHEzIC0gcTE7XG5cbiAgLy8gT3V0bGllciBib3VuZHMgKElRUiBtZXRob2QpXG4gIGNvbnN0IGxvd2VyQm91bmQgPSBxMSAtIDEuNSAqIGlxcjtcbiAgY29uc3QgdXBwZXJCb3VuZCA9IHEzICsgMS41ICogaXFyO1xuXG4gIC8vIENvdW50IG91dGxpZXJzXG4gIGNvbnN0IG91dGxpZXJzID0gZGF0YS5maWx0ZXIoeCA9PiB4IDwgbG93ZXJCb3VuZCB8fCB4ID4gdXBwZXJCb3VuZCk7XG5cbiAgcmV0dXJuIHtcbiAgICBtZWFuLCBtZWRpYW4sIHN0ZERldiwgbWluLCBtYXgsXG4gICAgcTEsIHEzLCBpcXIsXG4gICAgbG93ZXJCb3VuZCwgdXBwZXJCb3VuZCxcbiAgICBvdXRsaWVyczogb3V0bGllcnMubGVuZ3RoLFxuICAgIG5cbiAgfTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gSGlzdG9ncmFtXG5QbG90LnBsb3Qoe1xuICB3aWR0aDogNzAwLFxuICBoZWlnaHQ6IDQwMCxcbiAgbWFyZ2luTGVmdDogNjAsXG4gIHg6IHtcbiAgICBsYWJlbDogdHJhbnNmb3JtYXRpb24gPT09IFwiSW5nZW5cIiA/IFwiVsOkcmRlXCIgOiBgVsOkcmRlICgke3RyYW5zZm9ybWF0aW9ufSlgXG4gIH0sXG4gIHk6IHtcbiAgICBsYWJlbDogXCJGcmVrdmVuc1wiXG4gIH0sXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5yZWN0WShkaXNwbGF5RGF0YSwgUGxvdC5iaW5YKHt5OiBcImNvdW50XCJ9LCB7eDogZCA9PiBkLCBmaWxsOiBcInN0ZWVsYmx1ZVwifSkpLFxuICAgIFBsb3QucnVsZVgoW3N0YXRzLm1lYW5dLCB7c3Ryb2tlOiBcInJlZFwiLCBzdHJva2VXaWR0aDogMn0pLFxuICAgIFBsb3QucnVsZVgoW3N0YXRzLm1lZGlhbl0sIHtzdHJva2U6IFwiZ3JlZW5cIiwgc3Ryb2tlV2lkdGg6IDIsIHN0cm9rZURhc2hhcnJheTogXCI0LDJcIn0pXG4gIF1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIEJveHBsb3RcblBsb3QucGxvdCh7XG4gIHdpZHRoOiA3MDAsXG4gIGhlaWdodDogMjAwLFxuICBtYXJnaW5MZWZ0OiA2MCxcbiAgeDoge1xuICAgIGxhYmVsOiB0cmFuc2Zvcm1hdGlvbiA9PT0gXCJJbmdlblwiID8gXCJWw6RyZGVcIiA6IGBWw6RyZGUgKCR7dHJhbnNmb3JtYXRpb259KWBcbiAgfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmJveFgoZGlzcGxheURhdGEsIHt4OiBkID0+IGQsIGZpbGw6IFwibGlnaHRibHVlXCIsIHN0cm9rZTogXCJzdGVlbGJsdWVcIn0pLFxuICAgIC8vIE1hcmsgb3V0bGllcnMgYWNjb3JkaW5nIHRvIElRUiBydWxlXG4gICAgUGxvdC5kb3QoXG4gICAgICBkaXNwbGF5RGF0YS5maWx0ZXIoeCA9PiB4IDwgc3RhdHMubG93ZXJCb3VuZCB8fCB4ID4gc3RhdHMudXBwZXJCb3VuZCksXG4gICAgICB7eDogZCA9PiBkLCBmaWxsOiBcInJlZFwiLCByOiA1fVxuICAgIClcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxubWRgXG58IE3DpXR0IHwgVsOkcmRlIHxcbnwtLS0tLS18LS0tLS0tLXxcbnwgQW50YWwgb2JzZXJ2YXRpb25lciB8ICR7c3RhdHMubn0gfFxufCBNZWRlbHbDpHJkZSAobWVhbikgfCAke3N0YXRzLm1lYW4udG9GaXhlZCgyKX0gfFxufCBNZWRpYW4gfCAke3N0YXRzLm1lZGlhbi50b0ZpeGVkKDIpfSB8XG58IFN0YW5kYXJkYXZ2aWtlbHNlIHwgJHtzdGF0cy5zdGREZXYudG9GaXhlZCgyKX0gfFxufCBNaW5pbXVtIHwgJHtzdGF0cy5taW4udG9GaXhlZCgyKX0gfFxufCBNYXhpbXVtIHwgJHtzdGF0cy5tYXgudG9GaXhlZCgyKX0gfFxufCBRMSAoMjU6ZSBwZXJjZW50aWxlbikgfCAke3N0YXRzLnExLnRvRml4ZWQoMil9IHxcbnwgUTMgKDc1OmUgcGVyY2VudGlsZW4pIHwgJHtzdGF0cy5xMy50b0ZpeGVkKDIpfSB8XG58IElRUiAoUTMgLSBRMSkgfCAke3N0YXRzLmlxci50b0ZpeGVkKDIpfSB8XG58IEFudGFsIG91dGxpZXJzIChJUVItbWV0b2QpIHwgJHtzdGF0cy5vdXRsaWVyc30gfFxuXG4ke3RyYW5zZm9ybWF0aW9uID09PSBcIkluZ2VuXCIgPyBgXG4jIyMgU2tpbGxuYWQgbWVkL3V0YW4gb3V0bGllclxuXG4ke2luY2x1ZGVPdXRsaWVyID8gYFxuTWVkIG91dGxpZXIgKCR7b3V0bGllclZhbHVlfSk6XG4tIE1lZGVsdsOkcmRlIHDDpXZlcmthcyBrcmFmdGlndCBhdiBleHRyZW12w6RyZGV0XG4tIE1lZGlhbmVuIMOkciBtZXIgcm9idXN0IG9jaCBww6V2ZXJrYXMgbWluZHJlXG5gIDogYFxuVXRhbiBvdXRsaWVyOlxuLSBNZWRlbHbDpHJkZSBvY2ggbWVkaWFuIGxpZ2dlciBuw6RybWFyZSB2YXJhbmRyYVxuLSBMw6RncmUgc3RhbmRhcmRhdnZpa2Vsc2VcbmB9XG5gIDogXCJcIn1cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuY29tcGFyaXNvbiA9IHtcbiAgY29uc3QgcmF3U3RhdHMgPSB7XG4gICAgbWVhbjogZDMubWVhbihyYXdEYXRhKSxcbiAgICBtZWRpYW46IGQzLm1lZGlhbihyYXdEYXRhKSxcbiAgICBzdGQ6IGQzLmRldmlhdGlvbihyYXdEYXRhKSxcbiAgICBtaW46IGQzLm1pbihyYXdEYXRhKSxcbiAgICBtYXg6IGQzLm1heChyYXdEYXRhKVxuICB9O1xuXG4gIHJldHVybiB7cmF3OiByYXdTdGF0cywgdHJhbnNmb3JtZWQ6IHN0YXRzfTtcbn1cblxubWRgXG58IE3DpXR0IHwgUsOlZGF0YSB8ICR7dHJhbnNmb3JtYXRpb24gIT09IFwiSW5nZW5cIiA/IFwiVHJhbnNmb3JtZXJhZFwiIDogXCJcIn0gfFxufC0tLS0tLXwtLS0tLS0tLXwtLS0tLS0tLS0tLS0tfFxufCBNZWRlbHbDpHJkZSB8ICR7Y29tcGFyaXNvbi5yYXcubWVhbi50b0ZpeGVkKDIpfSB8ICR7dHJhbnNmb3JtYXRpb24gIT09IFwiSW5nZW5cIiA/IHN0YXRzLm1lYW4udG9GaXhlZCgyKSA6IFwi4oCTXCJ9IHxcbnwgTWVkaWFuIHwgJHtjb21wYXJpc29uLnJhdy5tZWRpYW4udG9GaXhlZCgyKX0gfCAke3RyYW5zZm9ybWF0aW9uICE9PSBcIkluZ2VuXCIgPyBzdGF0cy5tZWRpYW4udG9GaXhlZCgyKSA6IFwi4oCTXCJ9IHxcbnwgU3RkLmF2dmlrZWxzZSB8ICR7Y29tcGFyaXNvbi5yYXcuc3RkLnRvRml4ZWQoMil9IHwgJHt0cmFuc2Zvcm1hdGlvbiAhPT0gXCJJbmdlblwiID8gc3RhdHMuc3RkRGV2LnRvRml4ZWQoMikgOiBcIuKAk1wifSB8XG58IE1pbiB8ICR7Y29tcGFyaXNvbi5yYXcubWluLnRvRml4ZWQoMil9IHwgJHt0cmFuc2Zvcm1hdGlvbiAhPT0gXCJJbmdlblwiID8gc3RhdHMubWluLnRvRml4ZWQoMikgOiBcIuKAk1wifSB8XG58IE1heCB8ICR7Y29tcGFyaXNvbi5yYXcubWF4LnRvRml4ZWQoMil9IHwgJHt0cmFuc2Zvcm1hdGlvbiAhPT0gXCJJbmdlblwiID8gc3RhdHMubWF4LnRvRml4ZWQoMikgOiBcIuKAk1wifSB8XG5cbiR7dHJhbnNmb3JtYXRpb24gPT09IFwiTG9nYXJpdG0gKGxvZ+KCgeKCgClcIiA/IGBcbiMjIyBUb2xrbmluZyBhdiBsb2ctdHJhbnNmb3JtYXRpb25cblxuRsO2ciBhdHQga29udmVydGVyYSB0aWxsYmFrYTpcbi0gT20gbG9n4oKB4oKAKHgpID0gJHtzdGF0cy5tZWFuLnRvRml4ZWQoMil9LCBkw6UgeCA9IDEwXiR7c3RhdHMubWVhbi50b0ZpeGVkKDIpfSDiiYggJHtNYXRoLnBvdygxMCwgc3RhdHMubWVhbikudG9GaXhlZCgxKX1cblxuKipFZmZla3Q6KiogTG9nYXJpdG10cmFuc2Zvcm1hdGlvbiBrb21wcmltZXJhciBzdG9yYSB2w6RyZGVuIG1lciDDpG4gc23DpSB2w6RyZGVuLCB2aWxrZXQgbWluc2thciBlZmZla3RlbiBhdiBvdXRsaWVycy5cbmAgOiBcIlwifVxuXG4ke3RyYW5zZm9ybWF0aW9uID09PSBcIkt2YWRyYXRyb3RcIiA/IGBcbiMjIyBUb2xrbmluZyBhdiBrdmFkcmF0cm90c3RyYW5zZm9ybWF0aW9uXG5cbkbDtnIgYXR0IGtvbnZlcnRlcmEgdGlsbGJha2E6XG4tIE9tIOKImnggPSAke3N0YXRzLm1lYW4udG9GaXhlZCgyKX0sIGTDpSB4ID0gKCR7c3RhdHMubWVhbi50b0ZpeGVkKDIpfSnCsiDiiYggJHtNYXRoLnBvdyhzdGF0cy5tZWFuLCAyKS50b0ZpeGVkKDEpfVxuXG4qKkVmZmVrdDoqKiBLdmFkcmF0cm90c3RyYW5zZm9ybWF0aW9uIG1pbnNrYXIgc2tldmhldCBpIG3DpXR0bGlnIGdyYWQsIG1pbmRyZSBkcmFzdGlzayDDpG4gbG9nLXRyYW5zZm9ybWF0aW9uLlxuYCA6IFwiXCJ9XG5cbiR7dHJhbnNmb3JtYXRpb24gPT09IFwiWi1zY29yZSBzdGFuZGFyZGlzZXJpbmdcIiA/IGBcbiMjIyBUb2xrbmluZyBhdiBaLXNjb3JlIHN0YW5kYXJkaXNlcmluZ1xuXG4qKlJlc3VsdGF0OioqXG4tIE1lZGVsdsOkcmRlID0gJHtzdGF0cy5tZWFuLnRvRml4ZWQoMil9IChuw6RyYSAwKVxuLSBTdGFuZGFyZGF2dmlrZWxzZSA9ICR7c3RhdHMuc3RkRGV2LnRvRml4ZWQoMil9IChuw6RyYSAxKVxuXG4qKkFudsOkbmRuaW5nOioqIErDpG1mw7ZyYSB2YXJpYWJsZXIgbWVkIG9saWthIHNrYWxvciwgZWxsZXIgaWRlbnRpZmllcmEgb3V0bGllcnMgKHx6fCA+IDIgZWxsZXIgMykuXG5gIDogXCJcIn1cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gWi1zY29yZXMgZm9yIHJhdyBkYXRhXG56U2NvcmVzID0ge1xuICBjb25zdCBtZWFuID0gZDMubWVhbihyYXdEYXRhKTtcbiAgY29uc3Qgc3RkID0gZDMuZGV2aWF0aW9uKHJhd0RhdGEpO1xuICByZXR1cm4gcmF3RGF0YS5tYXAoKHgsIGkpID0+ICh7XG4gICAgdmFsdWU6IHgsXG4gICAgejogKHggLSBtZWFuKSAvIHN0ZCxcbiAgICBpbmRleDogaVxuICB9KSk7XG59XG5cbm91dGxpZXJzVGFibGUgPSB6U2NvcmVzLmZpbHRlcihkID0+IE1hdGguYWJzKGQueikgPiAyKVxuXG5tZGBcbiMjIyBaLXNjb3JlIG1ldG9kZW5cblxuVsOkcmRlbiBtZWQgfFp8ID4gMiBiZXRyYWt0YXMgc29tIG3DtmpsaWdhIG91dGxpZXJzOlxuXG4ke291dGxpZXJzVGFibGUubGVuZ3RoID4gMCA/IGBcbnwgVsOkcmRlIHwgWi1zY29yZSB8IFRvbGtuaW5nIHxcbnwtLS0tLS0tfC0tLS0tLS0tLXwtLS0tLS0tLS0tfFxuJHtvdXRsaWVyc1RhYmxlLm1hcChkID0+IGB8ICR7ZC52YWx1ZS50b0ZpeGVkKDEpfSB8ICR7ZC56LnRvRml4ZWQoMil9IHwgJHtNYXRoLmFicyhkLnopID4gMyA/IFwiU3Rhcmsgb3V0bGllclwiIDogXCJNw7ZqbGlnIG91dGxpZXJcIn0gfGApLmpvaW4oJ1xcbicpfVxuYCA6IFwiKkluZ2Egb3V0bGllcnMgaWRlbnRpZmllcmFkZSBtZWQgWi1zY29yZSBtZXRvZGVuKlwifVxuXG4jIyMgSVFSLW1ldG9kZW5cblxuKipHcsOkbnNlcjoqKlxuLSBOZWRyZSBncsOkbnM6IFExIC0gMS41IMOXIElRUiA9ICR7Y29tcGFyaXNvbi5yYXcubWVkaWFuICE9PSB1bmRlZmluZWQgPyAoc3RhdHMucTEgLSAxLjUgKiBzdGF0cy5pcXIpLnRvRml4ZWQoMikgOiBcIuKAk1wifVxuLSDDlnZyZSBncsOkbnM6IFEzICsgMS41IMOXIElRUiA9ICR7Y29tcGFyaXNvbi5yYXcubWVkaWFuICE9PSB1bmRlZmluZWQgPyAoc3RhdHMucTMgKyAxLjUgKiBzdGF0cy5pcXIpLnRvRml4ZWQoMikgOiBcIuKAk1wifVxuXG4qKk91dGxpZXJzOioqICR7c3RhdHMub3V0bGllcnN9IHbDpHJkZW4gbGlnZ2VyIHV0YW5mw7ZyIGRlc3NhIGdyw6Ruc2VyXG5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEwIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5tZGBcbiMjIyBOw6RyIHNrYSBkdSB0YSBib3J0IG91dGxpZXJzP1xuXG7inIUgKipUYSBib3J0IG7DpHI6Kipcbi0gVXBwZW5iYXJ0IG3DpHRmZWwgKHQuZXguIMOlbGRlciA9IDk5OSlcbi0gRGF0YWlubWF0bmluZ3NmZWwgc29tIGthbiB2ZXJpZmllcmFzXG4tIFbDpHJkZXQgaW50ZSB0aWxsaMO2ciBtw6VscG9wdWxhdGlvbmVuXG5cbuKdjCAqKkJlaMOlbGwgbsOkcjoqKlxuLSBHZW51aW5hIGV4dHJlbXbDpHJkZW4gc29tIMOkciB2aWt0aWdhIGbDtnIgc3R1ZGllblxuLSBEdSBzdHVkZXJhciBleHRyZW1mYWxsIGVsbGVyIHPDpGxsc3ludGEgaMOkbmRlbHNlclxuLSBPdXRsaWVycyBnZXIgdmlrdGlnIGluZm9ybWF0aW9uIG9tIHZhcmlhYmlsaXRldGVuXG5cbiMjIyBOw6RyIHNrYSBkdSB0cmFuc2Zvcm1lcmEgZGF0YT9cblxu4pyFICoqQW52w6RuZCBsb2ctdHJhbnNmb3JtYXRpb24gZsO2cjoqKlxuLSBIw7ZnZXItc2tldiBkYXRhIChsw6VuZyBzdmFucyDDpXQgaMO2Z2VyKVxuLSBEYXRhIHNvbSBzcMOkbm5lciBmbGVyYSBzdG9ybGVrc29yZG5pbmdhclxuLSBJbmtvbXN0LCBwcmlzZXIsIGJlZm9sa25pbmdzc3Rvcmxla1xuXG7inIUgKipBbnbDpG5kIGt2YWRyYXRyb3QgZsO2cjoqKlxuLSBNw6V0dGxpZ3Qgc2tldiBkYXRhXG4tIFLDpGtuZWRhdGEgKGNvdW50IGRhdGEpXG5cbuKchSAqKkFudsOkbmQgWi1zY29yZSBzdGFuZGFyZGlzZXJpbmcgZsO2cjoqKlxuLSBKw6RtZsO2cmEgdmFyaWFibGVyIG1lZCBvbGlrYSBlbmhldGVyXG4tIElkZW50aWZpZXJhIG91dGxpZXJzIG51bWVyaXNrdFxuLSBGw7ZyYmVyZWRlbHNlIGbDtnIgdmlzc2EgYW5hbHlzZXJcblxuIyMjIFZpa3RpZyBww6VtaW5uZWxzZVxuXG7wn5OKICoqUmFwcG9ydGVyYSBhbGx0aWQ6Kipcbi0gVmlsa2EgdHJhbnNmb3JtYXRpb25lciBzb20gYW52w6RudHNcbi0gQW50YWwgYm9ydHRhZ25hIG91dGxpZXJzXG4tIE1vdGl2ZXJpbmcgZsO2ciBiZXNsdXRcbi0gRWZmZWt0IHDDpSByZXN1bHRhdFxuYFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdpbmNsdWRlT3V0bGllcicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd0cmFuc2Zvcm1hdGlvbicpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdvdXRsaWVyVmFsdWUnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../dashboards";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopierat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopierat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Källkod</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Databehandling och rensning"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Interaktiv demonstration av outliers och transformationer"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">citation:</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">  type: document</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">  title: "Databehandling - Interaktiv visualisering"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">  container-title: "ABMM06: Kvantitativa metoder"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">  publisher: Lunds universitet</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">  license: "CC-BY-NC 4.0"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">  url: https://mathjoha.github.io/abmm06/dashboards/data-cleaning-viz.html</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Utforska outliers och transformationer</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Denna interaktiva visualisering visar hur outliers och datatransformationer påverkar statistiska mått.</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>viewof includeOutlier <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Inkludera outlier (extremvärde)"</span><span class="op">,</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>viewof transformation <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  [<span class="st">"Ingen"</span><span class="op">,</span> <span class="st">"Logaritm (log₁₀)"</span><span class="op">,</span> <span class="st">"Kvadratrot"</span><span class="op">,</span> <span class="st">"Z-score standardisering"</span>]<span class="op">,</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Välj transformation:"</span><span class="op">,</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="st">"Ingen"</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>viewof outlierValue <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span> {</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Outlier-värde:"</span><span class="op">,</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">200</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co">// Generate base data</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>baseData <span class="op">=</span> [</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  <span class="dv">15</span><span class="op">,</span> <span class="dv">18</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">22</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">26</span><span class="op">,</span> <span class="dv">28</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">32</span><span class="op">,</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>  <span class="dv">34</span><span class="op">,</span> <span class="dv">35</span><span class="op">,</span> <span class="dv">38</span><span class="op">,</span> <span class="dv">40</span><span class="op">,</span> <span class="dv">42</span><span class="op">,</span> <span class="dv">45</span><span class="op">,</span> <span class="dv">48</span><span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">52</span><span class="op">,</span> <span class="dv">55</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="co">// Add outlier if selected</span></span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>rawData <span class="op">=</span> includeOutlier <span class="op">?</span> [<span class="op">...</span>baseData<span class="op">,</span> outlierValue] <span class="op">:</span> baseData</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a><span class="co">// Apply transformation</span></span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>transformedData <span class="op">=</span> {</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Ingen"</span>) {</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">;</span></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Logaritm (log₁₀)"</span>) {</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log10</span>(x))<span class="op">;</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Kvadratrot"</span>) {</span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(x))<span class="op">;</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (transformation <span class="op">===</span> <span class="st">"Z-score standardisering"</span>) {</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">;</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> std <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">;</span></span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>(x <span class="kw">=&gt;</span> (x <span class="op">-</span> mean) <span class="op">/</span> std)<span class="op">;</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>displayData <span class="op">=</span> transformedData</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="co">// Calculate statistics</span></span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> {</span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> displayData<span class="op">;</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> sorted <span class="op">=</span> [<span class="op">...</span>data]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> data<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(data)<span class="op">;</span></span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> median <span class="op">=</span> d3<span class="op">.</span><span class="fu">median</span>(data)<span class="op">;</span></span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> stdDev <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(data)<span class="op">;</span></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> min <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(data)<span class="op">;</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> max <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(data)<span class="op">;</span></span>
+<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Quartiles</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q1 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(sorted<span class="op">,</span> <span class="fl">0.25</span>)<span class="op">;</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> q3 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(sorted<span class="op">,</span> <span class="fl">0.75</span>)<span class="op">;</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> iqr <span class="op">=</span> q3 <span class="op">-</span> q1<span class="op">;</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Outlier bounds (IQR method)</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> lowerBound <span class="op">=</span> q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> iqr<span class="op">;</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> upperBound <span class="op">=</span> q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> iqr<span class="op">;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Count outliers</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> outliers <span class="op">=</span> data<span class="op">.</span><span class="fu">filter</span>(x <span class="kw">=&gt;</span> x <span class="op">&lt;</span> lowerBound <span class="op">||</span> x <span class="op">&gt;</span> upperBound)<span class="op">;</span></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>    mean<span class="op">,</span> median<span class="op">,</span> stdDev<span class="op">,</span> min<span class="op">,</span> max<span class="op">,</span></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>    q1<span class="op">,</span> q3<span class="op">,</span> iqr<span class="op">,</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>    lowerBound<span class="op">,</span> upperBound<span class="op">,</span></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">outliers</span><span class="op">:</span> outliers<span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>    n</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualiseringar</span></span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a><span class="co">// Histogram</span></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Värde"</span> <span class="op">:</span> <span class="vs">`Värde (</span><span class="sc">${</span>transformation<span class="sc">}</span><span class="vs">)`</span></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Frekvens"</span></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rectY</span>(displayData<span class="op">,</span> Plot<span class="op">.</span><span class="fu">binX</span>({<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"steelblue"</span>}))<span class="op">,</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([stats<span class="op">.</span><span class="at">mean</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([stats<span class="op">.</span><span class="at">median</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"green"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,2"</span>})</span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>**Förklaring:**</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Röd linje**: Medelvärde</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Grön streckad linje**: Median</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a><span class="co">// Boxplot</span></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Värde"</span> <span class="op">:</span> <span class="vs">`Värde (</span><span class="sc">${</span>transformation<span class="sc">}</span><span class="vs">)`</span></span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">boxX</span>(displayData<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"lightblue"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"steelblue"</span>})<span class="op">,</span></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Mark outliers according to IQR rule</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(</span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>      displayData<span class="op">.</span><span class="fu">filter</span>(x <span class="kw">=&gt;</span> x <span class="op">&lt;</span> stats<span class="op">.</span><span class="at">lowerBound</span> <span class="op">||</span> x <span class="op">&gt;</span> stats<span class="op">.</span><span class="at">upperBound</span>)<span class="op">,</span></span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>      {<span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"red"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">5</span>}</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>**Förklaring:**</span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Box**: Visar Q1, median, Q3</span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Whiskers**: Sträcker sig till min/max inom 1.5×IQR</span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Röda punkter**: Outliers enligt IQR-metoden</span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistik</span></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a><span class="vs">| Mått | Värde |</span></span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a><span class="vs">|------|-------|</span></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a><span class="vs">| Antal observationer | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">n</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a><span class="vs">| Medelvärde (mean) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a><span class="vs">| Median | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a><span class="vs">| Standardavvikelse | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a><span class="vs">| Minimum | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a><span class="vs">| Maximum | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="vs">| Q1 (25:e percentilen) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">q1</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a><span class="vs">| Q3 (75:e percentilen) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">q3</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="vs">| IQR (Q3 - Q1) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">iqr</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a><span class="vs">| Antal outliers (IQR-metod) | </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">outliers</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="vs">### Skillnad med/utan outlier</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>includeOutlier <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a><span class="vs">Med outlier (</span><span class="sc">${</span>outlierValue<span class="sc">}</span><span class="vs">):</span></span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde påverkas kraftigt av extremvärdet</span></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medianen är mer robust och påverkas mindre</span></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="vs">Utan outlier:</span></span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde och median ligger närmare varandra</span></span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="vs">- Lägre standardavvikelse</span></span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a><span class="fu">## Jämförelse: Rådata vs Transformerad data</span></span>
+<span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> {</span>
+<span id="cb11-227"><a href="#cb11-227" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rawStats <span class="op">=</span> {</span>
+<span id="cb11-228"><a href="#cb11-228" aria-hidden="true" tabindex="-1"></a>    <span class="dt">mean</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">,</span></span>
+<span id="cb11-229"><a href="#cb11-229" aria-hidden="true" tabindex="-1"></a>    <span class="dt">median</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">median</span>(rawData)<span class="op">,</span></span>
+<span id="cb11-230"><a href="#cb11-230" aria-hidden="true" tabindex="-1"></a>    <span class="dt">std</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">,</span></span>
+<span id="cb11-231"><a href="#cb11-231" aria-hidden="true" tabindex="-1"></a>    <span class="dt">min</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">min</span>(rawData)<span class="op">,</span></span>
+<span id="cb11-232"><a href="#cb11-232" aria-hidden="true" tabindex="-1"></a>    <span class="dt">max</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">max</span>(rawData)</span>
+<span id="cb11-233"><a href="#cb11-233" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb11-234"><a href="#cb11-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-235"><a href="#cb11-235" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="dt">raw</span><span class="op">:</span> rawStats<span class="op">,</span> <span class="dt">transformed</span><span class="op">:</span> stats}<span class="op">;</span></span>
+<span id="cb11-236"><a href="#cb11-236" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-237"><a href="#cb11-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-238"><a href="#cb11-238" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb11-239"><a href="#cb11-239" aria-hidden="true" tabindex="-1"></a><span class="vs">| Mått | Rådata | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> <span class="st">"Transformerad"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-240"><a href="#cb11-240" aria-hidden="true" tabindex="-1"></a><span class="vs">|------|--------|-------------|</span></span>
+<span id="cb11-241"><a href="#cb11-241" aria-hidden="true" tabindex="-1"></a><span class="vs">| Medelvärde | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-242"><a href="#cb11-242" aria-hidden="true" tabindex="-1"></a><span class="vs">| Median | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">median</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-243"><a href="#cb11-243" aria-hidden="true" tabindex="-1"></a><span class="vs">| Std.avvikelse | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">std</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-244"><a href="#cb11-244" aria-hidden="true" tabindex="-1"></a><span class="vs">| Min | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">min</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-245"><a href="#cb11-245" aria-hidden="true" tabindex="-1"></a><span class="vs">| Max | </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>transformation <span class="op">!==</span> <span class="st">"Ingen"</span> <span class="op">?</span> stats<span class="op">.</span><span class="at">max</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span><span class="vs"> |</span></span>
+<span id="cb11-246"><a href="#cb11-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-247"><a href="#cb11-247" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Logaritm (log₁₀)"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-248"><a href="#cb11-248" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av log-transformation</span></span>
+<span id="cb11-249"><a href="#cb11-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-250"><a href="#cb11-250" aria-hidden="true" tabindex="-1"></a><span class="vs">För att konvertera tillbaka:</span></span>
+<span id="cb11-251"><a href="#cb11-251" aria-hidden="true" tabindex="-1"></a><span class="vs">- Om log₁₀(x) = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, då x = 10^</span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> ≈ </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(<span class="dv">10</span><span class="op">,</span> stats<span class="op">.</span><span class="at">mean</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span></span>
+<span id="cb11-252"><a href="#cb11-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-253"><a href="#cb11-253" aria-hidden="true" tabindex="-1"></a><span class="vs">**Effekt:** Logaritmtransformation komprimerar stora värden mer än små värden, vilket minskar effekten av outliers.</span></span>
+<span id="cb11-254"><a href="#cb11-254" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb11-255"><a href="#cb11-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-256"><a href="#cb11-256" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Kvadratrot"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-257"><a href="#cb11-257" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av kvadratrotstransformation</span></span>
+<span id="cb11-258"><a href="#cb11-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-259"><a href="#cb11-259" aria-hidden="true" tabindex="-1"></a><span class="vs">För att konvertera tillbaka:</span></span>
+<span id="cb11-260"><a href="#cb11-260" aria-hidden="true" tabindex="-1"></a><span class="vs">- Om √x = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">, då x = (</span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)² ≈ </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">pow</span>(stats<span class="op">.</span><span class="at">mean</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span></span>
+<span id="cb11-261"><a href="#cb11-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-262"><a href="#cb11-262" aria-hidden="true" tabindex="-1"></a><span class="vs">**Effekt:** Kvadratrotstransformation minskar skevhet i måttlig grad, mindre drastisk än log-transformation.</span></span>
+<span id="cb11-263"><a href="#cb11-263" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb11-264"><a href="#cb11-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-265"><a href="#cb11-265" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>transformation <span class="op">===</span> <span class="st">"Z-score standardisering"</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-266"><a href="#cb11-266" aria-hidden="true" tabindex="-1"></a><span class="vs">### Tolkning av Z-score standardisering</span></span>
+<span id="cb11-267"><a href="#cb11-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-268"><a href="#cb11-268" aria-hidden="true" tabindex="-1"></a><span class="vs">**Resultat:**</span></span>
+<span id="cb11-269"><a href="#cb11-269" aria-hidden="true" tabindex="-1"></a><span class="vs">- Medelvärde = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">mean</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (nära 0)</span></span>
+<span id="cb11-270"><a href="#cb11-270" aria-hidden="true" tabindex="-1"></a><span class="vs">- Standardavvikelse = </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">stdDev</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (nära 1)</span></span>
+<span id="cb11-271"><a href="#cb11-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-272"><a href="#cb11-272" aria-hidden="true" tabindex="-1"></a><span class="vs">**Användning:** Jämföra variabler med olika skalor, eller identifiera outliers (|z| &gt; 2 eller 3).</span></span>
+<span id="cb11-273"><a href="#cb11-273" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span></span>
+<span id="cb11-274"><a href="#cb11-274" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb11-275"><a href="#cb11-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-276"><a href="#cb11-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-277"><a href="#cb11-277" aria-hidden="true" tabindex="-1"></a><span class="fu">## Identifiera outliers</span></span>
+<span id="cb11-278"><a href="#cb11-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-281"><a href="#cb11-281" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-282"><a href="#cb11-282" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-283"><a href="#cb11-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-284"><a href="#cb11-284" aria-hidden="true" tabindex="-1"></a><span class="co">// Z-scores for raw data</span></span>
+<span id="cb11-285"><a href="#cb11-285" aria-hidden="true" tabindex="-1"></a>zScores <span class="op">=</span> {</span>
+<span id="cb11-286"><a href="#cb11-286" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mean <span class="op">=</span> d3<span class="op">.</span><span class="fu">mean</span>(rawData)<span class="op">;</span></span>
+<span id="cb11-287"><a href="#cb11-287" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> std <span class="op">=</span> d3<span class="op">.</span><span class="fu">deviation</span>(rawData)<span class="op">;</span></span>
+<span id="cb11-288"><a href="#cb11-288" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rawData<span class="op">.</span><span class="fu">map</span>((x<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb11-289"><a href="#cb11-289" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb11-290"><a href="#cb11-290" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> (x <span class="op">-</span> mean) <span class="op">/</span> std<span class="op">,</span></span>
+<span id="cb11-291"><a href="#cb11-291" aria-hidden="true" tabindex="-1"></a>    <span class="dt">index</span><span class="op">:</span> i</span>
+<span id="cb11-292"><a href="#cb11-292" aria-hidden="true" tabindex="-1"></a>  }))<span class="op">;</span></span>
+<span id="cb11-293"><a href="#cb11-293" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-294"><a href="#cb11-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-295"><a href="#cb11-295" aria-hidden="true" tabindex="-1"></a>outliersTable <span class="op">=</span> zScores<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">z</span>) <span class="op">&gt;</span> <span class="dv">2</span>)</span>
+<span id="cb11-296"><a href="#cb11-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-297"><a href="#cb11-297" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb11-298"><a href="#cb11-298" aria-hidden="true" tabindex="-1"></a><span class="vs">### Z-score metoden</span></span>
+<span id="cb11-299"><a href="#cb11-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-300"><a href="#cb11-300" aria-hidden="true" tabindex="-1"></a><span class="vs">Värden med |Z| &gt; 2 betraktas som möjliga outliers:</span></span>
+<span id="cb11-301"><a href="#cb11-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-302"><a href="#cb11-302" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>outliersTable<span class="op">.</span><span class="at">length</span> <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">?</span> <span class="vs">`</span></span>
+<span id="cb11-303"><a href="#cb11-303" aria-hidden="true" tabindex="-1"></a><span class="vs">| Värde | Z-score | Tolkning |</span></span>
+<span id="cb11-304"><a href="#cb11-304" aria-hidden="true" tabindex="-1"></a><span class="vs">|-------|---------|----------|</span></span>
+<span id="cb11-305"><a href="#cb11-305" aria-hidden="true" tabindex="-1"></a><span class="sc">${</span>outliersTable<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="vs">`| </span><span class="sc">${</span>d<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span>d<span class="op">.</span><span class="at">z</span><span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(d<span class="op">.</span><span class="at">z</span>) <span class="op">&gt;</span> <span class="dv">3</span> <span class="op">?</span> <span class="st">"Stark outlier"</span> <span class="op">:</span> <span class="st">"Möjlig outlier"</span><span class="sc">}</span><span class="vs"> |`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)<span class="sc">}</span></span>
+<span id="cb11-306"><a href="#cb11-306" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span> <span class="op">:</span> <span class="st">"*Inga outliers identifierade med Z-score metoden*"</span><span class="sc">}</span></span>
+<span id="cb11-307"><a href="#cb11-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-308"><a href="#cb11-308" aria-hidden="true" tabindex="-1"></a><span class="vs">### IQR-metoden</span></span>
+<span id="cb11-309"><a href="#cb11-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-310"><a href="#cb11-310" aria-hidden="true" tabindex="-1"></a><span class="vs">**Gränser:**</span></span>
+<span id="cb11-311"><a href="#cb11-311" aria-hidden="true" tabindex="-1"></a><span class="vs">- Nedre gräns: Q1 - 1.5 × IQR = </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span> <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> (stats<span class="op">.</span><span class="at">q1</span> <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> stats<span class="op">.</span><span class="at">iqr</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span></span>
+<span id="cb11-312"><a href="#cb11-312" aria-hidden="true" tabindex="-1"></a><span class="vs">- Övre gräns: Q3 + 1.5 × IQR = </span><span class="sc">${</span>comparison<span class="op">.</span><span class="at">raw</span><span class="op">.</span><span class="at">median</span> <span class="op">!==</span> <span class="kw">undefined</span> <span class="op">?</span> (stats<span class="op">.</span><span class="at">q3</span> <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> stats<span class="op">.</span><span class="at">iqr</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>) <span class="op">:</span> <span class="st">"–"</span><span class="sc">}</span></span>
+<span id="cb11-313"><a href="#cb11-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-314"><a href="#cb11-314" aria-hidden="true" tabindex="-1"></a><span class="vs">**Outliers:** </span><span class="sc">${</span>stats<span class="op">.</span><span class="at">outliers</span><span class="sc">}</span><span class="vs"> värden ligger utanför dessa gränser</span></span>
+<span id="cb11-315"><a href="#cb11-315" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb11-316"><a href="#cb11-316" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-317"><a href="#cb11-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-318"><a href="#cb11-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Praktiska insikter</span></span>
+<span id="cb11-319"><a href="#cb11-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-322"><a href="#cb11-322" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb11-323"><a href="#cb11-323" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb11-324"><a href="#cb11-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-325"><a href="#cb11-325" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`</span></span>
+<span id="cb11-326"><a href="#cb11-326" aria-hidden="true" tabindex="-1"></a><span class="vs">### När ska du ta bort outliers?</span></span>
+<span id="cb11-327"><a href="#cb11-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-328"><a href="#cb11-328" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Ta bort när:**</span></span>
+<span id="cb11-329"><a href="#cb11-329" aria-hidden="true" tabindex="-1"></a><span class="vs">- Uppenbart mätfel (t.ex. ålder = 999)</span></span>
+<span id="cb11-330"><a href="#cb11-330" aria-hidden="true" tabindex="-1"></a><span class="vs">- Datainmatningsfel som kan verifieras</span></span>
+<span id="cb11-331"><a href="#cb11-331" aria-hidden="true" tabindex="-1"></a><span class="vs">- Värdet inte tillhör målpopulationen</span></span>
+<span id="cb11-332"><a href="#cb11-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-333"><a href="#cb11-333" aria-hidden="true" tabindex="-1"></a><span class="vs">❌ **Behåll när:**</span></span>
+<span id="cb11-334"><a href="#cb11-334" aria-hidden="true" tabindex="-1"></a><span class="vs">- Genuina extremvärden som är viktiga för studien</span></span>
+<span id="cb11-335"><a href="#cb11-335" aria-hidden="true" tabindex="-1"></a><span class="vs">- Du studerar extremfall eller sällsynta händelser</span></span>
+<span id="cb11-336"><a href="#cb11-336" aria-hidden="true" tabindex="-1"></a><span class="vs">- Outliers ger viktig information om variabiliteten</span></span>
+<span id="cb11-337"><a href="#cb11-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-338"><a href="#cb11-338" aria-hidden="true" tabindex="-1"></a><span class="vs">### När ska du transformera data?</span></span>
+<span id="cb11-339"><a href="#cb11-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-340"><a href="#cb11-340" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd log-transformation för:**</span></span>
+<span id="cb11-341"><a href="#cb11-341" aria-hidden="true" tabindex="-1"></a><span class="vs">- Höger-skev data (lång svans åt höger)</span></span>
+<span id="cb11-342"><a href="#cb11-342" aria-hidden="true" tabindex="-1"></a><span class="vs">- Data som spänner flera storleksordningar</span></span>
+<span id="cb11-343"><a href="#cb11-343" aria-hidden="true" tabindex="-1"></a><span class="vs">- Inkomst, priser, befolkningsstorlek</span></span>
+<span id="cb11-344"><a href="#cb11-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-345"><a href="#cb11-345" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd kvadratrot för:**</span></span>
+<span id="cb11-346"><a href="#cb11-346" aria-hidden="true" tabindex="-1"></a><span class="vs">- Måttligt skev data</span></span>
+<span id="cb11-347"><a href="#cb11-347" aria-hidden="true" tabindex="-1"></a><span class="vs">- Räknedata (count data)</span></span>
+<span id="cb11-348"><a href="#cb11-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-349"><a href="#cb11-349" aria-hidden="true" tabindex="-1"></a><span class="vs">✅ **Använd Z-score standardisering för:**</span></span>
+<span id="cb11-350"><a href="#cb11-350" aria-hidden="true" tabindex="-1"></a><span class="vs">- Jämföra variabler med olika enheter</span></span>
+<span id="cb11-351"><a href="#cb11-351" aria-hidden="true" tabindex="-1"></a><span class="vs">- Identifiera outliers numeriskt</span></span>
+<span id="cb11-352"><a href="#cb11-352" aria-hidden="true" tabindex="-1"></a><span class="vs">- Förberedelse för vissa analyser</span></span>
+<span id="cb11-353"><a href="#cb11-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-354"><a href="#cb11-354" aria-hidden="true" tabindex="-1"></a><span class="vs">### Viktig påminnelse</span></span>
+<span id="cb11-355"><a href="#cb11-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-356"><a href="#cb11-356" aria-hidden="true" tabindex="-1"></a><span class="vs">📊 **Rapportera alltid:**</span></span>
+<span id="cb11-357"><a href="#cb11-357" aria-hidden="true" tabindex="-1"></a><span class="vs">- Vilka transformationer som använts</span></span>
+<span id="cb11-358"><a href="#cb11-358" aria-hidden="true" tabindex="-1"></a><span class="vs">- Antal borttagna outliers</span></span>
+<span id="cb11-359"><a href="#cb11-359" aria-hidden="true" tabindex="-1"></a><span class="vs">- Motivering för beslut</span></span>
+<span id="cb11-360"><a href="#cb11-360" aria-hidden="true" tabindex="-1"></a><span class="vs">- Effekt på resultat</span></span>
+<span id="cb11-361"><a href="#cb11-361" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span>
+<span id="cb11-362"><a href="#cb11-362" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-363"><a href="#cb11-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-364"><a href="#cb11-364" aria-hidden="true" tabindex="-1"></a><span class="fu">## Experimentera!</span></span>
+<span id="cb11-365"><a href="#cb11-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-366"><a href="#cb11-366" aria-hidden="true" tabindex="-1"></a>Prova att:</span>
+<span id="cb11-367"><a href="#cb11-367" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Slå på/av outlier** - Se hur det påverkar medelvärde vs median</span>
+<span id="cb11-368"><a href="#cb11-368" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Ändra outlier-värdet** - Se när det blir extremt nog att klassas som outlier</span>
+<span id="cb11-369"><a href="#cb11-369" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Applicera log-transformation** - Observera hur extremvärden komprimeras</span>
+<span id="cb11-370"><a href="#cb11-370" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Jämför transformationer** - Vilken fungerar bäst för denna data?</span>
+<span id="cb11-371"><a href="#cb11-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-372"><a href="#cb11-372" aria-hidden="true" tabindex="-1"></a><span class="fu">## Läs mer</span></span>
+<span id="cb11-373"><a href="#cb11-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-374"><a href="#cb11-374" aria-hidden="true" tabindex="-1"></a>Se <span class="co">[</span><span class="ot">Databehandling och rensning</span><span class="co">](../lessons/databehandling.qmd)</span> för detaljerad förklaring av outliers, transformationer och best practices.</span>
+</code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/data-cleaning-viz.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></div></div></footer></body></html>
