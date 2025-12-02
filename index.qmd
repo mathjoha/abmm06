@@ -1,6 +1,5 @@
 ---
 title: "ABMM06: Kvantitativa metoder"
-subtitle: "Enkäter och digital metodik för ALM-studenter"
 ---
 
 ## Välkommen
