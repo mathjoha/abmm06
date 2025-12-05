@@ -74,6 +74,8 @@ website:
             text: Urvalsstorlekskalkylator
           - href: dashboards/data-cleaning-viz.qmd
             text: Databehandling
+          - href: dashboards/percentage-change-viz.qmd
+            text: Procentförändring vs Procentenheter
           - href: dashboards/monty-hall.qmd
             text: Monty Hall
     right:

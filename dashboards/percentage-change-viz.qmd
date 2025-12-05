@@ -1,0 +1,366 @@
+---
+title: "Procentförändring vs Procentenheter"
+subtitle: "Percentage Change vs Percentage Points"
+format:
+  html:
+    page-layout: full
+---
+
+```{ojs}
+//| echo: false
+d3 = require("d3@7")
+Plot = require("@observablehq/plot")
+```
+
+## Del 1: Procentenheter vs Procentförändring
+
+Det finns en viktig skillnad mellan **procentförändring** (% change) och **förändring i procentenheter** (percentage points):
+
+- **Procentenheter**: Absolut skillnad mellan två procenttal
+- **Procentförändring**: Relativ förändring uttryckt i procent av ursprungsvärdet
+
+### Interaktiv kalkylator
+
+```{ojs}
+//| echo: false
+
+viewof startPct = Inputs.range([0, 100], {
+  value: 20,
+  step: 0.01,
+  label: "Startvärde (%)"
+})
+
+viewof endPct = Inputs.range([0, 100], {
+  value: 30,
+  step: 0.01,
+  label: "Slutvärde (%)"
+})
+
+percentagePointChange = endPct - startPct
+
+percentageChange = startPct === 0
+  ? null
+  : ((endPct - startPct) / startPct * 100)
+
+direction = endPct > startPct ? "ökning" : endPct < startPct ? "minskning" : "ingen förändring"
+
+md`**Dina värden**: Startvärde ${startPct.toFixed(2)}% → Slutvärde ${endPct.toFixed(2)}%`
+
+md`**Förändring i procentenheter (absolut skillnad)**: ${endPct.toFixed(2)}% - ${startPct.toFixed(2)}% = **${percentagePointChange.toFixed(2)} procentenheter**. Detta är en enkel subtraktion mellan två procenttal.`
+
+md`**Procentförändring (relativ förändring)**: ${startPct === 0 ? "**Odefinierat** - kan inte beräkna procentförändring från 0%" : `(${endPct.toFixed(2)} - ${startPct.toFixed(2)}) / ${startPct.toFixed(2)} × 100 = **${percentageChange.toFixed(2)}% ${direction}**. Detta innebär att värdet har ${direction === "ökning" ? "ökat" : "minskat"} med ${Math.abs(percentageChange).toFixed(2)}% relativt startvärdet.`}`
+```
+
+### Visualisering
+
+```{ojs}
+//| echo: false
+
+barChart = {
+  const data = [
+    {label: "Start", value: startPct, color: "#0d6efd", order: 1},
+    {label: "Slut", value: endPct, color: "#198754", order: 2}
+  ];
+
+  return Plot.plot({
+    width: 640,
+    height: 400,
+    marginTop: 40,
+    marginBottom: 60,
+    y: {
+      domain: [0, 100],
+      label: "Värde (%)",
+      grid: true
+    },
+    x: {
+      label: null,
+      domain: ["Start", "Slut"]
+    },
+    marks: [
+      Plot.barY(data, {
+        x: "label",
+        y: "value",
+        fill: "color",
+        tip: true
+      }),
+      Plot.text([{
+        x1: 0.5,
+        y: Math.max(startPct, endPct) + 5,
+        text: `${Math.abs(percentagePointChange).toFixed(2)} p.e.`
+      }], {
+        x: "x1",
+        y: "y",
+        text: "text",
+        fill: "#dc3545",
+        fontSize: 16,
+        fontWeight: "bold"
+      }),
+      Plot.ruleY([0])
+    ]
+  });
+}
+```
+
+## Vanliga exempel
+
+### Exempel 1: Valresultat
+
+Ett parti går från **25%** till **30%** av rösterna:
+
+- **Procentenheter**: 30% - 25% = **5 procentenheter**
+- **Procentförändring**: (30-25)/25 × 100 = **20% ökning**
+
+:::{.callout-tip}
+I media säger man ofta "partiet ökade med 5 procentenheter" (korrekt) eller felaktigt "med 5 procent".
+:::
+
+### Exempel 2: Räntor
+
+Räntan höjs från **2%** till **3%**:
+
+- **Procentenheter**: 3% - 2% = **1 procentenhet**
+- **Procentförändring**: (3-2)/2 × 100 = **50% ökning**
+
+En liten förändring i procentenheter kan vara en stor procentuell förändring!
+
+## Del 2: Linjär vs Kumulativ förändring över tid
+
+Här kan du se skillnaden mellan **linjär tillväxt** (samma absoluta förändring varje period) och **kumulativ tillväxt** (samma procentuella förändring varje period).
+
+### Interaktiv simulator
+
+```{ojs}
+//| echo: false
+
+viewof baseValue = Inputs.number([0, Infinity], {
+  value: 100,
+  step: 10,
+  label: "Startvärde"
+})
+
+viewof changeType = Inputs.radio(["percent", "value"], {
+  value: "percent",
+  label: "Typ av förändring",
+  format: x => x === "percent" ? "Procent per period" : "Värde per period"
+})
+
+viewof changeAmount = changeType === "percent"
+  ? Inputs.range([-50, 50], {
+      value: 10,
+      step: 1,
+      label: "Förändring per period (%)"
+    })
+  : Inputs.range([-100, 100], {
+      value: 10,
+      step: 1,
+      label: "Förändring per period (värde)"
+    })
+
+viewof timeSteps = Inputs.range([2, 50], {
+  value: 10,
+  step: 1,
+  label: "Antal perioder"
+})
+
+// Beräkna linjär och kumulativ förändring
+linearData = {
+  const data = [];
+
+  // Linjär: samma absoluta förändring varje period
+  // Om procent: använd procentändring AV STARTVÄRDET varje period
+  // Om värde: använd samma värdeändring varje period
+  const valueChange = changeType === "percent"
+    ? (baseValue * changeAmount / 100)
+    : changeAmount;
+
+  for (let i = 0; i <= timeSteps; i++) {
+    data.push({
+      period: i,
+      value: baseValue + (valueChange * i),
+      type: "Linjär (additiv)"
+    });
+  }
+  return data;
+}
+
+cumulativeData = {
+  const data = [];
+  let currentValue = baseValue;
+
+  // Kumulativ: förändring baserat på aktuellt värde (exponentiell)
+  // ALLTID använd procent av aktuellt värde
+  const percentChange = changeType === "percent"
+    ? changeAmount / 100  // Användaren angav redan procent
+    : changeAmount / baseValue;  // Konvertera värde till procent av startvärdet
+
+  for (let i = 0; i <= timeSteps; i++) {
+    data.push({
+      period: i,
+      value: currentValue,
+      type: "Kumulativ (exponentiell)"
+    });
+
+    // Applicera alltid exponentiell tillväxt
+    currentValue = currentValue * (1 + percentChange);
+  }
+  return data;
+}
+
+allData = [...linearData, ...cumulativeData]
+
+// Beräkna slutvärden
+linearFinal = linearData[linearData.length - 1].value
+cumulativeFinal = cumulativeData[cumulativeData.length - 1].value
+totalLinearChange = linearFinal - baseValue
+totalCumulativeChange = cumulativeFinal - baseValue
+```
+
+```{ojs}
+//| echo: false
+
+md`**Startvärde**: ${baseValue.toFixed(2)}
+
+**Linjär förändring (additiv)**: ${changeType === "percent" ? `Varje period: +${(baseValue * changeAmount / 100).toFixed(2)} (${changeAmount}% av startvärdet)` : `Varje period: +${changeAmount.toFixed(2)}`} | Slutvärde: ${linearFinal.toFixed(2)} | Total förändring: ${totalLinearChange.toFixed(2)} (${((totalLinearChange/baseValue)*100).toFixed(1)}%)
+
+**Kumulativ förändring (exponentiell)**: Varje period: ×${(1 + (changeType === "percent" ? changeAmount/100 : changeAmount/baseValue)).toFixed(4)} (${changeType === "percent" ? `${changeAmount}%` : `${((changeAmount/baseValue)*100).toFixed(2)}%`} av det aktuella värdet) | Slutvärde: ${cumulativeFinal.toFixed(2)} | Total förändring: ${totalCumulativeChange.toFixed(2)} (${((totalCumulativeChange/baseValue)*100).toFixed(1)}%)
+
+**Skillnad mellan metoderna**: ${Math.abs(cumulativeFinal - linearFinal).toFixed(2)}`
+```
+
+```{ojs}
+//| echo: false
+
+timeSeriesPlot = Plot.plot({
+  width: 800,
+  height: 500,
+  marginLeft: 60,
+  marginBottom: 60,
+  y: {
+    label: "Värde",
+    grid: true
+  },
+  x: {
+    label: "Period",
+    grid: true
+  },
+  color: {
+    legend: true,
+    domain: ["Linjär (additiv)", "Kumulativ (exponentiell)"],
+    range: ["#0d6efd", "#dc3545"]
+  },
+  marks: [
+    Plot.line(allData, {
+      x: "period",
+      y: "value",
+      stroke: "type",
+      strokeWidth: 3,
+      tip: true
+    }),
+    Plot.dot(allData, {
+      x: "period",
+      y: "value",
+      fill: "type",
+      r: 4
+    }),
+    Plot.ruleY([baseValue], {
+      stroke: "#6c757d",
+      strokeDasharray: "4,4"
+    })
+  ]
+})
+```
+
+## Förklaring: Linjär vs Kumulativ
+
+### Linjär förändring (Additiv)
+
+Samma **absoluta värde** läggs till varje period:
+
+- Period 0: 100
+- Period 1: 100 + 10 = 110
+- Period 2: 110 + 10 = 120
+- Period 3: 120 + 10 = 130
+
+**Formel**: Värde(t) = Startvärde + (Förändring × t)
+
+### Kumulativ förändring (Multiplikativ)
+
+Samma **procent** av det **aktuella värdet** läggs till varje period:
+
+- Period 0: 100
+- Period 1: 100 × 1.10 = 110
+- Period 2: 110 × 1.10 = 121
+- Period 3: 121 × 1.10 = 133.1
+
+**Formel**: Värde(t) = Startvärde × (1 + r)^t
+
+där r är förändringen per period (10% = 0.10)
+
+## Verkliga exempel
+
+### Ränta på ränta
+
+När du sparar pengar med **ränta på ränta** får du kumulativ tillväxt:
+- År 1: 10 000 kr × 1.05 = 10 500 kr
+- År 2: 10 500 kr × 1.05 = 11 025 kr (inte 11 000 kr!)
+
+### Population
+
+Befolkningstillväxt är ofta kumulativ eftersom den nya befolkningen också får barn:
+- År 0: 1 000 personer
+- År 1: 1 000 × 1.02 = 1 020 personer
+- År 2: 1 020 × 1.02 = 1 040.4 personer
+
+### Inflation
+
+Inflation är kumulativ - priserna ökar baserat på det **nuvarande** priset, inte originalpriset:
+- År 0: 100 kr
+- År 1: 100 × 1.03 = 103 kr
+- År 2: 103 × 1.03 = 106.09 kr
+
+## 72-regeln
+
+[72-regeln](https://en.wikipedia.org/wiki/Rule_of_72) är en enkel tumregel för att uppskatta hur lång tid det tar för ett värde att **fördubblas** vid kumulativ tillväxt.
+
+**Formel**: Antal perioder för fördubbling ≈ 72 / tillväxttakt (i procent)
+
+### Exempel
+
+| Tillväxttakt per år | Tid för fördubbling | Exempel |
+|---------------------|---------------------|---------|
+| **5%** | 72 / 5 ≈ **14.4 år** |   $$1.05^{14.4} ≈ 2.02$$  |
+| **7.2%** | 72 / 7.2 = **10 år** |  $$1.07^{10} ≈ 1.97 $$  |
+| **10%** | 72 / 10 ≈ **7.2 år** |  $$1.1^{7.2} ≈ 1.99 $$|
+
+:::{.callout-tip}
+## Varför är detta användbart?
+72-regeln gör det lätt att snabbt uppskatta effekten av kumulativ tillväxt utan miniräknare. Den fungerar bäst för tillväxttakter mellan 6% och 10%, men ger rimliga approximationer för de flesta räntor.
+:::
+
+## Sammanfattning
+
+| Aspekt | Linjär | Kumulativ |
+|--------|--------|-----------|
+| Förändring per period | Konstant absolut värde | Konstant procentsats |
+| Tillväxttakt | Avtagande (relativt) | Konstant (procentuellt) |
+| Graf | Rät linje | Exponentiell kurva |
+| Exempel | Spara fast summa per månad | Ränta på ränta |
+| Formel | a + bt | a(1+r)^t |
+
+## Formler
+
+### Procentenheter
+$$\text{Procentenheter} = \text{Slutvärde} - \text{Startvärde}$$
+
+### Procentförändring
+$$\text{Procentförändring} = \frac{\text{Slutvärde} - \text{Startvärde}}{\text{Startvärde}} \times 100$$
+
+### Linjär tillväxt
+$$V(t) = V_0 + (k \times t)$$
+
+där $V_0$ är startvärde, $k$ är förändring per period, $t$ är tid
+
+### Kumulativ tillväxt (exponentiell)
+$$V(t) = V_0 \times (1 + r)^t$$
+
+där $V_0$ är startvärde, $r$ är förändring per period (decimalt), $t$ är tid

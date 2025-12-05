@@ -16,6 +16,7 @@ Denna webbplats innehåller material för föreläsningar om  kvantitativa metod
 - [Datatyper](slides/datatyper.qmd) - Nominal, ordinal, intervall och kvot (ratio)
 - [Slump och sannolikhet](slides/sannolikhet.qmd) - Sannolikhetsteori och statistiska grunder
 - [Beskrivande statistik](slides/beskrivande-statistik.qmd) - Medelvärde, standardavvikelse, median, kvartiler
+- [Korrelation och regression](slides/korrelation-och-regression.qmd) - Samband mellan variabler och linjär regression
 - [Digitala metoder](slides/digitala-metoder.qmd) - Webbforskning och exempel
 - [Enkäter](slides/enkat.qmd) - Grundläggande om enkätdesign
 
@@ -23,6 +24,7 @@ Denna webbplats innehåller material för föreläsningar om  kvantitativa metod
 
 - [Frågetyper](lessons/fragettyper.qmd) - Detaljerad genomgång av olika frågetyper
 - [Presentera resultat](lessons/presentera-resultat.qmd) - Visualisering och statistik
+- [Korrelation och regression](lessons/korrelation-och-regression.qmd) - Fördjupning i korrelation och regressionsanalys
 - [Inferentiell statistik](lessons/inferentiell-statistik.qmd) - Z-värden, p-värden och felmarginaler
 - [Databehandling och rensning](lessons/databehandling.qmd) - Outliers, transformationer och datakvalitet
 
@@ -35,6 +37,7 @@ Denna webbplats innehåller material för föreläsningar om  kvantitativa metod
 - [Noggrannhet vs Precision](dashboards/accuracy-precision-viz.qmd) - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi
 - [Urvalsstorlekskalkylator](dashboards/sample-size-calculator.qmd) - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal
 - [Databehandling](dashboards/data-cleaning-viz.qmd) - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)
+- [Procentförändring vs Procentenheter](dashboards/percentage-change-viz.qmd) - Förstå skillnaden mellan procentenheter och procentförändring, samt linjär vs exponentiell tillväxt med 72-regeln
 - [Monty Hall](dashboards/monty-hall.qmd) - Klassisk sannolikhetsparadox med interaktivt spel
 
 ## Matematiska symboler
