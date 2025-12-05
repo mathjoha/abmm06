@@ -256,6 +256,10 @@ window.Quarto = {
  <span class="dropdown-text">Databehandling</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="./dashboards/percentage-change-viz.html">
+ <span class="dropdown-text">Procentförändring vs Procentenheter</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="./dashboards/monty-hall.html">
  <span class="dropdown-text">Monty Hall</span></a>
   </li>  
@@ -368,6 +372,7 @@ window.Quarto = {
 <li><a href="./slides/datatyper.html">Datatyper</a> - Nominal, ordinal, intervall och kvot (ratio)</li>
 <li><a href="./slides/sannolikhet.html">Slump och sannolikhet</a> - Sannolikhetsteori och statistiska grunder</li>
 <li><a href="./slides/beskrivande-statistik.html">Beskrivande statistik</a> - Medelvärde, standardavvikelse, median, kvartiler</li>
+<li><a href="./slides/korrelation-och-regression.html">Korrelation och regression</a> - Samband mellan variabler och linjär regression</li>
 <li><a href="./slides/digitala-metoder.html">Digitala metoder</a> - Webbforskning och exempel</li>
 <li><a href="./slides/enkat.html">Enkäter</a> - Grundläggande om enkätdesign</li>
 </ul>
@@ -377,6 +382,7 @@ window.Quarto = {
 <ul>
 <li><a href="./lessons/fragettyper.html">Frågetyper</a> - Detaljerad genomgång av olika frågetyper</li>
 <li><a href="./lessons/presentera-resultat.html">Presentera resultat</a> - Visualisering och statistik</li>
+<li><a href="./lessons/korrelation-och-regression.html">Korrelation och regression</a> - Fördjupning i korrelation och regressionsanalys</li>
 <li><a href="./lessons/inferentiell-statistik.html">Inferentiell statistik</a> - Z-värden, p-värden och felmarginaler</li>
 <li><a href="./lessons/databehandling.html">Databehandling och rensning</a> - Outliers, transformationer och datakvalitet</li>
 </ul>
@@ -391,6 +397,7 @@ window.Quarto = {
 <li><a href="./dashboards/accuracy-precision-viz.html">Noggrannhet vs Precision</a> - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi</li>
 <li><a href="./dashboards/sample-size-calculator.html">Urvalsstorlekskalkylator</a> - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal</li>
 <li><a href="./dashboards/data-cleaning-viz.html">Databehandling</a> - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)</li>
+<li><a href="./dashboards/percentage-change-viz.html">Procentförändring vs Procentenheter</a> - Förstå skillnaden mellan procentenheter och procentförändring, samt linjär vs exponentiell tillväxt med 72-regeln</li>
 <li><a href="./dashboards/monty-hall.html">Monty Hall</a> - Klassisk sannolikhetsparadox med interaktivt spel</li>
 </ul>
 </section>
@@ -1110,135 +1117,138 @@ Kvantitativa metoder.”</span> Lunds universitet. 2025. <a href="https://mathjo
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Datatyper</span><span class="co">](slides/datatyper.qmd)</span> - Nominal, ordinal, intervall och kvot (ratio)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Slump och sannolikhet</span><span class="co">](slides/sannolikhet.qmd)</span> - Sannolikhetsteori och statistiska grunder</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Beskrivande statistik</span><span class="co">](slides/beskrivande-statistik.qmd)</span> - Medelvärde, standardavvikelse, median, kvartiler</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Digitala metoder</span><span class="co">](slides/digitala-metoder.qmd)</span> - Webbforskning och exempel</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Enkäter</span><span class="co">](slides/enkat.qmd)</span> - Grundläggande om enkätdesign</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fördjupning</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Frågetyper</span><span class="co">](lessons/fragettyper.qmd)</span> - Detaljerad genomgång av olika frågetyper</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Presentera resultat</span><span class="co">](lessons/presentera-resultat.qmd)</span> - Visualisering och statistik</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Inferentiell statistik</span><span class="co">](lessons/inferentiell-statistik.qmd)</span> - Z-värden, p-värden och felmarginaler</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Databehandling och rensning</span><span class="co">](lessons/databehandling.qmd)</span> - Outliers, transformationer och datakvalitet</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interaktiva verktyg</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Korrelation och regression</span><span class="co">](slides/korrelation-och-regression.qmd)</span> - Samband mellan variabler och linjär regression</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Digitala metoder</span><span class="co">](slides/digitala-metoder.qmd)</span> - Webbforskning och exempel</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Enkäter</span><span class="co">](slides/enkat.qmd)</span> - Grundläggande om enkätdesign</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fördjupning</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Frågetyper</span><span class="co">](lessons/fragettyper.qmd)</span> - Detaljerad genomgång av olika frågetyper</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Presentera resultat</span><span class="co">](lessons/presentera-resultat.qmd)</span> - Visualisering och statistik</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Korrelation och regression</span><span class="co">](lessons/korrelation-och-regression.qmd)</span> - Fördjupning i korrelation och regressionsanalys</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Inferentiell statistik</span><span class="co">](lessons/inferentiell-statistik.qmd)</span> - Z-värden, p-värden och felmarginaler</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Databehandling och rensning</span><span class="co">](lessons/databehandling.qmd)</span> - Outliers, transformationer och datakvalitet</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Datatyper</span><span class="co">](dashboards/datatyper-viz.qmd)</span> - Utforska datatyper och beskrivande statistik</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sannolikhet</span><span class="co">](dashboards/sannolikhet-viz.qmd)</span> - Myntkast, tärningar, normalfördelning och konfidensintervall</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Statistikkalkylator</span><span class="co">](dashboards/statistik-kalkylator.qmd)</span> - Beräkna statistik på egen data med histogram och boxplot</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Regression</span><span class="co">](dashboards/regression-viz.qmd)</span> - Klicka för att skapa punkter och visualisera regressionslinjen med residualer</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Noggrannhet vs Precision</span><span class="co">](dashboards/accuracy-precision-viz.qmd)</span> - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Urvalsstorlekskalkylator</span><span class="co">](dashboards/sample-size-calculator.qmd)</span> - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Databehandling</span><span class="co">](dashboards/data-cleaning-viz.qmd)</span> - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Monty Hall</span><span class="co">](dashboards/monty-hall.qmd)</span> - Klassisk sannolikhetsparadox med interaktivt spel</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matematiska symboler</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Betydelse <span class="pp">|</span> Exempel <span class="pp">|</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-----------|---------|</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\bar{x}$ <span class="pp">|</span> Medelvärde (mean) <span class="pp">|</span> $\bar{x} = 5.2$ <span class="pp">|</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\mu$ <span class="pp">|</span> Populationsmedelvärde <span class="pp">|</span> $\mu = 100$ <span class="pp">|</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sigma$ <span class="pp">|</span> Standardavvikelse (population) <span class="pp">|</span> $\sigma = 15$ <span class="pp">|</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $s$ <span class="pp">|</span> Standardavvikelse (urval) <span class="pp">|</span> $s = 12.3$ <span class="pp">|</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sigma^2$ <span class="pp">|</span> Varians (population) <span class="pp">|</span> $\sigma^2 = 225$ <span class="pp">|</span></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $s^2$ <span class="pp">|</span> Varians (urval) <span class="pp">|</span> $s^2 = 151.3$ <span class="pp">|</span></span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $n$ <span class="pp">|</span> Antal observationer <span class="pp">|</span> $n = 50$ <span class="pp">|</span></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sum$ <span class="pp">|</span> Summa <span class="pp">|</span> $\sum x_i$ <span class="pp">|</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r$ <span class="pp">|</span> Korrelationskoefficient <span class="pp">|</span> $r = 0.85$ <span class="pp">|</span></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $R^2$ <span class="pp">|</span> Determinationskoefficient <span class="pp">|</span> $R^2 = 0.72$ <span class="pp">|</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\hat{y}$ <span class="pp">|</span> Förutsagt värde <span class="pp">|</span> $\hat{y} = 3.2$ <span class="pp">|</span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\%$ <span class="pp">|</span> Procent <span class="pp">|</span> $25\%$ <span class="pp">|</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\pm$ <span class="pp">|</span> Plus/minus (felmarginal) <span class="pp">|</span> $50 \pm 3$ <span class="pp">|</span></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## Viktiga begrepp</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Svenska <span class="pp">|</span> Engelska <span class="pp">|</span></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|----------|</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Urval <span class="pp">|</span> Sampling <span class="pp">|</span></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sannolikhet <span class="pp">|</span> Probability <span class="pp">|</span></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slump <span class="pp">|</span> Random chance <span class="pp">|</span></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Medelvärde <span class="pp">|</span> Mean <span class="pp">|</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standardavvikelse <span class="pp">|</span> Standard deviation <span class="pp">|</span></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Varians <span class="pp">|</span> Variance <span class="pp">|</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Median <span class="pp">|</span> Median <span class="pp">|</span></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kvartiler <span class="pp">|</span> Quartiles <span class="pp">|</span></span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kvantiler <span class="pp">|</span> Quantiles <span class="pp">|</span></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Normalfördelning <span class="pp">|</span> Normal distribution <span class="pp">|</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Konfidensintervall <span class="pp">|</span> Confidence interval <span class="pp">|</span></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Korrelation <span class="pp">|</span> Correlation <span class="pp">|</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> Regression <span class="pp">|</span></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual <span class="pp">|</span> Residual <span class="pp">|</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Noggrannhet <span class="pp">|</span> Accuracy <span class="pp">|</span></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Precision <span class="pp">|</span> Precision <span class="pp">|</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validitet <span class="pp">|</span> Validity <span class="pp">|</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reliabilitet <span class="pp">|</span> Reliability <span class="pp">|</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dikotom fråga <span class="pp">|</span> Binary question <span class="pp">|</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Svarslista <span class="pp">|</span> Multiple choice <span class="pp">|</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Graderade svar <span class="pp">|</span> Likert scale <span class="pp">|</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Skiljefråga <span class="pp">|</span> Routing question <span class="pp">|</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Noggrannhet (Accuracy) vs Precision</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Noggrannhet (Accuracy)**: Hur nära ett mätvärde är det verkliga/sanna värdet</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Exempel: Om den sanna temperaturen är 20°C och du mäter 20.1°C har du hög noggrannhet</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interaktiva verktyg</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Datatyper</span><span class="co">](dashboards/datatyper-viz.qmd)</span> - Utforska datatyper och beskrivande statistik</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sannolikhet</span><span class="co">](dashboards/sannolikhet-viz.qmd)</span> - Myntkast, tärningar, normalfördelning och konfidensintervall</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Statistikkalkylator</span><span class="co">](dashboards/statistik-kalkylator.qmd)</span> - Beräkna statistik på egen data med histogram och boxplot</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Regression</span><span class="co">](dashboards/regression-viz.qmd)</span> - Klicka för att skapa punkter och visualisera regressionslinjen med residualer</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Noggrannhet vs Precision</span><span class="co">](dashboards/accuracy-precision-viz.qmd)</span> - Utforska skillnaden mellan accuracy och precision med målskjutningsanalogi</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Urvalsstorlekskalkylator</span><span class="co">](dashboards/sample-size-calculator.qmd)</span> - Beräkna nödvändig urvalsstorlek baserat på population, konfidensnivå och felmarginal</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Databehandling</span><span class="co">](dashboards/data-cleaning-viz.qmd)</span> - Interaktiv demonstration av outliers och transformationer (log, kvadratrot, Z-score)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Procentförändring vs Procentenheter</span><span class="co">](dashboards/percentage-change-viz.qmd)</span> - Förstå skillnaden mellan procentenheter och procentförändring, samt linjär vs exponentiell tillväxt med 72-regeln</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Monty Hall</span><span class="co">](dashboards/monty-hall.qmd)</span> - Klassisk sannolikhetsparadox med interaktivt spel</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matematiska symboler</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Betydelse <span class="pp">|</span> Exempel <span class="pp">|</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|-----------|---------|</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\bar{x}$ <span class="pp">|</span> Medelvärde (mean) <span class="pp">|</span> $\bar{x} = 5.2$ <span class="pp">|</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\mu$ <span class="pp">|</span> Populationsmedelvärde <span class="pp">|</span> $\mu = 100$ <span class="pp">|</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sigma$ <span class="pp">|</span> Standardavvikelse (population) <span class="pp">|</span> $\sigma = 15$ <span class="pp">|</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $s$ <span class="pp">|</span> Standardavvikelse (urval) <span class="pp">|</span> $s = 12.3$ <span class="pp">|</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sigma^2$ <span class="pp">|</span> Varians (population) <span class="pp">|</span> $\sigma^2 = 225$ <span class="pp">|</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $s^2$ <span class="pp">|</span> Varians (urval) <span class="pp">|</span> $s^2 = 151.3$ <span class="pp">|</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $n$ <span class="pp">|</span> Antal observationer <span class="pp">|</span> $n = 50$ <span class="pp">|</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\sum$ <span class="pp">|</span> Summa <span class="pp">|</span> $\sum x_i$ <span class="pp">|</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $r$ <span class="pp">|</span> Korrelationskoefficient <span class="pp">|</span> $r = 0.85$ <span class="pp">|</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $R^2$ <span class="pp">|</span> Determinationskoefficient <span class="pp">|</span> $R^2 = 0.72$ <span class="pp">|</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\hat{y}$ <span class="pp">|</span> Förutsagt värde <span class="pp">|</span> $\hat{y} = 3.2$ <span class="pp">|</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\%$ <span class="pp">|</span> Procent <span class="pp">|</span> $25\%$ <span class="pp">|</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\pm$ <span class="pp">|</span> Plus/minus (felmarginal) <span class="pp">|</span> $50 \pm 3$ <span class="pp">|</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Viktiga begrepp</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Svenska <span class="pp">|</span> Engelska <span class="pp">|</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------|----------|</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Urval <span class="pp">|</span> Sampling <span class="pp">|</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sannolikhet <span class="pp">|</span> Probability <span class="pp">|</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Slump <span class="pp">|</span> Random chance <span class="pp">|</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Medelvärde <span class="pp">|</span> Mean <span class="pp">|</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standardavvikelse <span class="pp">|</span> Standard deviation <span class="pp">|</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Varians <span class="pp">|</span> Variance <span class="pp">|</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Median <span class="pp">|</span> Median <span class="pp">|</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kvartiler <span class="pp">|</span> Quartiles <span class="pp">|</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Kvantiler <span class="pp">|</span> Quantiles <span class="pp">|</span></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Normalfördelning <span class="pp">|</span> Normal distribution <span class="pp">|</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Konfidensintervall <span class="pp">|</span> Confidence interval <span class="pp">|</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Korrelation <span class="pp">|</span> Correlation <span class="pp">|</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> Regression <span class="pp">|</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Residual <span class="pp">|</span> Residual <span class="pp">|</span></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Noggrannhet <span class="pp">|</span> Accuracy <span class="pp">|</span></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Precision <span class="pp">|</span> Precision <span class="pp">|</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validitet <span class="pp">|</span> Validity <span class="pp">|</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Reliabilitet <span class="pp">|</span> Reliability <span class="pp">|</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dikotom fråga <span class="pp">|</span> Binary question <span class="pp">|</span></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Svarslista <span class="pp">|</span> Multiple choice <span class="pp">|</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Graderade svar <span class="pp">|</span> Likert scale <span class="pp">|</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Skiljefråga <span class="pp">|</span> Routing question <span class="pp">|</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### Noggrannhet (Accuracy) vs Precision</span></span>
 <span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Precision**: Hur nära upprepade mätningar ligger varandra (konsistens)</span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Exempel: Om du mäter 19.5°C fem gånger i rad har du hög precision, men kanske låg noggrannhet</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Noggrannhet (Accuracy)**: Hur nära ett mätvärde är det verkliga/sanna värdet</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Exempel: Om den sanna temperaturen är 20°C och du mäter 20.1°C har du hög noggrannhet</span>
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>**Målskjutningsanalogi:**</span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög precision, låg noggrannhet: Alla skott träffar tätt ihop, men långt från centrum</span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög noggrannhet, låg precision: Skotten spridda runt centrum</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög precision och noggrannhet: Alla skott träffar tätt ihop i centrum</span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Låg precision och noggrannhet: Skotten spridda långt från centrum</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resurser</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Precision**: Hur nära upprepade mätningar ligger varandra (konsistens)</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Exempel: Om du mäter 19.5°C fem gånger i rad har du hög precision, men kanske låg noggrannhet</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>**Målskjutningsanalogi:**</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög precision, låg noggrannhet: Alla skott träffar tätt ihop, men långt från centrum</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög noggrannhet, låg precision: Skotten spridda runt centrum</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hög precision och noggrannhet: Alla skott träffar tätt ihop i centrum</span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Låg precision och noggrannhet: Skotten spridda långt från centrum</span>
 <span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a><span class="fu">### Humanities Lab</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>LU Humanities Lab är en universitetsövergripande forskningsinfrastruktur som erbjuder LU-forskare fri tillgång till avancerade instrument och metodologisk kompetens för att mäta mänskligt beteende, expertis inom datahantering, samt forskarförberedande utbildning och användarstöd i en tvärvetenskaplig och internationell miljö.</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>**Öppet även för studenter!**</span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">humlab.lu.se/education</span><span class="co">](https://www.humlab.lu.se/education/current-pedagogical-activities/)</span></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citera detta material</span></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>**Licens:** Detta material är publicerat under <span class="co">[</span><span class="ot">CC-BY-NC 4.0</span><span class="co">](https://creativecommons.org/licenses/by-nc/4.0/)</span> licens.</span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>**Hela sidan:**</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="in">Johansson, M., &amp; Söderström, K. (2025). ABMM06: Kvantitativa metoder.</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a><span class="in">Lunds universitet. https://mathjoha.github.io/abmm06</span></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="in">Licens: CC-BY-NC 4.0</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>**Enskilda sidor:** Använd formatet ovan och lägg till sidans titel och URL. Varje sida innehåller citationsmetadata.</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>**BibTeX:**</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a><span class="in">```bibtex</span></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="in">@misc{abmm06,</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="in">  author = {Johansson, Mathias and Söderström, Kristofer},</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="in">  title = {ABMM06: Kvantitativa metoder},</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="in">  year = {2025},</span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="in">  publisher = {Lunds universitet},</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="in">  url = {https://mathjoha.github.io/abmm06},</span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="in">  note = {Licens: CC-BY-NC 4.0}</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ladda ner som PDF</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>Alla presentationer och lektioner kan laddas ner som PDF för offline-läsning. För att generera PDFs, se <span class="co">[</span><span class="ot">README.md</span><span class="co">](README.md)</span> för instruktioner.</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kontakt</span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>**Mathias Johansson**</span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>Lunds universitet</span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">mathias.johansson@kultur.lu.se</span><span class="co">](mailto:mathias.johansson@kultur.lu.se)</span></span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>**Kristofer Söderström**</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>Information studies</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">kristofer.soderstrom@kultur.lu.se</span><span class="co">](mailto:kristofer.soderstrom@kultur.lu.se)</span></span></code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resurser</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Humanities Lab</span></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>LU Humanities Lab är en universitetsövergripande forskningsinfrastruktur som erbjuder LU-forskare fri tillgång till avancerade instrument och metodologisk kompetens för att mäta mänskligt beteende, expertis inom datahantering, samt forskarförberedande utbildning och användarstöd i en tvärvetenskaplig och internationell miljö.</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>**Öppet även för studenter!**</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">humlab.lu.se/education</span><span class="co">](https://www.humlab.lu.se/education/current-pedagogical-activities/)</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Citera detta material</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>**Licens:** Detta material är publicerat under <span class="co">[</span><span class="ot">CC-BY-NC 4.0</span><span class="co">](https://creativecommons.org/licenses/by-nc/4.0/)</span> licens.</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>**Hela sidan:**</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="in">Johansson, M., &amp; Söderström, K. (2025). ABMM06: Kvantitativa metoder.</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="in">Lunds universitet. https://mathjoha.github.io/abmm06</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="in">Licens: CC-BY-NC 4.0</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>**Enskilda sidor:** Använd formatet ovan och lägg till sidans titel och URL. Varje sida innehåller citationsmetadata.</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>**BibTeX:**</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="in">```bibtex</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="in">@misc{abmm06,</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="in">  author = {Johansson, Mathias and Söderström, Kristofer},</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="in">  title = {ABMM06: Kvantitativa metoder},</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="in">  year = {2025},</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="in">  publisher = {Lunds universitet},</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a><span class="in">  url = {https://mathjoha.github.io/abmm06},</span></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a><span class="in">  note = {Licens: CC-BY-NC 4.0}</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ladda ner som PDF</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>Alla presentationer och lektioner kan laddas ner som PDF för offline-läsning. För att generera PDFs, se <span class="co">[</span><span class="ot">README.md</span><span class="co">](README.md)</span> för instruktioner.</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Kontakt</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>**Mathias Johansson**</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>Lunds universitet</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">mathias.johansson@kultur.lu.se</span><span class="co">](mailto:mathias.johansson@kultur.lu.se)</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>**Kristofer Söderström**</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>Information studies</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">kristofer.soderstrom@kultur.lu.se</span><span class="co">](mailto:kristofer.soderstrom@kultur.lu.se)</span></span></code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

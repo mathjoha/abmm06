@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mathias Johansson">
+<meta name="author" content="Kristofer Söderström">
+<meta name="dcterms.date" content="2025-12-15">
+
+<title>Procentförändring vs Procentenheter – ABMM06 - Kvantitativa metoder</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Inget resultat",
+    "search-matching-documents-text": "matchande dokument",
+    "search-copy-link-title": "Kopiera länk för att söka",
+    "search-hide-matches-text": "Göm ytterligare resultat",
+    "search-more-match-text": "annat resultat i detta dokument",
+    "search-more-matches-text": "fler resultat i detta dokument",
+    "search-clear-button-title": "Rensa",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Avbryt",
+    "search-submit-button-title": "Verkställ",
+    "search-label": "Sök"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ABMM06 - Kvantitativa metoder</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Sök"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Skifta navigering" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-presentationer" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Presentationer</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-presentationer">    
+        <li>
+    <a class="dropdown-item" href="../slides/kvantitativa-metoder.html" target="_blank">
+ <span class="dropdown-text">Kvantitativa metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/urval.html" target="_blank">
+ <span class="dropdown-text">Urval och representativitet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/datatyper.html" target="_blank">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/sannolikhet.html" target="_blank">
+ <span class="dropdown-text">Slump och sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/beskrivande-statistik.html" target="_blank">
+ <span class="dropdown-text">Beskrivande statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/korrelation-och-regression.html" target="_blank">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/digitala-metoder.html" target="_blank">
+ <span class="dropdown-text">Digitala metoder</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/enkat.html" target="_blank">
+ <span class="dropdown-text">Enkäter</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lektioner" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lektioner</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lektioner">    
+        <li>
+    <a class="dropdown-item" href="../lessons/fragettyper.html">
+ <span class="dropdown-text">Frågetyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/presentera-resultat.html">
+ <span class="dropdown-text">Presentera resultat</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/korrelation-och-regression.html">
+ <span class="dropdown-text">Korrelation och regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/inferentiell-statistik.html">
+ <span class="dropdown-text">Inferentiell statistik</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/databehandling.html">
+ <span class="dropdown-text">Databehandling och rensning</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-interaktiva-verktyg" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Interaktiva verktyg</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-interaktiva-verktyg">    
+        <li>
+    <a class="dropdown-item" href="../dashboards/datatyper-viz.html">
+ <span class="dropdown-text">Datatyper</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sannolikhet-viz.html">
+ <span class="dropdown-text">Sannolikhet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/statistik-kalkylator.html">
+ <span class="dropdown-text">Statistikkalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/regression-viz.html">
+ <span class="dropdown-text">Regression</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/accuracy-precision-viz.html">
+ <span class="dropdown-text">Noggrannhet vs Precision</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/sample-size-calculator.html">
+ <span class="dropdown-text">Urvalsstorlekskalkylator</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/data-cleaning-viz.html">
+ <span class="dropdown-text">Databehandling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/percentage-change-viz.html">
+ <span class="dropdown-text">Procentförändring vs Procentenheter</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../dashboards/monty-hall.html">
+ <span class="dropdown-text">Monty Hall</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Om</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">På denna sida</h2>
+   
+  <ul>
+  <li><a href="#del-1-procentenheter-vs-procentförändring" id="toc-del-1-procentenheter-vs-procentförändring" class="nav-link active" data-scroll-target="#del-1-procentenheter-vs-procentförändring">Del 1: Procentenheter vs Procentförändring</a>
+  <ul class="collapse">
+  <li><a href="#interaktiv-kalkylator" id="toc-interaktiv-kalkylator" class="nav-link" data-scroll-target="#interaktiv-kalkylator">Interaktiv kalkylator</a></li>
+  <li><a href="#visualisering" id="toc-visualisering" class="nav-link" data-scroll-target="#visualisering">Visualisering</a></li>
+  </ul></li>
+  <li><a href="#vanliga-exempel" id="toc-vanliga-exempel" class="nav-link" data-scroll-target="#vanliga-exempel">Vanliga exempel</a>
+  <ul class="collapse">
+  <li><a href="#exempel-1-valresultat" id="toc-exempel-1-valresultat" class="nav-link" data-scroll-target="#exempel-1-valresultat">Exempel 1: Valresultat</a></li>
+  <li><a href="#exempel-2-räntor" id="toc-exempel-2-räntor" class="nav-link" data-scroll-target="#exempel-2-räntor">Exempel 2: Räntor</a></li>
+  </ul></li>
+  <li><a href="#del-2-linjär-vs-kumulativ-förändring-över-tid" id="toc-del-2-linjär-vs-kumulativ-förändring-över-tid" class="nav-link" data-scroll-target="#del-2-linjär-vs-kumulativ-förändring-över-tid">Del 2: Linjär vs Kumulativ förändring över tid</a>
+  <ul class="collapse">
+  <li><a href="#interaktiv-simulator" id="toc-interaktiv-simulator" class="nav-link" data-scroll-target="#interaktiv-simulator">Interaktiv simulator</a></li>
+  </ul></li>
+  <li><a href="#förklaring-linjär-vs-kumulativ" id="toc-förklaring-linjär-vs-kumulativ" class="nav-link" data-scroll-target="#förklaring-linjär-vs-kumulativ">Förklaring: Linjär vs Kumulativ</a>
+  <ul class="collapse">
+  <li><a href="#linjär-förändring-additiv" id="toc-linjär-förändring-additiv" class="nav-link" data-scroll-target="#linjär-förändring-additiv">Linjär förändring (Additiv)</a></li>
+  <li><a href="#kumulativ-förändring-multiplikativ" id="toc-kumulativ-förändring-multiplikativ" class="nav-link" data-scroll-target="#kumulativ-förändring-multiplikativ">Kumulativ förändring (Multiplikativ)</a></li>
+  </ul></li>
+  <li><a href="#verkliga-exempel" id="toc-verkliga-exempel" class="nav-link" data-scroll-target="#verkliga-exempel">Verkliga exempel</a>
+  <ul class="collapse">
+  <li><a href="#ränta-på-ränta" id="toc-ränta-på-ränta" class="nav-link" data-scroll-target="#ränta-på-ränta">Ränta på ränta</a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population">Population</a></li>
+  <li><a href="#inflation" id="toc-inflation" class="nav-link" data-scroll-target="#inflation">Inflation</a></li>
+  </ul></li>
+  <li><a href="#regeln" id="toc-regeln" class="nav-link" data-scroll-target="#regeln">72-regeln</a>
+  <ul class="collapse">
+  <li><a href="#exempel" id="toc-exempel" class="nav-link" data-scroll-target="#exempel">Exempel</a></li>
+  </ul></li>
+  <li><a href="#sammanfattning" id="toc-sammanfattning" class="nav-link" data-scroll-target="#sammanfattning">Sammanfattning</a></li>
+  <li><a href="#formler" id="toc-formler" class="nav-link" data-scroll-target="#formler">Formler</a>
+  <ul class="collapse">
+  <li><a href="#procentenheter" id="toc-procentenheter" class="nav-link" data-scroll-target="#procentenheter">Procentenheter</a></li>
+  <li><a href="#procentförändring" id="toc-procentförändring" class="nav-link" data-scroll-target="#procentförändring">Procentförändring</a></li>
+  <li><a href="#linjär-tillväxt" id="toc-linjär-tillväxt" class="nav-link" data-scroll-target="#linjär-tillväxt">Linjär tillväxt</a></li>
+  <li><a href="#kumulativ-tillväxt-exponentiell" id="toc-kumulativ-tillväxt-exponentiell" class="nav-link" data-scroll-target="#kumulativ-tillväxt-exponentiell">Kumulativ tillväxt (exponentiell)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/percentage-change-viz.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Procentförändring vs Procentenheter</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Kod</button></div></div>
+<p class="subtitle lead">Percentage Change vs Percentage Points</p>
+</div>
+
+
+<div class="quarto-title-meta-author column-page-left">
+  <div class="quarto-title-meta-heading">Författare</div>
+  <div class="quarto-title-meta-heading">Anknuten</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Mathias Johansson <a href="mailto:mathias.johansson@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Kristofer Söderström <a href="mailto:kristofer.soderstrom@kultur.lu.se" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Lunds universitet
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta column-page-left">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Utgiven</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">15 december 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="11" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 10;"><span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Plot <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/plot"</span>)</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="del-1-procentenheter-vs-procentförändring" class="level2">
+<h2 class="anchored" data-anchor-id="del-1-procentenheter-vs-procentförändring">Del 1: Procentenheter vs Procentförändring</h2>
+<p>Det finns en viktig skillnad mellan <strong>procentförändring</strong> (% change) och <strong>förändring i procentenheter</strong> (percentage points):</p>
+<ul>
+<li><strong>Procentenheter</strong>: Absolut skillnad mellan två procenttal</li>
+<li><strong>Procentförändring</strong>: Relativ förändring uttryckt i procent av ursprungsvärdet</li>
+</ul>
+<section id="interaktiv-kalkylator" class="level3">
+<h3 class="anchored" data-anchor-id="interaktiv-kalkylator">Interaktiv kalkylator</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="27" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 26;"><span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>viewof startPct <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Startvärde (%)"</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>viewof endPct <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Slutvärde (%)"</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>percentagePointChange <span class="op">=</span> endPct <span class="op">-</span> startPct</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>percentageChange <span class="op">=</span> startPct <span class="op">===</span> <span class="dv">0</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="kw">null</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> ((endPct <span class="op">-</span> startPct) <span class="op">/</span> startPct <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>direction <span class="op">=</span> endPct <span class="op">&gt;</span> startPct <span class="op">?</span> <span class="st">"ökning"</span> <span class="op">:</span> endPct <span class="op">&lt;</span> startPct <span class="op">?</span> <span class="st">"minskning"</span> <span class="op">:</span> <span class="st">"ingen förändring"</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Dina värden**: Startvärde </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% → Slutvärde </span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="49" data-source-offset="-516"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 48;"><span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Förändring i procentenheter (absolut skillnad)**: </span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% - </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% = **</span><span class="sc">${</span>percentagePointChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> procentenheter**. Detta är en enkel subtraktion mellan två procenttal.`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="51" data-source-offset="-732"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Procentförändring (relativ förändring)**: </span><span class="sc">${</span>startPct <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"**Odefinierat** - kan inte beräkna procentförändring från 0%"</span> <span class="op">:</span> <span class="vs">`(</span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) / </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> × 100 = **</span><span class="sc">${</span>percentageChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% </span><span class="sc">${</span>direction<span class="sc">}</span><span class="vs">**. Detta innebär att värdet har </span><span class="sc">${</span>direction <span class="op">===</span> <span class="st">"ökning"</span> <span class="op">?</span> <span class="st">"ökat"</span> <span class="op">:</span> <span class="st">"minskat"</span><span class="sc">}</span><span class="vs"> med </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(percentageChange)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% relativt startvärdet.`</span><span class="sc">}</span><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualisering" class="level3">
+<h3 class="anchored" data-anchor-id="visualisering">Visualisering</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="57" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>barChart <span class="op">=</span> {</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> [</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">label</span><span class="op">:</span> <span class="st">"Start"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> startPct<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#0d6efd"</span><span class="op">,</span> <span class="dt">order</span><span class="op">:</span> <span class="dv">1</span>}<span class="op">,</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">label</span><span class="op">:</span> <span class="st">"Slut"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> endPct<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#198754"</span><span class="op">,</span> <span class="dt">order</span><span class="op">:</span> <span class="dv">2</span>}</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Värde (%)"</span><span class="op">,</span></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Start"</span><span class="op">,</span> <span class="st">"Slut"</span>]</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(data<span class="op">,</span> {</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"color"</span><span class="op">,</span></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x1</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(startPct<span class="op">,</span> endPct) <span class="op">+</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">text</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(percentagePointChange)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> p.e.`</span></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>      }]<span class="op">,</span> {</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span></span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>        <span class="dt">text</span><span class="op">:</span> <span class="st">"text"</span><span class="op">,</span></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#dc3545"</span><span class="op">,</span></span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span></span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vanliga-exempel" class="level2">
+<h2 class="anchored" data-anchor-id="vanliga-exempel">Vanliga exempel</h2>
+<section id="exempel-1-valresultat" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-1-valresultat">Exempel 1: Valresultat</h3>
+<p>Ett parti går från <strong>25%</strong> till <strong>30%</strong> av rösterna:</p>
+<ul>
+<li><strong>Procentenheter</strong>: 30% - 25% = <strong>5 procentenheter</strong></li>
+<li><strong>Procentförändring</strong>: (30-25)/25 × 100 = <strong>20% ökning</strong></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tips
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I media säger man ofta “partiet ökade med 5 procentenheter” (korrekt) eller felaktigt “med 5 procent”.</p>
+</div>
+</div>
+</section>
+<section id="exempel-2-räntor" class="level3">
+<h3 class="anchored" data-anchor-id="exempel-2-räntor">Exempel 2: Räntor</h3>
+<p>Räntan höjs från <strong>2%</strong> till <strong>3%</strong>:</p>
+<ul>
+<li><strong>Procentenheter</strong>: 3% - 2% = <strong>1 procentenhet</strong></li>
+<li><strong>Procentförändring</strong>: (3-2)/2 × 100 = <strong>50% ökning</strong></li>
+</ul>
+<p>En liten förändring i procentenheter kan vara en stor procentuell förändring!</p>
+</section>
+</section>
+<section id="del-2-linjär-vs-kumulativ-förändring-över-tid" class="level2">
+<h2 class="anchored" data-anchor-id="del-2-linjär-vs-kumulativ-förändring-över-tid">Del 2: Linjär vs Kumulativ förändring över tid</h2>
+<p>Här kan du se skillnaden mellan <strong>linjär tillväxt</strong> (samma absoluta förändring varje period) och <strong>kumulativ tillväxt</strong> (samma procentuella förändring varje period).</p>
+<section id="interaktiv-simulator" class="level3">
+<h3 class="anchored" data-anchor-id="interaktiv-simulator">Interaktiv simulator</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="135" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 134;"><span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>viewof baseValue <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span> <span class="kw">Infinity</span>]<span class="op">,</span> {</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Startvärde"</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>viewof changeType <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"percent"</span><span class="op">,</span> <span class="st">"value"</span>]<span class="op">,</span> {</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"percent"</span><span class="op">,</span></span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ av förändring"</span><span class="op">,</span></span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> x <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="st">"Procent per period"</span> <span class="op">:</span> <span class="st">"Värde per period"</span></span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>viewof changeAmount <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">50</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>      <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Förändring per period (%)"</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>      <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Förändring per period (värde)"</span></span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>viewof timeSteps <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Antal perioder"</span></span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a><span class="co">// Beräkna linjär och kumulativ förändring</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>linearData <span class="op">=</span> {</span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Linjär: samma absoluta förändring varje period</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Om procent: använd procentändring AV STARTVÄRDET varje period</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Om värde: använd samma värdeändring varje period</span></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valueChange <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> (baseValue <span class="op">*</span> changeAmount <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> changeAmount<span class="op">;</span></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> timeSteps<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>      <span class="dt">period</span><span class="op">:</span> i<span class="op">,</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> baseValue <span class="op">+</span> (valueChange <span class="op">*</span> i)<span class="op">,</span></span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"Linjär (additiv)"</span></span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>cumulativeData <span class="op">=</span> {</span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> currentValue <span class="op">=</span> baseValue<span class="op">;</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Kumulativ: förändring baserat på aktuellt värde (exponentiell)</span></span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ALLTID använd procent av aktuellt värde</span></span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> percentChange <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> changeAmount <span class="op">/</span> <span class="dv">100</span>  <span class="co">// Användaren angav redan procent</span></span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> changeAmount <span class="op">/</span> baseValue<span class="op">;</span>  <span class="co">// Konvertera värde till procent av startvärdet</span></span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> timeSteps<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>      <span class="dt">period</span><span class="op">:</span> i<span class="op">,</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> currentValue<span class="op">,</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"Kumulativ (exponentiell)"</span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Applicera alltid exponentiell tillväxt</span></span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>    currentValue <span class="op">=</span> currentValue <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> percentChange)<span class="op">;</span></span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>allData <span class="op">=</span> [<span class="op">...</span>linearData<span class="op">,</span> <span class="op">...</span>cumulativeData]</span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="co">// Beräkna slutvärden</span></span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>linearFinal <span class="op">=</span> linearData[linearData<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">value</span></span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>cumulativeFinal <span class="op">=</span> cumulativeData[cumulativeData<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">value</span></span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>totalLinearChange <span class="op">=</span> linearFinal <span class="op">-</span> baseValue</span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>totalCumulativeChange <span class="op">=</span> cumulativeFinal <span class="op">-</span> baseValue</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="219" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 218;"><span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Startvärde**: </span><span class="sc">${</span>baseValue<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span></span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a><span class="vs">**Linjär förändring (additiv)**: </span><span class="sc">${</span>changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="vs">`Varje period: +</span><span class="sc">${</span>(baseValue <span class="op">*</span> changeAmount <span class="op">/</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>changeAmount<span class="sc">}</span><span class="vs">% av startvärdet)`</span> <span class="op">:</span> <span class="vs">`Varje period: +</span><span class="sc">${</span>changeAmount<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span><span class="sc">}</span><span class="vs"> | Slutvärde: </span><span class="sc">${</span>linearFinal<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | Total förändring: </span><span class="sc">${</span>totalLinearChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>((totalLinearChange<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a><span class="vs">**Kumulativ förändring (exponentiell)**: Varje period: ×</span><span class="sc">${</span>(<span class="dv">1</span> <span class="op">+</span> (changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> changeAmount<span class="op">/</span><span class="dv">100</span> <span class="op">:</span> changeAmount<span class="op">/</span>baseValue))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="vs">`</span><span class="sc">${</span>changeAmount<span class="sc">}</span><span class="vs">%`</span> <span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>((changeAmount<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%`</span><span class="sc">}</span><span class="vs"> av det aktuella värdet) | Slutvärde: </span><span class="sc">${</span>cumulativeFinal<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | Total förändring: </span><span class="sc">${</span>totalCumulativeChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>((totalCumulativeChange<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a><span class="vs">**Skillnad mellan metoderna**: </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(cumulativeFinal <span class="op">-</span> linearFinal)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span></span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="231" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 230;"><span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a>timeSeriesPlot <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Värde"</span><span class="op">,</span></span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Period"</span><span class="op">,</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Linjär (additiv)"</span><span class="op">,</span> <span class="st">"Kumulativ (exponentiell)"</span>]<span class="op">,</span></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0d6efd"</span><span class="op">,</span> <span class="st">"#dc3545"</span>]</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(allData<span class="op">,</span> {</span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"period"</span><span class="op">,</span></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(allData<span class="op">,</span> {</span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"period"</span><span class="op">,</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span></span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([baseValue]<span class="op">,</span> {</span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#6c757d"</span><span class="op">,</span></span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,4"</span></span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="förklaring-linjär-vs-kumulativ" class="level2">
+<h2 class="anchored" data-anchor-id="förklaring-linjär-vs-kumulativ">Förklaring: Linjär vs Kumulativ</h2>
+<section id="linjär-förändring-additiv" class="level3">
+<h3 class="anchored" data-anchor-id="linjär-förändring-additiv">Linjär förändring (Additiv)</h3>
+<p>Samma <strong>absoluta värde</strong> läggs till varje period:</p>
+<ul>
+<li>Period 0: 100</li>
+<li>Period 1: 100 + 10 = 110</li>
+<li>Period 2: 110 + 10 = 120</li>
+<li>Period 3: 120 + 10 = 130</li>
+</ul>
+<p><strong>Formel</strong>: Värde(t) = Startvärde + (Förändring × t)</p>
+</section>
+<section id="kumulativ-förändring-multiplikativ" class="level3">
+<h3 class="anchored" data-anchor-id="kumulativ-förändring-multiplikativ">Kumulativ förändring (Multiplikativ)</h3>
+<p>Samma <strong>procent</strong> av det <strong>aktuella värdet</strong> läggs till varje period:</p>
+<ul>
+<li>Period 0: 100</li>
+<li>Period 1: 100 × 1.10 = 110</li>
+<li>Period 2: 110 × 1.10 = 121</li>
+<li>Period 3: 121 × 1.10 = 133.1</li>
+</ul>
+<p><strong>Formel</strong>: Värde(t) = Startvärde × (1 + r)^t</p>
+<p>där r är förändringen per period (10% = 0.10)</p>
+</section>
+</section>
+<section id="verkliga-exempel" class="level2">
+<h2 class="anchored" data-anchor-id="verkliga-exempel">Verkliga exempel</h2>
+<section id="ränta-på-ränta" class="level3">
+<h3 class="anchored" data-anchor-id="ränta-på-ränta">Ränta på ränta</h3>
+<p>När du sparar pengar med <strong>ränta på ränta</strong> får du kumulativ tillväxt: - År 1: 10 000 kr × 1.05 = 10 500 kr - År 2: 10 500 kr × 1.05 = 11 025 kr (inte 11 000 kr!)</p>
+</section>
+<section id="population" class="level3">
+<h3 class="anchored" data-anchor-id="population">Population</h3>
+<p>Befolkningstillväxt är ofta kumulativ eftersom den nya befolkningen också får barn: - År 0: 1 000 personer - År 1: 1 000 × 1.02 = 1 020 personer - År 2: 1 020 × 1.02 = 1 040.4 personer</p>
+</section>
+<section id="inflation" class="level3">
+<h3 class="anchored" data-anchor-id="inflation">Inflation</h3>
+<p>Inflation är kumulativ - priserna ökar baserat på det <strong>nuvarande</strong> priset, inte originalpriset: - År 0: 100 kr - År 1: 100 × 1.03 = 103 kr - År 2: 103 × 1.03 = 106.09 kr</p>
+</section>
+</section>
+<section id="regeln" class="level2">
+<h2 class="anchored" data-anchor-id="regeln">72-regeln</h2>
+<p><a href="https://en.wikipedia.org/wiki/Rule_of_72">72-regeln</a> är en enkel tumregel för att uppskatta hur lång tid det tar för ett värde att <strong>fördubblas</strong> vid kumulativ tillväxt.</p>
+<p><strong>Formel</strong>: Antal perioder för fördubbling ≈ 72 / tillväxttakt (i procent)</p>
+<section id="exempel" class="level3">
+<h3 class="anchored" data-anchor-id="exempel">Exempel</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Tillväxttakt per år</th>
+<th>Tid för fördubbling</th>
+<th>Exempel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>5%</strong></td>
+<td>72 / 5 ≈ <strong>14.4 år</strong></td>
+<td><span class="math display">\[1.05^{14.4} ≈ 2.02\]</span></td>
+</tr>
+<tr class="even">
+<td><strong>7.2%</strong></td>
+<td>72 / 7.2 = <strong>10 år</strong></td>
+<td><span class="math display">\[1.07^{10} ≈ 1.97 \]</span></td>
+</tr>
+<tr class="odd">
+<td><strong>10%</strong></td>
+<td>72 / 10 ≈ <strong>7.2 år</strong></td>
+<td><span class="math display">\[1.1^{7.2} ≈ 1.99 \]</span></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Varför är detta användbart?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>72-regeln gör det lätt att snabbt uppskatta effekten av kumulativ tillväxt utan miniräknare. Den fungerar bäst för tillväxttakter mellan 6% och 10%, men ger rimliga approximationer för de flesta räntor.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sammanfattning" class="level2">
+<h2 class="anchored" data-anchor-id="sammanfattning">Sammanfattning</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspekt</th>
+<th>Linjär</th>
+<th>Kumulativ</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Förändring per period</td>
+<td>Konstant absolut värde</td>
+<td>Konstant procentsats</td>
+</tr>
+<tr class="even">
+<td>Tillväxttakt</td>
+<td>Avtagande (relativt)</td>
+<td>Konstant (procentuellt)</td>
+</tr>
+<tr class="odd">
+<td>Graf</td>
+<td>Rät linje</td>
+<td>Exponentiell kurva</td>
+</tr>
+<tr class="even">
+<td>Exempel</td>
+<td>Spara fast summa per månad</td>
+<td>Ränta på ränta</td>
+</tr>
+<tr class="odd">
+<td>Formel</td>
+<td>a + bt</td>
+<td>a(1+r)^t</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="formler" class="level2">
+<h2 class="anchored" data-anchor-id="formler">Formler</h2>
+<section id="procentenheter" class="level3">
+<h3 class="anchored" data-anchor-id="procentenheter">Procentenheter</h3>
+<p><span class="math display">\[\text{Procentenheter} = \text{Slutvärde} - \text{Startvärde}\]</span></p>
+</section>
+<section id="procentförändring" class="level3">
+<h3 class="anchored" data-anchor-id="procentförändring">Procentförändring</h3>
+<p><span class="math display">\[\text{Procentförändring} = \frac{\text{Slutvärde} - \text{Startvärde}}{\text{Startvärde}} \times 100\]</span></p>
+</section>
+<section id="linjär-tillväxt" class="level3">
+<h3 class="anchored" data-anchor-id="linjär-tillväxt">Linjär tillväxt</h3>
+<p><span class="math display">\[V(t) = V_0 + (k \times t)\]</span></p>
+<p>där <span class="math inline">\(V_0\)</span> är startvärde, <span class="math inline">\(k\)</span> är förändring per period, <span class="math inline">\(t\)</span> är tid</p>
+</section>
+<section id="kumulativ-tillväxt-exponentiell" class="level3">
+<h3 class="anchored" data-anchor-id="kumulativ-tillväxt-exponentiell">Kumulativ tillväxt (exponentiell)</h3>
+<p><span class="math display">\[V(t) = V_0 \times (1 + r)^t\]</span></p>
+<p>där <span class="math inline">\(V_0\)</span> är startvärde, <span class="math inline">\(r\)</span> är förändring per period (decimalt), <span class="math inline">\(t\)</span> är tid</p>
+
+
+<!-- -->
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citat</h2><div><div class="quarto-appendix-secondary-label">BibTeX hänvisning:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{johansson2025,
+  author = {Johansson, Mathias and Söderström, Kristofer},
+  publisher = {Lunds universitet},
+  title = {ABMM06: Kvantitativa metoder},
+  date = {2025},
+  url = {https://mathjoha.github.io/abmm06},
+  langid = {sv}
+}
+</code><button title="Kopiera till urklipp" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">Hänvisa till detta arbete som:</div><div id="ref-johansson2025" class="csl-entry quarto-appendix-citeas" role="listitem">
+Johansson, Mathias, and Kristofer Söderström. 2025. <span>“ABMM06:
+Kvantitativa metoder.”</span> Lunds universitet. 2025. <a href="https://mathjoha.github.io/abmm06">https://mathjoha.github.io/abmm06</a>.
+</div></div></section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImQzID0gcmVxdWlyZShcImQzQDdcIilcblBsb3QgPSByZXF1aXJlKFwiQG9ic2VydmFibGVocS9wbG90XCIpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbnZpZXdvZiBzdGFydFBjdCA9IElucHV0cy5yYW5nZShbMCwgMTAwXSwge1xuICB2YWx1ZTogMjAsXG4gIHN0ZXA6IDAuMDEsXG4gIGxhYmVsOiBcIlN0YXJ0dsOkcmRlICglKVwiXG59KVxuXG52aWV3b2YgZW5kUGN0ID0gSW5wdXRzLnJhbmdlKFswLCAxMDBdLCB7XG4gIHZhbHVlOiAzMCxcbiAgc3RlcDogMC4wMSxcbiAgbGFiZWw6IFwiU2x1dHbDpHJkZSAoJSlcIlxufSlcblxucGVyY2VudGFnZVBvaW50Q2hhbmdlID0gZW5kUGN0IC0gc3RhcnRQY3RcblxucGVyY2VudGFnZUNoYW5nZSA9IHN0YXJ0UGN0ID09PSAwXG4gID8gbnVsbFxuICA6ICgoZW5kUGN0IC0gc3RhcnRQY3QpIC8gc3RhcnRQY3QgKiAxMDApXG5cbmRpcmVjdGlvbiA9IGVuZFBjdCA+IHN0YXJ0UGN0ID8gXCLDtmtuaW5nXCIgOiBlbmRQY3QgPCBzdGFydFBjdCA/IFwibWluc2tuaW5nXCIgOiBcImluZ2VuIGbDtnLDpG5kcmluZ1wiXG5cbm1kYCoqRGluYSB2w6RyZGVuKio6IFN0YXJ0dsOkcmRlICR7c3RhcnRQY3QudG9GaXhlZCgyKX0lIOKGkiBTbHV0dsOkcmRlICR7ZW5kUGN0LnRvRml4ZWQoMil9JWBcblxubWRgKipGw7Zyw6RuZHJpbmcgaSBwcm9jZW50ZW5oZXRlciAoYWJzb2x1dCBza2lsbG5hZCkqKjogJHtlbmRQY3QudG9GaXhlZCgyKX0lIC0gJHtzdGFydFBjdC50b0ZpeGVkKDIpfSUgPSAqKiR7cGVyY2VudGFnZVBvaW50Q2hhbmdlLnRvRml4ZWQoMil9IHByb2NlbnRlbmhldGVyKiouIERldHRhIMOkciBlbiBlbmtlbCBzdWJ0cmFrdGlvbiBtZWxsYW4gdHbDpSBwcm9jZW50dGFsLmBcblxubWRgKipQcm9jZW50ZsO2csOkbmRyaW5nIChyZWxhdGl2IGbDtnLDpG5kcmluZykqKjogJHtzdGFydFBjdCA9PT0gMCA/IFwiKipPZGVmaW5pZXJhdCoqIC0ga2FuIGludGUgYmVyw6RrbmEgcHJvY2VudGbDtnLDpG5kcmluZyBmcsOlbiAwJVwiIDogYCgke2VuZFBjdC50b0ZpeGVkKDIpfSAtICR7c3RhcnRQY3QudG9GaXhlZCgyKX0pIC8gJHtzdGFydFBjdC50b0ZpeGVkKDIpfSDDlyAxMDAgPSAqKiR7cGVyY2VudGFnZUNoYW5nZS50b0ZpeGVkKDIpfSUgJHtkaXJlY3Rpb259KiouIERldHRhIGlubmViw6RyIGF0dCB2w6RyZGV0IGhhciAke2RpcmVjdGlvbiA9PT0gXCLDtmtuaW5nXCIgPyBcIsO2a2F0XCIgOiBcIm1pbnNrYXRcIn0gbWVkICR7TWF0aC5hYnMocGVyY2VudGFnZUNoYW5nZSkudG9GaXhlZCgyKX0lIHJlbGF0aXZ0IHN0YXJ0dsOkcmRldC5gfWBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuYmFyQ2hhcnQgPSB7XG4gIGNvbnN0IGRhdGEgPSBbXG4gICAge2xhYmVsOiBcIlN0YXJ0XCIsIHZhbHVlOiBzdGFydFBjdCwgY29sb3I6IFwiIzBkNmVmZFwiLCBvcmRlcjogMX0sXG4gICAge2xhYmVsOiBcIlNsdXRcIiwgdmFsdWU6IGVuZFBjdCwgY29sb3I6IFwiIzE5ODc1NFwiLCBvcmRlcjogMn1cbiAgXTtcblxuICByZXR1cm4gUGxvdC5wbG90KHtcbiAgICB3aWR0aDogNjQwLFxuICAgIGhlaWdodDogNDAwLFxuICAgIG1hcmdpblRvcDogNDAsXG4gICAgbWFyZ2luQm90dG9tOiA2MCxcbiAgICB5OiB7XG4gICAgICBkb21haW46IFswLCAxMDBdLFxuICAgICAgbGFiZWw6IFwiVsOkcmRlICglKVwiLFxuICAgICAgZ3JpZDogdHJ1ZVxuICAgIH0sXG4gICAgeDoge1xuICAgICAgbGFiZWw6IG51bGwsXG4gICAgICBkb21haW46IFtcIlN0YXJ0XCIsIFwiU2x1dFwiXVxuICAgIH0sXG4gICAgbWFya3M6IFtcbiAgICAgIFBsb3QuYmFyWShkYXRhLCB7XG4gICAgICAgIHg6IFwibGFiZWxcIixcbiAgICAgICAgeTogXCJ2YWx1ZVwiLFxuICAgICAgICBmaWxsOiBcImNvbG9yXCIsXG4gICAgICAgIHRpcDogdHJ1ZVxuICAgICAgfSksXG4gICAgICBQbG90LnRleHQoW3tcbiAgICAgICAgeDE6IDAuNSxcbiAgICAgICAgeTogTWF0aC5tYXgoc3RhcnRQY3QsIGVuZFBjdCkgKyA1LFxuICAgICAgICB0ZXh0OiBgJHtNYXRoLmFicyhwZXJjZW50YWdlUG9pbnRDaGFuZ2UpLnRvRml4ZWQoMil9IHAuZS5gXG4gICAgICB9XSwge1xuICAgICAgICB4OiBcIngxXCIsXG4gICAgICAgIHk6IFwieVwiLFxuICAgICAgICB0ZXh0OiBcInRleHRcIixcbiAgICAgICAgZmlsbDogXCIjZGMzNTQ1XCIsXG4gICAgICAgIGZvbnRTaXplOiAxNixcbiAgICAgICAgZm9udFdlaWdodDogXCJib2xkXCJcbiAgICAgIH0pLFxuICAgICAgUGxvdC5ydWxlWShbMF0pXG4gICAgXVxuICB9KTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGJhc2VWYWx1ZSA9IElucHV0cy5udW1iZXIoWzAsIEluZmluaXR5XSwge1xuICB2YWx1ZTogMTAwLFxuICBzdGVwOiAxMCxcbiAgbGFiZWw6IFwiU3RhcnR2w6RyZGVcIlxufSlcblxudmlld29mIGNoYW5nZVR5cGUgPSBJbnB1dHMucmFkaW8oW1wicGVyY2VudFwiLCBcInZhbHVlXCJdLCB7XG4gIHZhbHVlOiBcInBlcmNlbnRcIixcbiAgbGFiZWw6IFwiVHlwIGF2IGbDtnLDpG5kcmluZ1wiLFxuICBmb3JtYXQ6IHggPT4geCA9PT0gXCJwZXJjZW50XCIgPyBcIlByb2NlbnQgcGVyIHBlcmlvZFwiIDogXCJWw6RyZGUgcGVyIHBlcmlvZFwiXG59KVxuXG52aWV3b2YgY2hhbmdlQW1vdW50ID0gY2hhbmdlVHlwZSA9PT0gXCJwZXJjZW50XCJcbiAgPyBJbnB1dHMucmFuZ2UoWy01MCwgNTBdLCB7XG4gICAgICB2YWx1ZTogMTAsXG4gICAgICBzdGVwOiAxLFxuICAgICAgbGFiZWw6IFwiRsO2csOkbmRyaW5nIHBlciBwZXJpb2QgKCUpXCJcbiAgICB9KVxuICA6IElucHV0cy5yYW5nZShbLTEwMCwgMTAwXSwge1xuICAgICAgdmFsdWU6IDEwLFxuICAgICAgc3RlcDogMSxcbiAgICAgIGxhYmVsOiBcIkbDtnLDpG5kcmluZyBwZXIgcGVyaW9kICh2w6RyZGUpXCJcbiAgICB9KVxuXG52aWV3b2YgdGltZVN0ZXBzID0gSW5wdXRzLnJhbmdlKFsyLCA1MF0sIHtcbiAgdmFsdWU6IDEwLFxuICBzdGVwOiAxLFxuICBsYWJlbDogXCJBbnRhbCBwZXJpb2RlclwiXG59KVxuXG4vLyBCZXLDpGtuYSBsaW5qw6RyIG9jaCBrdW11bGF0aXYgZsO2csOkbmRyaW5nXG5saW5lYXJEYXRhID0ge1xuICBjb25zdCBkYXRhID0gW107XG5cbiAgLy8gTGluasOkcjogc2FtbWEgYWJzb2x1dGEgZsO2csOkbmRyaW5nIHZhcmplIHBlcmlvZFxuICAvLyBPbSBwcm9jZW50OiBhbnbDpG5kIHByb2NlbnTDpG5kcmluZyBBViBTVEFSVFbDhFJERVQgdmFyamUgcGVyaW9kXG4gIC8vIE9tIHbDpHJkZTogYW52w6RuZCBzYW1tYSB2w6RyZGXDpG5kcmluZyB2YXJqZSBwZXJpb2RcbiAgY29uc3QgdmFsdWVDaGFuZ2UgPSBjaGFuZ2VUeXBlID09PSBcInBlcmNlbnRcIlxuICAgID8gKGJhc2VWYWx1ZSAqIGNoYW5nZUFtb3VudCAvIDEwMClcbiAgICA6IGNoYW5nZUFtb3VudDtcblxuICBmb3IgKGxldCBpID0gMDsgaSA8PSB0aW1lU3RlcHM7IGkrKykge1xuICAgIGRhdGEucHVzaCh7XG4gICAgICBwZXJpb2Q6IGksXG4gICAgICB2YWx1ZTogYmFzZVZhbHVlICsgKHZhbHVlQ2hhbmdlICogaSksXG4gICAgICB0eXBlOiBcIkxpbmrDpHIgKGFkZGl0aXYpXCJcbiAgICB9KTtcbiAgfVxuICByZXR1cm4gZGF0YTtcbn1cblxuY3VtdWxhdGl2ZURhdGEgPSB7XG4gIGNvbnN0IGRhdGEgPSBbXTtcbiAgbGV0IGN1cnJlbnRWYWx1ZSA9IGJhc2VWYWx1ZTtcblxuICAvLyBLdW11bGF0aXY6IGbDtnLDpG5kcmluZyBiYXNlcmF0IHDDpSBha3R1ZWxsdCB2w6RyZGUgKGV4cG9uZW50aWVsbClcbiAgLy8gQUxMVElEIGFudsOkbmQgcHJvY2VudCBhdiBha3R1ZWxsdCB2w6RyZGVcbiAgY29uc3QgcGVyY2VudENoYW5nZSA9IGNoYW5nZVR5cGUgPT09IFwicGVyY2VudFwiXG4gICAgPyBjaGFuZ2VBbW91bnQgLyAxMDAgIC8vIEFudsOkbmRhcmVuIGFuZ2F2IHJlZGFuIHByb2NlbnRcbiAgICA6IGNoYW5nZUFtb3VudCAvIGJhc2VWYWx1ZTsgIC8vIEtvbnZlcnRlcmEgdsOkcmRlIHRpbGwgcHJvY2VudCBhdiBzdGFydHbDpHJkZXRcblxuICBmb3IgKGxldCBpID0gMDsgaSA8PSB0aW1lU3RlcHM7IGkrKykge1xuICAgIGRhdGEucHVzaCh7XG4gICAgICBwZXJpb2Q6IGksXG4gICAgICB2YWx1ZTogY3VycmVudFZhbHVlLFxuICAgICAgdHlwZTogXCJLdW11bGF0aXYgKGV4cG9uZW50aWVsbClcIlxuICAgIH0pO1xuXG4gICAgLy8gQXBwbGljZXJhIGFsbHRpZCBleHBvbmVudGllbGwgdGlsbHbDpHh0XG4gICAgY3VycmVudFZhbHVlID0gY3VycmVudFZhbHVlICogKDEgKyBwZXJjZW50Q2hhbmdlKTtcbiAgfVxuICByZXR1cm4gZGF0YTtcbn1cblxuYWxsRGF0YSA9IFsuLi5saW5lYXJEYXRhLCAuLi5jdW11bGF0aXZlRGF0YV1cblxuLy8gQmVyw6RrbmEgc2x1dHbDpHJkZW5cbmxpbmVhckZpbmFsID0gbGluZWFyRGF0YVtsaW5lYXJEYXRhLmxlbmd0aCAtIDFdLnZhbHVlXG5jdW11bGF0aXZlRmluYWwgPSBjdW11bGF0aXZlRGF0YVtjdW11bGF0aXZlRGF0YS5sZW5ndGggLSAxXS52YWx1ZVxudG90YWxMaW5lYXJDaGFuZ2UgPSBsaW5lYXJGaW5hbCAtIGJhc2VWYWx1ZVxudG90YWxDdW11bGF0aXZlQ2hhbmdlID0gY3VtdWxhdGl2ZUZpbmFsIC0gYmFzZVZhbHVlXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbm1kYCoqU3RhcnR2w6RyZGUqKjogJHtiYXNlVmFsdWUudG9GaXhlZCgyKX1cblxuKipMaW5qw6RyIGbDtnLDpG5kcmluZyAoYWRkaXRpdikqKjogJHtjaGFuZ2VUeXBlID09PSBcInBlcmNlbnRcIiA/IGBWYXJqZSBwZXJpb2Q6ICskeyhiYXNlVmFsdWUgKiBjaGFuZ2VBbW91bnQgLyAxMDApLnRvRml4ZWQoMil9ICgke2NoYW5nZUFtb3VudH0lIGF2IHN0YXJ0dsOkcmRldClgIDogYFZhcmplIHBlcmlvZDogKyR7Y2hhbmdlQW1vdW50LnRvRml4ZWQoMil9YH0gfCBTbHV0dsOkcmRlOiAke2xpbmVhckZpbmFsLnRvRml4ZWQoMil9IHwgVG90YWwgZsO2csOkbmRyaW5nOiAke3RvdGFsTGluZWFyQ2hhbmdlLnRvRml4ZWQoMil9ICgkeygodG90YWxMaW5lYXJDaGFuZ2UvYmFzZVZhbHVlKSoxMDApLnRvRml4ZWQoMSl9JSlcblxuKipLdW11bGF0aXYgZsO2csOkbmRyaW5nIChleHBvbmVudGllbGwpKio6IFZhcmplIHBlcmlvZDogw5ckeygxICsgKGNoYW5nZVR5cGUgPT09IFwicGVyY2VudFwiID8gY2hhbmdlQW1vdW50LzEwMCA6IGNoYW5nZUFtb3VudC9iYXNlVmFsdWUpKS50b0ZpeGVkKDQpfSAoJHtjaGFuZ2VUeXBlID09PSBcInBlcmNlbnRcIiA/IGAke2NoYW5nZUFtb3VudH0lYCA6IGAkeygoY2hhbmdlQW1vdW50L2Jhc2VWYWx1ZSkqMTAwKS50b0ZpeGVkKDIpfSVgfSBhdiBkZXQgYWt0dWVsbGEgdsOkcmRldCkgfCBTbHV0dsOkcmRlOiAke2N1bXVsYXRpdmVGaW5hbC50b0ZpeGVkKDIpfSB8IFRvdGFsIGbDtnLDpG5kcmluZzogJHt0b3RhbEN1bXVsYXRpdmVDaGFuZ2UudG9GaXhlZCgyKX0gKCR7KCh0b3RhbEN1bXVsYXRpdmVDaGFuZ2UvYmFzZVZhbHVlKSoxMDApLnRvRml4ZWQoMSl9JSlcblxuKipTa2lsbG5hZCBtZWxsYW4gbWV0b2Rlcm5hKio6ICR7TWF0aC5hYnMoY3VtdWxhdGl2ZUZpbmFsIC0gbGluZWFyRmluYWwpLnRvRml4ZWQoMil9YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG50aW1lU2VyaWVzUGxvdCA9IFBsb3QucGxvdCh7XG4gIHdpZHRoOiA4MDAsXG4gIGhlaWdodDogNTAwLFxuICBtYXJnaW5MZWZ0OiA2MCxcbiAgbWFyZ2luQm90dG9tOiA2MCxcbiAgeToge1xuICAgIGxhYmVsOiBcIlbDpHJkZVwiLFxuICAgIGdyaWQ6IHRydWVcbiAgfSxcbiAgeDoge1xuICAgIGxhYmVsOiBcIlBlcmlvZFwiLFxuICAgIGdyaWQ6IHRydWVcbiAgfSxcbiAgY29sb3I6IHtcbiAgICBsZWdlbmQ6IHRydWUsXG4gICAgZG9tYWluOiBbXCJMaW5qw6RyIChhZGRpdGl2KVwiLCBcIkt1bXVsYXRpdiAoZXhwb25lbnRpZWxsKVwiXSxcbiAgICByYW5nZTogW1wiIzBkNmVmZFwiLCBcIiNkYzM1NDVcIl1cbiAgfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LmxpbmUoYWxsRGF0YSwge1xuICAgICAgeDogXCJwZXJpb2RcIixcbiAgICAgIHk6IFwidmFsdWVcIixcbiAgICAgIHN0cm9rZTogXCJ0eXBlXCIsXG4gICAgICBzdHJva2VXaWR0aDogMyxcbiAgICAgIHRpcDogdHJ1ZVxuICAgIH0pLFxuICAgIFBsb3QuZG90KGFsbERhdGEsIHtcbiAgICAgIHg6IFwicGVyaW9kXCIsXG4gICAgICB5OiBcInZhbHVlXCIsXG4gICAgICBmaWxsOiBcInR5cGVcIixcbiAgICAgIHI6IDRcbiAgICB9KSxcbiAgICBQbG90LnJ1bGVZKFtiYXNlVmFsdWVdLCB7XG4gICAgICBzdHJva2U6IFwiIzZjNzU3ZFwiLFxuICAgICAgc3Ryb2tlRGFzaGFycmF5OiBcIjQsNFwiXG4gICAgfSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3RhcnRQY3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnZW5kUGN0JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2Jhc2VWYWx1ZScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjaGFuZ2VUeXBlJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2NoYW5nZUFtb3VudCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd0aW1lU3RlcHMnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../dashboards";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopierat!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopierat!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/mathjoha\.github\.io\/abmm06\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Källkod</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Procentförändring vs Procentenheter"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Percentage Change vs Percentage Points"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>Plot <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/plot"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Del 1: Procentenheter vs Procentförändring</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>Det finns en viktig skillnad mellan **procentförändring** (% change) och **förändring i procentenheter** (percentage points):</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentenheter**: Absolut skillnad mellan två procenttal</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentförändring**: Relativ förändring uttryckt i procent av ursprungsvärdet</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interaktiv kalkylator</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>viewof startPct <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Startvärde (%)"</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>viewof endPct <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">30</span><span class="op">,</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Slutvärde (%)"</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>percentagePointChange <span class="op">=</span> endPct <span class="op">-</span> startPct</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>percentageChange <span class="op">=</span> startPct <span class="op">===</span> <span class="dv">0</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> <span class="kw">null</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> ((endPct <span class="op">-</span> startPct) <span class="op">/</span> startPct <span class="op">*</span> <span class="dv">100</span>)</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>direction <span class="op">=</span> endPct <span class="op">&gt;</span> startPct <span class="op">?</span> <span class="st">"ökning"</span> <span class="op">:</span> endPct <span class="op">&lt;</span> startPct <span class="op">?</span> <span class="st">"minskning"</span> <span class="op">:</span> <span class="st">"ingen förändring"</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Dina värden**: Startvärde </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% → Slutvärde </span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Förändring i procentenheter (absolut skillnad)**: </span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% - </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% = **</span><span class="sc">${</span>percentagePointChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> procentenheter**. Detta är en enkel subtraktion mellan två procenttal.`</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Procentförändring (relativ förändring)**: </span><span class="sc">${</span>startPct <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"**Odefinierat** - kan inte beräkna procentförändring från 0%"</span> <span class="op">:</span> <span class="vs">`(</span><span class="sc">${</span>endPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">) / </span><span class="sc">${</span>startPct<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> × 100 = **</span><span class="sc">${</span>percentageChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% </span><span class="sc">${</span>direction<span class="sc">}</span><span class="vs">**. Detta innebär att värdet har </span><span class="sc">${</span>direction <span class="op">===</span> <span class="st">"ökning"</span> <span class="op">?</span> <span class="st">"ökat"</span> <span class="op">:</span> <span class="st">"minskat"</span><span class="sc">}</span><span class="vs"> med </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(percentageChange)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">% relativt startvärdet.`</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualisering</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a>barChart <span class="op">=</span> {</span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> [</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">label</span><span class="op">:</span> <span class="st">"Start"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> startPct<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#0d6efd"</span><span class="op">,</span> <span class="dt">order</span><span class="op">:</span> <span class="dv">1</span>}<span class="op">,</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    {<span class="dt">label</span><span class="op">:</span> <span class="st">"Slut"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> endPct<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> <span class="st">"#198754"</span><span class="op">,</span> <span class="dt">order</span><span class="op">:</span> <span class="dv">2</span>}</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">640</span><span class="op">,</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Värde (%)"</span><span class="op">,</span></span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Start"</span><span class="op">,</span> <span class="st">"Slut"</span>]</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">barY</span>(data<span class="op">,</span> {</span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"label"</span><span class="op">,</span></span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"color"</span><span class="op">,</span></span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">text</span>([{</span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x1</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(startPct<span class="op">,</span> endPct) <span class="op">+</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>        <span class="dt">text</span><span class="op">:</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(percentagePointChange)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> p.e.`</span></span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>      }]<span class="op">,</span> {</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"x1"</span><span class="op">,</span></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>        <span class="dt">text</span><span class="op">:</span> <span class="st">"text"</span><span class="op">,</span></span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"#dc3545"</span><span class="op">,</span></span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Vanliga exempel</span></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel 1: Valresultat</span></span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>Ett parti går från **25%** till **30%** av rösterna:</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentenheter**: 30% - 25% = **5 procentenheter**</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentförändring**: (30-25)/25 × 100 = **20% ökning**</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>I media säger man ofta "partiet ökade med 5 procentenheter" (korrekt) eller felaktigt "med 5 procent".</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel 2: Räntor</span></span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>Räntan höjs från **2%** till **3%**:</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentenheter**: 3% - 2% = **1 procentenhet**</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Procentförändring**: (3-2)/2 × 100 = **50% ökning**</span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>En liten förändring i procentenheter kan vara en stor procentuell förändring!</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a><span class="fu">## Del 2: Linjär vs Kumulativ förändring över tid</span></span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>Här kan du se skillnaden mellan **linjär tillväxt** (samma absoluta förändring varje period) och **kumulativ tillväxt** (samma procentuella förändring varje period).</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Interaktiv simulator</span></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>viewof baseValue <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">number</span>([<span class="dv">0</span><span class="op">,</span> <span class="kw">Infinity</span>]<span class="op">,</span> {</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Startvärde"</span></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>viewof changeType <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="st">"percent"</span><span class="op">,</span> <span class="st">"value"</span>]<span class="op">,</span> {</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="st">"percent"</span><span class="op">,</span></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Typ av förändring"</span><span class="op">,</span></span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>  <span class="dt">format</span><span class="op">:</span> x <span class="kw">=&gt;</span> x <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="st">"Procent per period"</span> <span class="op">:</span> <span class="st">"Värde per period"</span></span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>viewof changeAmount <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">50</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a>      <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Förändring per period (%)"</span></span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a>  <span class="op">:</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">100</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {</span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>      <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Förändring per period (värde)"</span></span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>viewof timeSteps <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">50</span>]<span class="op">,</span> {</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Antal perioder"</span></span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="co">// Beräkna linjär och kumulativ förändring</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>linearData <span class="op">=</span> {</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Linjär: samma absoluta förändring varje period</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Om procent: använd procentändring AV STARTVÄRDET varje period</span></span>
+<span id="cb9-179"><a href="#cb9-179" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Om värde: använd samma värdeändring varje period</span></span>
+<span id="cb9-180"><a href="#cb9-180" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> valueChange <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb9-181"><a href="#cb9-181" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> (baseValue <span class="op">*</span> changeAmount <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb9-182"><a href="#cb9-182" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> changeAmount<span class="op">;</span></span>
+<span id="cb9-183"><a href="#cb9-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> timeSteps<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a>      <span class="dt">period</span><span class="op">:</span> i<span class="op">,</span></span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> baseValue <span class="op">+</span> (valueChange <span class="op">*</span> i)<span class="op">,</span></span>
+<span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"Linjär (additiv)"</span></span>
+<span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-191"><a href="#cb9-191" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb9-192"><a href="#cb9-192" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-193"><a href="#cb9-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-194"><a href="#cb9-194" aria-hidden="true" tabindex="-1"></a>cumulativeData <span class="op">=</span> {</span>
+<span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> currentValue <span class="op">=</span> baseValue<span class="op">;</span></span>
+<span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Kumulativ: förändring baserat på aktuellt värde (exponentiell)</span></span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a>  <span class="co">// ALLTID använd procent av aktuellt värde</span></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> percentChange <span class="op">=</span> changeType <span class="op">===</span> <span class="st">"percent"</span></span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>    <span class="op">?</span> changeAmount <span class="op">/</span> <span class="dv">100</span>  <span class="co">// Användaren angav redan procent</span></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>    <span class="op">:</span> changeAmount <span class="op">/</span> baseValue<span class="op">;</span>  <span class="co">// Konvertera värde till procent av startvärdet</span></span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;=</span> timeSteps<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>      <span class="dt">period</span><span class="op">:</span> i<span class="op">,</span></span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> currentValue<span class="op">,</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>      <span class="dt">type</span><span class="op">:</span> <span class="st">"Kumulativ (exponentiell)"</span></span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Applicera alltid exponentiell tillväxt</span></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a>    currentValue <span class="op">=</span> currentValue <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> percentChange)<span class="op">;</span></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data<span class="op">;</span></span>
+<span id="cb9-215"><a href="#cb9-215" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-216"><a href="#cb9-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-217"><a href="#cb9-217" aria-hidden="true" tabindex="-1"></a>allData <span class="op">=</span> [<span class="op">...</span>linearData<span class="op">,</span> <span class="op">...</span>cumulativeData]</span>
+<span id="cb9-218"><a href="#cb9-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-219"><a href="#cb9-219" aria-hidden="true" tabindex="-1"></a><span class="co">// Beräkna slutvärden</span></span>
+<span id="cb9-220"><a href="#cb9-220" aria-hidden="true" tabindex="-1"></a>linearFinal <span class="op">=</span> linearData[linearData<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">value</span></span>
+<span id="cb9-221"><a href="#cb9-221" aria-hidden="true" tabindex="-1"></a>cumulativeFinal <span class="op">=</span> cumulativeData[cumulativeData<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">.</span><span class="at">value</span></span>
+<span id="cb9-222"><a href="#cb9-222" aria-hidden="true" tabindex="-1"></a>totalLinearChange <span class="op">=</span> linearFinal <span class="op">-</span> baseValue</span>
+<span id="cb9-223"><a href="#cb9-223" aria-hidden="true" tabindex="-1"></a>totalCumulativeChange <span class="op">=</span> cumulativeFinal <span class="op">-</span> baseValue</span>
+<span id="cb9-224"><a href="#cb9-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-225"><a href="#cb9-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-228"><a href="#cb9-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-229"><a href="#cb9-229" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-230"><a href="#cb9-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-231"><a href="#cb9-231" aria-hidden="true" tabindex="-1"></a><span class="fu">md</span><span class="vs">`**Startvärde**: </span><span class="sc">${</span>baseValue<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span></span>
+<span id="cb9-232"><a href="#cb9-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-233"><a href="#cb9-233" aria-hidden="true" tabindex="-1"></a><span class="vs">**Linjär förändring (additiv)**: </span><span class="sc">${</span>changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="vs">`Varje period: +</span><span class="sc">${</span>(baseValue <span class="op">*</span> changeAmount <span class="op">/</span> <span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>changeAmount<span class="sc">}</span><span class="vs">% av startvärdet)`</span> <span class="op">:</span> <span class="vs">`Varje period: +</span><span class="sc">${</span>changeAmount<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span><span class="sc">}</span><span class="vs"> | Slutvärde: </span><span class="sc">${</span>linearFinal<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | Total förändring: </span><span class="sc">${</span>totalLinearChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>((totalLinearChange<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb9-234"><a href="#cb9-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-235"><a href="#cb9-235" aria-hidden="true" tabindex="-1"></a><span class="vs">**Kumulativ förändring (exponentiell)**: Varje period: ×</span><span class="sc">${</span>(<span class="dv">1</span> <span class="op">+</span> (changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> changeAmount<span class="op">/</span><span class="dv">100</span> <span class="op">:</span> changeAmount<span class="op">/</span>baseValue))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>changeType <span class="op">===</span> <span class="st">"percent"</span> <span class="op">?</span> <span class="vs">`</span><span class="sc">${</span>changeAmount<span class="sc">}</span><span class="vs">%`</span> <span class="op">:</span> <span class="vs">`</span><span class="sc">${</span>((changeAmount<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">%`</span><span class="sc">}</span><span class="vs"> av det aktuella värdet) | Slutvärde: </span><span class="sc">${</span>cumulativeFinal<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> | Total förändring: </span><span class="sc">${</span>totalCumulativeChange<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>((totalCumulativeChange<span class="op">/</span>baseValue)<span class="op">*</span><span class="dv">100</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%)</span></span>
+<span id="cb9-236"><a href="#cb9-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-237"><a href="#cb9-237" aria-hidden="true" tabindex="-1"></a><span class="vs">**Skillnad mellan metoderna**: </span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(cumulativeFinal <span class="op">-</span> linearFinal)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb9-238"><a href="#cb9-238" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-239"><a href="#cb9-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-242"><a href="#cb9-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb9-243"><a href="#cb9-243" aria-hidden="true" tabindex="-1"></a><span class="co">//| echo: false</span></span>
+<span id="cb9-244"><a href="#cb9-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-245"><a href="#cb9-245" aria-hidden="true" tabindex="-1"></a>timeSeriesPlot <span class="op">=</span> Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-246"><a href="#cb9-246" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
+<span id="cb9-247"><a href="#cb9-247" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb9-248"><a href="#cb9-248" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb9-249"><a href="#cb9-249" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb9-250"><a href="#cb9-250" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb9-251"><a href="#cb9-251" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Värde"</span><span class="op">,</span></span>
+<span id="cb9-252"><a href="#cb9-252" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-253"><a href="#cb9-253" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-254"><a href="#cb9-254" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb9-255"><a href="#cb9-255" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Period"</span><span class="op">,</span></span>
+<span id="cb9-256"><a href="#cb9-256" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-257"><a href="#cb9-257" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-258"><a href="#cb9-258" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb9-259"><a href="#cb9-259" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb9-260"><a href="#cb9-260" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Linjär (additiv)"</span><span class="op">,</span> <span class="st">"Kumulativ (exponentiell)"</span>]<span class="op">,</span></span>
+<span id="cb9-261"><a href="#cb9-261" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0d6efd"</span><span class="op">,</span> <span class="st">"#dc3545"</span>]</span>
+<span id="cb9-262"><a href="#cb9-262" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb9-263"><a href="#cb9-263" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-264"><a href="#cb9-264" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(allData<span class="op">,</span> {</span>
+<span id="cb9-265"><a href="#cb9-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"period"</span><span class="op">,</span></span>
+<span id="cb9-266"><a href="#cb9-266" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb9-267"><a href="#cb9-267" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb9-268"><a href="#cb9-268" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb9-269"><a href="#cb9-269" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-270"><a href="#cb9-270" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb9-271"><a href="#cb9-271" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(allData<span class="op">,</span> {</span>
+<span id="cb9-272"><a href="#cb9-272" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"period"</span><span class="op">,</span></span>
+<span id="cb9-273"><a href="#cb9-273" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"value"</span><span class="op">,</span></span>
+<span id="cb9-274"><a href="#cb9-274" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"type"</span><span class="op">,</span></span>
+<span id="cb9-275"><a href="#cb9-275" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span></span>
+<span id="cb9-276"><a href="#cb9-276" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb9-277"><a href="#cb9-277" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([baseValue]<span class="op">,</span> {</span>
+<span id="cb9-278"><a href="#cb9-278" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#6c757d"</span><span class="op">,</span></span>
+<span id="cb9-279"><a href="#cb9-279" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"4,4"</span></span>
+<span id="cb9-280"><a href="#cb9-280" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-281"><a href="#cb9-281" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb9-282"><a href="#cb9-282" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-283"><a href="#cb9-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-284"><a href="#cb9-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-285"><a href="#cb9-285" aria-hidden="true" tabindex="-1"></a><span class="fu">## Förklaring: Linjär vs Kumulativ</span></span>
+<span id="cb9-286"><a href="#cb9-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-287"><a href="#cb9-287" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linjär förändring (Additiv)</span></span>
+<span id="cb9-288"><a href="#cb9-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-289"><a href="#cb9-289" aria-hidden="true" tabindex="-1"></a>Samma **absoluta värde** läggs till varje period:</span>
+<span id="cb9-290"><a href="#cb9-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-291"><a href="#cb9-291" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 0: 100</span>
+<span id="cb9-292"><a href="#cb9-292" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 1: 100 + 10 = 110</span>
+<span id="cb9-293"><a href="#cb9-293" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 2: 110 + 10 = 120</span>
+<span id="cb9-294"><a href="#cb9-294" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 3: 120 + 10 = 130</span>
+<span id="cb9-295"><a href="#cb9-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-296"><a href="#cb9-296" aria-hidden="true" tabindex="-1"></a>**Formel**: Värde(t) = Startvärde + (Förändring × t)</span>
+<span id="cb9-297"><a href="#cb9-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-298"><a href="#cb9-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kumulativ förändring (Multiplikativ)</span></span>
+<span id="cb9-299"><a href="#cb9-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-300"><a href="#cb9-300" aria-hidden="true" tabindex="-1"></a>Samma **procent** av det **aktuella värdet** läggs till varje period:</span>
+<span id="cb9-301"><a href="#cb9-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-302"><a href="#cb9-302" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 0: 100</span>
+<span id="cb9-303"><a href="#cb9-303" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 1: 100 × 1.10 = 110</span>
+<span id="cb9-304"><a href="#cb9-304" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 2: 110 × 1.10 = 121</span>
+<span id="cb9-305"><a href="#cb9-305" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Period 3: 121 × 1.10 = 133.1</span>
+<span id="cb9-306"><a href="#cb9-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-307"><a href="#cb9-307" aria-hidden="true" tabindex="-1"></a>**Formel**: Värde(t) = Startvärde × (1 + r)^t</span>
+<span id="cb9-308"><a href="#cb9-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-309"><a href="#cb9-309" aria-hidden="true" tabindex="-1"></a>där r är förändringen per period (10% = 0.10)</span>
+<span id="cb9-310"><a href="#cb9-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-311"><a href="#cb9-311" aria-hidden="true" tabindex="-1"></a><span class="fu">## Verkliga exempel</span></span>
+<span id="cb9-312"><a href="#cb9-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-313"><a href="#cb9-313" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ränta på ränta</span></span>
+<span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a>När du sparar pengar med **ränta på ränta** får du kumulativ tillväxt:</span>
+<span id="cb9-316"><a href="#cb9-316" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 1: 10 000 kr × 1.05 = 10 500 kr</span>
+<span id="cb9-317"><a href="#cb9-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 2: 10 500 kr × 1.05 = 11 025 kr (inte 11 000 kr!)</span>
+<span id="cb9-318"><a href="#cb9-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-319"><a href="#cb9-319" aria-hidden="true" tabindex="-1"></a><span class="fu">### Population</span></span>
+<span id="cb9-320"><a href="#cb9-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-321"><a href="#cb9-321" aria-hidden="true" tabindex="-1"></a>Befolkningstillväxt är ofta kumulativ eftersom den nya befolkningen också får barn:</span>
+<span id="cb9-322"><a href="#cb9-322" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 0: 1 000 personer</span>
+<span id="cb9-323"><a href="#cb9-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 1: 1 000 × 1.02 = 1 020 personer</span>
+<span id="cb9-324"><a href="#cb9-324" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 2: 1 020 × 1.02 = 1 040.4 personer</span>
+<span id="cb9-325"><a href="#cb9-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-326"><a href="#cb9-326" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inflation</span></span>
+<span id="cb9-327"><a href="#cb9-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-328"><a href="#cb9-328" aria-hidden="true" tabindex="-1"></a>Inflation är kumulativ - priserna ökar baserat på det **nuvarande** priset, inte originalpriset:</span>
+<span id="cb9-329"><a href="#cb9-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 0: 100 kr</span>
+<span id="cb9-330"><a href="#cb9-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 1: 100 × 1.03 = 103 kr</span>
+<span id="cb9-331"><a href="#cb9-331" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>År 2: 103 × 1.03 = 106.09 kr</span>
+<span id="cb9-332"><a href="#cb9-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-333"><a href="#cb9-333" aria-hidden="true" tabindex="-1"></a><span class="fu">## 72-regeln</span></span>
+<span id="cb9-334"><a href="#cb9-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-335"><a href="#cb9-335" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">72-regeln</span><span class="co">](https://en.wikipedia.org/wiki/Rule_of_72)</span> är en enkel tumregel för att uppskatta hur lång tid det tar för ett värde att **fördubblas** vid kumulativ tillväxt.</span>
+<span id="cb9-336"><a href="#cb9-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-337"><a href="#cb9-337" aria-hidden="true" tabindex="-1"></a>**Formel**: Antal perioder för fördubbling ≈ 72 / tillväxttakt (i procent)</span>
+<span id="cb9-338"><a href="#cb9-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-339"><a href="#cb9-339" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exempel</span></span>
+<span id="cb9-340"><a href="#cb9-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-341"><a href="#cb9-341" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tillväxttakt per år <span class="pp">|</span> Tid för fördubbling <span class="pp">|</span> Exempel <span class="pp">|</span></span>
+<span id="cb9-342"><a href="#cb9-342" aria-hidden="true" tabindex="-1"></a><span class="pp">|---------------------|---------------------|---------|</span></span>
+<span id="cb9-343"><a href="#cb9-343" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **5%** | 72 / 5 ≈ **14.4 år** <span class="pp">|</span>   $$1.05^{14.4} ≈ 2.02$$  <span class="pp">|</span></span>
+<span id="cb9-344"><a href="#cb9-344" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **7.2%** | 72 / 7.2 = **10 år** <span class="pp">|</span>  $$1.07^{10} ≈ 1.97 $$  <span class="pp">|</span></span>
+<span id="cb9-345"><a href="#cb9-345" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **10%** | 72 / 10 ≈ **7.2 år** <span class="pp">|</span>  $$1.1^{7.2} ≈ 1.99 $$<span class="pp">|</span></span>
+<span id="cb9-346"><a href="#cb9-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-347"><a href="#cb9-347" aria-hidden="true" tabindex="-1"></a>:::{.callout-tip}</span>
+<span id="cb9-348"><a href="#cb9-348" aria-hidden="true" tabindex="-1"></a><span class="fu">## Varför är detta användbart?</span></span>
+<span id="cb9-349"><a href="#cb9-349" aria-hidden="true" tabindex="-1"></a>72-regeln gör det lätt att snabbt uppskatta effekten av kumulativ tillväxt utan miniräknare. Den fungerar bäst för tillväxttakter mellan 6% och 10%, men ger rimliga approximationer för de flesta räntor.</span>
+<span id="cb9-350"><a href="#cb9-350" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-351"><a href="#cb9-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-352"><a href="#cb9-352" aria-hidden="true" tabindex="-1"></a><span class="fu">## Sammanfattning</span></span>
+<span id="cb9-353"><a href="#cb9-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-354"><a href="#cb9-354" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aspekt <span class="pp">|</span> Linjär <span class="pp">|</span> Kumulativ <span class="pp">|</span></span>
+<span id="cb9-355"><a href="#cb9-355" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|--------|-----------|</span></span>
+<span id="cb9-356"><a href="#cb9-356" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Förändring per period <span class="pp">|</span> Konstant absolut värde <span class="pp">|</span> Konstant procentsats <span class="pp">|</span></span>
+<span id="cb9-357"><a href="#cb9-357" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tillväxttakt <span class="pp">|</span> Avtagande (relativt) <span class="pp">|</span> Konstant (procentuellt) <span class="pp">|</span></span>
+<span id="cb9-358"><a href="#cb9-358" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Graf <span class="pp">|</span> Rät linje <span class="pp">|</span> Exponentiell kurva <span class="pp">|</span></span>
+<span id="cb9-359"><a href="#cb9-359" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Exempel <span class="pp">|</span> Spara fast summa per månad <span class="pp">|</span> Ränta på ränta <span class="pp">|</span></span>
+<span id="cb9-360"><a href="#cb9-360" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Formel <span class="pp">|</span> a + bt <span class="pp">|</span> a(1+r)^t <span class="pp">|</span></span>
+<span id="cb9-361"><a href="#cb9-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-362"><a href="#cb9-362" aria-hidden="true" tabindex="-1"></a><span class="fu">## Formler</span></span>
+<span id="cb9-363"><a href="#cb9-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-364"><a href="#cb9-364" aria-hidden="true" tabindex="-1"></a><span class="fu">### Procentenheter</span></span>
+<span id="cb9-365"><a href="#cb9-365" aria-hidden="true" tabindex="-1"></a>$$\text{Procentenheter} = \text{Slutvärde} - \text{Startvärde}$$</span>
+<span id="cb9-366"><a href="#cb9-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-367"><a href="#cb9-367" aria-hidden="true" tabindex="-1"></a><span class="fu">### Procentförändring</span></span>
+<span id="cb9-368"><a href="#cb9-368" aria-hidden="true" tabindex="-1"></a>$$\text{Procentförändring} = \frac{\text{Slutvärde} - \text{Startvärde}}{\text{Startvärde}} \times 100$$</span>
+<span id="cb9-369"><a href="#cb9-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-370"><a href="#cb9-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linjär tillväxt</span></span>
+<span id="cb9-371"><a href="#cb9-371" aria-hidden="true" tabindex="-1"></a>$$V(t) = V_0 + (k \times t)$$</span>
+<span id="cb9-372"><a href="#cb9-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-373"><a href="#cb9-373" aria-hidden="true" tabindex="-1"></a>där $V_0$ är startvärde, $k$ är förändring per period, $t$ är tid</span>
+<span id="cb9-374"><a href="#cb9-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-375"><a href="#cb9-375" aria-hidden="true" tabindex="-1"></a><span class="fu">### Kumulativ tillväxt (exponentiell)</span></span>
+<span id="cb9-376"><a href="#cb9-376" aria-hidden="true" tabindex="-1"></a>$$V(t) = V_0 \times (1 + r)^t$$</span>
+<span id="cb9-377"><a href="#cb9-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-378"><a href="#cb9-378" aria-hidden="true" tabindex="-1"></a>där $V_0$ är startvärde, $r$ är förändring per period (decimalt), $t$ är tid</span>
+</code><button title="Kopiera till urklipp" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mathjoha/abmm06/edit/main/dashboards/percentage-change-viz.qmd" class="toc-action"><i class="bi bi-github"></i>Redigera denna sida</a></li><li><a href="https://github.com/mathjoha/abmm06/issues/new" class="toc-action"><i class="bi empty"></i>Rapportera ett problem</a></li></ul></div></div></div></footer></body></html>
