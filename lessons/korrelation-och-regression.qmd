@@ -22,7 +22,9 @@ format:
 
 ## Introduktion
 
-Denna lektion behandlar två centrala statistiska metoder för att analysera samband mellan variabler: korrelation och regression. Vi går igenom beräkningar, tolkning och inferentiell statistik.
+Denna lektion behandlar två centrala statistiska metoder för att analysera
+samband mellan variabler: korrelation och regression. Vi går igenom
+beräkningar, tolkning och inferentiell statistik.
 
 ## Korrelation
 
@@ -66,7 +68,8 @@ Med dessa data får vi r ≈ 0.98, vilket indikerar en stark positiv korrelation
 
 ## Enkel linjär regression
 
-Regression används för att förutsäga värdet på en beroende variabel (Y) baserat på en oberoende variabel (X).
+Regression används för att förutsäga värdet på en beroende variabel (Y) baserat
+på en oberoende variabel (X).
 
 ### Regressionsekvationen
 
@@ -97,11 +100,13 @@ Beräkningar ger:
 
 **Regressionsekvation:** $\hat{y} = 47 + 4.5x$
 
-Detta betyder att för varje extra timme studietid förväntas resultatet öka med 4.5 procentenheter.
+Detta betyder att för varje extra timme studietid förväntas resultatet öka med
+4.5 procentenheter.
 
 ## Residualer (fel)
 
-Residualen är skillnaden mellan det observerade värdet och det värde som regressionen förutsäger:
+Residualen är skillnaden mellan det observerade värdet och det värde som
+regressionen förutsäger:
 
 $$e_i = y_i - \hat{y}_i$$
 
@@ -129,7 +134,8 @@ R² anger andelen av variansen i Y som förklaras av X:
 $$t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$$
 
 - Frihetsgrader: df = n - 2
-- Om p < 0.05 förkastar vi nollhypotesen och säger att korrelationen är statistiskt signifikant
+- Om p < 0.05 förkastar vi nollhypotesen och säger att korrelationen är
+  statistiskt signifikant
 
 ### Konfidensintervall för lutningen
 

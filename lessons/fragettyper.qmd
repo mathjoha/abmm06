@@ -23,23 +23,28 @@ format:
 
 ## Översikt
 
-Vid utformning av enkäter är det viktigt att välja rätt frågetyp för att samla in den data du behöver. Denna sida ger en djupare förklaring av de olika frågetyperna.
+Vid utformning av enkäter är det viktigt att välja rätt frågetyp för att samla
+in den data du behöver. Denna sida ger en djupare förklaring av de olika
+frågetyperna.
 
 ## Öppna frågor (Open-ended questions)
 
 Öppna frågor låter respondenten svara fritt med egna ord.
 
 **Fördelar:**
+
 - Ger rika, detaljerade svar
 - Kan avslöja oväntade insikter
 - Respondenten känner sig hörd
 
 **Nackdelar:**
+
 - Tidskrävande att analysera
 - Svårt att kvantifiera
 - Respondenter kan hoppa över dem
 
 **Exempel:**
+
 > *Vad tycker du om vår tjänst?*
 > Svar: _______________
 
@@ -50,11 +55,13 @@ Vid utformning av enkäter är det viktigt att välja rätt frågetyp för att s
 Endast två svarsalternativ.
 
 **När ska man använda dem:**
+
 - Ja/Nej-frågor
 - Sant/Falskt
 - Före/Efter
 
 **Exempel:**
+
 > *Har du besökt biblioteket tidigare?*
 > ○ Ja  ○ Nej
 
@@ -63,11 +70,13 @@ Endast två svarsalternativ.
 Val från en fördefinierad lista.
 
 **Designtips:**
+
 - Se till att alternativen är ömsesidigt uteslutande
 - Inkludera "Annat" om listan inte är uttömmande
 - Begränsa till 5-7 alternativ
 
 **Exempel:**
+
 > *Vilken tjänst använder du mest?*
 > ○ Lån av böcker
 > ○ Databaser
@@ -80,12 +89,14 @@ Val från en fördefinierad lista.
 Mäter intensitet eller grad av åsikt.
 
 **Vanliga skalor:**
+
 - 3-punkts: Nej / Neutral / Ja
 - 5-punkts: Mycket missnöjd → Mycket nöjd
 - 7-punkts: För mer nyanserade svar
 
 **Exempel (5-punkts):**
-> *Hur nöjd är du med servicen?*
+
+> *Hur nöjd är du med tjänsten?*
 > ○ Mycket missnöjd
 > ○ Missnöjd
 > ○ Neutral
@@ -97,11 +108,13 @@ Mäter intensitet eller grad av åsikt.
 Respondenten bedömer sin egen förmåga eller kunskap.
 
 **Obs:** Kan vara opålitliga på grund av:
+
 - Dunning-Kruger-effekten
 - Social önskvärdhet
 - Olika referensramar
 
 **Exempel:**
+
 > *Hur bra är du på att söka i databaser?*
 > ○ Expert
 > ○ Bra
@@ -113,11 +126,13 @@ Respondenten bedömer sin egen förmåga eller kunskap.
 Styr respondenterna till olika delar av enkäten baserat på deras svar.
 
 **Fördelar:**
+
 - Kortare enkät för varje respondent
 - Mer relevanta frågor
 - Bättre datakvalitet
 
 **Exempel:**
+
 > *Använder du sociala medier?*
 > ○ Ja → Gå till fråga 10
 > ○ Nej → Gå till fråga 15

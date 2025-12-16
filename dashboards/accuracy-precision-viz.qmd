@@ -307,7 +307,9 @@ md`${interpretation}`
 ## Förklaring
 
 - **Röd prick**: Målets centrum (det sanna värdet)
+
 - **Svarta prickar**: Individuella skott/mätningar
+
 - **Blått kors**: Klustrets centrum (medelvärdet av mätningarna)
 
 ### Koppling till mätningar
@@ -321,9 +323,13 @@ md`${interpretation}`
 ### Praktiska exempel
 
 **Termometer med systematiskt fel:**
+
 - Hög precision: Visar samma värde vid upprepade mätningar
+
 - Låg noggrannhet: Men alltid 2°C för högt (kalibreringsproblem)
 
 **Våg med dålig upplösning:**
+
 - Hög noggrannhet: Visar rätt värde i genomsnitt
+
 - Låg precision: Men varierar ±0.5 kg mellan mätningar

@@ -14,6 +14,7 @@ format:
     slide-number: true
     chalkboard: true
     smaller: false
+    incremental: true
     scrollable: true
   pdf:
     toc: true
@@ -54,6 +55,7 @@ Endast två alternativ:
 *Har du barn?*
 
 ○ Ja
+
 ○ Nej
 
 ## Svarslistor (Multiple choice)
@@ -63,16 +65,21 @@ Val från en lista:
 *Var bor du?*
 
 ○ Lund
+
 ○ Malmö
+
 ○ Helsingborg
+
 ○ Annat: ___
 
 ## Graderade svar (Scales)
 
-*Hur bra är du på att hitta böcker i LUBsearch?*
+*Hur bra är du på att hitta böcker i FINN?*
 
 ○ Bra
+
 ○ Okej
+
 ○ Inte bra
 
 **Hur många alternativ bör man ha?**

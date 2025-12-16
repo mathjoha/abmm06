@@ -14,7 +14,8 @@ Plot = require("@observablehq/plot")
 
 ## Del 1: Procentenheter vs Procentförändring
 
-Det finns en viktig skillnad mellan **procentförändring** (% change) och **förändring i procentenheter** (percentage points):
+Det finns en viktig skillnad mellan **procentförändring** (% change) och
+**förändring i procentenheter** (percentage points):
 
 - **Procentenheter**: Absolut skillnad mellan två procenttal
 - **Procentförändring**: Relativ förändring uttryckt i procent av ursprungsvärdet
@@ -111,7 +112,8 @@ Ett parti går från **25%** till **30%** av rösterna:
 - **Procentförändring**: (30-25)/25 × 100 = **20% ökning**
 
 :::{.callout-tip}
-I media säger man ofta "partiet ökade med 5 procentenheter" (korrekt) eller felaktigt "med 5 procent".
+I media säger man ofta "partiet ökade med 5 procentenheter" (korrekt) eller
+felaktigt "med 5 procent".
 :::
 
 ### Exempel 2: Räntor
@@ -125,7 +127,9 @@ En liten förändring i procentenheter kan vara en stor procentuell förändring
 
 ## Del 2: Linjär vs Kumulativ förändring över tid
 
-Här kan du se skillnaden mellan **linjär tillväxt** (samma absoluta förändring varje period) och **kumulativ tillväxt** (samma procentuella förändring varje period).
+Här kan du se skillnaden mellan **linjär tillväxt** (samma absoluta förändring
+varje period) och **kumulativ tillväxt** (samma procentuella förändring varje
+period).
 
 ### Interaktiv simulator
 
@@ -307,20 +311,25 @@ När du sparar pengar med **ränta på ränta** får du kumulativ tillväxt:
 ### Population
 
 Befolkningstillväxt är ofta kumulativ eftersom den nya befolkningen också får barn:
+
 - År 0: 1 000 personer
 - År 1: 1 000 × 1.02 = 1 020 personer
 - År 2: 1 020 × 1.02 = 1 040.4 personer
 
 ### Inflation
 
-Inflation är kumulativ - priserna ökar baserat på det **nuvarande** priset, inte originalpriset:
+Inflation är kumulativ - priserna ökar baserat på det **nuvarande** priset,
+inte originalpriset:
+
 - År 0: 100 kr
 - År 1: 100 × 1.03 = 103 kr
 - År 2: 103 × 1.03 = 106.09 kr
 
 ## 72-regeln
 
-[72-regeln](https://en.wikipedia.org/wiki/Rule_of_72) är en enkel tumregel för att uppskatta hur lång tid det tar för ett värde att **fördubblas** vid kumulativ tillväxt.
+[72-regeln](https://en.wikipedia.org/wiki/Rule_of_72) är en enkel tumregel för
+att uppskatta hur lång tid det tar för ett värde att **fördubblas** vid
+kumulativ tillväxt.
 
 **Formel**: Antal perioder för fördubbling ≈ 72 / tillväxttakt (i procent)
 
@@ -334,7 +343,9 @@ Inflation är kumulativ - priserna ökar baserat på det **nuvarande** priset, i
 
 :::{.callout-tip}
 ## Varför är detta användbart?
-72-regeln gör det lätt att snabbt uppskatta effekten av kumulativ tillväxt utan miniräknare. Den fungerar bäst för tillväxttakter mellan 6% och 10%, men ger rimliga approximationer för de flesta räntor.
+72-regeln gör det lätt att snabbt uppskatta effekten av kumulativ tillväxt utan
+miniräknare. Den fungerar bäst för tillväxttakter mellan 6% och 10%, men ger
+rimliga approximationer för de flesta räntor.
 :::
 
 ## Sammanfattning

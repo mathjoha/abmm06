@@ -137,6 +137,7 @@ Plot.plot({
 ```
 
 **Förklaring:**
+
 - **Röd linje**: Medelvärde
 - **Grön streckad linje**: Median
 
@@ -163,6 +164,7 @@ Plot.plot({
 ```
 
 **Förklaring:**
+
 - **Box**: Visar Q1, median, Q3
 - **Whiskers**: Sträcker sig till min/max inom 1.5×IQR
 - **Röda punkter**: Outliers enligt IQR-metoden
@@ -344,6 +346,7 @@ md`
 ## Experimentera!
 
 Prova att:
+
 1. **Slå på/av outlier** - Se hur det påverkar medelvärde vs median
 2. **Ändra outlier-värdet** - Se när det blir extremt nog att klassas som outlier
 3. **Applicera log-transformation** - Observera hur extremvärden komprimeras

@@ -14,6 +14,7 @@ format:
     slide-number: true
     chalkboard: true
     smaller: false
+    incremental: true
     scrollable: true
   pdf:
     toc: true
@@ -35,7 +36,9 @@ Ett metodologiskt perspektiv som anpassar sig till webbens egenskaper och möjli
 
 ## Definition
 
-> En metodologisk ansats för akademisk forskning på webben som prioriterar användningen av webbens inneboende verktyg, tekniker och data för social och kulturell forskning.
+> En metodologisk ansats för akademisk forskning på webben som prioriterar
+> användningen av webbens inneboende verktyg, tekniker och data för social och
+> kulturell forskning.
 
 ## Webbens analysenheter
 

@@ -37,6 +37,7 @@ format:
 Kategorier utan inbördes ordning
 
 **Exempel:**
+
 - Bostadsort: Lund, Malmö, Helsingborg
 - Kön: Man, Kvinna, Annat
 - Färg: Röd, Blå, Grön
@@ -48,6 +49,7 @@ Kategorier utan inbördes ordning
 Kategorier med meningsfull ordning
 
 **Exempel:**
+
 - Utbildningsnivå: Grundskola < Gymnasium < Universitet
 - Nöjdhet: Missnöjd < Neutral < Nöjd
 - Likert-skala: 1-5
@@ -59,6 +61,7 @@ Kategorier med meningsfull ordning
 Numeriska data med jämna intervall men godtycklig nollpunkt
 
 **Exempel:**
+
 - Temperatur (Celsius): 0°C är inte "ingen temperatur"
 - År: År 0 är godtyckligt valt
 - IQ-poäng
@@ -70,6 +73,7 @@ Numeriska data med jämna intervall men godtycklig nollpunkt
 Numeriska data med absolut nollpunkt
 
 **Exempel:**
+
 - Ålder: 0 år = ingen ålder
 - Inkomst: 0 kr = ingen inkomst
 - Längd, vikt, tid

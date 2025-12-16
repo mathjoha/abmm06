@@ -382,8 +382,10 @@ Om resultaten skiljer sig dramatiskt, var extra försiktig med slutsatser.
 
 ## Interaktiva verktyg
 
-- **[Datatyper](../dashboards/datatyper-viz.qmd)** - Utforska effekten av log-transformation och outlier-borttagning
-- **[Statistikkalkylator](../dashboards/statistik-kalkylator.qmd)** - Beräkna statistik och se effekten av outliers
+- **[Datatyper](../dashboards/datatyper-viz.qmd)** - Utforska effekten av
+  log-transformation och outlier-borttagning
+- **[Statistikkalkylator](../dashboards/statistik-kalkylator.qmd)** - Beräkna
+  statistik och se effekten av outliers
 
 ## Vidare läsning
 

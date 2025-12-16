@@ -60,6 +60,7 @@ $$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
 $$s = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}$$
 
 **Kvartiler:**
+
 - Q1 (25:e percentilen)
 - Q2 (median, 50:e percentilen)
 - Q3 (75:e percentilen)

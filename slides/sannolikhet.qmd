@@ -14,6 +14,7 @@ format:
     slide-number: true
     chalkboard: true
     smaller: false
+    incremental: true
     scrollable: true
   pdf:
     toc: true
@@ -109,10 +110,45 @@ $$\bar{x} \pm 1.96 \times \frac{s}{\sqrt{n}}$$
 **OBS:** Signifikans ≠ praktisk betydelse!
 
 ## Vanliga missförstånd
+::::: {.columns}
 
-1. ~~"Jag har tur/otur"~~ → Slumpen har inget minne
-2. ~~"Det måste jämna ut sig"~~ → Spelarens felslut (gambler's fallacy)
-3. ~~"p = 0.05 betyder 95% chans att vara sann"~~ → Fel tolkning av p-värde
+:::: {.column width="40%"}
+
+::: {.fragment .strike fragment-index=1}
+"Jag har tur/otur"
+:::
+
+::: {.fragment .strike fragment-index=2}
+"Det måste jämna ut sig"
+:::
+
+::: {.fragment .strike fragment-index=3}
+"p = 0.05 betyder 95% chans att vara sann"
+:::
+::::
+
+:::: {.column width="60%"}
+
+
+::: {.fragment fragment-index=1}
+→ Slumpen har inget minne
+:::
+
+::: {.fragment fragment-index=2}
+→ Spelarens felslut (gambler's fallacy)
+:::
+
+::: {.fragment fragment-index=3}
+→ Fel tolkning av p-värde
+:::
+
+::::
+
+
+:::::
+
+
+
 
 ## Samplingfel vs systematiska fel
 

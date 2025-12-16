@@ -16,7 +16,8 @@ format:
 
 ## Skapa din egen regression
 
-Klicka i diagrammet nedan för att lägga till datapunkter. Regressionslinjen och feltermer (residualer) uppdateras automatiskt.
+Klicka i diagrammet nedan för att lägga till datapunkter. Regressionslinjen och
+feltermer (residualer) uppdateras automatiskt.
 
 ```{ojs}
 //| echo: false
